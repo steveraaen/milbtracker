@@ -19,7 +19,7 @@ app.get('/api/summary', function(req, res) {
 	pool.getConnection(function(err, connection) {
   connection.query('select year, minorTeam,  count(player), franchise, class from supermaster  group by minorTeam , year order by count(player) desc', function (error, results, fields) {
 
-    connection.release();
+  /*  connection.release();*/
 
     if (error) throw error;
 
@@ -31,7 +31,7 @@ app.get('/api/allMinors', function(req, res) {
   connection.query('select * from newMinors where franchise IS NOT NULL', function (error, results, fields) {
  /*   console.log(results)*/
     	res.json(results)
-    connection.release();
+  /*  connection.release();*/
 
     if (error) throw error;
    });
@@ -53,7 +53,7 @@ group by newMinors.team
 order by count(newPlayerMaster.playerName) desc`, [req.query.m, req.query.d, req.query.p, req.query.y], function (error, results, fields) {
    /* console.log(results)*/
       res.json(results)
-    connection.release();
+  /*  connection.release();*/
 
     if (error) throw error;
    });
@@ -75,7 +75,7 @@ app.get('/api/batterList', function(req, res) {
 
     /*    console.log(results)*/
       res.json(results)
-    connection.release();
+/*    connection.release();*/
 
     if (error) throw error;
    });
@@ -97,7 +97,7 @@ app.get('/api/pitcherList', function(req, res) {
 
     /*    console.log(results)*/
       res.json(results)
-    connection.release();
+  /*  connection.release();*/
 
     if (error) throw error;
    });
@@ -140,7 +140,7 @@ app.get('/api/classSummary', function(req, res) {
                     [req.query.cl, req.query.dv, req.query.yr, req.query.cl, req.query.dv, req.query.yr ], function (error, results, fields) {
       /* console.log(results)*/
       res.json(results)
-    connection.release();
+/*    connection.release();*/
     if (error) throw error;
    });
  });
