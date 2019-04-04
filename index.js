@@ -8,10 +8,10 @@ const app = express()
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 var pool  = mysql.createPool({
-    host: process.env.DB_HOST,
+    host: 'steveport.com',
     port: '3306',
     user: 'tranch5_sjr',
-    password: process.env.DB_PW,
+    password: 'modernWater360',
     database: 'tranch5_milb',
      multipleStatements: true
 });
