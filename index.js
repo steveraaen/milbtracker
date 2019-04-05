@@ -9,14 +9,15 @@ const app = express()
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 console.log(process.env)
-var connection  = mysql.createConnection({
+/*var connection  = mysql.createConnection({
     host: 'gmgcjwawatv599gq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     port: '3306',
     user: '  rvd8pk44d3y429e3',
     password: '  tqqwr7za0fczmnex',
     database: 'vtox5woubolsge6o',
      multipleStatements: true
-});
+});*/
+var connection  = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
 app.get('/api/summary', function(req, res) {
 
   connection.query('select year, minorTeam,  count(player), franchise, class from supermaster  group by minorTeam , year order by count(player) desc', function (error, results, fields) {
