@@ -138,7 +138,7 @@ app.get('/api/classSummary', function(req, res) {
   connection.query(`select  className as cl, logo, color, milbTeam, yr, division, 9 * (pER / pIP) as pERA, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className like ? and divID like ? and yr like ?   order by pIP desc limit 20 ;
                     select className as cl, logo, color, milbTeam, yr, division, bG, bH, bAB, bBA, bHR, bSO, bBB, majteam, franchiseLogo from summary18 where className like ? and divID like ? and yr like ?  order by bH desc limit 20 ;`, 
                     [req.query.cl, req.query.dv, req.query.yr, req.query.cl, req.query.dv, req.query.yr ], function (error, results, fields) {
-      /* console.log(results)*/
+       console.log(results)
       res.json(results)
     connection.release();
     if (error) throw error;
