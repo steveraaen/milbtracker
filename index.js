@@ -9,20 +9,20 @@ const app = express()
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 console.log(process.env)
-/*var connection  = mysql.createConnection({
-    host: 'gmgcjwawatv599gq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+var connection  = mysql.createConnection({
+    host: process.env.DB_HOST,
     port: '3306',
-    user: '  rvd8pk44d3y429e3',
-    password: '  tqqwr7za0fczmnex',
-    database: 'vtox5woubolsge6o',
+    user: process.env.DB_USER,
+    password: process.env.DB_PW,
+    database: process.env.DB_NAME,
      multipleStatements: true
-});*/
-var connection  = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
+});
+
 app.get('/api/summary', function(req, res) {
 
   connection.query('select year, minorTeam,  count(player), franchise, class from supermaster  group by minorTeam , year order by count(player) desc', function (error, results, fields) {
 
-    connection.end();
+
 
     if (error) throw error;
 
@@ -34,7 +34,7 @@ app.get('/api/allMinors', function(req, res) {
   connection.query('select * from newMinors where franchise IS NOT NULL', function (error, results, fields) {
  /*   console.log(results)*/
     	res.json(results)
-    connection.end();
+
 
     if (error) throw error;
    });
@@ -55,7 +55,7 @@ group by newMinors.team
 order by count(newPlayerMaster.playerName) desc`, [req.query.m, req.query.d, req.query.p, req.query.y], function (error, results, fields) {
    /* console.log(results)*/
       res.json(results)
-    connection.end();
+
 
     if (error) throw error;
    });
@@ -75,7 +75,7 @@ app.get('/api/batterList', function(req, res) {
 
     /*    console.log(results)*/
       res.json(results)
-    connection.end();
+
 
     if (error) throw error;
    });
@@ -96,7 +96,7 @@ app.get('/api/pitcherList', function(req, res) {
 
     /*    console.log(results)*/
       res.json(results)
-    connection.end();
+
 
     if (error) throw error;
    });      
@@ -110,7 +110,7 @@ app.get('/api/pitcherList', function(req, res) {
                     select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchiseLogo from summary18 where className = ? and bAB > 200  order by bBA desc limit 5;`, ['Triple-A','Double-A','Class A','Class A Advanced','Class A Short'], function (error, results, fields) {
     console.log(results)
       res.json(results)
-    connection.end();
+
 
     if (error) throw error;
    });
@@ -125,7 +125,7 @@ app.get('/api/topPitching', function(req, res) {
                     select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className = ? and pIP > 150  order by pER limit 5;`, ['Triple-A','Double-A','Class A','Class A Advanced','Class A Short'], function (error, results, fields) {
     console.log(results)
       res.json(results)
-    connection.end();
+
     if (error) throw error;
    });
  });
@@ -138,7 +138,7 @@ app.get('/api/classSummary', function(req, res) {
                     [req.query.cl, req.query.dv, req.query.yr, req.query.cl, req.query.dv, req.query.yr ], function (error, results, fields) {
   /*     console.log(results)*/
       res.json(results)
-    connection.end();
+
     if (error) throw error;
    });
 })

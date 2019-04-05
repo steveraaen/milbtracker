@@ -10,10 +10,10 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 console.log(process.env)
 var pool  = mysql.createPool({
-    host: process.env.DB_HOST,
+    host: process.env.DB_HOSTI,
     port: '3306',
     user: 'tranch5_sjr',
-    password: process.env.DB_PW,
+    password: process.env.DB_PWI,
     database: 'tranch5_milb',
      multipleStatements: true
 });
