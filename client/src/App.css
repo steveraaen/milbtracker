@@ -1,7 +1,5 @@
 body {
- background-color: SlateGray;
   padding: 2vw;
-  color: LemonChiffon;
 }
 
 .recharts-wrapper {
@@ -11,4 +9,80 @@ table thead tr:first-child > th {
      position: sticky !important;
      top: 0;
      z-index: 2;
+}
+
+@keyframes spinball {
+  from {
+  	left: 20%;
+    transform: rotate(359deg);
+  }
+  to {
+  	left: 78%;
+    transform: rotate(0deg);
+  }
+}
+@keyframes mlb {
+  from {
+  	left: 110%;
+    transform: rotate(180deg);
+  }
+  to {
+  	left: 80%;
+    transform: rotate(359deg);
+  }
+}
+@keyframes milb {
+  from {
+  	left: 20%;
+    transform: rotate(180deg);
+  }
+  to {
+  	left: 52%;
+    transform: rotate(359deg);
+  }
+}
+@keyframes blurb {
+  from {
+  	top: 0%;
+  }
+  to {
+  	top: 12%;
+  }
+}
+.ball {
+	width: 3vw;
+  	height: 3vw;
+	animation: spinball 4s;
+	position : relative;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+/*	animation-delay: 1s;*/
+
+}
+.mlblogo {
+	margin-top: 5vh;
+	width: 10vw;
+  	height: 10vw;
+	animation: mlb 4s ;
+	position : relative;	
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+.milblogo {
+	margin-top: 5vh;
+	width: 10vw;
+  	height: 10vw;
+	animation: milb 4s ;
+	position : relative;	
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+.blurb {
+	margin-top: 5vh;
+	width: 40vw;
+  	height: 10vw;
+	animation: blurb 4s ;
+	position : relative;	
+	animation-iteration-count: 1;
+
 }

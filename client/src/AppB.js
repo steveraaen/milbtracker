@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Grid, Header, Icon, Segment, Sidebar} from 'semantic-ui-react'
-
+import { Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar} from 'semantic-ui-react'
+import posed from 'react-pose';
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker,   YearPicker, Divisions, Stats } from './components/Selections.js'
@@ -12,7 +12,6 @@ import mlbTeams from './mlbTeams.js'
 /*import leagues from './assets/leagues.js'*/
 
 const yrs = [
-
     { text: "All Years", value: "20%", key: "20%" },
     { text: "2013", value: 2013, key: "2013" },
     { text: "2014", value: 2014, key: "2014" },
@@ -21,7 +20,7 @@ const yrs = [
     { text: "2017", value: 2017, key: "2017" },
     { text: "2018", value: 2018, key: "2018" }
 ]
-
+const Box = posed.div();
 function AppB() {
    /* const [allMiLB, setAllMiLB] = useState(allMinorTeams);*/
     const [selectedClass, setSelectedClass] = useState(classes[1]);
@@ -271,10 +270,32 @@ function AppB() {
 
 
     return (
-            <div style={{fontSize:'1rem'}} >  
+            <div style={{fontSize:'1rem', backgroundColor: 'white'}} > 
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+       
+              <div className="ball" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}>
+                <Image src={ require('./assets/ball.png')} />
+              </div>              
+            
+              <div className="mlblogo" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}> 
+                <Image height={80} width={120} src={ require('./assets/mlblogo.png')} />
+              </div>
+
+              <div className="milblogo" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}>
+                <Image height={80} width={120} src={ require('./assets/milblogo.png')} />
+              </div>
+                      <span className="blurb" style={{marginRight: '4vw', paddingTop: '2vh', fontSize: '1.8rem', fontWeight: 600}}>
+             Which minor league baseball teams <br/>have produced the most successful <br/>2018 Major Leaguers?
+              </span> 
+             </div>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <Button disabled={visible} onClick={toggleSidebar}>
-            Show sidebar
+            Select Minor League Class, Year, etc.
           </Button>
+               
+             </div> 
+             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+             </div>
             <Sidebar.Pushable as={Segment}>
           <Sidebar
             animation='uncover'
@@ -343,19 +364,11 @@ function AppB() {
        
         <Sidebar.Pusher>  
   <Grid>
-<Grid.Row columns={1}>  
-      <Header as="h1" style={{fontSize: '1.8rem',display: 'flex', flexDirection: 'row', justifyContent: 'center', color: 'LemonChiffon'}}>2018 MLB Performance of MiLB Teams (2013-2018)</Header>
-</Grid.Row>  
+
+
   <Grid.Row columns={1}>
  
      <Grid.Column>  
-      <Collapsible  
-      open           
-      trigger={<div>Show list of top MiLB teams <Icon name={classIcon} /></div>} 
-      triggerWhenOpen={<div>Hide list of top MiLB teams <Icon name="angle up" /></div>}
-      triggerStyle={{textAlign: "left", fontSize: '1.2rem', padding: 2, margin: 2}}
-
-      > 
       <BestFive
         setModalOpen={setModalOpen}
         modalOpen={modalOpen}
@@ -375,7 +388,6 @@ function AppB() {
         {...topTenHit}
         {...topTenPitch}
         />
-          </Collapsible>
       </Grid.Column>
    </Grid.Row>
   <Grid.Row>
