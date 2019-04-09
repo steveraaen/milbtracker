@@ -14,22 +14,8 @@ function YearPicker(props) {
     }
     return (
         <div>  
-    <Segment > 
         <Form.Group>
 
-             <Form.Checkbox 
-             toggle
-               label={'All Years'}
-               value={'20%'}
-               key={'AllYears'} 
-               onChange={handleChange}
-               checked={props.selectedYear === '20%'}
-               >
-               </Form.Checkbox>
-        </Form.Group>
-        </Segment> 
-    <Segment style={{marginTop: 0, height: '20vh'}}> 
-        <Form.Group>
         { props.years.map((yr, idx) => {
           return(
              <Form.Checkbox 
@@ -45,7 +31,7 @@ function YearPicker(props) {
         })        
        }
         </Form.Group>
-        </Segment> 
+  
        </div>
 
     )
@@ -69,7 +55,7 @@ function ClassPicker(props) {
     }
     return (
         <div> 
-     <Segment style={{alignItems: 'center'}}>
+   
        <Form.Group> 
         <Form.Checkbox
          toggle
@@ -79,10 +65,6 @@ function ClassPicker(props) {
           onChange={handleChange}
           checked={props.selectedClass === tempObj}
         />
-        </Form.Group>
-    </Segment>
-      <Segment style={{marginTop: 0, height: '20vh'}}> 
-        <Form.Group>
         { props.classes.map((cl, idx) => {
           return(
              <Form.Checkbox 
@@ -98,7 +80,6 @@ function ClassPicker(props) {
         })         
         }
         </Form.Group>
-      </Segment> 
      </div>
     );
 }
@@ -112,8 +93,7 @@ function Divisions(props) {
     }
     if (props.allDivisions) {
         return (
-            <div>
-     <Segment style={{alignItems: 'center'}}>
+   <div>
        <Form.Group> 
         <Form.Checkbox
          toggle
@@ -123,11 +103,6 @@ function Divisions(props) {
           onChange={handleChange}
           checked={props.selectedDivision.value === "%L%"}
         />
-        </Form.Group>
-    </Segment>
-    <div style={{display: 'flex', flexDirection: 'row'}}>
-    <Segment  style={{marginTop: 0, height: '20vh'}}>
-     <Form.Group>     
         <Form.Checkbox
          toggle
           key={'allAL'}
@@ -151,8 +126,6 @@ function Divisions(props) {
            )} else {return null}
        })}     
     </Form.Group>
-    </Segment>
-    <Segment style={{marginTop: 0, height: '20vh'}}>
      <Form.Group>   
         <Form.Checkbox
          toggle
@@ -177,8 +150,7 @@ function Divisions(props) {
            )} else {return null}
        })}     
     </Form.Group>
-    </Segment>
-    </div>
+
     </div>
         )
     } else { return <Loader active /> }

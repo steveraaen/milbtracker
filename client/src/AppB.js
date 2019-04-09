@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Header, Icon} from 'semantic-ui-react'
+import { Container, Grid, Header, Icon, Segment, Sidebar} from 'semantic-ui-react'
 
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
@@ -22,7 +22,7 @@ const yrs = [
     { text: "2018", value: 2018, key: "2018" }
 ]
 
-function App() {
+function AppB() {
    /* const [allMiLB, setAllMiLB] = useState(allMinorTeams);*/
     const [selectedClass, setSelectedClass] = useState(classes[1]);
     const [minors, setMinors] = useState({});
@@ -48,6 +48,7 @@ function App() {
 /*    const [curSortB, setCurSortB] = useState({bsrt: "bBA", bsDir: "desc"});
     const [curSortP, setCurSortP] = useState({psrt: "bBA", bsDir: "desc"});*/
     const [modalOpen, setModalOpen] = useState();
+    const [visible, setVisable] = useState(false);
 
     function sortBTable(e) {  
       let { topTenBatting } = topTen
@@ -267,20 +268,17 @@ function App() {
 
     return (
 
-  <Grid  stackable centered>
+  <Grid  >
 <Grid.Row columns={1}>  
     <Grid.Column >
       <Header as="h1" style={{fontSize: '1.8rem',display: 'flex', flexDirection: 'row', justifyContent: 'center', color: 'LemonChiffon'}}>2018 MLB Performance of MiLB Teams (2013-2018)</Header>
     </Grid.Column>
 </Grid.Row>  
-<Grid.Row columns={1}>  
-      <Grid.Column>
-           <Collapsible 
-            trigger={<div>Select Minor League Class, Year and Franchise  <Icon name={classIcon} /></div>} 
-            triggerWhenOpen={<div>Click here to close the selection form  <Icon name="angle up" /></div>}
-            triggerStyle={{fontSize: '1.2rem', padding: 2, margin: 2}}
-            > 
-            <Container style={{fontSize:'1rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-around', height: 260}} >  
+<Grid.Row >  
+    
+            <div style={{fontSize:'1rem'}} >  
+           
+           <Segment> <Grid.Column>
             <ClassPicker
               minors={minors}
               years={years}
@@ -295,8 +293,12 @@ function App() {
               setSelectedClass={setSelectedClass}
               selectedMiLBTeam={selectedMiLBTeam}
               setSelectedMiLBTeam={setSelectedMiLBTeam}
-              />        
-            <YearPicker 
+              />   
+              </Grid.Column>  
+              </Segment>   
+         
+         <Segment>  <Grid.Column> 
+           <YearPicker 
               topTen={topTen}
               years={years} 
               classes={classes} 
@@ -310,8 +312,12 @@ function App() {
               setSelectedYear={setSelectedYear} 
               selectedMiLBTeam={selectedMiLBTeam}
               setSelectedMiLBTeam={setSelectedMiLBTeam}
-              />            
-            <Divisions 
+              />  
+              </Grid.Column>  
+              </Segment>        
+        
+        <Segment>  <Grid.Column>  
+          <Divisions 
               setSelectedDivision={setSelectedDivision} 
               getBestMinors={getBestMinors} 
               allMLB={allMLB} {...allDivisions} 
@@ -324,11 +330,13 @@ function App() {
               getTopTen={getTopTen}
               topTen={topTen}
               />
-            </Container>
-          </Collapsible>   
-      </Grid.Column>
+              </Grid.Column>
+              </Segment>
+            </div>
+
+  
 </Grid.Row>  
-<Grid>  
+
   <Grid.Row columns={1}>
  
      <Grid.Column>  
@@ -381,11 +389,11 @@ function App() {
  
     </Grid.Column>
     </Grid.Row> 
-        </Grid>
 
   </Grid>
+  
     );
 }
 
 
-export default App
+export default AppB
