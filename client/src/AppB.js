@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Grid, Header, Icon, Segment, Sidebar} from 'semantic-ui-react'
+import { Button, Container, Grid, Header, Icon, Segment, Sidebar} from 'semantic-ui-react'
 
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
@@ -48,7 +48,11 @@ function AppB() {
 /*    const [curSortB, setCurSortB] = useState({bsrt: "bBA", bsDir: "desc"});
     const [curSortP, setCurSortP] = useState({psrt: "bBA", bsDir: "desc"});*/
     const [modalOpen, setModalOpen] = useState();
-    const [visible, setVisable] = useState(false);
+    const [visible, setVisible] = useState(false);
+
+    function toggleSidebar() {
+      !visible ? setVisible({ visible: true}) : setVisible({ visible: false})
+    }
 
     function sortBTable(e) {  
       let { topTenBatting } = topTen
@@ -267,18 +271,21 @@ function AppB() {
 
 
     return (
-
-  <Grid  >
-<Grid.Row columns={1}>  
-    <Grid.Column >
-      <Header as="h1" style={{fontSize: '1.8rem',display: 'flex', flexDirection: 'row', justifyContent: 'center', color: 'LemonChiffon'}}>2018 MLB Performance of MiLB Teams (2013-2018)</Header>
-    </Grid.Column>
-</Grid.Row>  
-<Grid.Row >  
-    
             <div style={{fontSize:'1rem'}} >  
+            <Button disabled={visible} onClick={toggleSidebar}>
+            Show sidebar
+          </Button>
+            <Sidebar.Pushable as={Segment}>
+          <Sidebar
+            animation='uncover'
+            icon='labeled'
+            inverted
+            onHide={() => setVisible(false)}
+            vertical
+            visible={visible}
            
-           <Segment> <Grid.Column>
+          >       
+           <Segment>
             <ClassPicker
               minors={minors}
               years={years}
@@ -294,10 +301,10 @@ function AppB() {
               selectedMiLBTeam={selectedMiLBTeam}
               setSelectedMiLBTeam={setSelectedMiLBTeam}
               />   
-              </Grid.Column>  
+                
               </Segment>   
          
-         <Segment>  <Grid.Column> 
+         <Segment>  
            <YearPicker 
               topTen={topTen}
               years={years} 
@@ -313,10 +320,10 @@ function AppB() {
               selectedMiLBTeam={selectedMiLBTeam}
               setSelectedMiLBTeam={setSelectedMiLBTeam}
               />  
-              </Grid.Column>  
+                
               </Segment>        
         
-        <Segment>  <Grid.Column>  
+        <Segment>   
           <Divisions 
               setSelectedDivision={setSelectedDivision} 
               getBestMinors={getBestMinors} 
@@ -330,13 +337,15 @@ function AppB() {
               getTopTen={getTopTen}
               topTen={topTen}
               />
-              </Grid.Column>
+              
               </Segment>
-            </div>
-
-  
+           </Sidebar>
+       
+        <Sidebar.Pusher>  
+  <Grid>
+<Grid.Row columns={1}>  
+      <Header as="h1" style={{fontSize: '1.8rem',display: 'flex', flexDirection: 'row', justifyContent: 'center', color: 'LemonChiffon'}}>2018 MLB Performance of MiLB Teams (2013-2018)</Header>
 </Grid.Row>  
-
   <Grid.Row columns={1}>
  
      <Grid.Column>  
@@ -365,7 +374,6 @@ function AppB() {
         synthStats={synthStats}
         {...topTenHit}
         {...topTenPitch}
-
         />
           </Collapsible>
       </Grid.Column>
@@ -383,15 +391,14 @@ function AppB() {
             {...pitcherList} 
             {...playerList}
              {...synthStats} 
-         
-            
             />  
- 
     </Grid.Column>
     </Grid.Row> 
-
   </Grid>
-  
+
+  </Sidebar.Pusher>
+   </Sidebar.Pushable>
+   </div>
     );
 }
 

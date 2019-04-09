@@ -115,7 +115,7 @@ function Divisions(props) {
          if(dv.league === "ALE" || dv.league === "ALC" || dv.league === "ALW") {
          return(
          <Form.Checkbox
-         style={{backgroundColor: dv.color, width: 320}}
+         style={{backgroundColor: dv.color, width: 180}}
          toggle
           key={idx}
           label={dv.display}
@@ -139,7 +139,7 @@ function Divisions(props) {
          if(dv.league === "NLE" || dv.league === "NLC" || dv.league === "NLW") {
          return(
          <Form.Checkbox
-         style={{backgroundColor: dv.color, width: 320}}
+         style={{backgroundColor: dv.color, width: 180}}
          toggle
           key={idx}
           label={dv.display}
@@ -150,7 +150,7 @@ function Divisions(props) {
            )} else {return null}
        })}     
     </Form.Group>
-
+   
     </div>
         )
     } else { return <Loader active /> }
