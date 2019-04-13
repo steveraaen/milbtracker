@@ -1,6 +1,42 @@
 import React, { useEffect } from 'react';
-import { Container,  Form, Grid,  Image, Loader, Modal, Placeholder, Statistic, Segment,  Table } from 'semantic-ui-react'
+import { Card, Container,  Form, Grid, Icon, Image, Loader, Modal, Placeholder, Statistic, Segment,  Table } from 'semantic-ui-react'
 import '../App.css'
+
+function Teams(props) {
+return (
+  <div>
+  {props.topTenBatting && props.allMLB && props.topTenBatting.map((crd, idx) => {
+    return(
+       <Card key={idx}>
+       <Card.Header>            
+       <Card.Meta>{crd.yr}</Card.Meta>
+         <div style={{display: 'flex', flrxDirection: 'row', justifyContent: 'space-between'}}>
+         <div>
+         {crd.milbTeam}
+        </div>
+
+        
+        </div>
+        </Card.Header>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Image height={60} src={crd.logo} />
+          <Image height={40} src={crd.franchiseLogo} />
+         </div>
+          <Card.Content>
+            
+
+            <Card.Description> <div>At Bats:  {crd.bAB}</div></Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+
+          </Card.Content>
+        </Card>
+      )
+  })}
+</div>
+)
+
+}
 
 function YearPicker(props) {
     function handleChange(e, { value, label }) {
@@ -518,4 +554,6 @@ function BestPlayers(props) {
         )
     } else { return <div></div> }
 }
-export { BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, Stats, YearPicker };
+export {BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, Stats, Teams, YearPicker };
+
+

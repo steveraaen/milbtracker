@@ -1,3 +1,24 @@
+          
+            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+       
+              <div className="ball" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}>
+                <Image src={ require('./assets/ball.png')} />
+              </div>              
+            
+              <div className="mlblogo" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}> 
+                <Image height={80} width={120} src={ require('./assets/mlblogo.png')} />
+              </div>
+
+              <div className="milblogo" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}>
+                <Image height={80} width={120} src={ require('./assets/milblogo.png')} />
+              </div>
+
+             </div>
+
+
+
+
+
       <Table>
         <Table.Header>
           <Table.Row>

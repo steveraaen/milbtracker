@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar} from 'semantic-ui-react'
-import posed from 'react-pose';
+import {Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
-import { BestFive, ClassPicker,   YearPicker, Divisions, Stats } from './components/Selections.js'
+import { BestFive, ClassPicker,   YearPicker, Divisions, Stats, Teams } from './components/Selections.js'
 
 
 import './App.css'
@@ -20,8 +19,9 @@ const yrs = [
     { text: "2017", value: 2017, key: "2017" },
     { text: "2018", value: 2018, key: "2018" }
 ]
-const Box = posed.div();
+
 function AppB() {
+
    /* const [allMiLB, setAllMiLB] = useState(allMinorTeams);*/
     const [selectedClass, setSelectedClass] = useState(classes[1]);
     const [minors, setMinors] = useState({});
@@ -271,27 +271,14 @@ function AppB() {
 
     return (
             <div style={{fontSize:'1rem', backgroundColor: 'white'}} > 
-            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-       
-              <div className="ball" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}>
-                <Image src={ require('./assets/ball.png')} />
-              </div>              
-            
-              <div className="mlblogo" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}> 
-                <Image height={80} width={120} src={ require('./assets/mlblogo.png')} />
-              </div>
-
-              <div className="milblogo" style={{paddingTop: '2vh', fontSize: '1.4rem', fontWeight: 600}}>
-                <Image height={80} width={120} src={ require('./assets/milblogo.png')} />
-              </div>
-                      <span className="blurb" style={{marginRight: '4vw', paddingTop: '2vh', fontSize: '1.8rem', fontWeight: 600}}>
-             Which minor league baseball teams <br/>have produced the most successful <br/>2018 Major Leaguers?
-              </span> 
-             </div>
+     <Teams 
+       {...minors} 
+       {...topTen} 
+       allMLB={allMLB}
+       />
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-            <Button disabled={visible} onClick={toggleSidebar}>
-            Select Minor League Class, Year, etc.
-          </Button>
+            <Icon name="bars" disabled={visible} onClick={toggleSidebar} />
+
                
              </div> 
              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
@@ -300,9 +287,9 @@ function AppB() {
           <Sidebar
             animation='uncover'
             icon='labeled'
-            inverted
+            inverted='true'
             onHide={() => setVisible(false)}
-            vertical
+            vertical='true'
             visible={visible}
            
           >       

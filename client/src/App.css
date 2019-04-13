@@ -13,12 +13,18 @@ table thead tr:first-child > th {
 
 @keyframes spinball {
   from {
-  	left: 20%;
-    transform: rotate(359deg);
+  		width: 4vw;
+  		height: 4vw;
+  		left: 50%;
+  		top: -5%;
+    	transform: rotate(359deg);
   }
   to {
-  	left: 78%;
-    transform: rotate(0deg);
+  		width: 2vw;
+  		height: 2vw;
+  		left: 50%;
+  		top: 0%;
+    	transform: rotate(0deg);
   }
 }
 @keyframes mlb {
@@ -28,34 +34,44 @@ table thead tr:first-child > th {
   }
   to {
   	left: 80%;
-    transform: rotate(359deg);
+    transform: rotate(360deg);
   }
 }
 @keyframes milb {
   from {
-  	left: 20%;
+  	left: 5%;
     transform: rotate(180deg);
   }
   to {
-  	left: 52%;
-    transform: rotate(359deg);
+  	left: 58%;
+    transform: rotate(360deg);
   }
 }
 @keyframes blurb {
   from {
-  	top: 0%;
+  	height: 20%;
   }
   to {
-  	top: 12%;
+  	height: 0%;
   }
 }
+
+@keyframes scroller {
+  from {
+  	left: 0%;
+  }
+  to {
+  	left: 60%;
+  }
+}
+
 .ball {
-	width: 3vw;
-  	height: 3vw;
+
 	animation: spinball 4s;
 	position : relative;
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
+
 /*	animation-delay: 1s;*/
 
 }
@@ -80,9 +96,14 @@ table thead tr:first-child > th {
 .blurb {
 	margin-top: 5vh;
 	width: 40vw;
-  	height: 10vw;
 	animation: blurb 4s ;
 	position : relative;	
 	animation-iteration-count: 1;
-
+}
+.scroller {
+	margin-top: 1vh;
+	animation: scroller 8s ;
+	position : relative;	
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
 }

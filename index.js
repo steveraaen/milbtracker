@@ -53,7 +53,7 @@ and newPlayerMaster.yr = ?
 and newMinors.franchise = newPlayerMaster.franchise
 group by newMinors.team
 order by count(newPlayerMaster.playerName) desc`, [req.query.m, req.query.d, req.query.p, req.query.y], function (error, results, fields) {
-   /* console.log(results)*/
+    console.log(results)
       res.json(results)
 
 
@@ -141,6 +141,7 @@ app.get('/api/classSummary', function(req, res) {
 
     if (error) throw error;
    });
+
 })
 // Use once to aggregate stats
 /*app.get('/api/sendStats', function(req, res) {
