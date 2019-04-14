@@ -14,7 +14,11 @@ return (
          <div>
          {crd.milbTeam}
         </div>
-
+        {props.allMLB && props.allMLB.map((mjr, ix) => {
+          if(mjr.teamCode === crd.majteam) {
+            return (mjr.teamName)
+          } else{return null}
+        })}
         
         </div>
         </Card.Header>
@@ -26,6 +30,8 @@ return (
             
 
             <Card.Description> <div>At Bats:  {crd.bAB}</div></Card.Description>
+            <Card.Description> <div>Average:  {crd.bBA}</div></Card.Description>
+            <Card.Description> <div>Hits:  {crd.bH}</div></Card.Description>
           </Card.Content>
           <Card.Content extra>
 
@@ -377,7 +383,7 @@ function BestFive(props) {
             
             </Table.HeaderCell>
             <Table.HeaderCell  
-            onClick={() => handleBSort('bH')}>
+            onClick={() => handleBSort('bH')}
            >Hits
             
             </Table.HeaderCell>
