@@ -271,11 +271,7 @@ function AppB() {
 
     return (
             <div style={{fontSize:'1rem', backgroundColor: 'white'}} > 
-     <Teams 
-       {...minors} 
-       {...topTen} 
-       allMLB={allMLB}
-       />
+
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <Icon name="bars" disabled={visible} onClick={toggleSidebar} />
 

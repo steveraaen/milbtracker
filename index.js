@@ -5,6 +5,11 @@ const express = require('express')
 const path = require('path')
 const mysql = require('mysql')
 const app = express()
+var CronJob = require('cron').CronJob;
+new CronJob('* * * * * ', function() {
+  console.log('You will see this message every second');
+}, null, true, 'America/Los_Angeles');
+
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -18,17 +23,6 @@ var connection  = mysql.createConnection({
      multipleStatements: true
 });
 
-app.get('/api/summary', function(req, res) {
-
-  connection.query('select year, minorTeam,  count(player), franchise, class from supermaster  group by minorTeam , year order by count(player) desc', function (error, results, fields) {
-
-
-
-    if (error) throw error;
-
-   });
-
-})
 app.get('/api/allMinors', function(req, res) {
 
   connection.query('select * from newMinors where franchise IS NOT NULL', function (error, results, fields) {
