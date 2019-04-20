@@ -3,23 +3,29 @@ const cheerio = require('cheerio')
 const request = require('request')
 const fs = require('fs')
 
+var baseUrl = 'https://www.baseball-reference.com'
 
-request("http://mlb.mlb.com/stats/sortable.jsp#elem=%5Bobject+Object%5D&tab_level=child&click_text=Sortable+Player+hitting&game_type='R'&season=2019&season_type=ANY&league_code='MLB'&sectionType=sp&statType=hitting&page=1", function (error, response, html) {
-  
 
+request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, html) {
+    var urls = []
   if(!error && response.statusCode === 200){
-      var $ = cheerio.load(html)
+    var $ = cheerio.load(html);
 
-      var tbl = $('table')
-      console.log(html)
-
-
-/*var $ = cheerio.load(html);
-var tst = $('#all_players_standard_batting').html()
-fs.writeFile('aaa.txt', tst, function(err) {
-    if(err) {console.log(err)}
-        console.log('done')
-})*/    
-}
+   $('#misc_bio td a').data({'stat': 'player'}).each(function(i,e) {
+        if($(this).attr('href').match(/player/)) {
+        urls.push(baseUrl + $(this).attr('href'))
+        }        
+    }) 
+    for(let i = 0; i < urls.length; i++) {
+        setTimeout(function() {
+           request(urls[i], function(error, response, html){
+              $ = cheerio.load(html)
+              console.log($) 
+           })
+        }, i * 2000)
+    }     
+  }
 });
+
+
 

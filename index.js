@@ -56,13 +56,13 @@ order by count(newPlayerMaster.playerName) desc`, [req.query.m, req.query.d, req
 })
 app.get('/api/batterList', function(req, res) {
 /*  console.log(req.query)*/
-  connection.query(`select distinct newPlayerMaster.playerName, newPlayerMaster.yr AS YR, batting18.lgID, batting18.G, 
-    batting18.AB, batting18.H, (batting18.H/batting18.AB) as AVG, batting18.2B, 
-    batting18.3B, batting18.HR, batting18.teamID,
-    batting18.RBI, batting18.SB, batting18.BB, batting18.SO, batting18.HBP
-    from newPlayerMaster, batting18 
+  connection.query(`select distinct newPlayerMaster.playerName, newPlayerMaster.yr AS YR, latestBatting.lg, latestBatting.G, 
+    latestBatting.AB, latestBatting.H, (latestBatting.H/latestBatting.AB) as AVG, latestBatting.2B, 
+    latestBatting.3B, latestBatting.HR, latestBatting.Tm,
+    latestBatting.RBI, latestBatting.SB, latestBatting.BB, latestBatting.SO, latestBatting.HBP
+    from newPlayerMaster, latestBatting 
     where newPlayerMaster.classes REGEXP ?
-    and batting18.playerID = newPlayerMaster.playerID
+    and latestBatting.playerCode = newPlayerMaster.playerID
     and newPlayerMaster.franchise = ?
     and newPlayerMaster.yr = ?
     order by AB desc `, [req.query.r, req.query.f, req.query.y], function (error, results, fields) {
