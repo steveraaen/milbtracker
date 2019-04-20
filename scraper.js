@@ -19,10 +19,13 @@ request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, h
     for(let i = 0; i < urls.length; i++) {
         setTimeout(function() {
            request(urls[i], function(error, response, html){
+
               $ = cheerio.load(html)
-              console.log($) 
+              var player = $('.minors_table').children().data({'stat': 'year_ID'})
+
+              console.log(player.text())
            })
-        }, i * 2000)
+        }, i * 3000)
     }     
   }
 });
