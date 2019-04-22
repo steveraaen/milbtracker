@@ -5,10 +5,7 @@ const express = require('express')
 const path = require('path')
 const mysql = require('mysql')
 const app = express()
-var CronJob = require('cron').CronJob;
-new CronJob('* * * * * ', function() {
-  console.log('You will see this message every second');
-}, null, true, 'America/Los_Angeles');
+
 
 
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -32,6 +29,80 @@ app.get('/api/allMinors', function(req, res) {
 
     if (error) throw error;
    });
+})
+app.get('/api/newBatList', function(req, res) {
+  connection.query(`select 
+playerHistory.franchise,
+playerHistory.Lev,
+playerHistory.Tm,
+playerHistory.yr,  
+latestBatting.playerName,
+latestBatting.H, 
+latestBatting.HR,
+latestBatting.RBI,
+latestBatting.R,
+latestBatting.BB,
+latestBatting.2B,
+latestBatting.3B,
+latestBatting.TB,
+latestBatting.SB,
+latestBatting.H / latestBatting.AB as avg
+from playerHistory, latestBatting 
+where playerHistory.playercode= latestBatting.playerCode 
+and playerHistory.franchise = 'NYM'
+and playerHistory.Lev = 'AAA'
+and playerHistory.yr = 2018
+order by latestBatting.TB desc`, function (error, results, fields) {
+
+    /*    console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
+})
+app.get('/api/newPitchList', function(req, res) {
+  connection.query(`select 
+playerHistory.franchise,
+playerHistory.Lev,
+playerHistory.Tm,
+playerHistory.yr,  
+latestPitching.playerName,
+latestPitching.W, 
+latestPitching.L,
+latestPitching.G,
+latestPitching.IP,
+latestPitching.H,
+latestPitching.ER,
+latestPitching.BB,
+latestPitching.SO,
+latestPitching.HBP,
+9 * (latestPitching.ER + latestPitching.ER) / (latestPitching.IP + latestPitching.IP) as ERA
+from playerHistory, latestPitching 
+where playerHistory.playercode= latestPitching.playerCode 
+and playerHistory.franchise = 'NYM'
+and playerHistory.Lev = 'AAA'
+and playerHistory.yr = 2015
+order by latestPitching.IP desc`, function (error, results, fields) {
+
+    /*    console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
+})
+app.get('/api/newBestMinorsBat', function(req, res) {
+  connection.query(`select * from battingSummary19`, function (error, results, fields) {
+
+    /*    console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
+})
+app.get('/api/newBestMinorsPitch', function(req, res) {
+  connection.query(`select * from pitchingSummary19`, function (error, results, fields) {
+
+    /*    console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
 })
 // Find out which minor league team has produced the most major leaguers in year xxxx
 app.get('/api/bestMinors', function(req, res) {
