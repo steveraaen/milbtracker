@@ -179,12 +179,16 @@ function AppB() {
     }
 
 
-    async function getPlayerList(r, f, y, t) {
-      console.log(r, f, y, t)
+    async function getPlayerList(c, r, f, y, t) {
+      console.log(c, r, f, y, t)
       try {
         const batterPromise = axios('/api/batterList', { params: { r, f, y, t } })
         const pitcherPromise = axios('/api/pitcherList', { params: { r, f, y, t } })
-        const [batterList, pitcherList] = await Promise.all([batterPromise, pitcherPromise]);                    
+        const newBatterPromise = axios('/api/newBatList', { params: {c, r, f, y, t } })
+        const newPitcherPromise = axios('/api/newPitchList', { params: { r, f, y, t } })
+        const [batterList, pitcherList, newBatters, newPitchers] = await Promise.all([batterPromise, pitcherPromise, newBatterPromise, newPitcherPromise]);    
+
+        console.log(newBatters)                
            var batStats = {}
            batStats.bat = batterList.data.reduce((a, b) => ({
                AB: a.AB + b.AB,

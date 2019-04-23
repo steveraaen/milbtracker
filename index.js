@@ -31,12 +31,16 @@ app.get('/api/allMinors', function(req, res) {
    });
 })
 app.get('/api/newBatList', function(req, res) {
+  console.log(req.query)
   connection.query(`select 
-playerHistory.franchise,
-playerHistory.Lev,
-playerHistory.Tm,
-playerHistory.yr,  
+origmaster.franchise,
+origmaster.class1,
+origmaster.class2,
+origmaster.class3,
+origmaster.class4,
+origmaster.yr,  
 latestBatting.playerName,
+latestBatting.AB, 
 latestBatting.H, 
 latestBatting.HR,
 latestBatting.RBI,
@@ -47,14 +51,14 @@ latestBatting.3B,
 latestBatting.TB,
 latestBatting.SB,
 latestBatting.H / latestBatting.AB as avg
-from playerHistory, latestBatting 
-where playerHistory.playercode= latestBatting.playerCode 
-and playerHistory.franchise = 'NYM'
-and playerHistory.Lev = 'AAA'
-and playerHistory.yr = 2018
-order by latestBatting.TB desc`, function (error, results, fields) {
+from origmaster, latestBatting 
+where origmaster.playerID= latestBatting.playerCode 
+and origmaster.franchise = ?
+and ? IN (origmaster.class1, origmaster.class2, origmaster.class3, origmaster.class4)
+and origmaster.yr = ?
+order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
 
-    /*    console.log(results)*/
+        console.log(results)
       res.json(results)
     if (error) throw error;
    })
@@ -78,10 +82,10 @@ latestPitching.HBP,
 9 * (latestPitching.ER + latestPitching.ER) / (latestPitching.IP + latestPitching.IP) as ERA
 from playerHistory, latestPitching 
 where playerHistory.playercode= latestPitching.playerCode 
-and playerHistory.franchise = 'NYM'
-and playerHistory.Lev = 'AAA'
-and playerHistory.yr = 2015
-order by latestPitching.IP desc`, function (error, results, fields) {
+and playerHistory.franchise = ?
+and playerHistory.Lev = ?
+and playerHistory.yr = ?
+order by latestPitching.IP desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
 
     /*    console.log(results)*/
       res.json(results)
@@ -196,7 +200,7 @@ app.get('/api/topPitching', function(req, res) {
  });
 })*/
 app.get('/api/classSummary', function(req, res) {
-  console.log(req.query)
+/*  console.log(req.query)*/
 
   connection.query(`select  className as cl, logo, color, milbTeam, yr, division, 9 * (pER / pIP) as pERA, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className like ? and divID like ? and yr like ?   order by pIP desc limit 20 ;
                     select className as cl, logo, color, milbTeam, yr, division, bG, bH, bAB, bBA, bHR, bSO, bBB, majteam, franchiseLogo from summary18 where className like ? and divID like ? and yr like ?  order by bH desc limit 20 ;`, 

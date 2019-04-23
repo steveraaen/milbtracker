@@ -8,25 +8,25 @@
 		{
 			displayName: "Double A",
 			name: "Double A",
-			code: "Double A",
+			code: "AA",
 			regex: "^AA,|,AA,|,AA$"
 			},
 			{
 			displayName: "Class A Advanced",
 			name: "Class A Advanced",
-			code: "Class A Advanced",
+			code: "A+",
 			regex: "^A+,|,A+,|,A+$"
 			},
 		{
 			displayName: "Class A",
 			name: "Class A",
-			code: "Class A",
+			code: "A",
 			regex: "^A,|,A,|,A$"
 			},
 		{
 			displayName: "Class A Short",
 			name: "Class A Short",
-			code: "Class A Short",
+			code: "A-",
 			regex: "^A-,|,A-,|,A-$"
 			},
 		{

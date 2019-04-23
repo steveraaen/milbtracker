@@ -346,7 +346,7 @@ function BestFive(props) {
         }, {})
         const handleClick = (e) => {
             console.log(e)
-            props.getPlayerList(props.selectedClass.regex, e.majteam, e.yr, e.milbTeam)
+            props.getPlayerList(props.selectedClass.code, props.selectedClass.regex, e.majteam, e.yr, e.milbTeam)
             props.setSelectedMiLBTeam({ name: e.milbTeam, logo: e.logo, franchise: e.majteam, franchiseLogo: e.franchiseLogo, color: e.color, t_id: e.id })
             props.setModalOpen(true)
             /* props.setSelectedYear(e.yr) */
