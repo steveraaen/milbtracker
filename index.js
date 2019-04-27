@@ -33,14 +33,11 @@ app.get('/api/allMinors', function(req, res) {
 app.get('/api/newBatList', function(req, res) {
   console.log(req.query)
   connection.query(`select 
-origmaster.franchise,
-origmaster.class1,
-origmaster.class2,
-origmaster.class3,
-origmaster.class4,
-origmaster.yr,  
+playerHistory.franchise,
+playerHistory.Lev,
+playerHistory.Tm,
+playerHistory.yr,  
 latestBatting.playerName,
-latestBatting.AB, 
 latestBatting.H, 
 latestBatting.HR,
 latestBatting.RBI,
@@ -51,17 +48,50 @@ latestBatting.3B,
 latestBatting.TB,
 latestBatting.SB,
 latestBatting.H / latestBatting.AB as avg
-from origmaster, latestBatting 
-where origmaster.playerID= latestBatting.playerCode 
-and origmaster.franchise = ?
-and ? IN (origmaster.class1, origmaster.class2, origmaster.class3, origmaster.class4)
-and origmaster.yr = ?
-order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
+from playerHistory, latestBatting 
+where playerHistory.playercode= latestBatting.playerCode 
+and playerHistory.franchise = 'NYM'
+and playerHistory.Lev = 'AAA'
+and playerHistory.yr = 2018
+order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.query.y], function (error, results, fields) {
 
-        console.log(results)
+    /*    console.log(results)*/
       res.json(results)
     if (error) throw error;
    })
+})
+app.get('/api/teamSummary', function(req, res) {
+
+  connection.query(`select 
+newMaster.franchise,
+newMaster.class1,
+newMaster.class2,
+newMaster.class3,
+newMaster.class4,
+newMaster.yr,  
+count(latestBatting.playerName) as players,
+SUM(latestBatting.AB) AS AB, 
+SUM(latestBatting.H) AS H, 
+SUM(latestBatting.HR) AS HR,
+SUM(latestBatting.RBI) AS RBI,
+SUM(latestBatting.R) AS R,
+SUM(latestBatting.BB) AS BB,
+SUM(latestBatting.2B) AS 2B,
+SUM(latestBatting.3B) AS 3B,
+SUM(latestBatting.TB) AS TB,
+SUM(latestBatting.SB) AS 3B,
+SUM(latestBatting.H / latestBatting.AB) as AVG
+from newMaster, latestBatting 
+where newMaster.playerID= latestBatting.playerCode 
+and   'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4)
+group by  'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4), franchise, yr
+order by latestBatting.TB desc`, [/*req.query.f,*/ req.query.c, req.query.c],function (error, results, fields) {
+ /*   console.log(results)*/
+      res.json(results)
+
+
+    if (error) throw error;
+   });
 })
 app.get('/api/newPitchList', function(req, res) {
   connection.query(`select 
@@ -82,10 +112,10 @@ latestPitching.HBP,
 9 * (latestPitching.ER + latestPitching.ER) / (latestPitching.IP + latestPitching.IP) as ERA
 from playerHistory, latestPitching 
 where playerHistory.playercode= latestPitching.playerCode 
-and playerHistory.franchise = ?
-and playerHistory.Lev = ?
-and playerHistory.yr = ?
-order by latestPitching.IP desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
+and playerHistory.franchise = 'NYM'
+and playerHistory.Lev = 'AAA'
+and playerHistory.yr = 2015
+order by latestPitching.IP desc`, function (error, results, fields) {
 
     /*    console.log(results)*/
       res.json(results)
@@ -109,9 +139,7 @@ app.get('/api/newBestMinorsPitch', function(req, res) {
    })
 })
 // Find out which minor league team has produced the most major leaguers in year xxxx
-app.get('/api/bestMinors', function(req, res) {
- /* console.log(req.query)*/
-
+/*app.get('/api/bestMinors', function(req, res) {
   connection.query(`select newMinors.team, newMinors.logo, count(distinct newPlayerMaster.playerID) as playerCount, newPlayerMaster.franchise, newPlayerMaster.yr
 from newPlayerMaster, newMinors, batting18
 where newPlayerMaster.classes REGEXP ? 
@@ -128,7 +156,7 @@ order by count(newPlayerMaster.playerName) desc`, [req.query.m, req.query.d, req
 
     if (error) throw error;
    });
-})
+})*/
 app.get('/api/batterList', function(req, res) {
 /*  console.log(req.query)*/
   connection.query(`select distinct newPlayerMaster.playerName, newPlayerMaster.yr AS YR, latestBatting.lg, latestBatting.G, 
@@ -152,16 +180,16 @@ app.get('/api/batterList', function(req, res) {
 app.get('/api/pitcherList', function(req, res) {
 /*  console.log(req.query)*/
 
-  connection.query(`select distinct newPlayerMaster.playerName, newPlayerMaster.yr AS YR, pitching18.lgID, pitching18.G, 
-    (pitching18.IPouts / 3) as IP, pitching18.W, pitching18.L, pitching18.IBB,
-    pitching18.IBB,pitching18.GF, pitching18.GS, pitching18.SV, pitching18.teamID,
-    pitching18.H, pitching18.ER, pitching18.BB, pitching18.SO, pitching18.HBP
-    from newPlayerMaster, pitching18 
+  connection.query(`select distinct newPlayerMaster.playerName, newPlayerMaster.yr AS YR,  latestPitching.G, 
+    latestPitching.IP, latestPitching.W, latestPitching.L, latestPitching.IBB,
+    latestPitching.IBB,latestPitching.GF, latestPitching.GS, latestPitching.SV, latestPitching.Tm,
+    latestPitching.H, latestPitching.ER, latestPitching.BB, latestPitching.SO, latestPitching.HBP
+    from newPlayerMaster, latestPitching 
     where newPlayerMaster.classes REGEXP ?
-    and pitching18.playerID = newPlayerMaster.playerID
+    and latestPitching.playerCode = newPlayerMaster.playerID
     and newPlayerMaster.franchise = ?
     and newPlayerMaster.yr = ?
-    order by (pitching18.IPouts / 3) desc `, [req.query.r, req.query.f, req.query.y], function (error, results, fields) {
+    order by (latestPitching.IP / latestPitching.H) desc `, [req.query.r, req.query.f, req.query.y], function (error, results, fields) {
 
     /*    console.log(results)*/
       res.json(results)

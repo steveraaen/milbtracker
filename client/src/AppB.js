@@ -8,8 +8,9 @@ import { BestFive, ClassPicker,   YearPicker, Divisions, Stats, Teams } from './
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
+import newMinors from './newMinors.json'
 /*import leagues from './assets/leagues.js'*/
-
+console.log(newMinors)
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
     { text: "2013", value: 2013, key: "2013" },
@@ -24,7 +25,7 @@ function AppB() {
 
    /* const [allMiLB, setAllMiLB] = useState(allMinorTeams);*/
     const [selectedClass, setSelectedClass] = useState(classes[1]);
-    const [minors, setMinors] = useState({});
+    const [minors, setMinors] = useState(newMinors);
     const [years] = useState(yrs);
     const [/*bestMinors,*/ setBestMinors] = useState();
     const [allMLB] = useState(mlbTeams);
@@ -41,6 +42,7 @@ function AppB() {
     const [topTenHit, setTopTenHit] = useState();
     const [topTenPitch, setTopTenPitch] = useState();
     const [topTen, setTopTen] = useState();
+    const [bestBat, setBestBat] = useState();
 /*    const [classStats, setClassStats] = useState();*/
    /* const [column, setColumn] = useState();*/
  /*   const [direction, setDirection] = useState();*/
@@ -77,8 +79,18 @@ function AppB() {
       try {
                
         const topTenPromise = axios('/api/classSummary', { params: { cl, yr, dv } })
+        const bestBatPromise = axios('/api/teamSummary', { params: { cl } })
         const topTen = await topTenPromise; 
-        console.log(topTen.data[1])
+        const bestBat = await bestBatPromise; 
+     
+        console.log(cl)
+
+
+
+        setBestBat({
+          bestBatTeams: bestBat.data
+        })
+
         setTopTen({
           topTenBatting: topTen.data[1],
           topTenPitching: topTen.data[0]
@@ -121,7 +133,7 @@ function AppB() {
                 return null;
             });
     }*/
-    async function getMinors() {
+/*    async function getMinors() {
         await axios.get('/api/allMinors')
             .then(res => {
                 console.log(res)
@@ -133,8 +145,8 @@ function AppB() {
                 console.log(err);
                 return null;
             });
-    }
-    async function getBestMinors(p, d, m, y) {
+    }*/
+/*    async function getBestMinors(p, d, m, y) {
       console.log(p,d, m,y)
         await axios.get('/api/bestMinors', { params: { p, d, m, y } })
             .then(res => {
@@ -176,7 +188,7 @@ function AppB() {
                 console.log(err);
                 return null;
             });
-    }
+    }*/
 
 
     async function getPlayerList(c, r, f, y, t) {
@@ -262,15 +274,13 @@ function AppB() {
     useEffect(() => {
         getTopTen(selectedClass.name, selectedYear, selectedDivision.value)
     }, {});
-    useEffect(() => {
-        getMinors()
-    }, {});
+
     useEffect(() => {
         makeDivs()
     }, {});
-    useEffect(() => {
+/*    useEffect(() => {
         getBestMinors(selectedClass.code, selectedDivision.value, selectedClass.regex, selectedYear)
-    }, {});
+    }, {});*/
 
 
     return (
@@ -295,12 +305,12 @@ function AppB() {
           >       
            <Segment>
             <ClassPicker
-              minors={minors}
+        
               years={years}
               classes={classes} 
               getTopTen={getTopTen}
               getPlayerList={getPlayerList} 
-              getBestMinors={getBestMinors} 
+         
               selectedClass={selectedClass} 
               selectedYear={selectedYear} 
               selectedDivision={selectedDivision} 
@@ -317,7 +327,7 @@ function AppB() {
               topTen={topTen}
               years={years} 
               classes={classes} 
-              getBestMinors={getBestMinors}
+         
               getTopTen={getTopTen}
               getPlayerList={getPlayerList}  
               selectedClass={selectedClass} 
@@ -334,7 +344,7 @@ function AppB() {
         <Segment>   
           <Divisions 
               setSelectedDivision={setSelectedDivision} 
-              getBestMinors={getBestMinors} 
+      
               allMLB={allMLB} {...allDivisions} 
               selectedYear={selectedYear} 
               selectedDivision={selectedDivision} 
@@ -363,7 +373,7 @@ function AppB() {
         sortPTable={sortPTable}
         topTen={topTen}
         setTopTen={setTopTen}
-   
+        newMinors={newMinors}
         selectedClass={selectedClass}
         allMLB={allMLB}
         setSelectedMiLBTeam={setSelectedMiLBTeam}
@@ -374,6 +384,7 @@ function AppB() {
         synthStats={synthStats}
         {...topTenHit}
         {...topTenPitch}
+        {...bestBat}
         />
       </Grid.Column>
    </Grid.Row>
