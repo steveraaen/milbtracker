@@ -20,23 +20,22 @@ var connection  = mysql.createConnection({
      multipleStatements: true
 });
 
-app.get('/api/allMinors', function(req, res) {
+/*app.get('/api/allMinors', function(req, res) {
 
   connection.query('select * from newMinors where franchise IS NOT NULL', function (error, results, fields) {
- /*   console.log(results)*/
+    console.log(results)
     	res.json(results)
 
 
     if (error) throw error;
    });
-})
+})*/
 app.get('/api/newBatList', function(req, res) {
   console.log(req.query)
   connection.query(`select 
-playerHistory.franchise,
-playerHistory.Lev,
-playerHistory.Tm,
-playerHistory.yr,  
+newMaster.franchise,
+newMaster.team,
+newMaster.yr,
 latestBatting.playerName,
 latestBatting.H, 
 latestBatting.HR,
@@ -48,11 +47,13 @@ latestBatting.3B,
 latestBatting.TB,
 latestBatting.SB,
 latestBatting.H / latestBatting.AB as avg
-from playerHistory, latestBatting 
-where playerHistory.playercode= latestBatting.playerCode 
-and playerHistory.franchise = 'NYM'
-and playerHistory.Lev = 'AAA'
-and playerHistory.yr = 2018
+from newMaster, latestBatting 
+where newMaster.playerID= latestBatting.playerCode 
+and newMaster.franchise = 'NYM'
+and   'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4)
+and newMaster.yr = 2018
+group by  'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4), franchise, yr
+
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.query.y], function (error, results, fields) {
 
     /*    console.log(results)*/
@@ -97,10 +98,9 @@ order by latestBatting.TB desc`, [/*req.query.f,*/ req.query.c, req.query.c],fun
 })
 app.get('/api/newPitchList', function(req, res) {
   connection.query(`select 
-playerHistory.franchise,
-playerHistory.Lev,
-playerHistory.Tm,
-playerHistory.yr,  
+newMaster.franchise,
+newMaster.team,
+newMaster.yr,  
 latestPitching.playerName,
 latestPitching.W, 
 latestPitching.L,
@@ -112,11 +112,11 @@ latestPitching.BB,
 latestPitching.SO,
 latestPitching.HBP,
 9 * (latestPitching.ER + latestPitching.ER) / (latestPitching.IP + latestPitching.IP) as ERA
-from playerHistory, latestPitching 
-where playerHistory.playercode= latestPitching.playerCode 
-and playerHistory.franchise = 'NYM'
-and playerHistory.Lev = 'AAA'
-and playerHistory.yr = 2015
+from newMaster, latestPitching 
+where newMaster.team= latestPitching.playerCode 
+and newMaster.franchise = 'NYM'
+and 'AAA' in (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4)
+and newMaster.yr = 2015
 order by latestPitching.IP desc`, function (error, results, fields) {
 
     /*    console.log(results)*/
