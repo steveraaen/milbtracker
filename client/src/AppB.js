@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
-import { BestFive, ClassPicker,   YearPicker, Divisions, Stats, Teams } from './components/Selections.js'
+import { BestFive, ClassPicker, LiveResults,  YearPicker, Divisions, Stats, Teams } from './components/Selections.js'
 
 
 import './App.css'
@@ -403,6 +403,11 @@ function AppB() {
              {...synthStats} 
             />  
     </Grid.Column>
+    </Grid.Row> 
+    <Grid.Row> 
+    <LiveResults 
+      {...bestBat}
+    />
     </Grid.Row> 
   </Grid>
 

@@ -73,9 +73,7 @@ function YearPicker(props) {
         })        
        }
         </Form.Group>
-  
        </div>
-
     )
 }
 
@@ -560,6 +558,13 @@ function BestPlayers(props) {
         )
     } else { return <div></div> }
 }
-export {BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, Stats, Teams, YearPicker };
+function LiveResults(props) {
+  return(
+    <div>.</div>
+    )
+}
+
+export {LiveResults, BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, Stats, Teams, YearPicker };
+
 
 
