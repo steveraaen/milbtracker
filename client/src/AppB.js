@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
-import { BestFive, ClassPicker, LiveResults,  YearPicker, Divisions, Stats, Teams } from './components/Selections.js'
+import { BestFive, ClassPicker,  YearPicker, Divisions, Stats, Teams } from './components/Selections.js'
+import  LiveResults  from './components/LiveResults.js'
 
 
 import './App.css'
@@ -24,7 +25,7 @@ const yrs = [
 function AppB() {
 
    /* const [allMiLB, setAllMiLB] = useState(allMinorTeams);*/
-    const [selectedClass, setSelectedClass] = useState(classes[1]);
+    const [selectedClass, setSelectedClass] = useState(classes[0]);
     const [minors, setMinors] = useState(newMinors);
     const [years] = useState(yrs);
     const [/*bestMinors,*/ setBestMinors] = useState();
@@ -79,7 +80,7 @@ function AppB() {
       try {
                
         const topTenPromise = axios('/api/classSummary', { params: { cl, yr, dv } })
-        const bestBatPromise = axios('/api/teamSummary', { params: { cl } })
+        const bestBatPromise = axios('/api/teamSummary', { params: { cl, yr, dv } })
         const topTen = await topTenPromise; 
         const bestBat = await bestBatPromise; 
      
@@ -272,7 +273,7 @@ function AppB() {
     }
     
     useEffect(() => {
-        getTopTen(selectedClass.name, selectedYear, selectedDivision.value)
+        getTopTen(selectedClass.code, selectedYear, selectedDivision.value)
     }, {});
 
     useEffect(() => {
@@ -362,32 +363,6 @@ function AppB() {
         <Sidebar.Pusher>  
   <Grid>
 
-
-  <Grid.Row columns={1}>
- 
-     <Grid.Column>  
-      <BestFive
-        setModalOpen={setModalOpen}
-        modalOpen={modalOpen}
-        sortBTable={sortBTable}
-        sortPTable={sortPTable}
-        topTen={topTen}
-        setTopTen={setTopTen}
-        newMinors={newMinors}
-        selectedClass={selectedClass}
-        allMLB={allMLB}
-        setSelectedMiLBTeam={setSelectedMiLBTeam}
-        getPlayerList={getPlayerList}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        selectedMiLBTeam={selectedMiLBTeam}
-        synthStats={synthStats}
-        {...topTenHit}
-        {...topTenPitch}
-        {...bestBat}
-        />
-      </Grid.Column>
-   </Grid.Row>
   <Grid.Row>
      <Grid.Column width="8">
        <Stats  
@@ -407,6 +382,12 @@ function AppB() {
     <Grid.Row> 
     <LiveResults 
       {...bestBat}
+      setModalOpen ={setModalOpen}
+      modalOpen={modalOpen}
+      selectedMiLBTeam={selectedMiLBTeam} 
+      selectedYear={selectedYear}    
+      selectedDivision={selectedDivision}
+      selectedClass={selectedClass}      
     />
     </Grid.Row> 
   </Grid>

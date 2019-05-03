@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Card, Container,  Form, Grid, Icon, Image, Loader, Modal, Placeholder, Statistic, Segment,  Table } from 'semantic-ui-react'
+import { Card, Container,  Form, Grid, Icon, Image, List, Loader, Modal, Placeholder, Statistic, Segment,  Table } from 'semantic-ui-react'
+import ReactTable from 'react-table'
 import '../App.css'
 
 function Teams(props) {
@@ -27,8 +28,6 @@ return (
           <Image height={40} src={crd.franchiseLogo} />
          </div>
           <Card.Content>
-            
-
             <Card.Description> <div>At Bats:  {crd.bAB}</div></Card.Description>
             <Card.Description> <div>Average:  {crd.bBA}</div></Card.Description>
             <Card.Description> <div>Hits:  {crd.bH}</div></Card.Description>
@@ -49,7 +48,7 @@ function YearPicker(props) {
         console.log(e.target)
         /* props.getBestMinors(props.selectedClass.code, props.selectedDivision.value, props.selectedClass.regex, value) */
         props.setSelectedYear(value)
-        props.getTopTen(props.selectedClass.name, value, props.selectedDivision.value)
+        props.getTopTen(props.selectedClass.code, value, props.selectedDivision.value)
         props.setSelectedMiLBTeam(props.topTen.topTenBatting[0])
         /*  props.getPlayerList(props.selectedClass.regex, props.selectedMiLBTeam.franchise, value, props.selectedMiLBTeam.name)
          */
@@ -83,7 +82,7 @@ function ClassPicker(props) {
         /*      props.getBestMinors(JSON.parse(value).code, props.selectedDivision.value, JSON.parse(value).regex, props.selectedYear) 
          */
         props.setSelectedClass(value)
-        props.getTopTen(value.name, props.selectedYear, props.selectedDivision.value)
+        props.getTopTen(value.code, props.selectedYear, props.selectedDivision.value)
         /*        props.getPlayerList(value.regex, props.selectedMiLBTeam.franchise, props.selectedYear, props.selectedMiLBTeam.name)
          */
     }
@@ -558,13 +557,9 @@ function BestPlayers(props) {
         )
     } else { return <div></div> }
 }
-function LiveResults(props) {
-  return(
-    <div>.</div>
-    )
-}
 
-export {LiveResults, BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, Stats, Teams, YearPicker };
+
+export { BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, Stats, Teams, YearPicker };
 
 
 

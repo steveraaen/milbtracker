@@ -33,9 +33,9 @@ var connection  = mysql.createConnection({
 app.get('/api/newBatList', function(req, res) {
   console.log(req.query)
   connection.query(`select 
-newMaster.franchise,
-newMaster.team,
-newMaster.yr,
+newNewMaster.franchise,
+newNewMaster.team,
+newNewMaster.yr,
 latestBatting.playerName,
 latestBatting.H, 
 latestBatting.HR,
@@ -47,12 +47,12 @@ latestBatting.3B,
 latestBatting.TB,
 latestBatting.SB,
 latestBatting.H / latestBatting.AB as avg
-from newMaster, latestBatting 
-where newMaster.playerID= latestBatting.playerCode 
-and newMaster.franchise = 'NYM'
-and   'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4)
-and newMaster.yr = 2018
-group by  'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4), franchise, yr
+from newNewMaster, latestBatting 
+where newNewMaster.playerID= latestBatting.playerCode 
+and newNewMaster.franchise = 'NYM'
+and newNewMaster.class = 'AA' 
+and newNewMaster.yr = 2018
+group by newNewMaster.class, newNewMaster.franchise, newNewMaster.yr
 
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.query.y], function (error, results, fields) {
 
@@ -62,17 +62,14 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.que
    })
 })
 app.get('/api/teamSummary', function(req, res) {
-
+console.log(req.query)
   connection.query(`select 
-newMaster.franchise,
-newMaster.class1,
-newMaster.class2,
-newMaster.class3,
-newMaster.class4,
-newMaster.yr,  
-newMaster.logo,  
-newMaster.franchiseLogo,  
-newMaster.team,  
+newNewMaster.franchise,
+newNewMaster.class,
+newNewMaster.yr,  
+newNewMaster.logo,  
+newNewMaster.franchiseLogo,  
+newNewMaster.team,  
 count(latestBatting.playerName) as players,
 SUM(latestBatting.AB) AS AB, 
 SUM(latestBatting.H) AS H, 
@@ -85,11 +82,12 @@ SUM(latestBatting.3B) AS 3B,
 SUM(latestBatting.TB) AS TB,
 SUM(latestBatting.SB) AS 3B,
 SUM(latestBatting.H / latestBatting.AB) as AVG
-from newMaster, latestBatting 
-where newMaster.playerID= latestBatting.playerCode 
-and   'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4)
-group by  'AAA' IN (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4), franchise, yr
-order by latestBatting.TB desc`, [/*req.query.f,*/ req.query.c, req.query.c],function (error, results, fields) {
+from newNewMaster, latestBatting 
+where newNewMaster.playerID= latestBatting.playerCode 
+and newNewMaster.class like ?
+and newNewMaster.yr like ?
+group by newNewMaster.class , newNewMaster.franchise, newNewMaster.yr
+order by SUM(latestBatting.TB) desc`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
 
@@ -99,9 +97,9 @@ order by latestBatting.TB desc`, [/*req.query.f,*/ req.query.c, req.query.c],fun
 })
 app.get('/api/newPitchList', function(req, res) {
   connection.query(`select 
-newMaster.franchise,
-newMaster.team,
-newMaster.yr,  
+newNewMaster.franchise,
+newNewMaster.team,
+newNewMaster.yr,  
 latestPitching.playerName,
 latestPitching.W, 
 latestPitching.L,
@@ -113,11 +111,11 @@ latestPitching.BB,
 latestPitching.SO,
 latestPitching.HBP,
 9 * (latestPitching.ER + latestPitching.ER) / (latestPitching.IP + latestPitching.IP) as ERA
-from newMaster, latestPitching 
-where newMaster.team= latestPitching.playerCode 
-and newMaster.franchise = 'NYM'
-and 'AAA' in (newMaster.class1, newMaster.class2, newMaster.class3, newMaster.class4)
-and newMaster.yr = 2015
+from newNewMaster, latestPitching 
+where newNewMaster.team= latestPitching.playerCode 
+and newNewMaster.franchise = 'NYM'
+and class = 'AA'
+and newNewMaster.yr = 2015
 order by latestPitching.IP desc`, function (error, results, fields) {
 
     /*    console.log(results)*/

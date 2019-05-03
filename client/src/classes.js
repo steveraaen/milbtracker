@@ -1,8 +1,14 @@
 	var classes	= [
+			{
+			displayName: "All Classes",
+			name: "%",
+			code: "%",
+			regex: "%"
+			},
 		{
 			displayName: "Triple A",
 			name: "Triple A",
-			code: "Triple A",
+			code: "AAA",
 			regex: "^AAA,|,AAA,|,AAA$"
 			},
 		{
