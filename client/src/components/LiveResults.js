@@ -8,6 +8,7 @@ export default function LiveResults(props) {
 		var { bestBatTeams: bBatTeams } = props
 		bBatTeams = bBatTeams.map( tm => {
 			tm.tmStr = <span><Image size='mini' src={tm.logo}/><div>{tm.yr}</div></span>
+			tm.tmStr2 = <span><div>{tm.team}</div><div>{tm.class}</div></span>
 			return tm
 		})
 
@@ -20,7 +21,7 @@ console.log(bBatTeams)
 	    width: 50,
 	}, {
 			Header: 'Team',
-			accessor: 'team', 
+			accessor: 'tmStr2', 
 			minWidth: 150
 		}, {
 			Header: 'Total Bases',
@@ -43,7 +44,7 @@ console.log(bBatTeams)
 		}]
 
 	    return (
-	    	<div style={{marginLeft: '3vw'}}>
+	    	<div>
 	    		<ReactTable 
 	    			data={props.bestBatTeams}
 	    			columns={columns}

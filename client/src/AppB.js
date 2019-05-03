@@ -379,7 +379,7 @@ function AppB() {
             />  
     </Grid.Column>
     </Grid.Row> 
-    <Grid.Row> 
+  </Grid>
     <LiveResults 
       {...bestBat}
       setModalOpen ={setModalOpen}
@@ -389,9 +389,6 @@ function AppB() {
       selectedDivision={selectedDivision}
       selectedClass={selectedClass}      
     />
-    </Grid.Row> 
-  </Grid>
-
   </Sidebar.Pusher>
    </Sidebar.Pushable>
    </div>
