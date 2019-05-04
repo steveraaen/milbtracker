@@ -17,7 +17,6 @@ var connection  = mysql.createConnection({
     database: process.env.DB_NAME,
      multipleStatements: true
 });
-
 var baseUrl = 'https://www.baseball-reference.com'
 
 request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, html) {

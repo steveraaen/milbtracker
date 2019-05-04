@@ -42,20 +42,19 @@ console.log(bBatTeams)
 			Header: 'Walks',
 			accessor: 'BB'
 		}]
-
 	    return (
 	    	<div>
 	    		<ReactTable 
 	    			data={props.bestBatTeams}
 	    			columns={columns}
-	    			pageSizeOptions= {[5, 10, 20, 25, 50, 100]}
+	    			defaultPageSize='5'
 	    			SubComponent={row => {
                     return (
                       <div style={{ padding: "20px" }}>
                         Another Sub Component!
                       </div>
                     );
-                  }}
+                }}
 	    		/>
 	    	</div>
           )
