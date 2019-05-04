@@ -61,7 +61,37 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.que
     if (error) throw error;
    })
 })
-app.get('/api/teamSummary', function(req, res) {
+app.get('/api/teamPitch', function(req, res) {
+console.log(req.query)
+  connection.query(`select 
+newNewMaster.franchise,
+newNewMaster.class,
+newNewMaster.yr,  
+newNewMaster.logo,  
+newNewMaster.franchiseLogo,  
+newNewMaster.team,  
+count(latestPitching.playerName) as players,
+SUM(latestPitching.IP - latestPitching.ER) AS IPER, 
+SUM(latestPitching.W) AS W, 
+SUM(latestPitching.L) AS L,
+SUM(latestPitching.SV) AS SV,
+SUM(latestPitching.SO) AS SO,
+SUM(latestPitching.H) AS H,
+SUM(latestPitching.HR) AS HR,
+SUM(latestPitching.BB) AS BB,
+SUM(9 * (latestPitching.ER / latestPitching.IP)) as ERA
+from newNewMaster, latestPitching 
+where newNewMaster.playerID= latestPitching.playerCode 
+and newNewMaster.class like ?
+and newNewMaster.yr like ?
+group by newNewMaster.class , newNewMaster.franchise, newNewMaster.yr
+order by SUM(latestPitching.IP - latestPitching.ER) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
+ /*   console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   });
+})
+app.get('/api/teamBat', function(req, res) {
 console.log(req.query)
   connection.query(`select 
 newNewMaster.franchise,
@@ -87,11 +117,9 @@ where newNewMaster.playerID= latestBatting.playerCode
 and newNewMaster.class like ?
 and newNewMaster.yr like ?
 group by newNewMaster.class , newNewMaster.franchise, newNewMaster.yr
-order by SUM(latestBatting.TB) desc`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(latestBatting.TB) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
-
-
     if (error) throw error;
    });
 })

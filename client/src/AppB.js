@@ -44,6 +44,7 @@ function AppB() {
     const [topTenPitch, setTopTenPitch] = useState();
     const [topTen, setTopTen] = useState();
     const [bestBat, setBestBat] = useState();
+    const [bestPitch, setBestPitch] = useState();
 /*    const [classStats, setClassStats] = useState();*/
    /* const [column, setColumn] = useState();*/
  /*   const [direction, setDirection] = useState();*/
@@ -79,20 +80,22 @@ function AppB() {
     async function getTopTen(cl, yr, dv) {
       try {
                
-        const topTenPromise = axios('/api/classSummary', { params: { cl, yr, dv } })
-        const bestBatPromise = axios('/api/teamSummary', { params: { cl, yr, dv } })
-        const topTen = await topTenPromise; 
+        const bestPitchPromise = axios('/api/teamPitch', { params: { cl, yr, dv } })
+        const bestBatPromise = axios('/api/teamBat', { params: { cl, yr, dv } })
+        const bestPitch = await bestPitchPromise; 
         const bestBat = await bestBatPromise; 
      
-        console.log(cl)
+        console.log(bestPitch)
 
 
 
         setBestBat({
           bestBatTeams: bestBat.data
         })
-
-        setTopTen({
+        setBestPitch({
+          bestPitchTeams: bestPitch.data
+        })
+  /*      setTopTen({
           topTenBatting: topTen.data[1],
           topTenPitching: topTen.data[0]
         })
@@ -101,7 +104,7 @@ function AppB() {
         })
          setTopTenPitch({
           topTenPitch: topTen.data[0]
-        })
+        })*/
 /*                 setPlayerList({
                     playerList: null
                 })
@@ -382,6 +385,7 @@ function AppB() {
   </Grid>
     <LiveResults 
       {...bestBat}
+      {...bestPitch}
       setModalOpen ={setModalOpen}
       modalOpen={modalOpen}
       selectedMiLBTeam={selectedMiLBTeam} 
