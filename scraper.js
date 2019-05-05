@@ -18,8 +18,20 @@ var connection  = mysql.createConnection({
      multipleStatements: true
 });
 var baseUrl = 'https://www.baseball-reference.com'
+var batTable = '/leagues/MLB/2019-standard-batting.shtml'
 
-request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, html) {
+request(baseUrl + batTable, function(error, response, html) {
+  if(!error && response.statusCode === 200){
+    setTimeout(function() {
+      var $ = cheerio.load(html);
+     var topdiv = $('#players_standard_batting')
+     console.log($(topdiv).html())
+    }, 10000)
+    
+  }
+})
+
+/*request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, html) {
     var urls = []
   if(!error && response.statusCode === 200){
     var $ = cheerio.load(html);
@@ -34,16 +46,11 @@ request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, h
         var rgx = //
         setTimeout(function() {
            request(urls[i], function(error, response, html){
-//  --------------- Get the players' code from the URL --------------
-              var splt = urls[i].split('/')
+            var splt = urls[i].split('/')
               var splta = splt[5].split('.')
-// ---------------- Scrape the URL ----------------------------------
-              $ = cheerio.load(html)              
-// -----------------Create an object for each player ----------------
-              let playerObj = {}
-// ----------------- Add players' name to object --------------------
-                  playerObj.playerName = $('h1').text()
-// ----------------- Create an array to store objects ---------------
+            $ = cheerio.load(html)              
+            let playerObj = {}
+                 playerObj.playerName = $('h1').text()
               let rookieArray = []
             $('.minors_table').each(function(e,i) {
                 playerObj.playerCode = splta[0]
@@ -51,19 +58,18 @@ request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, h
                 playerObj.age = $(this).children().eq(1).html()
                 playerObj.team = $(this).children().eq(2).html()
                 playerObj.level = $(this).children().eq(3).html()
-
                 rookieArray.push(playerObj)
-/*          connection.query(`INSERT INTO rookies (playerName, playerCode, yr, age, team, lvl)VALUES (?,?,?,?,?,?)`, [playerObj.playerName, playerObj.playerCode, playerObj.year, playerObj.age, playerObj.team, playerObj.level], function (error) {
+          connection.query(`INSERT INTO rookies (playerName, playerCode, yr, age, team, lvl)VALUES (?,?,?,?,?,?)`, [playerObj.playerName, playerObj.playerCode, playerObj.year, playerObj.age, playerObj.team, playerObj.level], function (error) {
             if (error) throw error;
                 console.log('object added to db')           
-         }); */
+         }); 
                 console.log(rookieArray)
             })
            })
         }, i * 3000)
     }     
   }
-});
+});*/
 
 
 
