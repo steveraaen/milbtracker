@@ -28,7 +28,7 @@ request(baseUrl + batTable, function(error, response, html) {
      console.log($(topdiv).html())
     }, 10000)
     
-  }
+  } else {console.log('error')}
 })
 
 /*request(baseUrl + '/leagues/MLB/2019-debuts.shtml', function (error, response, html) {

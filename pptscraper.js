@@ -63,10 +63,14 @@ for(let i = 0; i < playerArr.length; i++) {
 	playerObjArr.push(playerObj)
 
 }
+for(let i = 0; i < playerObjArr.length; i++) {
+	console.log(playerObjArr[i].playerName)
+}
 
-	for(let j=0; j < playerIDs.length; j++) {
-		console.log(playerIDs[j].playerName === 'Glenn Sparkman')
-	}
+
+/*	for(let j=0; j < playerIDs.length; j++) {
+		console.log(playerIDs[j].playerName)
+	}*/
 
  await browser.close();
 })();
