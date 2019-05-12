@@ -2,6 +2,8 @@ require('dotenv').config()
 const cheerio = require('cheerio')
 const request = require('request')
 const mysql = require('mysql')
+const puppeteer = require('puppeteer');
+const chalk = require('chalk');
 var baseURL ='https://www.baseball-reference.com/players'
 var tail = '.shtml'
 var codes = [
@@ -13,8 +15,9 @@ var codes = [
 "/a/adriaeh01",
 "/a/aguilje01",
 "/a/ahmedni01",
-"/a/alberma01",
+"/a/alanirj01",
 "/a/alberha01",
+"/a/alberma01",
 "/a/albieoz01",
 "/a/alcansa01",
 "/a/alcanvi01",
@@ -27,14 +30,17 @@ var codes = [
 "/a/almoral01",
 "/a/alonspe01",
 "/a/alonsyo01",
+"/a/altavda01",
 "/a/altheaa01",
 "/a/altuvjo01",
-"/a/alvarjo03",
 "/a/alvarjo02",
+"/a/alvarjo03",
 "/a/anderbr04",
 "/a/anderbr06",
 "/a/anderch01",
+"/a/anderco01",
 "/a/anderdr02",
+"/a/anderju01",
 "/a/anderni01",
 "/a/anderti01",
 "/a/anderty01",
@@ -42,39 +48,44 @@ var codes = [
 "/a/andruel01",
 "/a/andujmi01",
 "/a/aranovi01",
+"/a/araujpe01",
 "/a/archech01",
 "/a/arciaor01",
 "/a/arenano01",
+"/a/armstsh01",
 "/a/arrieja01",
 "/a/arroych01",
 "/a/astudwi01",
 "/a/austity01",
-"/a/austity01",
-"/a/austity01",
 "/a/avilaal01",
-"/a/avilape01",
 "/a/avilalu01",
+"/a/avilape01",
 "/b/baderha01",
 "/b/baezja01",
 "/b/baezpe01",
+"/b/baileho02",
+"/b/banuema01",
 "/b/bardlu01",
+"/b/barlosc01",
 "/b/barneau01",
 "/b/barneja01",
 "/b/barnema01",
 "/b/barnhtu01",
 "/b/barraky01",
 "/b/barrefr02",
+"/b/barrija01",
 "/b/bashlty01",
 "/b/bassich01",
-"/b/bauertr01",
 "/b/bauerja01",
+"/b/bauertr01",
 "/b/beatyma01",
 "/b/beckhgo01",
 "/b/beckhti01",
+"/b/bedroca01",
 "/b/beedety01",
 "/b/beeksja02",
-"/b/belljo02",
 "/b/bellico01",
+"/b/belljo02",
 "/b/beltbr01",
 "/b/beninan01",
 "/b/bergetr01",
@@ -84,18 +95,21 @@ var codes = [
 "/b/bettsmo01",
 "/b/biagijo01",
 "/b/biddlje01",
+"/b/biebesh01",
 "/b/birdgr01",
 "/b/birdky01",
 "/b/bishobr01",
 "/b/blachty01",
 "/b/blackch02",
+"/b/bleieri01",
 "/b/blevije01",
 "/b/bogaexa01",
 "/b/boltsk01",
 "/b/boteda01",
-"/b/bourju01",
 "/b/bourjpe01",
+"/b/bourju01",
 "/b/boxbebr01",
+"/b/boydma01",
 "/b/brachbr01",
 "/b/bradfch02",
 "/b/bradlar01",
@@ -112,14 +126,18 @@ var codes = [
 "/b/brinsle01",
 "/b/britoso01",
 "/b/brittza01",
+"/b/brookaa01",
 "/b/broxtke01",
 "/b/bruceja01",
 "/b/bryankr01",
+"/b/buchhcl01",
 "/b/buchtry01",
 "/b/buehlwa01",
 "/b/bumgama01",
+"/b/bundydy01",
 "/b/burdini01",
 "/b/burneco01",
+"/b/burrry01",
 "/b/buterdr01",
 "/b/buttrty01",
 "/b/buxtoby01",
@@ -136,13 +154,16 @@ var codes = [
 "/c/caratvi01",
 "/c/carlesh01",
 "/c/carpema01",
+"/c/carraca01",
 "/c/casalcu01",
+"/c/cashnan01",
 "/c/casteni01",
 "/c/castidi01",
 "/c/castilu02",
 "/c/castiwe01",
 "/c/castrha01",
 "/c/castrja01",
+"/c/castrmi01",
 "/c/castrst01",
 "/c/caveja01",
 "/c/cervefr01",
@@ -165,16 +186,21 @@ var codes = [
 "/c/ciuffni01",
 "/c/clarkta01",
 "/c/claudal01",
+"/c/clevimi01",
 "/c/clippty01",
+"/c/cobbal01",
+"/c/colege01",
 "/c/colliti01",
+"/c/colomal01",
 "/c/confomi01",
 "/c/conlead01",
 "/c/contrwi01",
 "/c/coopega03",
 "/c/corbipa01",
-"/c/cordery01",
 "/c/cordefr02",
+"/c/cordery01",
 "/c/correca01",
+"/c/coveydy01",
 "/c/cozarza01",
 "/c/cozendy01",
 "/c/crawfbr01",
@@ -183,8 +209,9 @@ var codes = [
 "/c/cruzne02",
 "/c/cuevano01",
 "/c/culbech01",
-"/d/darnatr01",
+"/c/curtijo02",
 "/d/dahlda01",
+"/d/darnatr01",
 "/d/darviyu01",
 "/d/davieza02",
 "/d/davisau01",
@@ -195,16 +222,17 @@ var codes = [
 "/d/daviswa01",
 "/d/daytogr01",
 "/d/dazayo01",
-"/d/dejonch01",
-"/d/delosen01",
 "/d/deanau01",
 "/d/degroja01",
+"/d/dejonch01",
 "/d/dejonpa01",
 "/d/delmoni01",
+"/d/delosen01",
 "/d/descada01",
 "/d/desclan01",
 "/d/deshide02",
 "/d/desmoia01",
+"/d/devench02",
 "/d/deverra01",
 "/d/diazal02",
 "/d/diazed04",
@@ -212,6 +240,7 @@ var codes = [
 "/d/diazya01",
 "/d/dickeal01",
 "/d/dickeco01",
+"/d/diekmja01",
 "/d/dietrde01",
 "/d/difowi01",
 "/d/dixonbr01",
@@ -223,22 +252,29 @@ var codes = [
 "/d/doziehu01",
 "/d/drurybr01",
 "/d/dudalu01",
+"/d/duffety01",
 "/d/duggast01",
 "/d/dukeza01",
+"/d/dullry01",
 "/d/dunnmi01",
 "/d/duplajo01",
 "/d/dysonja01",
 "/d/dysonsa01",
 "/e/eatonad02",
 "/e/edwarca01",
+"/e/edwarjo02",
 "/e/eflinza01",
 "/e/eickhje01",
+"/e/eliasro01",
+"/e/ellisch01",
 "/e/encared01",
 "/e/engelad01",
+"/e/eovalna01",
 "/e/erlinro01",
 "/e/ervinph01",
 "/e/escobed01",
 "/e/estevca01",
+"/e/estrama01",
 "/e/estrath01",
 "/f/familje01",
 "/f/farmebu01",
@@ -246,6 +282,9 @@ var codes = [
 "/f/feddeer01",
 "/f/felizmi01",
 "/f/ferguca01",
+"/f/festama01",
+"/f/fiersmi01",
+"/f/fillmhe01",
 "/f/fishede01",
 "/f/flaheja01",
 "/f/fletcda02",
@@ -255,13 +294,12 @@ var codes = [
 "/f/flowety01",
 "/f/foltymi01",
 "/f/fontwi01",
-"/f/fontwi01",
-"/f/fontwi01",
 "/f/fordmi01",
 "/f/forsylo01",
 "/f/fowlede01",
-"/f/francty01",
 "/f/francma02",
+"/f/francty01",
+"/f/frareca01",
 "/f/fraziad01",
 "/f/frazicl01",
 "/f/frazito01",
@@ -271,13 +309,16 @@ var codes = [
 "/f/freesda01",
 "/f/freitda01",
 "/f/friedma01",
+"/f/fryja01",
+"/f/frypa01",
 "/f/fuentjo01",
+"/f/fulmeca01",
 "/g/gagnodr01",
 "/g/galero01",
 "/g/gallaca01",
 "/g/gallegi01",
-"/g/gallojo01",
 "/g/gallois01",
+"/g/gallojo01",
 "/g/galvifr01",
 "/g/gamelbe01",
 "/g/gantjo01",
@@ -290,21 +331,27 @@ var codes = [
 "/g/garciyi01",
 "/g/gardnbr01",
 "/g/garream01",
+"/g/garrere01",
 "/g/garvemi01",
 "/g/gausmke01",
+"/g/gavigsa01",
 "/g/gearrco01",
 "/g/gerbemi01",
 "/g/germado01",
 "/g/gibsoky01",
 "/g/gileske01",
+"/g/giolilu01",
+"/g/givenmy01",
 "/g/glasnty01",
 "/g/godleza01",
 "/g/goldspa01",
 "/g/gomesya01",
+"/g/gomezje01",
 "/g/gonzaca01",
 "/g/gonzaer01",
 "/g/gonzagi01",
 "/g/gonzama01",
+"/g/gonzama02",
 "/g/goodrni01",
 "/g/goodwbr01",
 "/g/gordoal01",
@@ -312,11 +359,13 @@ var codes = [
 "/g/gorete01",
 "/g/gosseph01",
 "/g/gotttr01",
+"/g/gourryu01",
 "/g/gracema02",
-"/g/grandya01",
 "/g/grandcu01",
+"/g/grandya01",
 "/g/grayjo02",
 "/g/grayso01",
+"/g/greench03",
 "/g/greensh02",
 "/g/gregelu01",
 "/g/greingr01",
@@ -324,12 +373,13 @@ var codes = [
 "/g/grichra01",
 "/g/grossro01",
 "/g/gsellro01",
+"/g/guduare01",
+"/g/guerrja01",
 "/g/guerrju02",
 "/g/guerrta01",
 "/g/guerrvl02",
 "/g/guilllu01",
 "/g/gurrilo01",
-"/g/gourryu01",
 "/g/gutieke01",
 "/g/guzmaro01",
 "/g/gyorkje01",
@@ -341,16 +391,20 @@ var codes = [
 "/h/hanigmi01",
 "/h/hansoal01",
 "/h/happja01",
+"/h/hardybl01",
 "/h/harpebr03",
 "/h/harpery01",
 "/h/harrijo05",
+"/h/harriwi10",
 "/h/hartdo01",
 "/h/harvejo01",
+"/h/harvema01",
 "/h/healyry01",
 "/h/hechaad01",
 "/h/hedgeau01",
 "/h/hellije01",
 "/h/helslry01",
+"/h/hembrhe01",
 "/h/hendrky01",
 "/h/hendrli01",
 "/h/heredgu01",
@@ -359,14 +413,17 @@ var codes = [
 "/h/hernaen02",
 "/h/hernafe02",
 "/h/hernate01",
+"/h/herreke01",
 "/h/herreod01",
 "/h/herrero02",
+"/h/hessda01",
 "/h/heywaja01",
 "/h/hicksjo02",
 "/h/hicksjo03",
 "/h/higasky01",
 "/h/hildetr01",
 "/h/hillri01",
+"/h/hillti01",
 "/h/hiranyo01",
 "/h/hoffmje02",
 "/h/holdejo02",
@@ -376,6 +433,7 @@ var codes = [
 "/h/hoskirh01",
 "/h/hosmeer01",
 "/h/housead01",
+"/h/hudsoda01",
 "/h/hudsoda02",
 "/h/hugheja02",
 "/h/hundlni01",
@@ -387,6 +445,7 @@ var codes = [
 "/j/jacksdr01",
 "/j/jacksja01",
 "/j/jackslu01",
+"/j/jamesjo02",
 "/j/janseda01",
 "/j/janseke01",
 "/j/jeffrje01",
@@ -400,13 +459,17 @@ var codes = [
 "/j/johnsdj01",
 "/j/jonesad01",
 "/j/jonesja07",
+"/j/jonesna01",
 "/j/josepca01",
 "/j/joycema01",
 "/j/judgeaa01",
+"/j/junisja01",
 "/j/juradar01",
 "/k/kahnlto01",
 "/k/kangju01",
+"/k/karnsna01",
 "/k/kelake01",
+"/k/kellebr01",
 "/k/kellesh01",
 "/k/kellyca02",
 "/k/kellyjo05",
@@ -414,10 +477,12 @@ var codes = [
 "/k/kempma01",
 "/k/kempto01",
 "/k/kendrho01",
+"/k/kenneia01",
 "/k/keplema01",
 "/k/kershcl01",
 "/k/kieboca01",
 "/k/kiermke01",
+"/k/kikucyu01",
 "/k/kineris01",
 "/k/kingesc01",
 "/k/kinghni01",
@@ -430,28 +495,36 @@ var codes = [
 "/k/kochma01",
 "/k/kolarad01",
 "/k/kratzer01",
-"/l/lasteto01",
 "/l/lagarju01",
 "/l/lambja01",
+"/l/lasteto01",
 "/l/lauerer01",
 "/l/laurera01",
+"/l/leakemi01",
+"/l/leblawa01",
 "/l/leclejo01",
 "/l/lemahdj01",
-"/l/leonsa01",
 "/l/leonedo01",
+"/l/leonsa01",
 "/l/lestejo01",
-"/l/lintz02",
 "/l/lindofr01",
+"/l/lintz02",
 "/l/liriafr01",
+"/l/loaisjo01",
 "/l/locasti01",
 "/l/longoev01",
+"/l/lopezjo02",
 "/l/lopezpa01",
+"/l/lopezre01",
 "/l/lopezyo01",
 "/l/lorenmi01",
 "/l/loupaa01",
+"/l/lovelri01",
 "/l/lowebr01",
 "/l/lowena01",
+"/l/lucasjo02",
 "/l/lucchjo01",
+"/l/luciael01",
 "/l/lucrojo01",
 "/l/lugose01",
 "/l/luplojo01",
@@ -476,33 +549,38 @@ var codes = [
 "/m/martibr01",
 "/m/martich02",
 "/m/martija03",
+"/m/martijd02",
+"/m/martijo08",
 "/m/martile01",
 "/m/martiri01",
 "/m/martiru01",
-"/m/martijd02",
-"/m/martijo08",
 "/m/mathije01",
 "/m/matonph01",
 "/m/matzst01",
-"/m/maytr01",
 "/m/maybica01",
 "/m/mayermi01",
+"/m/maytr01",
+"/m/mayzati01",
 "/m/mazarno01",
 "/m/mccanbr01",
 "/m/mccanja02",
+"/m/mccarke01",
 "/m/mccutan01",
 "/m/mcfartj01",
 "/m/mcgeeja01",
+"/m/mchugco01",
 "/m/mckinbi01",
 "/m/mcmahry01",
 "/m/mcneije01",
 "/m/meadoau01",
+"/m/meansjo01",
 "/m/mejiaad01",
 "/m/mejiafr01",
 "/m/melanma01",
 "/m/mercejo03",
 "/m/merriwh01",
 "/m/mikolmi01",
+"/m/mileywa01",
 "/m/millean01",
 "/m/millebr02",
 "/m/milleju02",
@@ -515,12 +593,14 @@ var codes = [
 "/m/montafr02",
 "/m/montgmi01",
 "/m/mooredy01",
+"/m/moorema02",
 "/m/moralke01",
 "/m/moranco01",
 "/m/morelmi01",
 "/m/morgaad01",
 "/m/morofma01",
 "/m/moronre01",
+"/m/mortoch02",
 "/m/moustmi01",
 "/m/mullice01",
 "/m/muncyma01",
@@ -536,6 +616,7 @@ var codes = [
 "/n/nerishe01",
 "/n/neshepa01",
 "/n/neverdo01",
+"/n/newbeja01",
 "/n/newcose01",
 "/n/newmake01",
 "/n/nicasju01",
@@ -544,24 +625,29 @@ var codes = [
 "/n/nolaaa01",
 "/n/nollja01",
 "/n/norrida01",
+"/n/novaiv01",
 "/n/nunezed02",
 "/n/nunezre01",
-"/o/obriepe01",
-"/o/ohearry01",
-"/o/oneilty01",
-"/o/orourry01",
 "/o/obergsc01",
-"/o/odorro01",
+"/o/obriepe01",
 "/o/odorija01",
+"/o/odorro01",
+"/o/ohearry01",
 "/o/ohse01",
 "/o/ohtansh01",
 "/o/olsonma02",
+"/o/olsonty01",
+"/o/oneilty01",
+"/o/orourry01",
+"/o/osichjo01",
+"/o/osunaro01",
 "/o/oswalco01",
 "/o/oteroda01",
 "/o/ottavad01",
 "/o/owingch01",
 "/o/ozunama01",
 "/p/paddach01",
+"/p/paganem01",
 "/p/palkada01",
 "/p/panikjo01",
 "/p/pannoth01",
@@ -569,6 +655,7 @@ var codes = [
 "/p/parrage01",
 "/p/parsowe01",
 "/p/paxtoja01",
+"/p/peacobr01",
 "/p/pearcst01",
 "/p/pederjo01",
 "/p/pedrodu01",
@@ -577,20 +664,22 @@ var codes = [
 "/p/peralda01",
 "/p/peralfr01",
 "/p/peralwa01",
+"/p/peralwi01",
 "/p/perazjo01",
 "/p/perdolu02",
 "/p/perezhe01",
 "/p/perezma02",
 "/p/perezmi03",
+"/p/perezol01",
 "/p/perezro02",
+"/p/peterdi01",
 "/p/peterdu01",
 "/p/peterti01",
 "/p/petityu01",
 "/p/petrija01",
 "/p/phamth01",
 "/p/phegljo01",
-"/p/pillake01",
-"/p/pillake01",
+"/p/phillev01",
 "/p/pillake01",
 "/p/pinama01",
 "/p/pindech01",
@@ -608,6 +697,7 @@ var codes = [
 "/p/poseybu01",
 "/p/poynebo01",
 "/p/pradoma01",
+"/p/pressry01",
 "/p/priceda01",
 "/p/profaju01",
 "/p/puigya01",
@@ -616,6 +706,7 @@ var codes = [
 "/q/quijajo01",
 "/q/quinnro01",
 "/q/quintjo01",
+"/r/ramirer02",
 "/r/ramirha01",
 "/r/ramirjo01",
 "/r/ramirne01",
@@ -627,6 +718,7 @@ var codes = [
 "/r/reddijo01",
 "/r/reedco01",
 "/r/reedmi02",
+"/r/reidfse01",
 "/r/reiniza01",
 "/r/rendoan01",
 "/r/renfrhu01",
@@ -642,53 +734,68 @@ var codes = [
 "/r/richatr01",
 "/r/rickajo01",
 "/r/riddljt01",
+"/r/riverfe01",
 "/r/rizzoan01",
 "/r/roarkta01",
-"/r/roberda10",
 "/r/roberda08",
+"/r/roberda10",
 "/r/robindr01",
 "/r/robleha01",
 "/r/roblevi01",
 "/r/rodnefe01",
+"/r/rodonca01",
 "/r/rodride01",
+"/r/rodried05",
+"/r/rodrije01",
 "/r/rodriri05",
 "/r/rodriro03",
 "/r/rodrise01",
 "/r/roech01",
+"/r/rogerjo01",
 "/r/rogerta01",
 "/r/rojasmi02",
 "/r/rominau01",
 "/r/romose01",
+"/r/rondohe01",
 "/r/rondojo02",
 "/r/rosaram01",
 "/r/rosared01",
 "/r/rosarra01",
 "/r/rosentr01",
+"/r/rosscza01",
 "/r/rossjo01",
+"/r/rossty01",
+"/r/ruizjo01",
 "/r/ruizri01",
+"/r/rumbeni01",
 "/r/russead02",
 "/r/ryanky01",
 "/r/ryuhy01",
 "/s/sabatc.01",
+"/s/sadzeco01",
 "/s/saladty01",
+"/s/salech01",
 "/s/samarje01",
 "/s/sampsad01",
+"/s/sanchaa01",
 "/s/sanchad01",
 "/s/sanchan01",
-"/s/sanchga02",
 "/s/sanchca01",
+"/s/sanchga02",
 "/s/sandopa01",
+"/s/santaan02",
 "/s/santaca01",
 "/s/santada01",
 "/s/santade01",
 "/s/santado01",
-"/s/santaan02",
+"/s/santaer01",
 "/s/schebsc01",
 "/s/scherma01",
 "/s/schoojo01",
 "/s/schulja02",
 "/s/schwaky01",
 "/s/schwifr01",
+"/s/scottta01",
 "/s/seageco01",
 "/s/segurje01",
 "/s/semiema01",
@@ -698,6 +805,7 @@ var codes = [
 "/s/sewalpa01",
 "/s/shawbr01",
 "/s/shawtr01",
+"/s/shoemma01",
 "/s/shuckja01",
 "/s/simmoan01",
 "/s/sippto01",
@@ -710,6 +818,8 @@ var codes = [
 "/s/smithma05",
 "/s/smithwi04",
 "/s/smoakju01",
+"/s/smylydr01",
+"/s/snellbl01",
 "/s/sobotch01",
 "/s/sogarer01",
 "/s/solarya01",
@@ -719,6 +829,7 @@ var codes = [
 "/s/sotoju01",
 "/s/sparkgl01",
 "/s/springe01",
+"/s/sprinje01",
 "/s/stallja01",
 "/s/stameer01",
 "/s/stammcr01",
@@ -733,9 +844,12 @@ var codes = [
 "/s/stockro01",
 "/s/storytr01",
 "/s/strahma01",
+"/s/straida01",
 "/s/strasst01",
 "/s/stratch01",
+"/s/strichu01",
 "/s/stripro01",
+"/s/stromma01",
 "/s/stroppe01",
 "/s/stumpda01",
 "/s/suareeu01",
@@ -745,27 +859,30 @@ var codes = [
 "/s/suzukku01",
 "/s/swansda01",
 "/s/swanser01",
-"/s/swihabl01",
-"/s/swihabl01",
+"/s/swarzan01",
 "/s/swihabl01",
 "/s/syndeno01",
 "/t/taillja01",
 "/t/tanakma01",
 "/t/tapiara01",
+"/t/tarplst01",
 "/t/tatisfe02",
 "/t/tauchmi01",
 "/t/tayloch03",
 "/t/taylomi02",
 "/t/teherju01",
 "/t/tellero01",
+"/t/teperry01",
 "/t/thameer01",
 "/t/thomala02",
+"/t/thorntr01",
 "/t/thornty01",
 "/t/tilsoch01",
 "/t/tomlijo01",
 "/t/torregl01",
 "/t/toussto01",
 "/t/travisa01",
+"/t/treinbl01",
 "/t/trivilo01",
 "/t/troutmi01",
 "/t/tuckeco01",
@@ -779,12 +896,12 @@ var codes = [
 "/u/uriaslu01",
 "/u/urshegi01",
 "/v/valaipa01",
+"/v/valdefr01",
 "/v/vanmejo01",
 "/v/vargail01",
 "/v/vargaja01",
 "/v/vasquan02",
 "/v/vazquch01",
-"/r/riverfe01",
 "/v/velasvi01",
 "/v/velazan01",
 "/v/velazhe01",
@@ -792,12 +909,14 @@ var codes = [
 "/v/ventejo01",
 "/v/verdual01",
 "/v/verhadr01",
+"/v/verlaju01",
 "/v/villajo01",
 "/v/vinceni01",
 "/v/vizcaar01",
 "/v/vogelda01",
 "/v/vogtst01",
 "/v/voitlu01",
+"/v/volqued01",
 "/v/vottojo01",
 "/w/wachami01",
 "/w/wadety01",
@@ -823,10 +942,10 @@ var codes = [
 "/w/wilkeaa01",
 "/w/wilkest01",
 "/w/williau01",
+"/w/willima11",
 "/w/willini01",
 "/w/willita01",
 "/w/willitr01",
-"/w/willima11",
 "/w/wilsoal01",
 "/w/wilsobr02",
 "/w/wilsoju10",
@@ -838,68 +957,236 @@ var codes = [
 "/w/wittgni01",
 "/w/wolteto01",
 "/w/wongko01",
+"/w/woodhu01",
 "/w/woodrbr01",
 "/w/workmbr01",
+"/w/wothema01",
 "/w/wrighky01",
+"/w/wrighmi01",
 "/w/wynnsau01",
+"/y/yacabji01",
 "/y/yarbrry01",
 "/y/yateski01",
 "/y/yelicch01",
 "/z/zagunma01",
 "/z/zamorda01",
+"/z/zimmejo02",
+"/z/zimmeky01",
 "/z/zimmery01",
 "/z/zobribe01",
 "/z/zuninmi01"
 ];
-var connection  = mysql.createConnection({
-    host: process.env.DB_HOST,
+/*var connection  = mysql.createConnection({
+    host: process.env.DB_HOSTI,
     port: '3306',
-    user: process.env.DB_USER,
-    password: process.env.DB_PW,
-    database: process.env.DB_NAME,
-     multipleStatements: true
-});
-/*for(let i = 0; i < codes.length; i++) {
-console.log(baseURL + codes[i] + tail)
-}*/
+    user: process.env.DB_USERI,
+    password: process.env.DB_PWI,
+    database: process.env.DB_NAMEI
+});*/
 
-/*setInterval( function() {
-	console.log('one second')
-}, 1000)*/
-var rows =[]
+for (let i=1; i< codes.length; i++) {
+    setTimeout( function timer(){
+      
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
 
-console.log(baseURL + codes[1] + tail)
-request(baseURL + codes[1] + tail, function(error, response, html) {
-	console.log(error)
-  if(!error && response.statusCode === 200){
-
-    	console.log('sto')
+  console.log(chalk.whiteBright(baseURL + codes[i] + tail))
+  await page.goto(baseURL + codes[i] + tail, {waitUntil: 'networkidle2'});
   
+  const lines = await page.evaluate(() => {
+  const results = Array.from(document.querySelectorAll('#batting_standard > tbody > tr.minors_table'));
+
+  return results.map(result => {
+  
+     return {
+       yr: result.querySelector('th:nth-child(1)').textContent,
+       age: result.querySelector('td:nth-child(2)').textContent,
+       franchise: result.querySelector('td:nth-child(3)').textContent.replace('-min', ''),
+       classes: result.querySelector('td:nth-child(4)').textContent
+     }
+   });
+  return results
+ });
+  	for(let j = 0; j < lines.length; j++) {
+		lines[j].playerID = codes[i].replace(/\/[a-z]{1}\//g, '')
+	}
+var arr = []
+for(let i = 0; i < lines.length; i++) {
+    lines[i].classes = lines[i].classes.split(',')
+}
+
+for(let i = 0; i < lines.length; i++) {
+
+    for(let j = 0; j < lines[i].classes.length; j++) {
+        var obj = {}
+        obj.yr = lines[i].yr
+        obj.age = lines[i].age
+        obj.franchise = lines[i].franchise
+        obj.class = lines[i].classes[j]
+        obj.playerID = lines[i].playerID
+        console.log(chalk.cyanBright(JSON.stringify(obj)))
+/*           connection.query(`INSERT INTO  fullMinors (playerID, yr, age, class, franchise)VALUES (?,?,?,?,?)`, [obj.playerID, obj.yr, obj.age, obj.class, obj.franchise], function (error) {
+      if (error) throw error;
+          console.log(chalk.red(`record added to db`))         
+   }); */
+
+    }
+}
+ await browser.close();
+})();
+
+
+    }, i*10000 );
+}
+
+
+
+/*(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  console.log(baseURL + codes[1] + tail)
+  await page.goto(baseURL + codes[1] + tail, {waitUntil: 'networkidle2'});
+  
+  const lines = await page.evaluate(() => {
+  const results = Array.from(document.querySelectorAll('#batting_standard > tbody > tr.minors_table'));
+
+  return results.map(result => {
+     return {
+       yr: result.querySelector('th:nth-child(1)').textContent,
+       age: result.querySelector('td:nth-child(2)').textContent,
+       franchise: result.querySelector('td:nth-child(3)').textContent.replace('-min', ''),
+       classes: result.querySelector('td:nth-child(4)').textContent
+     }
+   });
+  return results
+ });
+lines[1].playerID = codes[1].replace(/\/[a-z]{1}\//g, '')
+ console.log(lines[1])
+
+ await browser.close();
+})();*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+var i = 0;
+function f() {
+request(baseURL + codes[i] + tail, function(error, response, html) {
+
+  if(!error && response.statusCode === 200){
+   console.log(baseURL + codes[i] + tail)
+var playerID = codes[i].replace(/\/[a-z]\//g, '')
       var $ = cheerio.load(html);
      var tbl = $('table#batting_standard > tbody')
 
      $('table#batting_standard > tbody > tr.minors_table').map(function(i, el) {
 
+var splitClass = Array.from($(el).children('[data-stat="lg_ID"]').html().split(","))
+console.log(splitClass)
+
+for(let j = 0; j < splitClass.length; j++) {
+
+	var detail = {}
+	detail.player = playerID;
+	detail.yr = $(el).children().first().html();
+	detail.age = $(el).children('td:nth-child(2)').html();
+	detail.class = splitClass[j];
+	detail.franchise = $(el).children('td:nth-child(3)').html().replace(/\-[a-z]{1,}/g, "");
+	console.log(detail)
+
+    connection.query(`INSERT INTO  fullMinors (playerID, yr, age, class, franchise)VALUES (?,?,?,?,?)`, [detail.player, detail.yr, detail.age, detail.class, detail.franchise], function (error) {
+      if (error) throw error;
+          console.log('object added to db')           
+   }); 
+		}
+    }) 
+  } else (console.log('err'))
+})   
+    if( i < codes.length ){
+    	 i++;
+        setTimeout( f, 15000 );
+    }
+}
+f();*/
+/*
+request(baseURL + codes[1] + tail, function(error, response, html) {
+	console.log(error)
+  if(!error && response.statusCode === 200){
+
+      var $ = cheerio.load(html);
+     var tbl = $('table#batting_standard > tbody')
+
+     $('table#batting_standard > tbody > tr.minors_table').map(function(i, el) {
 
 var splitClass = Array.from($(el).children('td:nth-child(4)').html().split(","))
 for(let i = 0; i < splitClass.length; i++) {
 	var detail = {}
-	detail.player = codes[1].replace(/\/[a-z]\//g, '')
+	detail.player = codes[i].replace(/\/[a-z]\//g, '')
 	detail.yr = $(el).children().first().html()
 	detail.age = $(el).children('td:nth-child(2)').html()
 	detail.class = splitClass[i]
 	detail.franchise = $(el).children('td:nth-child(3)').html().replace(/\-[a-z]{1,}/g, "")
-	rows.push(detail)
+	console.log(detail)
 }
 
      }) 
 
-     console.log(rows)
+  
 
   } else (console.log('err'))
-})
+})*/
 
+/*var i = 0;
+function f() {
+request(baseURL + codes[i] + tail, function(error, response, html) {
 
+  if(!error && response.statusCode === 200){
+
+var playerID = codes[i].replace(/\/[a-z]\//g, '')
+      var $ = cheerio.load(html);
+     var tbl = $('table#batting_standard > tbody')
+
+     $('table#batting_standard > tbody > tr.minors_table').map(function(i, el) {
+
+var splitClass = Array.from($(el).children('[data-stat="lg_ID"]').html().split(","))
+console.log(splitClass)
+
+for(let j = 0; j < splitClass.length; j++) {
+
+	var detail = {}
+	detail.player = playerID;
+	detail.yr = $(el).children().first().html();
+	detail.age = $(el).children('td:nth-child(2)').html();
+	detail.class = splitClass[j];
+	detail.franchise = $(el).children('td:nth-child(3)').html().replace(/\-[a-z]{1,}/g, "");
+	console.log(detail)
+
+    connection.query(`INSERT INTO  fullMinors (playerID, yr, age, class, franchise)VALUES (?,?,?,?,?)`, [detail.player, detail.yr, detail.age, detail.class, detail.franchise], function (error) {
+      if (error) throw error;
+          console.log('object added to db')           
+   }); 
+		}
+    }) 
+  } else (console.log('err'))
+})   
+    if( i < codes.length ){
+    	 i++;
+        setTimeout( f, 5000 );
+    }
+}
+f();*/
 
 
 
