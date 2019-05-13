@@ -1,6 +1,17 @@
+require('dotenv').config()
 const puppeteer = require('puppeteer');
-(async () => {
+const mysql = require('mysql');
+const chalk = require('chalk');
 
+var connection  = mysql.createConnection({
+    host: process.env.DB_HOSTI,
+    port: '3306',
+    user: process.env.DB_USERI,
+    password: process.env.DB_PWI,
+    database: process.env.DB_NAMEI
+});
+(async () => {
+connection.query(`TRUNCATE latestPitching`)
  		const browser = await puppeteer.launch();
 	   const page = await browser.newPage();
 
@@ -25,7 +36,7 @@ const puppeteer = require('puppeteer');
 	               SV:  item.querySelector('td:nth-child(15)').innerText,
 	               IP:  item.querySelector('td:nth-child(16)').innerText,
 	               H:  item.querySelector('td:nth-child(17)').innerText,
-	               ER:  item.querySelector('td:nth-child(19)').innerText,
+	               R:  item.querySelector('td:nth-child(19)').innerText,
 	               HR:  item.querySelector('td:nth-child(20)').innerText,
 	               BB:  item.querySelector('td:nth-child(21)').innerText,
 	               IBB:  item.querySelector('td:nth-child(22)').innerText,
@@ -34,12 +45,36 @@ const puppeteer = require('puppeteer');
 	               BK:  item.querySelector('td:nth-child(25)').innerText,
 	               WP:  item.querySelector('td:nth-child(26)').innerText,
 	               BF:  item.querySelector('td:nth-child(27)').innerText
-	             
 	           });	       	
-	
 	       });
 	       return results;
 	   })
-  console.log(urls)
+for(let i = 0; i < urls.length; i++) {
+	connection.query(`INSERT INTO latestPitching(playerName,playerID,Age,Tm,Lg,W,L,G,GS,GF,CG,SHO,SV,IP,H,R,HR,BB,IBB,SO,HBP,BK,WP,BF)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [urls[i].playerName,urls[i].playerID,urls[i].age,urls[i].tm,urls[i].lg,urls[i].W,urls[i].L,urls[i].G,urls[i].GS,urls[i].GF,urls[i].CG,urls[i].SHO,urls[i].SV,urls[i].IP,urls[i].H,urls[i].R,urls[i].HR,urls[i].BB,urls[i].IBB,urls[i].SO,urls[i].HBP,urls[i].BK,urls[i].WP,urls[i].BF], function (error) {
+      if (error) throw error;
+          console.log(chalk.red(`record added to db`))         
+   }); 
+}
+
+
   await browser.close()
 })()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
