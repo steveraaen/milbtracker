@@ -1,0 +1,4026 @@
+[
+	{
+		"playerID" : "adamsau02",
+		"playerName" : "Austin Adams"
+	},
+	{
+		"playerID" : "alanirj01",
+		"playerName" : "R.J. Alaniz"
+	},
+	{
+		"playerID" : "alberma01",
+		"playerName" : "Matt Albers"
+	},
+	{
+		"playerID" : "alberha01",
+		"playerName" : "Hanser Alberto"
+	},
+	{
+		"playerID" : "alcansa01",
+		"playerName" : "Sandy Alcantara"
+	},
+	{
+		"playerID" : "alcanvi01",
+		"playerName" : "Victor Alcantara"
+	},
+	{
+		"playerID" : "alexasc02",
+		"playerName" : "Scott Alexander"
+	},
+	{
+		"playerID" : "allenco01",
+		"playerName" : "Cody Allen"
+	},
+	{
+		"playerID" : "almonye01",
+		"playerName" : "Yency Almonte"
+	},
+	{
+		"playerID" : "altavda01",
+		"playerName" : "Dan Altavilla"
+	},
+	{
+		"playerID" : "altheaa01",
+		"playerName" : "Aaron Altherr"
+	},
+	{
+		"playerID" : "alvarjo03",
+		"playerName" : "Jose Alvarado"
+	},
+	{
+		"playerID" : "alvarjo02",
+		"playerName" : "Jose Alvarez"
+	},
+	{
+		"playerID" : "anderbr04",
+		"playerName" : "Brett Anderson"
+	},
+	{
+		"playerID" : "anderch01",
+		"playerName" : "Chase Anderson"
+	},
+	{
+		"playerID" : "anderco01",
+		"playerName" : "Cody Anderson"
+	},
+	{
+		"playerID" : "anderdr02",
+		"playerName" : "Drew Anderson"
+	},
+	{
+		"playerID" : "anderju01",
+		"playerName" : "Justin Anderson"
+	},
+	{
+		"playerID" : "anderni01",
+		"playerName" : "Nick Anderson"
+	},
+	{
+		"playerID" : "anderty01",
+		"playerName" : "Tyler Anderson"
+	},
+	{
+		"playerID" : "andrima01",
+		"playerName" : "Matt Andriese"
+	},
+	{
+		"playerID" : "aranovi01",
+		"playerName" : "Victor Arano"
+	},
+	{
+		"playerID" : "araujpe01",
+		"playerName" : "Pedro Araujo"
+	},
+	{
+		"playerID" : "archech01",
+		"playerName" : "Chris Archer"
+	},
+	{
+		"playerID" : "armstsh01",
+		"playerName" : "Shawn Armstrong"
+	},
+	{
+		"playerID" : "arrieja01",
+		"playerName" : "Jake Arrieta"
+	},
+	{
+		"playerID" : "avilape01",
+		"playerName" : "Pedro Avila"
+	},
+	{
+		"playerID" : "avilalu01",
+		"playerName" : "Luis Avilan"
+	},
+	{
+		"playerID" : "baezpe01",
+		"playerName" : "Pedro Baez"
+	},
+	{
+		"playerID" : "baileho02",
+		"playerName" : "Homer Bailey"
+	},
+	{
+		"playerID" : "banuema01",
+		"playerName" : "Manny Banuelos"
+	},
+	{
+		"playerID" : "bardlu01",
+		"playerName" : "Luke Bard"
+	},
+	{
+		"playerID" : "barlosc01",
+		"playerName" : "Scott Barlow"
+	},
+	{
+		"playerID" : "barneja01",
+		"playerName" : "Jacob Barnes"
+	},
+	{
+		"playerID" : "barnema01",
+		"playerName" : "Matt Barnes"
+	},
+	{
+		"playerID" : "barraky01",
+		"playerName" : "Kyle Barraclough"
+	},
+	{
+		"playerID" : "barreja01",
+		"playerName" : "Jake Barrett"
+	},
+	{
+		"playerID" : "barrija01",
+		"playerName" : "Jaime Barria"
+	},
+	{
+		"playerID" : "bashlty01",
+		"playerName" : "Tyler Bashlor"
+	},
+	{
+		"playerID" : "bassich01",
+		"playerName" : "Chris Bassitt"
+	},
+	{
+		"playerID" : "bauertr01",
+		"playerName" : "Trevor Bauer"
+	},
+	{
+		"playerID" : "bedroca01",
+		"playerName" : "Cam Bedrosian"
+	},
+	{
+		"playerID" : "beedety01",
+		"playerName" : "Tyler Beede"
+	},
+	{
+		"playerID" : "beeksja02",
+		"playerName" : "Jalen Beeks"
+	},
+	{
+		"playerID" : "bergetr01",
+		"playerName" : "Travis Bergen"
+	},
+	{
+		"playerID" : "berrijo01",
+		"playerName" : "Jose Berrios"
+	},
+	{
+		"playerID" : "bettich01",
+		"playerName" : "Chad Bettis"
+	},
+	{
+		"playerID" : "biagijo01",
+		"playerName" : "Joe Biagini"
+	},
+	{
+		"playerID" : "biddlje01",
+		"playerName" : "Jesse Biddle"
+	},
+	{
+		"playerID" : "biebesh01",
+		"playerName" : "Shane Bieber"
+	},
+	{
+		"playerID" : "birdky01",
+		"playerName" : "Kyle Bird"
+	},
+	{
+		"playerID" : "blachty01",
+		"playerName" : "Ty Blach"
+	},
+	{
+		"playerID" : "bleieri01",
+		"playerName" : "Richard Bleier"
+	},
+	{
+		"playerID" : "blevije01",
+		"playerName" : "Jerry Blevins"
+	},
+	{
+		"playerID" : "boxbebr01",
+		"playerName" : "Brad Boxberger"
+	},
+	{
+		"playerID" : "boydma01",
+		"playerName" : "Matthew Boyd"
+	},
+	{
+		"playerID" : "brachbr01",
+		"playerName" : "Brad Brach"
+	},
+	{
+		"playerID" : "bradfch02",
+		"playerName" : "Chasen Bradford"
+	},
+	{
+		"playerID" : "bradlar01",
+		"playerName" : "Archie Bradley"
+	},
+	{
+		"playerID" : "brasiry01",
+		"playerName" : "Ryan Brasier"
+	},
+	{
+		"playerID" : "braulst01",
+		"playerName" : "Steven Brault"
+	},
+	{
+		"playerID" : "brebbjo01",
+		"playerName" : "John Brebbia"
+	},
+	{
+		"playerID" : "brennbr01",
+		"playerName" : "Brandon Brennan"
+	},
+	{
+		"playerID" : "breweco01",
+		"playerName" : "Colten Brewer"
+	},
+	{
+		"playerID" : "briceau01",
+		"playerName" : "Austin Brice"
+	},
+	{
+		"playerID" : "brittza01",
+		"playerName" : "Zack Britton"
+	},
+	{
+		"playerID" : "brookaa01",
+		"playerName" : "Aaron Brooks"
+	},
+	{
+		"playerID" : "buchhcl01",
+		"playerName" : "Clay Buchholz"
+	},
+	{
+		"playerID" : "buchtry01",
+		"playerName" : "Ryan Buchter"
+	},
+	{
+		"playerID" : "buehlwa01",
+		"playerName" : "Walker Buehler"
+	},
+	{
+		"playerID" : "bumgama01",
+		"playerName" : "Madison Bumgarner"
+	},
+	{
+		"playerID" : "bummeaa01",
+		"playerName" : "Aaron Bummer"
+	},
+	{
+		"playerID" : "bundydy01",
+		"playerName" : "Dylan Bundy"
+	},
+	{
+		"playerID" : "burdini01",
+		"playerName" : "Nick Burdi"
+	},
+	{
+		"playerID" : "burneco01",
+		"playerName" : "Corbin Burnes"
+	},
+	{
+		"playerID" : "burrry01",
+		"playerName" : "Ryan Burr"
+	},
+	{
+		"playerID" : "buttrty01",
+		"playerName" : "Ty Buttrey"
+	},
+	{
+		"playerID" : "cahiltr01",
+		"playerName" : "Trevor Cahill"
+	},
+	{
+		"playerID" : "cannigr01",
+		"playerName" : "Griffin Canning"
+	},
+	{
+		"playerID" : "carlesh01",
+		"playerName" : "Shane Carle"
+	},
+	{
+		"playerID" : "carpery01",
+		"playerName" : "Ryan Carpenter"
+	},
+	{
+		"playerID" : "carraca01",
+		"playerName" : "Carlos Carrasco"
+	},
+	{
+		"playerID" : "cashnan01",
+		"playerName" : "Andrew Cashner"
+	},
+	{
+		"playerID" : "castidi01",
+		"playerName" : "Diego Castillo"
+	},
+	{
+		"playerID" : "castilu02",
+		"playerName" : "Luis Castillo"
+	},
+	{
+		"playerID" : "castrmi01",
+		"playerName" : "Miguel Castro"
+	},
+	{
+		"playerID" : "cessalu01",
+		"playerName" : "Luis Cessa"
+	},
+	{
+		"playerID" : "chacijh01",
+		"playerName" : "Jhoulys Chacin"
+	},
+	{
+		"playerID" : "chafian01",
+		"playerName" : "Andrew Chafin"
+	},
+	{
+		"playerID" : "chapmar01",
+		"playerName" : "Aroldis Chapman"
+	},
+	{
+		"playerID" : "chargjt01",
+		"playerName" : "JT Chargois"
+	},
+	{
+		"playerID" : "chatwty01",
+		"playerName" : "Tyler Chatwood"
+	},
+	{
+		"playerID" : "chaveje01",
+		"playerName" : "Jesse Chavez"
+	},
+	{
+		"playerID" : "chenwe02",
+		"playerName" : "Wei-Yin Chen"
+	},
+	{
+		"playerID" : "chiriyo01",
+		"playerName" : "Yonny Chirinos"
+	},
+	{
+		"playerID" : "cimbead01",
+		"playerName" : "Adam Cimber"
+	},
+	{
+		"playerID" : "cishest01",
+		"playerName" : "Steve Cishek"
+	},
+	{
+		"playerID" : "clarkta01",
+		"playerName" : "Taylor Clarke"
+	},
+	{
+		"playerID" : "claudal01",
+		"playerName" : "Alex Claudio"
+	},
+	{
+		"playerID" : "clevimi01",
+		"playerName" : "Mike Clevinger"
+	},
+	{
+		"playerID" : "clippty01",
+		"playerName" : "Tyler Clippard"
+	},
+	{
+		"playerID" : "cobbal01",
+		"playerName" : "Alex Cobb"
+	},
+	{
+		"playerID" : "colege01",
+		"playerName" : "Gerrit Cole"
+	},
+	{
+		"playerID" : "coleta01",
+		"playerName" : "Taylor Cole"
+	},
+	{
+		"playerID" : "colliti01",
+		"playerName" : "Tim Collins"
+	},
+	{
+		"playerID" : "colomal01",
+		"playerName" : "Alex Colome"
+	},
+	{
+		"playerID" : "conlead01",
+		"playerName" : "Adam Conley"
+	},
+	{
+		"playerID" : "corbipa01",
+		"playerName" : "Patrick Corbin"
+	},
+	{
+		"playerID" : "coveydy01",
+		"playerName" : "Dylan Covey"
+	},
+	{
+		"playerID" : "crickky01",
+		"playerName" : "Kyle Crick"
+	},
+	{
+		"playerID" : "culbech01",
+		"playerName" : "Charlie Culberson"
+	},
+	{
+		"playerID" : "curtijo02",
+		"playerName" : "John Curtiss"
+	},
+	{
+		"playerID" : "darviyu01",
+		"playerName" : "Yu Darvish"
+	},
+	{
+		"playerID" : "davieza02",
+		"playerName" : "Zach Davies"
+	},
+	{
+		"playerID" : "davisau01",
+		"playerName" : "Austin Davis"
+	},
+	{
+		"playerID" : "davisch02",
+		"playerName" : "Chris Davis"
+	},
+	{
+		"playerID" : "daviswa01",
+		"playerName" : "Wade Davis"
+	},
+	{
+		"playerID" : "daytogr01",
+		"playerName" : "Grant Dayton"
+	},
+	{
+		"playerID" : "dejonch01",
+		"playerName" : "Chase De Jong"
+	},
+	{
+		"playerID" : "delosen01",
+		"playerName" : "Enyel De Los Santos"
+	},
+	{
+		"playerID" : "degroja01",
+		"playerName" : "Jacob deGrom"
+	},
+	{
+		"playerID" : "desclan01",
+		"playerName" : "Anthony DeSclafani"
+	},
+	{
+		"playerID" : "devench02",
+		"playerName" : "Chris Devenski"
+	},
+	{
+		"playerID" : "diazed04",
+		"playerName" : "Edwin Diaz"
+	},
+	{
+		"playerID" : "diekmja01",
+		"playerName" : "Jake Diekman"
+	},
+	{
+		"playerID" : "dominse01",
+		"playerName" : "Seranthony Dominguez"
+	},
+	{
+		"playerID" : "doolise01",
+		"playerName" : "Sean Doolittle"
+	},
+	{
+		"playerID" : "dowdyky01",
+		"playerName" : "Kyle Dowdy"
+	},
+	{
+		"playerID" : "duffety01",
+		"playerName" : "Tyler Duffey"
+	},
+	{
+		"playerID" : "duffyda01",
+		"playerName" : "Danny Duffy"
+	},
+	{
+		"playerID" : "dukeza01",
+		"playerName" : "Zach Duke"
+	},
+	{
+		"playerID" : "dullry01",
+		"playerName" : "Ryan Dull"
+	},
+	{
+		"playerID" : "dunnmi01",
+		"playerName" : "Mike Dunn"
+	},
+	{
+		"playerID" : "duplajo01",
+		"playerName" : "Jon Duplantier"
+	},
+	{
+		"playerID" : "durapmo01",
+		"playerName" : "Montana DuRapau"
+	},
+	{
+		"playerID" : "dysonsa01",
+		"playerName" : "Sam Dyson"
+	},
+	{
+		"playerID" : "edwarca01",
+		"playerName" : "Carl Edwards Jr."
+	},
+	{
+		"playerID" : "edwarjo02",
+		"playerName" : "Jon Edwards"
+	},
+	{
+		"playerID" : "eflinza01",
+		"playerName" : "Zach Eflin"
+	},
+	{
+		"playerID" : "eickhje01",
+		"playerName" : "Jerad Eickhoff"
+	},
+	{
+		"playerID" : "eliasro01",
+		"playerName" : "Roenis Elias"
+	},
+	{
+		"playerID" : "ellisch01",
+		"playerName" : "Chris Ellis"
+	},
+	{
+		"playerID" : "eovalna01",
+		"playerName" : "Nathan Eovaldi"
+	},
+	{
+		"playerID" : "erlinro01",
+		"playerName" : "Robbie Erlin"
+	},
+	{
+		"playerID" : "estevca01",
+		"playerName" : "Carlos Estevez"
+	},
+	{
+		"playerID" : "estrama01",
+		"playerName" : "Marco Estrada"
+	},
+	{
+		"playerID" : "familje01",
+		"playerName" : "Jeurys Familia"
+	},
+	{
+		"playerID" : "fariaja01",
+		"playerName" : "Jake Faria"
+	},
+	{
+		"playerID" : "farmebu01",
+		"playerName" : "Buck Farmer"
+	},
+	{
+		"playerID" : "feddeer01",
+		"playerName" : "Erick Fedde"
+	},
+	{
+		"playerID" : "felizmi01",
+		"playerName" : "Michael Feliz"
+	},
+	{
+		"playerID" : "ferguca01",
+		"playerName" : "Caleb Ferguson"
+	},
+	{
+		"playerID" : "fernajo04",
+		"playerName" : "Jose Fernandez"
+	},
+	{
+		"playerID" : "festama01",
+		"playerName" : "Matt Festa"
+	},
+	{
+		"playerID" : "fiersmi01",
+		"playerName" : "Mike Fiers"
+	},
+	{
+		"playerID" : "fillmhe01",
+		"playerName" : "Heath Fillmyer"
+	},
+	{
+		"playerID" : "flaheja01",
+		"playerName" : "Jack Flaherty"
+	},
+	{
+		"playerID" : "flexech01",
+		"playerName" : "Chris Flexen"
+	},
+	{
+		"playerID" : "florody01",
+		"playerName" : "Dylan Floro"
+	},
+	{
+		"playerID" : "foltymi01",
+		"playerName" : "Mike Foltynewicz"
+	},
+	{
+		"playerID" : "fontwi01",
+		"playerName" : "Wilmer Font"
+	},
+	{
+		"playerID" : "frareca01",
+		"playerName" : "Caleb Frare"
+	},
+	{
+		"playerID" : "freelky01",
+		"playerName" : "Kyle Freeland"
+	},
+	{
+		"playerID" : "freemsa01",
+		"playerName" : "Sam Freeman"
+	},
+	{
+		"playerID" : "friedma01",
+		"playerName" : "Max Fried"
+	},
+	{
+		"playerID" : "fryja01",
+		"playerName" : "Jace Fry"
+	},
+	{
+		"playerID" : "frypa01",
+		"playerName" : "Paul Fry"
+	},
+	{
+		"playerID" : "fulmeca01",
+		"playerName" : "Carson Fulmer"
+	},
+	{
+		"playerID" : "gagnodr01",
+		"playerName" : "Drew Gagnon"
+	},
+	{
+		"playerID" : "gallegi01",
+		"playerName" : "Giovanny Gallegos"
+	},
+	{
+		"playerID" : "gantjo01",
+		"playerName" : "John Gant"
+	},
+	{
+		"playerID" : "garcied01",
+		"playerName" : "Edgar Garcia"
+	},
+	{
+		"playerID" : "garcija04",
+		"playerName" : "Jarlin Garcia"
+	},
+	{
+		"playerID" : "garcilu03",
+		"playerName" : "Luis Garcia"
+	},
+	{
+		"playerID" : "garciyi01",
+		"playerName" : "Yimi Garcia"
+	},
+	{
+		"playerID" : "garream01",
+		"playerName" : "Amir Garrett"
+	},
+	{
+		"playerID" : "garrere01",
+		"playerName" : "Reed Garrett"
+	},
+	{
+		"playerID" : "gausmke01",
+		"playerName" : "Kevin Gausman"
+	},
+	{
+		"playerID" : "gavigsa01",
+		"playerName" : "Sam Gaviglio"
+	},
+	{
+		"playerID" : "gearrco01",
+		"playerName" : "Cory Gearrin"
+	},
+	{
+		"playerID" : "germado01",
+		"playerName" : "Domingo German"
+	},
+	{
+		"playerID" : "gibsoky01",
+		"playerName" : "Kyle Gibson"
+	},
+	{
+		"playerID" : "gileske01",
+		"playerName" : "Ken Giles"
+	},
+	{
+		"playerID" : "giolilu01",
+		"playerName" : "Lucas Giolito"
+	},
+	{
+		"playerID" : "givenmy01",
+		"playerName" : "Mychal Givens"
+	},
+	{
+		"playerID" : "glasnty01",
+		"playerName" : "Tyler Glasnow"
+	},
+	{
+		"playerID" : "godleza01",
+		"playerName" : "Zack Godley"
+	},
+	{
+		"playerID" : "gomezje01",
+		"playerName" : "Jeanmar Gomez"
+	},
+	{
+		"playerID" : "gonzama02",
+		"playerName" : "Marco Gonzales"
+	},
+	{
+		"playerID" : "gonzagi01",
+		"playerName" : "Gio Gonzalez"
+	},
+	{
+		"playerID" : "gotttr01",
+		"playerName" : "Trevor Gott"
+	},
+	{
+		"playerID" : "gracema02",
+		"playerName" : "Matt Grace"
+	},
+	{
+		"playerID" : "grayjo02",
+		"playerName" : "Jon Gray"
+	},
+	{
+		"playerID" : "grayso01",
+		"playerName" : "Sonny Gray"
+	},
+	{
+		"playerID" : "greench03",
+		"playerName" : "Chad Green"
+	},
+	{
+		"playerID" : "greensh02",
+		"playerName" : "Shane Greene"
+	},
+	{
+		"playerID" : "gregelu01",
+		"playerName" : "Luke Gregerson"
+	},
+	{
+		"playerID" : "greinza01",
+		"playerName" : "Zack Greinke"
+	},
+	{
+		"playerID" : "gsellro01",
+		"playerName" : "Robert Gsellman"
+	},
+	{
+		"playerID" : "guduare01",
+		"playerName" : "Reymin Guduan"
+	},
+	{
+		"playerID" : "guerrja01",
+		"playerName" : "Javy Guerra"
+	},
+	{
+		"playerID" : "guerrju02",
+		"playerName" : "Junior Guerra"
+	},
+	{
+		"playerID" : "guerrta01",
+		"playerName" : "Tayron Guerrero"
+	},
+	{
+		"playerID" : "gyorkje01",
+		"playerName" : "Jedd Gyorko"
+	},
+	{
+		"playerID" : "haderjo01",
+		"playerName" : "Josh Hader"
+	},
+	{
+		"playerID" : "hamelco01",
+		"playerName" : "Cole Hamels"
+	},
+	{
+		"playerID" : "handbr01",
+		"playerName" : "Brad Hand"
+	},
+	{
+		"playerID" : "happja01",
+		"playerName" : "J.A. Happ"
+	},
+	{
+		"playerID" : "hardybl01",
+		"playerName" : "Blaine Hardy"
+	},
+	{
+		"playerID" : "harpery01",
+		"playerName" : "Ryne Harper"
+	},
+	{
+		"playerID" : "harriwi10",
+		"playerName" : "Will Harris"
+	},
+	{
+		"playerID" : "hartdo01",
+		"playerName" : "Donnie Hart"
+	},
+	{
+		"playerID" : "harvejo01",
+		"playerName" : "Joe Harvey"
+	},
+	{
+		"playerID" : "harvema01",
+		"playerName" : "Matt Harvey"
+	},
+	{
+		"playerID" : "hearnta01",
+		"playerName" : "Taylor Hearn"
+	},
+	{
+		"playerID" : "hellije01",
+		"playerName" : "Jeremy Hellickson"
+	},
+	{
+		"playerID" : "helslry01",
+		"playerName" : "Ryan Helsley"
+	},
+	{
+		"playerID" : "hembrhe01",
+		"playerName" : "Heath Hembree"
+	},
+	{
+		"playerID" : "hendrky01",
+		"playerName" : "Kyle Hendricks"
+	},
+	{
+		"playerID" : "hendrli01",
+		"playerName" : "Liam Hendriks"
+	},
+	{
+		"playerID" : "hernada02",
+		"playerName" : "Darwinzon Hernandez"
+	},
+	{
+		"playerID" : "hernada01",
+		"playerName" : "David Hernandez"
+	},
+	{
+		"playerID" : "hernafe02",
+		"playerName" : "Felix Hernandez"
+	},
+	{
+		"playerID" : "herreke01",
+		"playerName" : "Kelvin Herrera"
+	},
+	{
+		"playerID" : "hessda01",
+		"playerName" : "David Hess"
+	},
+	{
+		"playerID" : "hicksjo03",
+		"playerName" : "Jordan Hicks"
+	},
+	{
+		"playerID" : "hildetr01",
+		"playerName" : "Trevor Hildenberger"
+	},
+	{
+		"playerID" : "hillri01",
+		"playerName" : "Rich Hill"
+	},
+	{
+		"playerID" : "hillti01",
+		"playerName" : "Tim Hill"
+	},
+	{
+		"playerID" : "hiranyo01",
+		"playerName" : "Yoshihisa Hirano"
+	},
+	{
+		"playerID" : "hoffmje02",
+		"playerName" : "Jeff Hoffman"
+	},
+	{
+		"playerID" : "holdejo02",
+		"playerName" : "Jonathan Holder"
+	},
+	{
+		"playerID" : "hollade01",
+		"playerName" : "Derek Holland"
+	},
+	{
+		"playerID" : "hollagr01",
+		"playerName" : "Greg Holland"
+	},
+	{
+		"playerID" : "holmecl01",
+		"playerName" : "Clay Holmes"
+	},
+	{
+		"playerID" : "housead01",
+		"playerName" : "Adrian Houser"
+	},
+	{
+		"playerID" : "huangwe01",
+		"playerName" : "Wei-Chieh Huang"
+	},
+	{
+		"playerID" : "hudsoda02",
+		"playerName" : "Dakota Hudson"
+	},
+	{
+		"playerID" : "hudsoda01",
+		"playerName" : "Daniel Hudson"
+	},
+	{
+		"playerID" : "hugheja02",
+		"playerName" : "Jared Hughes"
+	},
+	{
+		"playerID" : "iglesra01",
+		"playerName" : "Raisel Iglesias"
+	},
+	{
+		"playerID" : "jacksja01",
+		"playerName" : "Jay Jackson"
+	},
+	{
+		"playerID" : "jackslu01",
+		"playerName" : "Luke Jackson"
+	},
+	{
+		"playerID" : "jamesjo02",
+		"playerName" : "Josh James"
+	},
+	{
+		"playerID" : "janseke01",
+		"playerName" : "Kenley Jansen"
+	},
+	{
+		"playerID" : "jeffrje01",
+		"playerName" : "Jeremy Jeffress"
+	},
+	{
+		"playerID" : "jennida01",
+		"playerName" : "Dan Jennings"
+	},
+	{
+		"playerID" : "jerezwi01",
+		"playerName" : "Williams Jerez"
+	},
+	{
+		"playerID" : "jewelja01",
+		"playerName" : "Jake Jewell"
+	},
+	{
+		"playerID" : "jimened01",
+		"playerName" : "Eduardo Jimenez"
+	},
+	{
+		"playerID" : "jimenjo02",
+		"playerName" : "Joe Jimenez"
+	},
+	{
+		"playerID" : "johnsbr02",
+		"playerName" : "Brian Johnson"
+	},
+	{
+		"playerID" : "johnsdj01",
+		"playerName" : "DJ Johnson"
+	},
+	{
+		"playerID" : "jonesna01",
+		"playerName" : "Nate Jones"
+	},
+	{
+		"playerID" : "josepca01",
+		"playerName" : "Caleb Joseph"
+	},
+	{
+		"playerID" : "junisja01",
+		"playerName" : "Jakob Junis"
+	},
+	{
+		"playerID" : "juradar01",
+		"playerName" : "Ariel Jurado"
+	},
+	{
+		"playerID" : "kahnlto01",
+		"playerName" : "Tommy Kahnle"
+	},
+	{
+		"playerID" : "karnsna01",
+		"playerName" : "Nate Karns"
+	},
+	{
+		"playerID" : "kelake01",
+		"playerName" : "Keone Kela"
+	},
+	{
+		"playerID" : "kellebr01",
+		"playerName" : "Brad Keller"
+	},
+	{
+		"playerID" : "kellesh01",
+		"playerName" : "Shawn Kelley"
+	},
+	{
+		"playerID" : "kellyjo05",
+		"playerName" : "Joe Kelly"
+	},
+	{
+		"playerID" : "kellyme01",
+		"playerName" : "Merrill Kelly"
+	},
+	{
+		"playerID" : "kenneia01",
+		"playerName" : "Ian Kennedy"
+	},
+	{
+		"playerID" : "kershcl01",
+		"playerName" : "Clayton Kershaw"
+	},
+	{
+		"playerID" : "kikucyu01",
+		"playerName" : "Yusei Kikuchi"
+	},
+	{
+		"playerID" : "kinghni01",
+		"playerName" : "Nick Kingham"
+	},
+	{
+		"playerID" : "kinlety01",
+		"playerName" : "Tyler Kinley"
+	},
+	{
+		"playerID" : "kintzbr01",
+		"playerName" : "Brandon Kintzler"
+	},
+	{
+		"playerID" : "klinebr01",
+		"playerName" : "Branden Kline"
+	},
+	{
+		"playerID" : "klubeco01",
+		"playerName" : "Corey Kluber"
+	},
+	{
+		"playerID" : "kochma01",
+		"playerName" : "Matt Koch"
+	},
+	{
+		"playerID" : "kolarad01",
+		"playerName" : "Adam Kolarek"
+	},
+	{
+		"playerID" : "lakintr01",
+		"playerName" : "Travis Lakins"
+	},
+	{
+		"playerID" : "lauerer01",
+		"playerName" : "Eric Lauer"
+	},
+	{
+		"playerID" : "lawde01",
+		"playerName" : "Derek Law"
+	},
+	{
+		"playerID" : "leakemi01",
+		"playerName" : "Mike Leake"
+	},
+	{
+		"playerID" : "leblawa01",
+		"playerName" : "Wade LeBlanc"
+	},
+	{
+		"playerID" : "leclejo01",
+		"playerName" : "Jose Leclerc"
+	},
+	{
+		"playerID" : "leonedo01",
+		"playerName" : "Dominic Leone"
+	},
+	{
+		"playerID" : "lestejo01",
+		"playerName" : "Jon Lester"
+	},
+	{
+		"playerID" : "liriafr01",
+		"playerName" : "Francisco Liriano"
+	},
+	{
+		"playerID" : "livelbe01",
+		"playerName" : "Ben Lively"
+	},
+	{
+		"playerID" : "loaisjo01",
+		"playerName" : "Jonathan Loaisiga"
+	},
+	{
+		"playerID" : "lopezjo02",
+		"playerName" : "Jorge Lopez"
+	},
+	{
+		"playerID" : "lopezpa01",
+		"playerName" : "Pablo Lopez"
+	},
+	{
+		"playerID" : "lopezre01",
+		"playerName" : "Reynaldo Lopez"
+	},
+	{
+		"playerID" : "lopezyo01",
+		"playerName" : "Yoan Lopez"
+	},
+	{
+		"playerID" : "lorenmi01",
+		"playerName" : "Michael Lorenzen"
+	},
+	{
+		"playerID" : "loupaa01",
+		"playerName" : "Aaron Loup"
+	},
+	{
+		"playerID" : "lovelri01",
+		"playerName" : "Richard Lovelady"
+	},
+	{
+		"playerID" : "lucasjo02",
+		"playerName" : "Josh Lucas"
+	},
+	{
+		"playerID" : "lucchjo01",
+		"playerName" : "Joey Lucchesi"
+	},
+	{
+		"playerID" : "luciael01",
+		"playerName" : "Elvis Luciano"
+	},
+	{
+		"playerID" : "lugose01",
+		"playerName" : "Seth Lugo"
+	},
+	{
+		"playerID" : "lylesjo01",
+		"playerName" : "Jordan Lyles"
+	},
+	{
+		"playerID" : "lynnla01",
+		"playerName" : "Lance Lynn"
+	},
+	{
+		"playerID" : "lyonsty01",
+		"playerName" : "Tyler Lyons"
+	},
+	{
+		"playerID" : "maedake01",
+		"playerName" : "Kenta Maeda"
+	},
+	{
+		"playerID" : "magilma01",
+		"playerName" : "Matt Magill"
+	},
+	{
+		"playerID" : "mahlety01",
+		"playerName" : "Tyler Mahle"
+	},
+	{
+		"playerID" : "mailelu01",
+		"playerName" : "Luke Maile"
+	},
+	{
+		"playerID" : "mapledi01",
+		"playerName" : "Dillon Maples"
+	},
+	{
+		"playerID" : "margeni01",
+		"playerName" : "Nick Margevicius"
+	},
+	{
+		"playerID" : "marquge01",
+		"playerName" : "German Marquez"
+	},
+	{
+		"playerID" : "marshev01",
+		"playerName" : "Evan Marshall"
+	},
+	{
+		"playerID" : "martibr01",
+		"playerName" : "Brett Martin"
+	},
+	{
+		"playerID" : "martich02",
+		"playerName" : "Chris Martin"
+	},
+	{
+		"playerID" : "martiru01",
+		"playerName" : "Russell Martin"
+	},
+	{
+		"playerID" : "mathije01",
+		"playerName" : "Jeff Mathis"
+	},
+	{
+		"playerID" : "matonph01",
+		"playerName" : "Phil Maton"
+	},
+	{
+		"playerID" : "matzst01",
+		"playerName" : "Steven Matz"
+	},
+	{
+		"playerID" : "maytr01",
+		"playerName" : "Trevor May"
+	},
+	{
+		"playerID" : "mayermi01",
+		"playerName" : "Mike Mayers"
+	},
+	{
+		"playerID" : "mayzati01",
+		"playerName" : "Tim Mayza"
+	},
+	{
+		"playerID" : "mccarke01",
+		"playerName" : "Kevin McCarthy"
+	},
+	{
+		"playerID" : "mcfartj01",
+		"playerName" : "T.J. McFarland"
+	},
+	{
+		"playerID" : "mcgeeja01",
+		"playerName" : "Jake McGee"
+	},
+	{
+		"playerID" : "mchugco01",
+		"playerName" : "Collin McHugh"
+	},
+	{
+		"playerID" : "meansjo01",
+		"playerName" : "John Means"
+	},
+	{
+		"playerID" : "mejiaad01",
+		"playerName" : "Adalberto Mejia"
+	},
+	{
+		"playerID" : "melanma01",
+		"playerName" : "Mark Melancon"
+	},
+	{
+		"playerID" : "mikolmi01",
+		"playerName" : "Miles Mikolas"
+	},
+	{
+		"playerID" : "mileywa01",
+		"playerName" : "Wade Miley"
+	},
+	{
+		"playerID" : "millean01",
+		"playerName" : "Andrew Miller"
+	},
+	{
+		"playerID" : "milleju02",
+		"playerName" : "Justin Miller"
+	},
+	{
+		"playerID" : "millesh01",
+		"playerName" : "Shelby Miller"
+	},
+	{
+		"playerID" : "minayju01",
+		"playerName" : "Juan Minaya"
+	},
+	{
+		"playerID" : "minormi01",
+		"playerName" : "Mike Minor"
+	},
+	{
+		"playerID" : "minteaj01",
+		"playerName" : "A.J. Minter"
+	},
+	{
+		"playerID" : "montafr02",
+		"playerName" : "Frankie Montas"
+	},
+	{
+		"playerID" : "montgmi01",
+		"playerName" : "Mike Montgomery"
+	},
+	{
+		"playerID" : "mooredy01",
+		"playerName" : "Dylan Moore"
+	},
+	{
+		"playerID" : "moorema02",
+		"playerName" : "Matt Moore"
+	},
+	{
+		"playerID" : "moralke01",
+		"playerName" : "Kendrys Morales"
+	},
+	{
+		"playerID" : "morgaad01",
+		"playerName" : "Adam Morgan"
+	},
+	{
+		"playerID" : "morinmi01",
+		"playerName" : "Mike Morin"
+	},
+	{
+		"playerID" : "moronre01",
+		"playerName" : "Reyes Moronta"
+	},
+	{
+		"playerID" : "mortoch02",
+		"playerName" : "Charlie Morton"
+	},
+	{
+		"playerID" : "murphjr01",
+		"playerName" : "John Ryan Murphy"
+	},
+	{
+		"playerID" : "murphto04",
+		"playerName" : "Tom Murphy"
+	},
+	{
+		"playerID" : "musgrha01",
+		"playerName" : "Harrison Musgrave"
+	},
+	{
+		"playerID" : "musgrjo01",
+		"playerName" : "Joe Musgrove"
+	},
+	{
+		"playerID" : "nerishe01",
+		"playerName" : "Hector Neris"
+	},
+	{
+		"playerID" : "neshepa01",
+		"playerName" : "Pat Neshek"
+	},
+	{
+		"playerID" : "neverdo01",
+		"playerName" : "Dovydas Neverauskas"
+	},
+	{
+		"playerID" : "newbeja01",
+		"playerName" : "Jake Newberry"
+	},
+	{
+		"playerID" : "newcose01",
+		"playerName" : "Sean Newcomb"
+	},
+	{
+		"playerID" : "nicasju01",
+		"playerName" : "Juan Nicasio"
+	},
+	{
+		"playerID" : "nolaaa01",
+		"playerName" : "Aaron Nola"
+	},
+	{
+		"playerID" : "norrida01",
+		"playerName" : "Daniel Norris"
+	},
+	{
+		"playerID" : "novaiv01",
+		"playerName" : "Ivan Nova"
+	},
+	{
+		"playerID" : "nunezed02",
+		"playerName" : "Eduardo Nunez"
+	},
+	{
+		"playerID" : "orourry01",
+		"playerName" : "Ryan O'Rourke"
+	},
+	{
+		"playerID" : "obergsc01",
+		"playerName" : "Scott Oberg"
+	},
+	{
+		"playerID" : "odorija01",
+		"playerName" : "Jake Odorizzi"
+	},
+	{
+		"playerID" : "ohse01",
+		"playerName" : "Seunghwan Oh"
+	},
+	{
+		"playerID" : "olsonty01",
+		"playerName" : "Tyler Olson"
+	},
+	{
+		"playerID" : "osichjo01",
+		"playerName" : "Josh Osich"
+	},
+	{
+		"playerID" : "osunaro01",
+		"playerName" : "Roberto Osuna"
+	},
+	{
+		"playerID" : "oswalco01",
+		"playerName" : "Corey Oswalt"
+	},
+	{
+		"playerID" : "oteroda01",
+		"playerName" : "Dan Otero"
+	},
+	{
+		"playerID" : "ottavad01",
+		"playerName" : "Adam Ottavino"
+	},
+	{
+		"playerID" : "paddach01",
+		"playerName" : "Chris Paddack"
+	},
+	{
+		"playerID" : "paganem01",
+		"playerName" : "Emilio Pagan"
+	},
+	{
+		"playerID" : "pannoth01",
+		"playerName" : "Thomas Pannone"
+	},
+	{
+		"playerID" : "parkebl01",
+		"playerName" : "Blake Parker"
+	},
+	{
+		"playerID" : "parsowe01",
+		"playerName" : "Wes Parsons"
+	},
+	{
+		"playerID" : "paxtoja01",
+		"playerName" : "James Paxton"
+	},
+	{
+		"playerID" : "peacobr01",
+		"playerName" : "Brad Peacock"
+	},
+	{
+		"playerID" : "penafe01",
+		"playerName" : "Felix Pena"
+	},
+	{
+		"playerID" : "peralfr01",
+		"playerName" : "Freddy Peralta"
+	},
+	{
+		"playerID" : "peralwa01",
+		"playerName" : "Wandy Peralta"
+	},
+	{
+		"playerID" : "peralwi01",
+		"playerName" : "Wily Peralta"
+	},
+	{
+		"playerID" : "perdolu02",
+		"playerName" : "Luis Perdomo"
+	},
+	{
+		"playerID" : "perezma02",
+		"playerName" : "Martin Perez"
+	},
+	{
+		"playerID" : "perezol01",
+		"playerName" : "Oliver Perez"
+	},
+	{
+		"playerID" : "peterdi01",
+		"playerName" : "Dillon Peters"
+	},
+	{
+		"playerID" : "peterti01",
+		"playerName" : "Tim Peterson"
+	},
+	{
+		"playerID" : "petityu01",
+		"playerName" : "Yusmeiro Petit"
+	},
+	{
+		"playerID" : "petrija01",
+		"playerName" : "Jake Petricka"
+	},
+	{
+		"playerID" : "phillev01",
+		"playerName" : "Evan Phillips"
+	},
+	{
+		"playerID" : "pinedmi01",
+		"playerName" : "Michael Pineda"
+	},
+	{
+		"playerID" : "pivetni01",
+		"playerName" : "Nick Pivetta"
+	},
+	{
+		"playerID" : "plaweke01",
+		"playerName" : "Kevin Plawecki"
+	},
+	{
+		"playerID" : "pomerdr01",
+		"playerName" : "Drew Pomeranz"
+	},
+	{
+		"playerID" : "ponceda01",
+		"playerName" : "Daniel Ponce de Leon"
+	},
+	{
+		"playerID" : "porceri01",
+		"playerName" : "Rick Porcello"
+	},
+	{
+		"playerID" : "poynebo01",
+		"playerName" : "Bobby Poyner"
+	},
+	{
+		"playerID" : "pressry01",
+		"playerName" : "Ryan Pressly"
+	},
+	{
+		"playerID" : "priceda01",
+		"playerName" : "David Price"
+	},
+	{
+		"playerID" : "pruitau01",
+		"playerName" : "Austin Pruitt"
+	},
+	{
+		"playerID" : "quantca01",
+		"playerName" : "Cal Quantrill"
+	},
+	{
+		"playerID" : "quijajo01",
+		"playerName" : "Jose Quijada"
+	},
+	{
+		"playerID" : "quintjo01",
+		"playerName" : "Jose Quintana"
+	},
+	{
+		"playerID" : "ramirer02",
+		"playerName" : "Erasmo Ramirez"
+	},
+	{
+		"playerID" : "ramirne01",
+		"playerName" : "Neil Ramirez"
+	},
+	{
+		"playerID" : "ramirno01",
+		"playerName" : "Noe Ramirez"
+	},
+	{
+		"playerID" : "ramirye01",
+		"playerName" : "Yefry Ramirez"
+	},
+	{
+		"playerID" : "ramosed02",
+		"playerName" : "Edubray Ramos"
+	},
+	{
+		"playerID" : "ramsema01",
+		"playerName" : "Matt Ramsey"
+	},
+	{
+		"playerID" : "rayro02",
+		"playerName" : "Robbie Ray"
+	},
+	{
+		"playerID" : "reedco01",
+		"playerName" : "Cody Reed"
+	},
+	{
+		"playerID" : "reidfse01",
+		"playerName" : "Sean Reid-Foley"
+	},
+	{
+		"playerID" : "reiniza01",
+		"playerName" : "Zac Reininger"
+	},
+	{
+		"playerID" : "reyesal02",
+		"playerName" : "Alex Reyes"
+	},
+	{
+		"playerID" : "reyesge01",
+		"playerName" : "Gerardo Reyes"
+	},
+	{
+		"playerID" : "rhameja01",
+		"playerName" : "Jacob Rhame"
+	},
+	{
+		"playerID" : "richatr01",
+		"playerName" : "Trevor Richards"
+	},
+	{
+		"playerID" : "roarkta01",
+		"playerName" : "Tanner Roark"
+	},
+	{
+		"playerID" : "roberda08",
+		"playerName" : "David Robertson"
+	},
+	{
+		"playerID" : "robleha01",
+		"playerName" : "Hansel Robles"
+	},
+	{
+		"playerID" : "rodnefe01",
+		"playerName" : "Fernando Rodney"
+	},
+	{
+		"playerID" : "rodonca01",
+		"playerName" : "Carlos Rodon"
+	},
+	{
+		"playerID" : "rodride01",
+		"playerName" : "Dereck Rodriguez"
+	},
+	{
+		"playerID" : "rodried05",
+		"playerName" : "Eduardo Rodriguez"
+	},
+	{
+		"playerID" : "rodrije01",
+		"playerName" : "Jefry Rodriguez"
+	},
+	{
+		"playerID" : "rodriri05",
+		"playerName" : "Richard Rodriguez"
+	},
+	{
+		"playerID" : "roech01",
+		"playerName" : "Chaz Roe"
+	},
+	{
+		"playerID" : "rogerjo01",
+		"playerName" : "Josh Rogers"
+	},
+	{
+		"playerID" : "rogerta01",
+		"playerName" : "Taylor Rogers"
+	},
+	{
+		"playerID" : "romerfe01",
+		"playerName" : "Fernando Romero"
+	},
+	{
+		"playerID" : "romose01",
+		"playerName" : "Sergio Romo"
+	},
+	{
+		"playerID" : "rondohe01",
+		"playerName" : "Hector Rondon"
+	},
+	{
+		"playerID" : "rondojo02",
+		"playerName" : "Jose Rondon"
+	},
+	{
+		"playerID" : "rosarra01",
+		"playerName" : "Randy Rosario"
+	},
+	{
+		"playerID" : "rosentr01",
+		"playerName" : "Trevor Rosenthal"
+	},
+	{
+		"playerID" : "rossjo01",
+		"playerName" : "Joe Ross"
+	},
+	{
+		"playerID" : "rossty01",
+		"playerName" : "Tyson Ross"
+	},
+	{
+		"playerID" : "rosscza01",
+		"playerName" : "Zac Rosscup"
+	},
+	{
+		"playerID" : "ruizjo01",
+		"playerName" : "Jose Ruiz"
+	},
+	{
+		"playerID" : "rumbeni01",
+		"playerName" : "Nick Rumbelow"
+	},
+	{
+		"playerID" : "ryanky01",
+		"playerName" : "Kyle Ryan"
+	},
+	{
+		"playerID" : "ryuhy01",
+		"playerName" : "Hyun-Jin Ryu"
+	},
+	{
+		"playerID" : "sabatc.01",
+		"playerName" : "CC Sabathia"
+	},
+	{
+		"playerID" : "sadleca02",
+		"playerName" : "Casey Sadler"
+	},
+	{
+		"playerID" : "sadzeco01",
+		"playerName" : "Connor Sadzeck"
+	},
+	{
+		"playerID" : "salech01",
+		"playerName" : "Chris Sale"
+	},
+	{
+		"playerID" : "samarje01",
+		"playerName" : "Jeff Samardzija"
+	},
+	{
+		"playerID" : "sampsad01",
+		"playerName" : "Adrian Sampson"
+	},
+	{
+		"playerID" : "sanchaa01",
+		"playerName" : "Aaron Sanchez"
+	},
+	{
+		"playerID" : "sanchan01",
+		"playerName" : "Anibal Sanchez"
+	},
+	{
+		"playerID" : "sandopa01",
+		"playerName" : "Pablo Sandoval"
+	},
+	{
+		"playerID" : "santade01",
+		"playerName" : "Dennis Santana"
+	},
+	{
+		"playerID" : "santaer01",
+		"playerName" : "Ervin Santana"
+	},
+	{
+		"playerID" : "scherma01",
+		"playerName" : "Max Scherzer"
+	},
+	{
+		"playerID" : "schulja02",
+		"playerName" : "Jaime Schultz"
+	},
+	{
+		"playerID" : "scottta01",
+		"playerName" : "Tanner Scott"
+	},
+	{
+		"playerID" : "senzaan01",
+		"playerName" : "Antonio Senzatela"
+	},
+	{
+		"playerID" : "sewalpa01",
+		"playerName" : "Paul Sewald"
+	},
+	{
+		"playerID" : "shawbr01",
+		"playerName" : "Bryan Shaw"
+	},
+	{
+		"playerID" : "sheffju01",
+		"playerName" : "Justus Sheffield"
+	},
+	{
+		"playerID" : "shoemma01",
+		"playerName" : "Matt Shoemaker"
+	},
+	{
+		"playerID" : "shuckja01",
+		"playerName" : "JB Shuck"
+	},
+	{
+		"playerID" : "sippto01",
+		"playerName" : "Tony Sipp"
+	},
+	{
+		"playerID" : "skaggty01",
+		"playerName" : "Tyler Skaggs"
+	},
+	{
+		"playerID" : "smithbu03",
+		"playerName" : "Burch Smith"
+	},
+	{
+		"playerID" : "smithca03",
+		"playerName" : "Caleb Smith"
+	},
+	{
+		"playerID" : "smithjo07",
+		"playerName" : "Josh Smith"
+	},
+	{
+		"playerID" : "smithwi04",
+		"playerName" : "Will Smith"
+	},
+	{
+		"playerID" : "smylydr01",
+		"playerName" : "Drew Smyly"
+	},
+	{
+		"playerID" : "snellbl01",
+		"playerName" : "Blake Snell"
+	},
+	{
+		"playerID" : "sobotch01",
+		"playerName" : "Chad Sobotka"
+	},
+	{
+		"playerID" : "soriajo01",
+		"playerName" : "Joakim Soria"
+	},
+	{
+		"playerID" : "sorokmi01",
+		"playerName" : "Mike Soroka"
+	},
+	{
+		"playerID" : "sparkgl01",
+		"playerName" : "Glenn Sparkman"
+	},
+	{
+		"playerID" : "sprinje01",
+		"playerName" : "Jeffrey Springs"
+	},
+	{
+		"playerID" : "stammcr01",
+		"playerName" : "Craig Stammen"
+	},
+	{
+		"playerID" : "stanery01",
+		"playerName" : "Ryne Stanek"
+	},
+	{
+		"playerID" : "steckdr01",
+		"playerName" : "Drew Steckenrider"
+	},
+	{
+		"playerID" : "stephro01",
+		"playerName" : "Robert Stephenson"
+	},
+	{
+		"playerID" : "stewabr01",
+		"playerName" : "Brock Stewart"
+	},
+	{
+		"playerID" : "stewako01",
+		"playerName" : "Kohl Stewart"
+	},
+	{
+		"playerID" : "stockro01",
+		"playerName" : "Robert Stock"
+	},
+	{
+		"playerID" : "strahma01",
+		"playerName" : "Matt Strahm"
+	},
+	{
+		"playerID" : "straida01",
+		"playerName" : "Dan Straily"
+	},
+	{
+		"playerID" : "strasst01",
+		"playerName" : "Stephen Strasburg"
+	},
+	{
+		"playerID" : "stratch01",
+		"playerName" : "Chris Stratton"
+	},
+	{
+		"playerID" : "strichu01",
+		"playerName" : "Hunter Strickland"
+	},
+	{
+		"playerID" : "stripro01",
+		"playerName" : "Ross Stripling"
+	},
+	{
+		"playerID" : "stromma01",
+		"playerName" : "Marcus Stroman"
+	},
+	{
+		"playerID" : "stroppe01",
+		"playerName" : "Pedro Strop"
+	},
+	{
+		"playerID" : "stumpda01",
+		"playerName" : "Daniel Stumpf"
+	},
+	{
+		"playerID" : "sucreje01",
+		"playerName" : "Jesus Sucre"
+	},
+	{
+		"playerID" : "suerowa01",
+		"playerName" : "Wander Suero"
+	},
+	{
+		"playerID" : "swanser01",
+		"playerName" : "Erik Swanson"
+	},
+	{
+		"playerID" : "swarzan01",
+		"playerName" : "Anthony Swarzak"
+	},
+	{
+		"playerID" : "syndeno01",
+		"playerName" : "Noah Syndergaard"
+	},
+	{
+		"playerID" : "taillja01",
+		"playerName" : "Jameson Taillon"
+	},
+	{
+		"playerID" : "tanakma01",
+		"playerName" : "Masahiro Tanaka"
+	},
+	{
+		"playerID" : "tarplst01",
+		"playerName" : "Stephen Tarpley"
+	},
+	{
+		"playerID" : "teherju01",
+		"playerName" : "Julio Teheran"
+	},
+	{
+		"playerID" : "teperry01",
+		"playerName" : "Ryan Tepera"
+	},
+	{
+		"playerID" : "thornty01",
+		"playerName" : "Tyler Thornburg"
+	},
+	{
+		"playerID" : "thorntr01",
+		"playerName" : "Trent Thornton"
+	},
+	{
+		"playerID" : "tomlijo01",
+		"playerName" : "Josh Tomlin"
+	},
+	{
+		"playerID" : "toussto01",
+		"playerName" : "Touki Toussaint"
+	},
+	{
+		"playerID" : "treinbl01",
+		"playerName" : "Blake Treinen"
+	},
+	{
+		"playerID" : "trivilo01",
+		"playerName" : "Lou Trivino"
+	},
+	{
+		"playerID" : "turnbsp01",
+		"playerName" : "Spencer Turnbull"
+	},
+	{
+		"playerID" : "urenajo01",
+		"playerName" : "Jose Urena"
+	},
+	{
+		"playerID" : "uriasju01",
+		"playerName" : "Julio Urias"
+	},
+	{
+		"playerID" : "valdefr01",
+		"playerName" : "Framber Valdez"
+	},
+	{
+		"playerID" : "vargaja01",
+		"playerName" : "Jason Vargas"
+	},
+	{
+		"playerID" : "vasquan02",
+		"playerName" : "Andrew Vasquez"
+	},
+	{
+		"playerID" : "riverfe01",
+		"playerName" : "Felipe Vazquez"
+	},
+	{
+		"playerID" : "velasvi01",
+		"playerName" : "Vince Velasquez"
+	},
+	{
+		"playerID" : "velazhe01",
+		"playerName" : "Hector Velazquez"
+	},
+	{
+		"playerID" : "vendipa01",
+		"playerName" : "Pat Venditte"
+	},
+	{
+		"playerID" : "ventejo01",
+		"playerName" : "Jonny Venters"
+	},
+	{
+		"playerID" : "verhadr01",
+		"playerName" : "Drew VerHagen"
+	},
+	{
+		"playerID" : "verlaju01",
+		"playerName" : "Justin Verlander"
+	},
+	{
+		"playerID" : "vieirth01",
+		"playerName" : "Thyago Vieira"
+	},
+	{
+		"playerID" : "vinceni01",
+		"playerName" : "Nick Vincent"
+	},
+	{
+		"playerID" : "vizcaar01",
+		"playerName" : "Arodys Vizcaino"
+	},
+	{
+		"playerID" : "volqued01",
+		"playerName" : "Edinson Volquez"
+	},
+	{
+		"playerID" : "wachami01",
+		"playerName" : "Michael Wacha"
+	},
+	{
+		"playerID" : "wainwad01",
+		"playerName" : "Adam Wainwright"
+	},
+	{
+		"playerID" : "waldema01",
+		"playerName" : "Marcus Walden"
+	},
+	{
+		"playerID" : "warread01",
+		"playerName" : "Adam Warren"
+	},
+	{
+		"playerID" : "watsoto01",
+		"playerName" : "Tony Watson"
+	},
+	{
+		"playerID" : "weavelu01",
+		"playerName" : "Luke Weaver"
+	},
+	{
+		"playerID" : "webbja01",
+		"playerName" : "Jacob Webb"
+	},
+	{
+		"playerID" : "webbty01",
+		"playerName" : "Tyler Webb"
+	},
+	{
+		"playerID" : "weberry01",
+		"playerName" : "Ryan Weber"
+	},
+	{
+		"playerID" : "webstal01",
+		"playerName" : "Allen Webster"
+	},
+	{
+		"playerID" : "wendejb01",
+		"playerName" : "J.B. Wendelken"
+	},
+	{
+		"playerID" : "wheelza01",
+		"playerName" : "Zack Wheeler"
+	},
+	{
+		"playerID" : "whitety01",
+		"playerName" : "Tyler White"
+	},
+	{
+		"playerID" : "wieckbr01",
+		"playerName" : "Brad Wieck"
+	},
+	{
+		"playerID" : "wilkeaa01",
+		"playerName" : "Aaron Wilkerson"
+	},
+	{
+		"playerID" : "williau01",
+		"playerName" : "Austen Williams"
+	},
+	{
+		"playerID" : "willita01",
+		"playerName" : "Taylor Williams"
+	},
+	{
+		"playerID" : "willitr01",
+		"playerName" : "Trevor Williams"
+	},
+	{
+		"playerID" : "wilsoal01",
+		"playerName" : "Alex Wilson"
+	},
+	{
+		"playerID" : "wilsobr02",
+		"playerName" : "Bryse Wilson"
+	},
+	{
+		"playerID" : "wilsoju10",
+		"playerName" : "Justin Wilson"
+	},
+	{
+		"playerID" : "wingetr01",
+		"playerName" : "Trey Wingenter"
+	},
+	{
+		"playerID" : "winklda01",
+		"playerName" : "Dan Winkler"
+	},
+	{
+		"playerID" : "wislema01",
+		"playerName" : "Matt Wisler"
+	},
+	{
+		"playerID" : "wittgni01",
+		"playerName" : "Nick Wittgren"
+	},
+	{
+		"playerID" : "woodhu01",
+		"playerName" : "Hunter Wood"
+	},
+	{
+		"playerID" : "woodrbr01",
+		"playerName" : "Brandon Woodruff"
+	},
+	{
+		"playerID" : "workmbr01",
+		"playerName" : "Brandon Workman"
+	},
+	{
+		"playerID" : "wothema01",
+		"playerName" : "Matt Wotherspoon"
+	},
+	{
+		"playerID" : "wrighky01",
+		"playerName" : "Kyle Wright"
+	},
+	{
+		"playerID" : "wrighmi01",
+		"playerName" : "Mike Wright"
+	},
+	{
+		"playerID" : "yacabji01",
+		"playerName" : "Jimmy Yacabonis"
+	},
+	{
+		"playerID" : "yarbrry01",
+		"playerName" : "Ryan Yarbrough"
+	},
+	{
+		"playerID" : "yateski01",
+		"playerName" : "Kirby Yates"
+	},
+	{
+		"playerID" : "ynoaga01",
+		"playerName" : "Gabriel Ynoa"
+	},
+	{
+		"playerID" : "zamorda01",
+		"playerName" : "Daniel Zamora"
+	},
+	{
+		"playerID" : "zimmeky01",
+		"playerName" : "Kyle Zimmer"
+	},
+	{
+		"playerID" : "zimmejo02",
+		"playerName" : "Jordan Zimmermann"
+	},
+	{
+		"playerID" : "abreujo02",
+		"playerName" : "Jose Abreu"
+	},
+	{
+		"playerID" : "acunaro01",
+		"playerName" : "Ronald Acuna Jr."
+	},
+	{
+		"playerID" : "adamewi01",
+		"playerName" : "Willy Adames"
+	},
+	{
+		"playerID" : "adamsma01",
+		"playerName" : "Matt Adams"
+	},
+	{
+		"playerID" : "adriaeh01",
+		"playerName" : "Ehire Adrianza"
+	},
+	{
+		"playerID" : "aguilje01",
+		"playerName" : "Jesus Aguilar"
+	},
+	{
+		"playerID" : "ahmedni01",
+		"playerName" : "Nick Ahmed"
+	},
+	{
+		"playerID" : "albieoz01",
+		"playerName" : "Ozzie Albies"
+	},
+	{
+		"playerID" : "alfarjo01",
+		"playerName" : "Jorge Alfaro"
+	},
+	{
+		"playerID" : "alforan01",
+		"playerName" : "Anthony Alford"
+	},
+	{
+		"playerID" : "allengr01",
+		"playerName" : "Greg Allen"
+	},
+	{
+		"playerID" : "almoral01",
+		"playerName" : "Albert Almora"
+	},
+	{
+		"playerID" : "alonspe01",
+		"playerName" : "Pete Alonso"
+	},
+	{
+		"playerID" : "alonsyo01",
+		"playerName" : "Yonder Alonso"
+	},
+	{
+		"playerID" : "altuvjo01",
+		"playerName" : "Jose Altuve"
+	},
+	{
+		"playerID" : "anderbr06",
+		"playerName" : "Brian Anderson"
+	},
+	{
+		"playerID" : "anderti01",
+		"playerName" : "Tim Anderson"
+	},
+	{
+		"playerID" : "andruel01",
+		"playerName" : "Elvis Andrus"
+	},
+	{
+		"playerID" : "andujmi01",
+		"playerName" : "Miguel Andujar"
+	},
+	{
+		"playerID" : "arciaor01",
+		"playerName" : "Orlando Arcia"
+	},
+	{
+		"playerID" : "arenano01",
+		"playerName" : "Nolan Arenado"
+	},
+	{
+		"playerID" : "arroych01",
+		"playerName" : "Christian Arroyo"
+	},
+	{
+		"playerID" : "astudwi01",
+		"playerName" : "Willians Astudillo"
+	},
+	{
+		"playerID" : "austity01",
+		"playerName" : "Tyler Austin"
+	},
+	{
+		"playerID" : "avilaal01",
+		"playerName" : "Alex Avila"
+	},
+	{
+		"playerID" : "baderha01",
+		"playerName" : "Harrison Bader"
+	},
+	{
+		"playerID" : "baezja01",
+		"playerName" : "Javier Baez"
+	},
+	{
+		"playerID" : "barneau01",
+		"playerName" : "Austin Barnes"
+	},
+	{
+		"playerID" : "barnhtu01",
+		"playerName" : "Tucker Barnhart"
+	},
+	{
+		"playerID" : "barrefr02",
+		"playerName" : "Franklin Barreto"
+	},
+	{
+		"playerID" : "bauerja01",
+		"playerName" : "Jake Bauers"
+	},
+	{
+		"playerID" : "beatyma01",
+		"playerName" : "Matt Beaty"
+	},
+	{
+		"playerID" : "beckhgo01",
+		"playerName" : "Gordon Beckham"
+	},
+	{
+		"playerID" : "beckhti01",
+		"playerName" : "Tim Beckham"
+	},
+	{
+		"playerID" : "belljo02",
+		"playerName" : "Josh Bell"
+	},
+	{
+		"playerID" : "bellico01",
+		"playerName" : "Cody Bellinger"
+	},
+	{
+		"playerID" : "beltbr01",
+		"playerName" : "Brandon Belt"
+	},
+	{
+		"playerID" : "beninan01",
+		"playerName" : "Andrew Benintendi"
+	},
+	{
+		"playerID" : "bertijo01",
+		"playerName" : "Jon Berti"
+	},
+	{
+		"playerID" : "bettsmo01",
+		"playerName" : "Mookie Betts"
+	},
+	{
+		"playerID" : "birdgr01",
+		"playerName" : "Greg Bird"
+	},
+	{
+		"playerID" : "bishobr01",
+		"playerName" : "Braden Bishop"
+	},
+	{
+		"playerID" : "blackch02",
+		"playerName" : "Charlie Blackmon"
+	},
+	{
+		"playerID" : "bogaexa01",
+		"playerName" : "Xander Bogaerts"
+	},
+	{
+		"playerID" : "boltsk01",
+		"playerName" : "Skye Bolt"
+	},
+	{
+		"playerID" : "boteda01",
+		"playerName" : "David Bote"
+	},
+	{
+		"playerID" : "bourju01",
+		"playerName" : "Justin Bour"
+	},
+	{
+		"playerID" : "bourjpe01",
+		"playerName" : "Peter Bourjos"
+	},
+	{
+		"playerID" : "bradlja02",
+		"playerName" : "Jackie Bradley Jr."
+	},
+	{
+		"playerID" : "brantmi02",
+		"playerName" : "Michael Brantley"
+	},
+	{
+		"playerID" : "braunry02",
+		"playerName" : "Ryan Braun"
+	},
+	{
+		"playerID" : "bregmal01",
+		"playerName" : "Alex Bregman"
+	},
+	{
+		"playerID" : "brinsle01",
+		"playerName" : "Lewis Brinson"
+	},
+	{
+		"playerID" : "britoso01",
+		"playerName" : "Socrates Brito"
+	},
+	{
+		"playerID" : "broxtke01",
+		"playerName" : "Keon Broxton"
+	},
+	{
+		"playerID" : "bruceja01",
+		"playerName" : "Jay Bruce"
+	},
+	{
+		"playerID" : "bryankr01",
+		"playerName" : "Kris Bryant"
+	},
+	{
+		"playerID" : "buterdr01",
+		"playerName" : "Drew Butera"
+	},
+	{
+		"playerID" : "buxtoby01",
+		"playerName" : "Byron Buxton"
+	},
+	{
+		"playerID" : "cabreas01",
+		"playerName" : "Asdrubal Cabrera"
+	},
+	{
+		"playerID" : "cabreme01",
+		"playerName" : "Melky Cabrera"
+	},
+	{
+		"playerID" : "cabremi01",
+		"playerName" : "Miguel Cabrera"
+	},
+	{
+		"playerID" : "cainlo01",
+		"playerName" : "Lorenzo Cain"
+	},
+	{
+		"playerID" : "calhoko01",
+		"playerName" : "Kole Calhoun"
+	},
+	{
+		"playerID" : "camarjo01",
+		"playerName" : "Johan Camargo"
+	},
+	{
+		"playerID" : "candeje01",
+		"playerName" : "Jeimer Candelario"
+	},
+	{
+		"playerID" : "canhama01",
+		"playerName" : "Mark Canha"
+	},
+	{
+		"playerID" : "canoro01",
+		"playerName" : "Robinson Cano"
+	},
+	{
+		"playerID" : "caratvi01",
+		"playerName" : "Victor Caratini"
+	},
+	{
+		"playerID" : "carpema01",
+		"playerName" : "Matt Carpenter"
+	},
+	{
+		"playerID" : "casalcu01",
+		"playerName" : "Curt Casali"
+	},
+	{
+		"playerID" : "casteni01",
+		"playerName" : "Nicholas Castellanos"
+	},
+	{
+		"playerID" : "castiwe01",
+		"playerName" : "Welington Castillo"
+	},
+	{
+		"playerID" : "castrha01",
+		"playerName" : "Harold Castro"
+	},
+	{
+		"playerID" : "castrja01",
+		"playerName" : "Jason Castro"
+	},
+	{
+		"playerID" : "castrst01",
+		"playerName" : "Starlin Castro"
+	},
+	{
+		"playerID" : "caveja01",
+		"playerName" : "Jake Cave"
+	},
+	{
+		"playerID" : "cervefr01",
+		"playerName" : "Francisco Cervelli"
+	},
+	{
+		"playerID" : "chapmma01",
+		"playerName" : "Matt Chapman"
+	},
+	{
+		"playerID" : "chavimi01",
+		"playerName" : "Michael Chavis"
+	},
+	{
+		"playerID" : "chiriro01",
+		"playerName" : "Robinson Chirinos"
+	},
+	{
+		"playerID" : "choiji01",
+		"playerName" : "Ji-Man Choi"
+	},
+	{
+		"playerID" : "choosh01",
+		"playerName" : "Shin-Soo Choo"
+	},
+	{
+		"playerID" : "ciuffni01",
+		"playerName" : "Nick Ciuffo"
+	},
+	{
+		"playerID" : "confomi01",
+		"playerName" : "Michael Conforto"
+	},
+	{
+		"playerID" : "contrwi01",
+		"playerName" : "Willson Contreras"
+	},
+	{
+		"playerID" : "coopega03",
+		"playerName" : "Garrett Cooper"
+	},
+	{
+		"playerID" : "cordery01",
+		"playerName" : "Ryan Cordell"
+	},
+	{
+		"playerID" : "cordefr02",
+		"playerName" : "Franchy Cordero"
+	},
+	{
+		"playerID" : "correca01",
+		"playerName" : "Carlos Correa"
+	},
+	{
+		"playerID" : "cozarza01",
+		"playerName" : "Zack Cozart"
+	},
+	{
+		"playerID" : "cozendy01",
+		"playerName" : "Dylan Cozens"
+	},
+	{
+		"playerID" : "crawfbr01",
+		"playerName" : "Brandon Crawford"
+	},
+	{
+		"playerID" : "crawfjp01",
+		"playerName" : "J.P. Crawford"
+	},
+	{
+		"playerID" : "croncj01",
+		"playerName" : "C.J. Cron"
+	},
+	{
+		"playerID" : "cruzne02",
+		"playerName" : "Nelson Cruz"
+	},
+	{
+		"playerID" : "cuevano01",
+		"playerName" : "Noel Cuevas"
+	},
+	{
+		"playerID" : "darnatr01",
+		"playerName" : "Travis d'Arnaud"
+	},
+	{
+		"playerID" : "dahlda01",
+		"playerName" : "David Dahl"
+	},
+	{
+		"playerID" : "davisjd01",
+		"playerName" : "J.D. Davis"
+	},
+	{
+		"playerID" : "davisjo05",
+		"playerName" : "Jonathan Davis"
+	},
+	{
+		"playerID" : "daviskh01",
+		"playerName" : "Khris Davis"
+	},
+	{
+		"playerID" : "davista01",
+		"playerName" : "Taylor Davis"
+	},
+	{
+		"playerID" : "dazayo01",
+		"playerName" : "Yonathan Daza"
+	},
+	{
+		"playerID" : "deanau01",
+		"playerName" : "Austin Dean"
+	},
+	{
+		"playerID" : "dejonpa01",
+		"playerName" : "Paul DeJong"
+	},
+	{
+		"playerID" : "delmoni01",
+		"playerName" : "Nicky Delmonico"
+	},
+	{
+		"playerID" : "descada01",
+		"playerName" : "Daniel Descalso"
+	},
+	{
+		"playerID" : "deshide02",
+		"playerName" : "Delino DeShields"
+	},
+	{
+		"playerID" : "desmoia01",
+		"playerName" : "Ian Desmond"
+	},
+	{
+		"playerID" : "deverra01",
+		"playerName" : "Rafael Devers"
+	},
+	{
+		"playerID" : "diazal02",
+		"playerName" : "Aledmys Diaz"
+	},
+	{
+		"playerID" : "diazel01",
+		"playerName" : "Elias Diaz"
+	},
+	{
+		"playerID" : "diazya01",
+		"playerName" : "Yandy Diaz"
+	},
+	{
+		"playerID" : "dickeal01",
+		"playerName" : "Alex Dickerson"
+	},
+	{
+		"playerID" : "dickeco01",
+		"playerName" : "Corey Dickerson"
+	},
+	{
+		"playerID" : "dietrde01",
+		"playerName" : "Derek Dietrich"
+	},
+	{
+		"playerID" : "difowi01",
+		"playerName" : "Wilmer Difo"
+	},
+	{
+		"playerID" : "dixonbr01",
+		"playerName" : "Brandon Dixon"
+	},
+	{
+		"playerID" : "donaljo02",
+		"playerName" : "Josh Donaldson"
+	},
+	{
+		"playerID" : "doziebr01",
+		"playerName" : "Brian Dozier"
+	},
+	{
+		"playerID" : "doziehu01",
+		"playerName" : "Hunter Dozier"
+	},
+	{
+		"playerID" : "drurybr01",
+		"playerName" : "Brandon Drury"
+	},
+	{
+		"playerID" : "dudalu01",
+		"playerName" : "Lucas Duda"
+	},
+	{
+		"playerID" : "duggast01",
+		"playerName" : "Steven Duggar"
+	},
+	{
+		"playerID" : "dysonja01",
+		"playerName" : "Jarrod Dyson"
+	},
+	{
+		"playerID" : "eatonad02",
+		"playerName" : "Adam Eaton"
+	},
+	{
+		"playerID" : "encared01",
+		"playerName" : "Edwin Encarnacion"
+	},
+	{
+		"playerID" : "engelad01",
+		"playerName" : "Adam Engel"
+	},
+	{
+		"playerID" : "ervinph01",
+		"playerName" : "Phil Ervin"
+	},
+	{
+		"playerID" : "escobed01",
+		"playerName" : "Eduardo Escobar"
+	},
+	{
+		"playerID" : "estrath01",
+		"playerName" : "Thairo Estrada"
+	},
+	{
+		"playerID" : "farmeky01",
+		"playerName" : "Kyle Farmer"
+	},
+	{
+		"playerID" : "fishede01",
+		"playerName" : "Derek Fisher"
+	},
+	{
+		"playerID" : "fletcda02",
+		"playerName" : "David Fletcher"
+	},
+	{
+		"playerID" : "florewi01",
+		"playerName" : "Wilmer Flores"
+	},
+	{
+		"playerID" : "flowety01",
+		"playerName" : "Tyler Flowers"
+	},
+	{
+		"playerID" : "fordmi01",
+		"playerName" : "Mike Ford"
+	},
+	{
+		"playerID" : "forsylo01",
+		"playerName" : "Logan Forsythe"
+	},
+	{
+		"playerID" : "fowlede01",
+		"playerName" : "Dexter Fowler"
+	},
+	{
+		"playerID" : "francty01",
+		"playerName" : "Ty France"
+	},
+	{
+		"playerID" : "francma02",
+		"playerName" : "Maikel Franco"
+	},
+	{
+		"playerID" : "fraziad01",
+		"playerName" : "Adam Frazier"
+	},
+	{
+		"playerID" : "frazicl01",
+		"playerName" : "Clint Frazier"
+	},
+	{
+		"playerID" : "frazito01",
+		"playerName" : "Todd Frazier"
+	},
+	{
+		"playerID" : "freemfr01",
+		"playerName" : "Freddie Freeman"
+	},
+	{
+		"playerID" : "freemmi01",
+		"playerName" : "Mike Freeman"
+	},
+	{
+		"playerID" : "freesda01",
+		"playerName" : "David Freese"
+	},
+	{
+		"playerID" : "freitda01",
+		"playerName" : "David Freitas"
+	},
+	{
+		"playerID" : "fuentjo01",
+		"playerName" : "Josh Fuentes"
+	},
+	{
+		"playerID" : "galero01",
+		"playerName" : "Rocky Gale"
+	},
+	{
+		"playerID" : "gallaca01",
+		"playerName" : "Cam Gallagher"
+	},
+	{
+		"playerID" : "gallojo01",
+		"playerName" : "Joey Gallo"
+	},
+	{
+		"playerID" : "gallois01",
+		"playerName" : "Isaac Galloway"
+	},
+	{
+		"playerID" : "galvifr01",
+		"playerName" : "Freddy Galvis"
+	},
+	{
+		"playerID" : "gamelbe01",
+		"playerName" : "Ben Gamel"
+	},
+	{
+		"playerID" : "garciar01",
+		"playerName" : "Aramis Garcia"
+	},
+	{
+		"playerID" : "garciav01",
+		"playerName" : "Avisail Garcia"
+	},
+	{
+		"playerID" : "garcigr01",
+		"playerName" : "Greg Garcia"
+	},
+	{
+		"playerID" : "garcile02",
+		"playerName" : "Leury Garcia"
+	},
+	{
+		"playerID" : "gardnbr01",
+		"playerName" : "Brett Gardner"
+	},
+	{
+		"playerID" : "garvemi01",
+		"playerName" : "Mitch Garver"
+	},
+	{
+		"playerID" : "gerbemi01",
+		"playerName" : "Mike Gerber"
+	},
+	{
+		"playerID" : "goldspa01",
+		"playerName" : "Paul Goldschmidt"
+	},
+	{
+		"playerID" : "gomesya01",
+		"playerName" : "Yan Gomes"
+	},
+	{
+		"playerID" : "gonzaca01",
+		"playerName" : "Carlos Gonzalez"
+	},
+	{
+		"playerID" : "gonzaer01",
+		"playerName" : "Erik Gonzalez"
+	},
+	{
+		"playerID" : "gonzama01",
+		"playerName" : "Marwin Gonzalez"
+	},
+	{
+		"playerID" : "goodrni01",
+		"playerName" : "Niko Goodrum"
+	},
+	{
+		"playerID" : "goodwbr01",
+		"playerName" : "Brian Goodwin"
+	},
+	{
+		"playerID" : "gordoal01",
+		"playerName" : "Alex Gordon"
+	},
+	{
+		"playerID" : "gordode01",
+		"playerName" : "Dee Gordon"
+	},
+	{
+		"playerID" : "gorete01",
+		"playerName" : "Terrance Gore"
+	},
+	{
+		"playerID" : "gosseph01",
+		"playerName" : "Phil Gosselin"
+	},
+	{
+		"playerID" : "grandya01",
+		"playerName" : "Yasmani Grandal"
+	},
+	{
+		"playerID" : "grandcu01",
+		"playerName" : "Curtis Granderson"
+	},
+	{
+		"playerID" : "greingr01",
+		"playerName" : "Grayson Greiner"
+	},
+	{
+		"playerID" : "grichra01",
+		"playerName" : "Randal Grichuk"
+	},
+	{
+		"playerID" : "grossro01",
+		"playerName" : "Robbie Grossman"
+	},
+	{
+		"playerID" : "guerrvl02",
+		"playerName" : "Vladimir Guerrero Jr."
+	},
+	{
+		"playerID" : "guilllu01",
+		"playerName" : "Luis Guillorme"
+	},
+	{
+		"playerID" : "gurrilo01",
+		"playerName" : "Lourdes Gurriel Jr."
+	},
+	{
+		"playerID" : "gourryu01",
+		"playerName" : "Yuli Gurriel"
+	},
+	{
+		"playerID" : "gutieke01",
+		"playerName" : "Kelvin Gutierrez"
+	},
+	{
+		"playerID" : "guzmaro01",
+		"playerName" : "Ronald Guzman"
+	},
+	{
+		"playerID" : "hamilbi02",
+		"playerName" : "Billy Hamilton"
+	},
+	{
+		"playerID" : "hampsga01",
+		"playerName" : "Garrett Hampson"
+	},
+	{
+		"playerID" : "hanigmi01",
+		"playerName" : "Mitch Haniger"
+	},
+	{
+		"playerID" : "hansoal01",
+		"playerName" : "Alen Hanson"
+	},
+	{
+		"playerID" : "harpebr03",
+		"playerName" : "Bryce Harper"
+	},
+	{
+		"playerID" : "harrijo05",
+		"playerName" : "Josh Harrison"
+	},
+	{
+		"playerID" : "healyry01",
+		"playerName" : "Ryon Healy"
+	},
+	{
+		"playerID" : "hechaad01",
+		"playerName" : "Adeiny Hechavarria"
+	},
+	{
+		"playerID" : "hedgeau01",
+		"playerName" : "Austin Hedges"
+	},
+	{
+		"playerID" : "heredgu01",
+		"playerName" : "Guillermo Heredia"
+	},
+	{
+		"playerID" : "hernace02",
+		"playerName" : "Cesar Hernandez"
+	},
+	{
+		"playerID" : "hernaen02",
+		"playerName" : "Enrique Hernandez"
+	},
+	{
+		"playerID" : "hernate01",
+		"playerName" : "Teoscar Hernandez"
+	},
+	{
+		"playerID" : "herreod01",
+		"playerName" : "Odubel Herrera"
+	},
+	{
+		"playerID" : "herrero02",
+		"playerName" : "Rosell Herrera"
+	},
+	{
+		"playerID" : "heywaja01",
+		"playerName" : "Jason Heyward"
+	},
+	{
+		"playerID" : "hicksjo02",
+		"playerName" : "John Hicks"
+	},
+	{
+		"playerID" : "higasky01",
+		"playerName" : "Kyle Higashioka"
+	},
+	{
+		"playerID" : "holtbr01",
+		"playerName" : "Brock Holt"
+	},
+	{
+		"playerID" : "hoskirh01",
+		"playerName" : "Rhys Hoskins"
+	},
+	{
+		"playerID" : "hosmeer01",
+		"playerName" : "Eric Hosmer"
+	},
+	{
+		"playerID" : "hundlni01",
+		"playerName" : "Nick Hundley"
+	},
+	{
+		"playerID" : "iannech01",
+		"playerName" : "Chris Iannetta"
+	},
+	{
+		"playerID" : "iglesjo01",
+		"playerName" : "Jose Iglesias"
+	},
+	{
+		"playerID" : "inciaen01",
+		"playerName" : "Ender Inciarte"
+	},
+	{
+		"playerID" : "jacksal02",
+		"playerName" : "Alex Jackson"
+	},
+	{
+		"playerID" : "jacksdr01",
+		"playerName" : "Drew Jackson"
+	},
+	{
+		"playerID" : "janseda01",
+		"playerName" : "Danny Jansen"
+	},
+	{
+		"playerID" : "jimenel02",
+		"playerName" : "Eloy Jimenez"
+	},
+	{
+		"playerID" : "joeco01",
+		"playerName" : "Connor Joe"
+	},
+	{
+		"playerID" : "jonesad01",
+		"playerName" : "Adam Jones"
+	},
+	{
+		"playerID" : "jonesja07",
+		"playerName" : "JaCoby Jones"
+	},
+	{
+		"playerID" : "joycema01",
+		"playerName" : "Matthew Joyce"
+	},
+	{
+		"playerID" : "judgeaa01",
+		"playerName" : "Aaron Judge"
+	},
+	{
+		"playerID" : "kangju01",
+		"playerName" : "Jung Ho Kang"
+	},
+	{
+		"playerID" : "kellyca02",
+		"playerName" : "Carson Kelly"
+	},
+	{
+		"playerID" : "kempma01",
+		"playerName" : "Matt Kemp"
+	},
+	{
+		"playerID" : "kempto01",
+		"playerName" : "Tony Kemp"
+	},
+	{
+		"playerID" : "kendrho01",
+		"playerName" : "Howie Kendrick"
+	},
+	{
+		"playerID" : "keplema01",
+		"playerName" : "Max Kepler"
+	},
+	{
+		"playerID" : "kieboca01",
+		"playerName" : "Carter Kieboom"
+	},
+	{
+		"playerID" : "kiermke01",
+		"playerName" : "Kevin Kiermaier"
+	},
+	{
+		"playerID" : "kineris01",
+		"playerName" : "Isiah Kiner-Falefa"
+	},
+	{
+		"playerID" : "kingesc01",
+		"playerName" : "Scott Kingery"
+	},
+	{
+		"playerID" : "kinslia01",
+		"playerName" : "Ian Kinsler"
+	},
+	{
+		"playerID" : "kipnija01",
+		"playerName" : "Jason Kipnis"
+	},
+	{
+		"playerID" : "knappan01",
+		"playerName" : "Andrew Knapp"
+	},
+	{
+		"playerID" : "kratzer01",
+		"playerName" : "Erik Kratz"
+	},
+	{
+		"playerID" : "lasteto01",
+		"playerName" : "Tommy La Stella"
+	},
+	{
+		"playerID" : "lagarju01",
+		"playerName" : "Juan Lagares"
+	},
+	{
+		"playerID" : "lambja01",
+		"playerName" : "Jake Lamb"
+	},
+	{
+		"playerID" : "laurera01",
+		"playerName" : "Ramon Laureano"
+	},
+	{
+		"playerID" : "lemahdj01",
+		"playerName" : "DJ LeMahieu"
+	},
+	{
+		"playerID" : "leonsa01",
+		"playerName" : "Sandy Leon"
+	},
+	{
+		"playerID" : "lintz02",
+		"playerName" : "Tzu-Wei Lin"
+	},
+	{
+		"playerID" : "lindofr01",
+		"playerName" : "Francisco Lindor"
+	},
+	{
+		"playerID" : "locasti01",
+		"playerName" : "Tim Locastro"
+	},
+	{
+		"playerID" : "longoev01",
+		"playerName" : "Evan Longoria"
+	},
+	{
+		"playerID" : "lowebr01",
+		"playerName" : "Brandon Lowe"
+	},
+	{
+		"playerID" : "lowena01",
+		"playerName" : "Nate Lowe"
+	},
+	{
+		"playerID" : "lucrojo01",
+		"playerName" : "Jonathan Lucroy"
+	},
+	{
+		"playerID" : "luplojo01",
+		"playerName" : "Jordan Luplow"
+	},
+	{
+		"playerID" : "machama01",
+		"playerName" : "Manny Machado"
+	},
+	{
+		"playerID" : "mahtomi01",
+		"playerName" : "Mikie Mahtook"
+	},
+	{
+		"playerID" : "maldoma01",
+		"playerName" : "Martin Maldonado"
+	},
+	{
+		"playerID" : "mancitr01",
+		"playerName" : "Trey Mancini"
+	},
+	{
+		"playerID" : "margoma01",
+		"playerName" : "Manuel Margot"
+	},
+	{
+		"playerID" : "marisja01",
+		"playerName" : "Jake Marisnick"
+	},
+	{
+		"playerID" : "markani01",
+		"playerName" : "Nick Markakis"
+	},
+	{
+		"playerID" : "marteke01",
+		"playerName" : "Ketel Marte"
+	},
+	{
+		"playerID" : "martest01",
+		"playerName" : "Starling Marte"
+	},
+	{
+		"playerID" : "martija03",
+		"playerName" : "Jason Martin"
+	},
+	{
+		"playerID" : "martile01",
+		"playerName" : "Leonys Martin"
+	},
+	{
+		"playerID" : "martiri01",
+		"playerName" : "Richie Martin"
+	},
+	{
+		"playerID" : "martijd02",
+		"playerName" : "J.D. Martinez"
+	},
+	{
+		"playerID" : "martijo08",
+		"playerName" : "Jose Martinez"
+	},
+	{
+		"playerID" : "maybica01",
+		"playerName" : "Cameron Maybin"
+	},
+	{
+		"playerID" : "mazarno01",
+		"playerName" : "Nomar Mazara"
+	},
+	{
+		"playerID" : "mccanbr01",
+		"playerName" : "Brian McCann"
+	},
+	{
+		"playerID" : "mccanja02",
+		"playerName" : "James McCann"
+	},
+	{
+		"playerID" : "mccutan01",
+		"playerName" : "Andrew McCutchen"
+	},
+	{
+		"playerID" : "mckinbi01",
+		"playerName" : "Billy McKinney"
+	},
+	{
+		"playerID" : "mcmahry01",
+		"playerName" : "Ryan McMahon"
+	},
+	{
+		"playerID" : "mcneije01",
+		"playerName" : "Jeff McNeil"
+	},
+	{
+		"playerID" : "meadoau01",
+		"playerName" : "Austin Meadows"
+	},
+	{
+		"playerID" : "mejiafr01",
+		"playerName" : "Francisco Mejia"
+	},
+	{
+		"playerID" : "mercejo03",
+		"playerName" : "Jordy Mercer"
+	},
+	{
+		"playerID" : "merriwh01",
+		"playerName" : "Whit Merrifield"
+	},
+	{
+		"playerID" : "millebr02",
+		"playerName" : "Brad Miller"
+	},
+	{
+		"playerID" : "molinya01",
+		"playerName" : "Yadier Molina"
+	},
+	{
+		"playerID" : "moncayo01",
+		"playerName" : "Yoan Moncada"
+	},
+	{
+		"playerID" : "mondera02",
+		"playerName" : "Adalberto Mondesi"
+	},
+	{
+		"playerID" : "moranco01",
+		"playerName" : "Colin Moran"
+	},
+	{
+		"playerID" : "morelmi01",
+		"playerName" : "Mitch Moreland"
+	},
+	{
+		"playerID" : "morofma01",
+		"playerName" : "Max Moroff"
+	},
+	{
+		"playerID" : "moustmi01",
+		"playerName" : "Mike Moustakas"
+	},
+	{
+		"playerID" : "mullice01",
+		"playerName" : "Cedric Mullins"
+	},
+	{
+		"playerID" : "muncyma01",
+		"playerName" : "Max Muncy"
+	},
+	{
+		"playerID" : "munozya01",
+		"playerName" : "Yairo Munoz"
+	},
+	{
+		"playerID" : "murphda08",
+		"playerName" : "Daniel Murphy"
+	},
+	{
+		"playerID" : "myerswi01",
+		"playerName" : "Wil Myers"
+	},
+	{
+		"playerID" : "naquity01",
+		"playerName" : "Tyler Naquin"
+	},
+	{
+		"playerID" : "narvaom01",
+		"playerName" : "Omar Narvaez"
+	},
+	{
+		"playerID" : "newmake01",
+		"playerName" : "Kevin Newman"
+	},
+	{
+		"playerID" : "nidoto01",
+		"playerName" : "Tomas Nido"
+	},
+	{
+		"playerID" : "nimmobr01",
+		"playerName" : "Brandon Nimmo"
+	},
+	{
+		"playerID" : "nollja01",
+		"playerName" : "Jake Noll"
+	},
+	{
+		"playerID" : "nunezre01",
+		"playerName" : "Renato Nunez"
+	},
+	{
+		"playerID" : "obriepe01",
+		"playerName" : "Peter O'Brien"
+	},
+	{
+		"playerID" : "ohearry01",
+		"playerName" : "Ryan O'Hearn"
+	},
+	{
+		"playerID" : "oneilty01",
+		"playerName" : "Tyler O'Neill"
+	},
+	{
+		"playerID" : "odorro01",
+		"playerName" : "Rougned Odor"
+	},
+	{
+		"playerID" : "ohtansh01",
+		"playerName" : "Shohei Ohtani"
+	},
+	{
+		"playerID" : "olsonma02",
+		"playerName" : "Matt Olson"
+	},
+	{
+		"playerID" : "owingch01",
+		"playerName" : "Chris Owings"
+	},
+	{
+		"playerID" : "ozunama01",
+		"playerName" : "Marcell Ozuna"
+	},
+	{
+		"playerID" : "palkada01",
+		"playerName" : "Daniel Palka"
+	},
+	{
+		"playerID" : "panikjo01",
+		"playerName" : "Joe Panik"
+	},
+	{
+		"playerID" : "parrage01",
+		"playerName" : "Gerardo Parra"
+	},
+	{
+		"playerID" : "pearcst01",
+		"playerName" : "Steve Pearce"
+	},
+	{
+		"playerID" : "pederjo01",
+		"playerName" : "Joc Pederson"
+	},
+	{
+		"playerID" : "pedrodu01",
+		"playerName" : "Dustin Pedroia"
+	},
+	{
+		"playerID" : "pencehu01",
+		"playerName" : "Hunter Pence"
+	},
+	{
+		"playerID" : "peralda01",
+		"playerName" : "David Peralta"
+	},
+	{
+		"playerID" : "perazjo01",
+		"playerName" : "Jose Peraza"
+	},
+	{
+		"playerID" : "perezhe01",
+		"playerName" : "Hernan Perez"
+	},
+	{
+		"playerID" : "perezmi03",
+		"playerName" : "Michael Perez"
+	},
+	{
+		"playerID" : "perezro02",
+		"playerName" : "Roberto Perez"
+	},
+	{
+		"playerID" : "peterdu01",
+		"playerName" : "Dustin Peterson"
+	},
+	{
+		"playerID" : "phamth01",
+		"playerName" : "Tommy Pham"
+	},
+	{
+		"playerID" : "phegljo01",
+		"playerName" : "Josh Phegley"
+	},
+	{
+		"playerID" : "pillake01",
+		"playerName" : "Kevin Pillar"
+	},
+	{
+		"playerID" : "pinama01",
+		"playerName" : "Manny Pina"
+	},
+	{
+		"playerID" : "pindech01",
+		"playerName" : "Chad Pinder"
+	},
+	{
+		"playerID" : "pireljo01",
+		"playerName" : "Jose Pirela"
+	},
+	{
+		"playerID" : "piscost01",
+		"playerName" : "Stephen Piscotty"
+	},
+	{
+		"playerID" : "polangr01",
+		"playerName" : "Gregory Polanco"
+	},
+	{
+		"playerID" : "polanjo01",
+		"playerName" : "Jorge Polanco"
+	},
+	{
+		"playerID" : "polloaj01",
+		"playerName" : "A.J. Pollock"
+	},
+	{
+		"playerID" : "poseybu01",
+		"playerName" : "Buster Posey"
+	},
+	{
+		"playerID" : "pradoma01",
+		"playerName" : "Martin Prado"
+	},
+	{
+		"playerID" : "profaju01",
+		"playerName" : "Jurickson Profar"
+	},
+	{
+		"playerID" : "puigya01",
+		"playerName" : "Yasiel Puig"
+	},
+	{
+		"playerID" : "pujolal01",
+		"playerName" : "Albert Pujols"
+	},
+	{
+		"playerID" : "quinnro01",
+		"playerName" : "Roman Quinn"
+	},
+	{
+		"playerID" : "ramirha01",
+		"playerName" : "Hanley Ramirez"
+	},
+	{
+		"playerID" : "ramirjo01",
+		"playerName" : "Jose Ramirez"
+	},
+	{
+		"playerID" : "ramoswi01",
+		"playerName" : "Wilson Ramos"
+	},
+	{
+		"playerID" : "realmjt01",
+		"playerName" : "J.T. Realmuto"
+	},
+	{
+		"playerID" : "reddijo01",
+		"playerName" : "Josh Reddick"
+	},
+	{
+		"playerID" : "reedmi02",
+		"playerName" : "Michael Reed"
+	},
+	{
+		"playerID" : "rendoan01",
+		"playerName" : "Anthony Rendon"
+	},
+	{
+		"playerID" : "renfrhu01",
+		"playerName" : "Hunter Renfroe"
+	},
+	{
+		"playerID" : "rengilu01",
+		"playerName" : "Luis Rengifo"
+	},
+	{
+		"playerID" : "reyesfr01",
+		"playerName" : "Franmil Reyes"
+	},
+	{
+		"playerID" : "reyespa01",
+		"playerName" : "Pablo Reyes"
+	},
+	{
+		"playerID" : "reyesvi01",
+		"playerName" : "Victor Reyes"
+	},
+	{
+		"playerID" : "reynobr01",
+		"playerName" : "Bryan Reynolds"
+	},
+	{
+		"playerID" : "reynoma01",
+		"playerName" : "Mark Reynolds"
+	},
+	{
+		"playerID" : "rickajo01",
+		"playerName" : "Joey Rickard"
+	},
+	{
+		"playerID" : "riddljt01",
+		"playerName" : "JT Riddle"
+	},
+	{
+		"playerID" : "rizzoan01",
+		"playerName" : "Anthony Rizzo"
+	},
+	{
+		"playerID" : "roberda10",
+		"playerName" : "Daniel Robertson"
+	},
+	{
+		"playerID" : "robindr01",
+		"playerName" : "Drew Robinson"
+	},
+	{
+		"playerID" : "roblevi01",
+		"playerName" : "Victor Robles"
+	},
+	{
+		"playerID" : "rodriro03",
+		"playerName" : "Ronny Rodriguez"
+	},
+	{
+		"playerID" : "rodrise01",
+		"playerName" : "Sean Rodriguez"
+	},
+	{
+		"playerID" : "rojasmi02",
+		"playerName" : "Miguel Rojas"
+	},
+	{
+		"playerID" : "rominau01",
+		"playerName" : "Austin Romine"
+	},
+	{
+		"playerID" : "rosaram01",
+		"playerName" : "Amed Rosario"
+	},
+	{
+		"playerID" : "rosared01",
+		"playerName" : "Eddie Rosario"
+	},
+	{
+		"playerID" : "ruizri01",
+		"playerName" : "Rio Ruiz"
+	},
+	{
+		"playerID" : "russead02",
+		"playerName" : "Addison Russell"
+	},
+	{
+		"playerID" : "saladty01",
+		"playerName" : "Tyler Saladino"
+	},
+	{
+		"playerID" : "sanchad01",
+		"playerName" : "Adrian Sanchez"
+	},
+	{
+		"playerID" : "sanchga02",
+		"playerName" : "Gary Sanchez"
+	},
+	{
+		"playerID" : "sanchca01",
+		"playerName" : "Yolmer Sanchez"
+	},
+	{
+		"playerID" : "santaca01",
+		"playerName" : "Carlos Santana"
+	},
+	{
+		"playerID" : "santada01",
+		"playerName" : "Danny Santana"
+	},
+	{
+		"playerID" : "santado01",
+		"playerName" : "Domingo Santana"
+	},
+	{
+		"playerID" : "santaan02",
+		"playerName" : "Anthony Santander"
+	},
+	{
+		"playerID" : "schebsc01",
+		"playerName" : "Scott Schebler"
+	},
+	{
+		"playerID" : "schoojo01",
+		"playerName" : "Jonathan Schoop"
+	},
+	{
+		"playerID" : "schwaky01",
+		"playerName" : "Kyle Schwarber"
+	},
+	{
+		"playerID" : "schwifr01",
+		"playerName" : "Frank Schwindel"
+	},
+	{
+		"playerID" : "seageco01",
+		"playerName" : "Corey Seager"
+	},
+	{
+		"playerID" : "segurje01",
+		"playerName" : "Jean Segura"
+	},
+	{
+		"playerID" : "semiema01",
+		"playerName" : "Marcus Semien"
+	},
+	{
+		"playerID" : "senzeni01",
+		"playerName" : "Nick Senzel"
+	},
+	{
+		"playerID" : "severpe01",
+		"playerName" : "Pedro Severino"
+	},
+	{
+		"playerID" : "shawtr01",
+		"playerName" : "Travis Shaw"
+	},
+	{
+		"playerID" : "simmoan01",
+		"playerName" : "Andrelton Simmons"
+	},
+	{
+		"playerID" : "smithdo02",
+		"playerName" : "Dominic Smith"
+	},
+	{
+		"playerID" : "smithdw02",
+		"playerName" : "Dwight Smith Jr."
+	},
+	{
+		"playerID" : "smithke04",
+		"playerName" : "Kevan Smith"
+	},
+	{
+		"playerID" : "smithma05",
+		"playerName" : "Mallex Smith"
+	},
+	{
+		"playerID" : "smoakju01",
+		"playerName" : "Justin Smoak"
+	},
+	{
+		"playerID" : "sogarer01",
+		"playerName" : "Eric Sogard"
+	},
+	{
+		"playerID" : "solando01",
+		"playerName" : "Donovan Solano"
+	},
+	{
+		"playerID" : "solarya01",
+		"playerName" : "Yangervis Solarte"
+	},
+	{
+		"playerID" : "solerjo01",
+		"playerName" : "Jorge Soler"
+	},
+	{
+		"playerID" : "sotoju01",
+		"playerName" : "Juan Soto"
+	},
+	{
+		"playerID" : "springe01",
+		"playerName" : "George Springer"
+	},
+	{
+		"playerID" : "stallja01",
+		"playerName" : "Jacob Stallings"
+	},
+	{
+		"playerID" : "stameer01",
+		"playerName" : "Eric Stamets"
+	},
+	{
+		"playerID" : "stantmi03",
+		"playerName" : "Giancarlo Stanton"
+	},
+	{
+		"playerID" : "stassma01",
+		"playerName" : "Max Stassi"
+	},
+	{
+		"playerID" : "stevean01",
+		"playerName" : "Andrew Stevenson"
+	},
+	{
+		"playerID" : "stewach02",
+		"playerName" : "Christin Stewart"
+	},
+	{
+		"playerID" : "storytr01",
+		"playerName" : "Trevor Story"
+	},
+	{
+		"playerID" : "suareeu01",
+		"playerName" : "Eugenio Suarez"
+	},
+	{
+		"playerID" : "suzukic01",
+		"playerName" : "Ichiro Suzuki"
+	},
+	{
+		"playerID" : "suzukku01",
+		"playerName" : "Kurt Suzuki"
+	},
+	{
+		"playerID" : "swansda01",
+		"playerName" : "Dansby Swanson"
+	},
+	{
+		"playerID" : "swihabl01",
+		"playerName" : "Blake Swihart"
+	},
+	{
+		"playerID" : "tapiara01",
+		"playerName" : "Raimel Tapia"
+	},
+	{
+		"playerID" : "tatisfe02",
+		"playerName" : "Fernando Tatis Jr."
+	},
+	{
+		"playerID" : "tauchmi01",
+		"playerName" : "Mike Tauchman"
+	},
+	{
+		"playerID" : "tayloch03",
+		"playerName" : "Chris Taylor"
+	},
+	{
+		"playerID" : "taylomi02",
+		"playerName" : "Michael A. Taylor"
+	},
+	{
+		"playerID" : "tellero01",
+		"playerName" : "Rowdy Tellez"
+	},
+	{
+		"playerID" : "thameer01",
+		"playerName" : "Eric Thames"
+	},
+	{
+		"playerID" : "thomala02",
+		"playerName" : "Lane Thomas"
+	},
+	{
+		"playerID" : "tilsoch01",
+		"playerName" : "Charlie Tilson"
+	},
+	{
+		"playerID" : "torregl01",
+		"playerName" : "Gleyber Torres"
+	},
+	{
+		"playerID" : "travisa01",
+		"playerName" : "Sam Travis"
+	},
+	{
+		"playerID" : "troutmi01",
+		"playerName" : "Mike Trout"
+	},
+	{
+		"playerID" : "tuckeco01",
+		"playerName" : "Cole Tucker"
+	},
+	{
+		"playerID" : "tulowtr01",
+		"playerName" : "Troy Tulowitzki"
+	},
+	{
+		"playerID" : "turneju01",
+		"playerName" : "Justin Turner"
+	},
+	{
+		"playerID" : "turnetr01",
+		"playerName" : "Trea Turner"
+	},
+	{
+		"playerID" : "urenari01",
+		"playerName" : "Richard Urena"
+	},
+	{
+		"playerID" : "uriaslu01",
+		"playerName" : "Luis Urias"
+	},
+	{
+		"playerID" : "urshegi01",
+		"playerName" : "Gio Urshela"
+	},
+	{
+		"playerID" : "valaipa01",
+		"playerName" : "Pat Valaika"
+	},
+	{
+		"playerID" : "vanmejo01",
+		"playerName" : "Josh VanMeter"
+	},
+	{
+		"playerID" : "vargail01",
+		"playerName" : "Ildemaro Vargas"
+	},
+	{
+		"playerID" : "vazquch01",
+		"playerName" : "Christian Vazquez"
+	},
+	{
+		"playerID" : "velazan01",
+		"playerName" : "Andrew Velazquez"
+	},
+	{
+		"playerID" : "verdual01",
+		"playerName" : "Alex Verdugo"
+	},
+	{
+		"playerID" : "villajo01",
+		"playerName" : "Jonathan Villar"
+	},
+	{
+		"playerID" : "vogelda01",
+		"playerName" : "Daniel Vogelbach"
+	},
+	{
+		"playerID" : "vogtst01",
+		"playerName" : "Stephen Vogt"
+	},
+	{
+		"playerID" : "voitlu01",
+		"playerName" : "Luke Voit"
+	},
+	{
+		"playerID" : "vottojo01",
+		"playerName" : "Joey Votto"
+	},
+	{
+		"playerID" : "wadety01",
+		"playerName" : "Tyler Wade"
+	},
+	{
+		"playerID" : "waldimi01",
+		"playerName" : "Mitch Walding"
+	},
+	{
+		"playerID" : "walkech02",
+		"playerName" : "Christian Walker"
+	},
+	{
+		"playerID" : "walkene01",
+		"playerName" : "Neil Walker"
+	},
+	{
+		"playerID" : "wallach01",
+		"playerName" : "Chad Wallach"
+	},
+	{
+		"playerID" : "wardta01",
+		"playerName" : "Taylor Ward"
+	},
+	{
+		"playerID" : "wendljo01",
+		"playerName" : "Joey Wendle"
+	},
+	{
+		"playerID" : "wietema01",
+		"playerName" : "Matt Wieters"
+	},
+	{
+		"playerID" : "wilkest01",
+		"playerName" : "Stevie Wilkerson"
+	},
+	{
+		"playerID" : "willini01",
+		"playerName" : "Nick Williams"
+	},
+	{
+		"playerID" : "willima11",
+		"playerName" : "Mac Williamson"
+	},
+	{
+		"playerID" : "winkeje01",
+		"playerName" : "Jesse Winker"
+	},
+	{
+		"playerID" : "wisdopa01",
+		"playerName" : "Patrick Wisdom"
+	},
+	{
+		"playerID" : "wolteto01",
+		"playerName" : "Tony Wolters"
+	},
+	{
+		"playerID" : "wongko01",
+		"playerName" : "Kolten Wong"
+	},
+	{
+		"playerID" : "wynnsau01",
+		"playerName" : "Austin Wynns"
+	},
+	{
+		"playerID" : "yelicch01",
+		"playerName" : "Christian Yelich"
+	},
+	{
+		"playerID" : "zagunma01",
+		"playerName" : "Mark Zagunis"
+	},
+	{
+		"playerID" : "zimmery01",
+		"playerName" : "Ryan Zimmerman"
+	},
+	{
+		"playerID" : "zobribe01",
+		"playerName" : "Ben Zobrist"
+	},
+	{
+		"playerID" : "zuninmi01",
+		"playerName" : "Mike Zunino"
+	}
+]
