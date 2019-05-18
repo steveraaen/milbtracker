@@ -33,9 +33,9 @@ var connection  = mysql.createConnection({
 app.get('/api/newBatList', function(req, res) {
   console.log(req.query)
   connection.query(`select 
-newNewMaster.franchise,
-newNewMaster.team,
-newNewMaster.yr,
+superPlayerHist.franchise,
+superPlayerHist.team,
+superPlayerHist.yr,
 latestBatting.playerName,
 latestBatting.H, 
 latestBatting.HR,
@@ -47,12 +47,12 @@ latestBatting.3B,
 latestBatting.TB,
 latestBatting.SB,
 latestBatting.H / latestBatting.AB as avg
-from newNewMaster, latestBatting 
-where newNewMaster.playerID= latestBatting.playerCode 
-and newNewMaster.franchise = 'NYM'
-and newNewMaster.class = 'AA' 
-and newNewMaster.yr = 2018
-group by newNewMaster.class, newNewMaster.franchise, newNewMaster.yr
+from superPlayerHist, latestBatting 
+where superPlayerHist.playerID= latestBatting.playerCode 
+and superPlayerHist.franchise = 'NYM'
+and superPlayerHist.class = 'AA' 
+and superPlayerHist.yr = 2018
+group by superPlayerHist.class, superPlayerHist.franchise, superPlayerHist.yr
 
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.query.y], function (error, results, fields) {
 
@@ -64,12 +64,12 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.que
 app.get('/api/teamPitch', function(req, res) {
 console.log(req.query)
   connection.query(`select 
-newNewMaster.franchise,
-newNewMaster.class,
-newNewMaster.yr,  
-newNewMaster.logo,  
-newNewMaster.franchiseLogo,  
-newNewMaster.team,  
+superPlayerHist.franchise,
+superPlayerHist.class,
+superPlayerHist.yr,  
+superPlayerHist.imgURL,  
+superPlayerHist.franchLogo,  
+superPlayerHist.team,  
 count(latestPitching.playerName) as players,
 SUM(latestPitching.IP - latestPitching.ER) AS IPER, 
 SUM(latestPitching.W) AS W, 
@@ -80,11 +80,11 @@ SUM(latestPitching.H) AS H,
 SUM(latestPitching.HR) AS HR,
 SUM(latestPitching.BB) AS BB,
 SUM(9 * (latestPitching.ER / latestPitching.IP)) as ERA
-from newNewMaster, latestPitching 
-where newNewMaster.playerID= latestPitching.playerCode 
-and newNewMaster.class like ?
-and newNewMaster.yr like ?
-group by newNewMaster.class , newNewMaster.franchise, newNewMaster.yr
+from superPlayerHist, latestPitching 
+where superPlayerHist.playerID= latestPitching.playerCode 
+and superPlayerHist.class like ?
+and superPlayerHist.yr like ?
+group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
 order by SUM(latestPitching.IP - latestPitching.ER) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
@@ -94,12 +94,12 @@ order by SUM(latestPitching.IP - latestPitching.ER) desc limit 20`, [req.query.c
 app.get('/api/teamBat', function(req, res) {
 console.log(req.query)
   connection.query(`select 
-newNewMaster.franchise,
-newNewMaster.class,
-newNewMaster.yr,  
-newNewMaster.logo,  
-newNewMaster.franchiseLogo,  
-newNewMaster.team,  
+superPlayerHist.franchise,
+superPlayerHist.class,
+superPlayerHist.yr,  
+superPlayerHist.imgURL,  
+superPlayerHist.franchLogo,  
+superPlayerHist.team,  
 count(latestBatting.playerName) as players,
 SUM(latestBatting.AB) AS AB, 
 SUM(latestBatting.H) AS H, 
@@ -112,11 +112,11 @@ SUM(latestBatting.3B) AS 3B,
 SUM(latestBatting.TB) AS TB,
 SUM(latestBatting.SB) AS 3B,
 SUM(latestBatting.H / latestBatting.AB) as AVG
-from newNewMaster, latestBatting 
-where newNewMaster.playerID= latestBatting.playerCode 
-and newNewMaster.class like ?
-and newNewMaster.yr like ?
-group by newNewMaster.class , newNewMaster.franchise, newNewMaster.yr
+from superPlayerHist, latestBatting 
+where superPlayerHist.playerID= latestBatting.playerCode 
+and superPlayerHist.class like ?
+and superPlayerHist.yr like ?
+group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
 order by SUM(latestBatting.TB) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
@@ -125,9 +125,9 @@ order by SUM(latestBatting.TB) desc limit 20`, [req.query.cl, req.query.yr],func
 })
 app.get('/api/newPitchList', function(req, res) {
   connection.query(`select 
-newNewMaster.franchise,
-newNewMaster.team,
-newNewMaster.yr,  
+superPlayerHist.franchise,
+superPlayerHist.team,
+superPlayerHist.yr,  
 latestPitching.playerName,
 latestPitching.W, 
 latestPitching.L,
@@ -139,11 +139,11 @@ latestPitching.BB,
 latestPitching.SO,
 latestPitching.HBP,
 9 * (latestPitching.ER + latestPitching.ER) / (latestPitching.IP + latestPitching.IP) as ERA
-from newNewMaster, latestPitching 
-where newNewMaster.team= latestPitching.playerCode 
-and newNewMaster.franchise = 'NYM'
+from superPlayerHist, latestPitching 
+where superPlayerHist.team= latestPitching.playerCode 
+and superPlayerHist.franchise = 'NYM'
 and class = 'AA'
-and newNewMaster.yr = 2015
+and superPlayerHist.yr = 2015
 order by latestPitching.IP desc`, function (error, results, fields) {
 
     /*    console.log(results)*/
@@ -229,11 +229,11 @@ app.get('/api/pitcherList', function(req, res) {
 })
 /*app.get('/api/topBatting', function(req, res) {
   pool.getConnection(function(err, connection) {
-  connection.query(`select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchiseLogo from summary18 where className = ? and bAB > 1000  order by bBA desc limit 5;
-                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchiseLogo from summary18 where className = ? and bAB > 1000  order by bBA desc limit 5;
-                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchiseLogo from summary18 where className = ? and bAB > 200  order by bBA desc limit 5;
-                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchiseLogo from summary18 where className = ? and bAB > 200  order by bBA desc limit 5;
-                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchiseLogo from summary18 where className = ? and bAB > 200  order by bBA desc limit 5;`, ['Triple-A','Double-A','Class A','Class A Advanced','Class A Short'], function (error, results, fields) {
+  connection.query(`select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchLogo from summary18 where className = ? and bAB > 1000  order by bBA desc limit 5;
+                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchLogo from summary18 where className = ? and bAB > 1000  order by bBA desc limit 5;
+                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchLogo from summary18 where className = ? and bAB > 200  order by bBA desc limit 5;
+                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchLogo from summary18 where className = ? and bAB > 200  order by bBA desc limit 5;
+                    select className as cl, logo, color, milbTeam, yr, bG, bAB, bBA, bHR, bSO, majteam, franchLogo from summary18 where className = ? and bAB > 200  order by bBA desc limit 5;`, ['Triple-A','Double-A','Class A','Class A Advanced','Class A Short'], function (error, results, fields) {
     console.log(results)
       res.json(results)
 
@@ -244,11 +244,11 @@ app.get('/api/pitcherList', function(req, res) {
 })
 app.get('/api/topPitching', function(req, res) {
   pool.getConnection(function(err, connection) {
-  connection.query(`select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className = ? and pIP > 300  order by pER limit 5;
-                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className = ? and pIP > 300  order by pER limit 5;
-                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className = ? and pIP > 150  order by pER limit 5;
-                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className = ? and pIP > 150  order by pER limit 5;
-                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className = ? and pIP > 150  order by pER limit 5;`, ['Triple-A','Double-A','Class A','Class A Advanced','Class A Short'], function (error, results, fields) {
+  connection.query(`select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchLogo from summary18 where className = ? and pIP > 300  order by pER limit 5;
+                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchLogo from summary18 where className = ? and pIP > 300  order by pER limit 5;
+                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchLogo from summary18 where className = ? and pIP > 150  order by pER limit 5;
+                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchLogo from summary18 where className = ? and pIP > 150  order by pER limit 5;
+                    select className as cl, logo, color, milbTeam, yr, pG, pW, pL, pSV, pER, pIP, majteam, franchLogo from summary18 where className = ? and pIP > 150  order by pER limit 5;`, ['Triple-A','Double-A','Class A','Class A Advanced','Class A Short'], function (error, results, fields) {
     console.log(results)
       res.json(results)
 
@@ -259,8 +259,8 @@ app.get('/api/topPitching', function(req, res) {
 app.get('/api/classSummary', function(req, res) {
 /*  console.log(req.query)*/
 
-  connection.query(`select  className as cl, logo, color, milbTeam, yr, division, 9 * (pER / pIP) as pERA, pG, pW, pL, pSV, pER, pIP, majteam, franchiseLogo from summary18 where className like ? and divID like ? and yr like ?   order by pIP desc limit 20 ;
-                    select className as cl, logo, color, milbTeam, yr, division, bG, bH, bAB, bBA, bHR, bSO, bBB, majteam, franchiseLogo from summary18 where className like ? and divID like ? and yr like ?  order by bH desc limit 20 ;`, 
+  connection.query(`select  className as cl, logo, color, milbTeam, yr, division, 9 * (pER / pIP) as pERA, pG, pW, pL, pSV, pER, pIP, majteam, franchLogo from summary18 where className like ? and divID like ? and yr like ?   order by pIP desc limit 20 ;
+                    select className as cl, logo, color, milbTeam, yr, division, bG, bH, bAB, bBA, bHR, bSO, bBB, majteam, franchLogo from summary18 where className like ? and divID like ? and yr like ?  order by bH desc limit 20 ;`, 
                     [req.query.cl, req.query.dv, req.query.yr, req.query.cl, req.query.dv, req.query.yr ], function (error, results, fields) {
   /*     console.log(results)*/
       res.json(results)
@@ -275,9 +275,9 @@ app.get('/api/classSummary', function(req, res) {
  var ptc = JSON.parse(req.query.pi)
  var tm = JSON.parse(req.query.tm)
   pool.getConnection(function(err, connection) {
-  connection.query(`INSERT INTO overall18 (milbTeam, logo, color, franchiseLogo, yr, className, division, bAB, bBA, bBB, bH, bHBP, bHR, bSB, bSO, bG, pBB,
+  connection.query(`INSERT INTO overall18 (milbTeam, logo, color, franchLogo, yr, className, division, bAB, bBA, bBB, bH, bHBP, bHR, bSB, bSO, bG, pBB,
      pER, pERA, pG, pGS, pH, pIP, pL, pSO, pSV, pW ,pHBP, pIBB)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, 
-     [tm.name, tm.logo, tm.color, tm.franchiseLogo, req.query.yr, req.query.dv, req.query.cl, btr.AB, btr.AVG, btr.BB,  btr.H, btr.HBP, btr.HR, btr.SB, btr.SO,btr.G,
+     [tm.name, tm.logo, tm.color, tm.franchLogo, req.query.yr, req.query.dv, req.query.cl, btr.AB, btr.AVG, btr.BB,  btr.H, btr.HBP, btr.HR, btr.SB, btr.SO,btr.G,
      ptc.BB, ptc.ER, ptc.ERA, ptc.G, ptc.GS, ptc.H, ptc.IP, ptc.L, ptc.SO, ptc.SV, ptc.W, ptc.HBP, ptc.IBB ], function (error, results, fields) {
 
         console.log('results')
