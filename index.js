@@ -42,13 +42,13 @@ latestBatting.HR,
 latestBatting.RBI,
 latestBatting.R,
 latestBatting.BB,
-latestBatting.2B,
-latestBatting.3B,
+latestBatting.B2,
+latestBatting.B3,
 latestBatting.TB,
 latestBatting.SB,
 latestBatting.H / latestBatting.AB as avg
 from superPlayerHist, latestBatting 
-where superPlayerHist.playerID= latestBatting.playerCode 
+where superPlayerHist.playerID= latestBatting.playerID 
 and superPlayerHist.franchise = 'NYM'
 and superPlayerHist.class = 'AA' 
 and superPlayerHist.yr = 2018
@@ -71,7 +71,7 @@ superPlayerHist.imgURL,
 superPlayerHist.franchLogo,  
 superPlayerHist.team,  
 count(latestPitching.playerName) as players,
-SUM(latestPitching.IP - latestPitching.ER) AS IPER, 
+SUM(latestPitching.IP - latestPitching.R) AS IPER, 
 SUM(latestPitching.W) AS W, 
 SUM(latestPitching.L) AS L,
 SUM(latestPitching.SV) AS SV,
@@ -79,13 +79,13 @@ SUM(latestPitching.SO) AS SO,
 SUM(latestPitching.H) AS H,
 SUM(latestPitching.HR) AS HR,
 SUM(latestPitching.BB) AS BB,
-SUM(9 * (latestPitching.ER / latestPitching.IP)) as ERA
+SUM(9 * (latestPitching.R / latestPitching.IP)) as ERA
 from superPlayerHist, latestPitching 
-where superPlayerHist.playerID= latestPitching.playerCode 
+where superPlayerHist.playerID= latestPitching.playerID 
 and superPlayerHist.class like ?
 and superPlayerHist.yr like ?
 group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
-order by SUM(latestPitching.IP - latestPitching.ER) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(latestPitching.IP - latestPitching.R) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
     if (error) throw error;
@@ -107,13 +107,13 @@ SUM(latestBatting.HR) AS HR,
 SUM(latestBatting.RBI) AS RBI,
 SUM(latestBatting.R) AS R,
 SUM(latestBatting.BB) AS BB,
-SUM(latestBatting.2B) AS 2B,
-SUM(latestBatting.3B) AS 3B,
+SUM(latestBatting.B2) AS B2,
+SUM(latestBatting.B3) AS B3,
 SUM(latestBatting.TB) AS TB,
-SUM(latestBatting.SB) AS 3B,
+SUM(latestBatting.SB) AS B3,
 SUM(latestBatting.H / latestBatting.AB) as AVG
 from superPlayerHist, latestBatting 
-where superPlayerHist.playerID= latestBatting.playerCode 
+where superPlayerHist.playerID= latestBatting.playerID 
 and superPlayerHist.class like ?
 and superPlayerHist.yr like ?
 group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
@@ -134,13 +134,13 @@ latestPitching.L,
 latestPitching.G,
 latestPitching.IP,
 latestPitching.H,
-latestPitching.ER,
+latestPitching.R,
 latestPitching.BB,
 latestPitching.SO,
 latestPitching.HBP,
-9 * (latestPitching.ER + latestPitching.ER) / (latestPitching.IP + latestPitching.IP) as ERA
+9 * (latestPitching.R + latestPitching.R) / (latestPitching.IP + latestPitching.IP) as ERA
 from superPlayerHist, latestPitching 
-where superPlayerHist.team= latestPitching.playerCode 
+where superPlayerHist.team= latestPitching.playerID 
 and superPlayerHist.franchise = 'NYM'
 and class = 'AA'
 and superPlayerHist.yr = 2015
@@ -189,12 +189,12 @@ order by count(newPlayerMaster.playerName) desc`, [req.query.m, req.query.d, req
 app.get('/api/batterList', function(req, res) {
 /*  console.log(req.query)*/
   connection.query(`select distinct newPlayerMaster.playerName, newPlayerMaster.yr AS YR, latestBatting.lg, latestBatting.G, 
-    latestBatting.AB, latestBatting.H, (latestBatting.H/latestBatting.AB) as AVG, latestBatting.2B, 
-    latestBatting.3B, latestBatting.HR, latestBatting.Tm,
+    latestBatting.AB, latestBatting.H, (latestBatting.H/latestBatting.AB) as AVG, latestBatting.B2, 
+    latestBatting.B3, latestBatting.HR, latestBatting.Tm,
     latestBatting.RBI, latestBatting.SB, latestBatting.BB, latestBatting.SO, latestBatting.HBP
     from newPlayerMaster, latestBatting 
     where newPlayerMaster.classes REGEXP ?
-    and latestBatting.playerCode = newPlayerMaster.playerID
+    and latestBatting.playerID = newPlayerMaster.playerID
     and newPlayerMaster.franchise = ?
     and newPlayerMaster.yr = ?
     order by AB desc `, [req.query.r, req.query.f, req.query.y], function (error, results, fields) {
@@ -212,10 +212,10 @@ app.get('/api/pitcherList', function(req, res) {
   connection.query(`select distinct newPlayerMaster.playerName, newPlayerMaster.yr AS YR,  latestPitching.G, 
     latestPitching.IP, latestPitching.W, latestPitching.L, latestPitching.IBB,
     latestPitching.IBB,latestPitching.GF, latestPitching.GS, latestPitching.SV, latestPitching.Tm,
-    latestPitching.H, latestPitching.ER, latestPitching.BB, latestPitching.SO, latestPitching.HBP
+    latestPitching.H, latestPitching.R, latestPitching.BB, latestPitching.SO, latestPitching.HBP
     from newPlayerMaster, latestPitching 
     where newPlayerMaster.classes REGEXP ?
-    and latestPitching.playerCode = newPlayerMaster.playerID
+    and latestPitching.playerID = newPlayerMaster.playerID
     and newPlayerMaster.franchise = ?
     and newPlayerMaster.yr = ?
     order by (latestPitching.IP / latestPitching.H) desc `, [req.query.r, req.query.f, req.query.y], function (error, results, fields) {
