@@ -100,12 +100,13 @@ console.log(bBatTeams)
 			accessor: 'HR',
 	    width: 40,
 		}, {
-			Header: 'Walks',
+			Header: 'BB',
 			accessor: 'BB',
 	    width: 40,
 		}]
 	    return (
 	    	<div>
+	    	<div>Top Batting MiLB Teams
 	    		<ReactTable 
 	    		style={{fontSize: '.8em'}}
 	    			data={props.bestBatTeams}
@@ -114,6 +115,8 @@ console.log(bBatTeams)
 	    			defaultPageSize={5}
 	    			getTrProps={onRowClick}
 	    		/>
+	    		</div>
+	    		<div>Top Pitching MiLB Teams
 	    		<ReactTable 
 	    		style={{fontSize: '.8em'}}
 	    			data={props.bestPitchTeams}
@@ -122,6 +125,7 @@ console.log(bBatTeams)
 	    			defaultPageSize={5}	    			
 	    			getTrProps={onRowClick}
 	    		/>
+	    	</div>
 	    	</div>
           )
 		} else {

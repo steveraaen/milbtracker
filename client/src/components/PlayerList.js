@@ -105,6 +105,7 @@ export default function PlayerList(props) {
 		})
 	    return (
 	    	<div>
+	    	<div>Selected Team Individual Batting
 	    		<ReactTable 
 	    		style={{fontSize: '.8em'}}
 	    			data={props.playerList}
@@ -112,6 +113,8 @@ export default function PlayerList(props) {
 	    			showPageSizeOptions={false}
 	    			defaultPageSize={5}
 	    		/>
+	    		</div>
+	    		<div>Selected Team Individual Pitching
 	    		<ReactTable 
 	    		style={{fontSize: '.8em'}}
 	    			data={props.pitcherList}
@@ -119,6 +122,7 @@ export default function PlayerList(props) {
 	    			showPageSizeOptions={false}
 	    			defaultPageSize={5}
 	    		/>
+	    	</div>
 	    	</div>
           )
 	} else {

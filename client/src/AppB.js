@@ -374,6 +374,7 @@ function AppB() {
       selectedClass={selectedClass} 
       selectedYear={selectedYear} 
       selectedDivision={selectedDivision} 
+      selectedMiLBTeam={selectedMiLBTeam} 
 />
 </div>
 </div>
