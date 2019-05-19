@@ -7,107 +7,120 @@ export default function LiveResults(props) {
 	if(props.bestBatTeams && props.bestPitchTeams && props.selectedClass && props.selectedDivision && props.selectedYear) {
 		var { bestBatTeams: bBatTeams, bestPitchTeams: bPitchTeams } = props
 		bBatTeams = bBatTeams.map( tm => {
-			tm.tmStr = <span><Image size='mini' src={tm.logo}/><div>{tm.yr}</div></span>
-			tm.tmStr2 = <span><div>{tm.team}</div><div>{tm.class}</div></span>
+			tm.tmStr = <div><Image size='mini' src={tm.imgURL}/><div style={{fontSize: '.8em'}}>{tm.yr}</div></div>
+			tm.tmStr2 = <div><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
 			return tm
 		})
 		bPitchTeams = bPitchTeams.map( ptm => {
-			ptm.ptmStr = <span><Image size='mini' src={ptm.logo}/><div>{ptm.yr}</div></span>
-			ptm.ptmStr2 = <span><div>{ptm.team}</div><div>{ptm.class}</div></span>
+			ptm.ptmStr = <div><Image size='mini' src={ptm.imgURL}/><div style={{fontSize: '.8em'}}>{ptm.yr}</div></div>
+			ptm.ptmStr2 = <div><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
 			return ptm
 		})
-
+const onRowClick = (state, rowInfo, column, instance) => {
+	
+    return {
+        onClick: e => {
+        	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
+            console.log('It was in this row:', rowInfo.original)
+          
+        }
+    }
+}
 console.log(bBatTeams)
 
 		var batColumns = [
 		{
 	    Header: '',
 	    accessor: 'tmStr',
-	    width: 50,
+	    width: 40,
 		}, {
 			Header: 'Team',
 			accessor: 'tmStr2', 
-			minWidth: 150
-		}, {
-			Header: 'Total Bases',
-			accessor: 'TB'
-		}, {
+			minWidth: 120
+		},  {
 			Header: 'Players',
-			accessor: 'players'
+			accessor: 'players',
+	    	width: 50,
+		},{
+			Header: 'TB',
+			accessor: 'TB',
+	    	width: 40,
 		}, {
-			Header: 'At Bats',
-			accessor: 'AB'
+			Header: 'AB',
+			accessor: 'AB',
+	    	width: 40,
 		}, {
 			Header: 'AVG',
-			accessor: 'AVG'
+			accessor: 'AVG',
+	    	width: 50,
 		}, {
-			Header: 'Hits',
-			accessor: 'H'
+			Header: 'H',
+			accessor: 'H',
+	    	width: 40,
 		}, {
-			Header: 'HRs',
-			accessor: 'HR'
+			Header: 'HR',
+			accessor: 'HR',
+	    	width: 40,
 		}, {
-			Header: 'Walks',
-			accessor: 'BB'
+			Header: 'BB',
+			accessor: 'BB',
+	    	width: 40,
 		}];
 		var pitchColumns = [
 		{
 	    Header: '',
 	    accessor: 'ptmStr',
-	    width: 50,
+	    width: 40,
 		}, {
 			Header: 'Team',
 			accessor: 'ptmStr2', 
-			minWidth: 150
-		}, {
-			Header: 'IP-ER',
-			accessor: 'IPER'
+			minWidth: 120
 		}, {
 			Header: 'Players',
-			accessor: 'players'
-		}, {
+			accessor: 'players',
+	    width: 50,
+		},{
+			Header: 'IP-ER',
+			accessor: 'IPER',
+	    width: 40,
+		},  {
 			Header: 'W',
-			accessor: 'W'
+			accessor: 'W',
+	    width: 40,
 		}, {
 			Header: 'L',
-			accessor: 'L'
+			accessor: 'L',
+	    width: 40,
 		}, {
 			Header: 'SO',
-			accessor: 'SO'
+			accessor: 'SO',
+	    width: 40,
 		}, {
 			Header: 'HR',
-			accessor: 'HR'
+			accessor: 'HR',
+	    width: 40,
 		}, {
 			Header: 'Walks',
-			accessor: 'BB'
+			accessor: 'BB',
+	    width: 40,
 		}]
 	    return (
 	    	<div>
 	    		<ReactTable 
+	    		style={{fontSize: '.8em'}}
 	    			data={props.bestBatTeams}
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
 	    			defaultPageSize={5}
-	    			SubComponent={row => {
-                    return (
-                      <div style={{ padding: "20px" }}>
-                        Another Sub Component!
-                      </div>
-                    );
-                }}
+	    			getTrProps={onRowClick}
 	    		/>
 	    		<ReactTable 
+	    		style={{fontSize: '.8em'}}
 	    			data={props.bestPitchTeams}
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}
-	    			defaultPageSize={5}
-	    			SubComponent={row => {
-                    return (
-                      <div style={{ padding: "20px" }}>
-                        Another Sub Component!
-                      </div>
-                    );
-                }}
+	    			defaultPageSize={5}	    			
+	    			getTrProps={onRowClick}
 	    		/>
 	    	</div>
           )

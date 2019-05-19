@@ -30,13 +30,48 @@ var connection  = mysql.createConnection({
     if (error) throw error;
    });
 })*/
-app.get('/api/newBatList', function(req, res) {
-  console.log(req.query)
+app.get('/api/newPitchList', function(req, res) {
   connection.query(`select 
 superPlayerHist.franchise,
+superPlayerHist.franchiseName,
+superPlayerHist.class,
+superPlayerHist.yr,  
+superPlayerHist.imgURL,  
+superPlayerHist.franchLogo,  
+superPlayerHist.team,  
+latestPitching.playerName as playerName,
+latestPitching.tm as curTeam,
+latestPitching.IP - latestPitching.R AS IPER, 
+latestPitching.W AS W, 
+latestPitching.L AS L,
+latestPitching.SV AS SV,
+latestPitching.SO AS SO,
+latestPitching.H AS H,
+latestPitching.HR AS HR,
+latestPitching.BB AS BB,
+9 * (latestPitching.R / latestPitching.IP) as ERA
+from superPlayerHist, latestPitching 
+where superPlayerHist.playerID= latestPitching.playerID
+and superPlayerHist.class like ?
+and superPlayerHist.franchise = ?
+and superPlayerHist.yr like ?
+order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, req.query.y], function (error, results, fields) {
+
+    /*    console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
+})
+app.get('/api/newBatList', function(req, res) {
+  console.log('newBatList.  ' + JSON.stringify(req.query))
+  connection.query(`select 
+superPlayerHist.franchise,
+superPlayerHist.franchiseName,
 superPlayerHist.team,
 superPlayerHist.yr,
 latestBatting.playerName,
+latestBatting.tm as curTeam,
+latestBatting.AB, 
 latestBatting.H, 
 latestBatting.HR,
 latestBatting.RBI,
@@ -46,17 +81,15 @@ latestBatting.B2,
 latestBatting.B3,
 latestBatting.TB,
 latestBatting.SB,
-latestBatting.H / latestBatting.AB as avg
+latestBatting.H / latestBatting.AB as AVG
 from superPlayerHist, latestBatting 
 where superPlayerHist.playerID= latestBatting.playerID 
-and superPlayerHist.franchise = 'NYM'
-and superPlayerHist.class = 'AA' 
-and superPlayerHist.yr = 2018
-group by superPlayerHist.class, superPlayerHist.franchise, superPlayerHist.yr
+and superPlayerHist.franchise = ?
+and superPlayerHist.class = ?
+and superPlayerHist.yr = ?
+order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
 
-order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y, req.query.y], function (error, results, fields) {
-
-    /*    console.log(results)*/
+        console.log(results)
       res.json(results)
     if (error) throw error;
    })
@@ -65,6 +98,7 @@ app.get('/api/teamPitch', function(req, res) {
 console.log(req.query)
   connection.query(`select 
 superPlayerHist.franchise,
+superPlayerHist.franchiseName,
 superPlayerHist.class,
 superPlayerHist.yr,  
 superPlayerHist.imgURL,  
@@ -95,6 +129,7 @@ app.get('/api/teamBat', function(req, res) {
 console.log(req.query)
   connection.query(`select 
 superPlayerHist.franchise,
+superPlayerHist.franchiseName,
 superPlayerHist.class,
 superPlayerHist.yr,  
 superPlayerHist.imgURL,  
@@ -123,34 +158,7 @@ order by SUM(latestBatting.TB) desc limit 20`, [req.query.cl, req.query.yr],func
     if (error) throw error;
    });
 })
-app.get('/api/newPitchList', function(req, res) {
-  connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.team,
-superPlayerHist.yr,  
-latestPitching.playerName,
-latestPitching.W, 
-latestPitching.L,
-latestPitching.G,
-latestPitching.IP,
-latestPitching.H,
-latestPitching.R,
-latestPitching.BB,
-latestPitching.SO,
-latestPitching.HBP,
-9 * (latestPitching.R + latestPitching.R) / (latestPitching.IP + latestPitching.IP) as ERA
-from superPlayerHist, latestPitching 
-where superPlayerHist.team= latestPitching.playerID 
-and superPlayerHist.franchise = 'NYM'
-and class = 'AA'
-and superPlayerHist.yr = 2015
-order by latestPitching.IP desc`, function (error, results, fields) {
 
-    /*    console.log(results)*/
-      res.json(results)
-    if (error) throw error;
-   })
-})
 app.get('/api/newBestMinorsBat', function(req, res) {
   connection.query(`select * from battingSummary19`, function (error, results, fields) {
 

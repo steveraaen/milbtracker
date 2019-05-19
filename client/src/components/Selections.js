@@ -266,7 +266,7 @@ function Pitchers(props) {
     } else { return (<div></div>) }
 }
 
-function Stats(props) {
+/*function Stats(props) {
     if (props.synthStats && props.selectedMiLBTeam.name && props.playerList && props.pitcherList) {
         return (
       <Modal 
@@ -331,7 +331,7 @@ function Stats(props) {
         )
     }
 }
-
+*/
 function BestFive(props) {
 
     if (props.topTen && props.allMLB && props.selectedClass /*&& props.selectedMiLBTeam*/ ) {
@@ -559,7 +559,7 @@ function BestPlayers(props) {
 }
 
 
-export { BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, Stats, Teams, YearPicker };
+export { BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, /*Stats,*/ Teams, YearPicker };
 
 
 

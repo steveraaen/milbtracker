@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
-import { BestFive, ClassPicker,  YearPicker, Divisions, Stats, Teams } from './components/Selections.js'
+import { BestFive, ClassPicker,  YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
 import  LiveResults  from './components/LiveResults.js'
+import  PlayerList  from './components/PlayerList.js'
 
 
 import './App.css'
@@ -85,7 +86,7 @@ function AppB() {
         const bestPitch = await bestPitchPromise; 
         const bestBat = await bestBatPromise; 
      
-        console.log(bestPitch)
+        bestBat.data.map(ba =>  ba.AVG = parseFloat((ba.AVG / 10).toFixed(3)))
 
 
 
@@ -195,18 +196,18 @@ function AppB() {
     }*/
 
 
-    async function getPlayerList(c, r, f, y, t) {
-      console.log(c, r, f, y, t)
+    async function getPlayerList(f, c, y) {
+      console.log(f, c, y)
       try {
-        const batterPromise = axios('/api/batterList', { params: { r, f, y, t } })
-        const pitcherPromise = axios('/api/pitcherList', { params: { r, f, y, t } })
-        const newBatterPromise = axios('/api/newBatList', { params: {c, r, f, y, t } })
-        const newPitcherPromise = axios('/api/newPitchList', { params: { r, f, y, t } })
-        const [batterList, pitcherList, newBatters, newPitchers] = await Promise.all([batterPromise, pitcherPromise, newBatterPromise, newPitcherPromise]);    
+/*        const batterPromise = axios('/api/batterList', { params: { r, f, y, t } })
+        const pitcherPromise = axios('/api/newPitchers', { params: { r, f, y, t } })*/
+        const newBatterPromise = axios('/api/newBatList', { params: {f,c,y} })
+        const newPitcherPromise = axios('/api/newPitchList', { params: {f,c,y} })
+        const [newBatters, newPitchers] = await Promise.all([newBatterPromise, newPitcherPromise]);    
 
         console.log(newBatters)                
            var batStats = {}
-           batStats.bat = batterList.data.reduce((a, b) => ({
+           batStats.bat = newBatters.data.reduce((a, b) => ({
                AB: a.AB + b.AB,
                H: a.H + b.H,
                AVG: ((a.H + b.H) /(a.AB + b.AB)).toFixed(3),
@@ -222,7 +223,7 @@ function AppB() {
              })
            )
            var pitStats = {}
-           pitStats.pit = pitcherList.data.reduce((a, b) => ({
+           pitStats.pit = newPitchers.data.reduce((a, b) => ({
                ERA: (9 * (a.ER + b.ER) / (a.IP + b.IP)).toFixed(2),
                IP: a.IP + b.IP,
                SO: a.SO + b.SO,
@@ -247,7 +248,7 @@ function AppB() {
             }
           })
 
-           batterList.data.map((plyr, idx) => {               
+           newBatters.data.map((plyr, idx) => {               
              for(let i = 0; i < allMLB.length; i++) {
                if(plyr.teamID === allMLB[i].teamCode) {
                  plyr.color = allMLB[i].color
@@ -255,7 +256,7 @@ function AppB() {
                } else{ return null}
              }
            })
-           pitcherList.data.map((ptchr, idx) => {               
+           newPitchers.data.map((ptchr, idx) => {               
              for(let i = 0; i < allMLB.length; i++) {
                if(ptchr.teamID === allMLB[i].teamCode) {
                  ptchr.color = allMLB[i].color
@@ -264,10 +265,10 @@ function AppB() {
              }
            })
             setPlayerList({
-                playerList: batterList.data
+                playerList: newBatters.data
             })
             setPitcherList({
-                pitcherList: pitcherList.data
+                pitcherList: newPitchers.data
             })               
       }
              catch (e) {
@@ -345,47 +346,19 @@ function AppB() {
                 
               </Segment>        
         
-        <Segment>   
-          <Divisions 
-              setSelectedDivision={setSelectedDivision} 
-      
-              allMLB={allMLB} {...allDivisions} 
-              selectedYear={selectedYear} 
-              selectedDivision={selectedDivision} 
-              selectedClass={selectedClass}
-              selectedMiLBTeam={selectedMiLBTeam}
-              getPlayerList={getPlayerList}  
-              setSelectedMiLBTeam={setSelectedMiLBTeam}
-              getTopTen={getTopTen}
-              topTen={topTen}
-              />
-              
-              </Segment>
            </Sidebar>
        
         <Sidebar.Pusher>  
-  <Grid>
 
-  <Grid.Row>
-     <Grid.Column width="8">
-       <Stats  
-            setModalOpen ={setModalOpen}
-            modalOpen={modalOpen}
-            selectedMiLBTeam={selectedMiLBTeam} 
-            selectedYear={selectedYear}
-          
-            selectedDivision={selectedDivision}
-            selectedClass={selectedClass}
-            {...pitcherList} 
-            {...playerList}
-             {...synthStats} 
-            />  
-    </Grid.Column>
-    </Grid.Row> 
-  </Grid>
+<div style={{display: 'flex', flexDirection: 'row'}}>
+<div style={{width: '50vw'}}>
     <LiveResults 
       {...bestBat}
       {...bestPitch}
+      {...playerList}
+      {...pitcherList}
+      getPlayerList={getPlayerList}
+      getTopTen={getTopTen}
       setModalOpen ={setModalOpen}
       modalOpen={modalOpen}
       selectedMiLBTeam={selectedMiLBTeam} 
@@ -393,6 +366,17 @@ function AppB() {
       selectedDivision={selectedDivision}
       selectedClass={selectedClass}      
     />
+</div>
+<div style={{width: '50vw'}}>
+<PlayerList 
+      {...playerList}
+      {...pitcherList}
+      selectedClass={selectedClass} 
+      selectedYear={selectedYear} 
+      selectedDivision={selectedDivision} 
+/>
+</div>
+</div>
   </Sidebar.Pusher>
    </Sidebar.Pushable>
    </div>
