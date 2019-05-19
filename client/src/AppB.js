@@ -351,7 +351,7 @@ function AppB() {
         <Sidebar.Pusher>  
 
 <div style={{display: 'flex', flexDirection: 'row'}}>
-<div style={{width: '50vw'}}>
+<div style={{width: '48vw', marginRight: '.5vw'}}>
     <LiveResults 
       {...bestBat}
       {...bestPitch}
@@ -367,7 +367,7 @@ function AppB() {
       selectedClass={selectedClass}      
     />
 </div>
-<div style={{width: '50vw'}}>
+<div style={{width: '48vw', marginLeft: '.5vw'}}>
 <PlayerList 
       {...playerList}
       {...pitcherList}
