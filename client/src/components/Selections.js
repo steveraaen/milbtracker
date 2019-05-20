@@ -48,8 +48,8 @@ function YearPicker(props) {
         console.log(e.target)
         /* props.getBestMinors(props.selectedClass.code, props.selectedDivision.value, props.selectedClass.regex, value) */
         props.setSelectedYear(value)
-        props.getTopTen(props.selectedClass.code, value, props.selectedDivision.value)
-        props.setSelectedMiLBTeam(props.topTen.topTenBatting[0])
+        props.getTopTen(props.selectedClass.code, value.value)
+       /* props.setSelectedMiLBTeam(props.topTen.topTenBatting[0])*/
         /*  props.getPlayerList(props.selectedClass.regex, props.selectedMiLBTeam.franchise, value, props.selectedMiLBTeam.name)
          */
     }
@@ -62,7 +62,7 @@ function YearPicker(props) {
              <Form.Checkbox 
              toggle
                label={yr.text}
-               value={yr.value}
+               value={yr}
                key={idx} 
                onChange={handleChange}
                checked={props.selectedYear === yr.value}
@@ -82,7 +82,7 @@ function ClassPicker(props) {
         /*      props.getBestMinors(JSON.parse(value).code, props.selectedDivision.value, JSON.parse(value).regex, props.selectedYear) 
          */
         props.setSelectedClass(value)
-        props.getTopTen(value.code, props.selectedYear, props.selectedDivision.value)
+        props.getTopTen(value.code, props.selectedYear.value, props.selectedDivision.value)
         /*        props.getPlayerList(value.regex, props.selectedMiLBTeam.franchise, props.selectedYear, props.selectedMiLBTeam.name)
          */
     }

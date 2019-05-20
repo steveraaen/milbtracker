@@ -32,83 +32,88 @@ console.log(bBatTeams)
 		{
 	    Header: '',
 	    accessor: 'tmStr',
-	    width: 40,
+	    width: 56,
 		}, {
 			Header: 'Team',
 			accessor: 'tmStr2', 
-			minWidth: 120
+			minWidth: 124
 		},  {
 			Header: 'Players',
 			accessor: 'players',
-	    	width: 50,
+	    	width: 58,
 		},{
 			Header: 'TB',
 			accessor: 'TB',
-	    	width: 40,
+	    	width: 46,
 		}, {
 			Header: 'AB',
 			accessor: 'AB',
-	    	width: 40,
+	    	width: 46,
 		}, {
 			Header: 'AVG',
 			accessor: 'AVG',
-	    	width: 50,
+	    	width: 60,
 		}, {
 			Header: 'H',
 			accessor: 'H',
-	    	width: 40,
+	    	width: 46,
 		}, {
 			Header: 'HR',
 			accessor: 'HR',
-	    	width: 40,
+	    	width: 46,
 		}, {
 			Header: 'BB',
 			accessor: 'BB',
-	    	width: 40,
+	    	width: 46,
 		}];
 		var pitchColumns = [
 		{
 	    Header: '',
 	    accessor: 'ptmStr',
-	    width: 40,
+	    width: 56,
 		}, {
 			Header: 'Team',
 			accessor: 'ptmStr2', 
-			minWidth: 120
+			minWidth: 124
 		}, {
 			Header: 'Players',
 			accessor: 'players',
-	    width: 50,
+	    width: 58,
 		},{
 			Header: 'IP-ER',
 			accessor: 'IPER',
-	    width: 40,
+	    width: 50,
 		},  {
 			Header: 'W',
 			accessor: 'W',
-	    width: 40,
+	    width: 50,
 		}, {
 			Header: 'L',
 			accessor: 'L',
-	    width: 40,
+	    width: 50,
 		}, {
 			Header: 'SO',
 			accessor: 'SO',
-	    width: 40,
+	    width: 50,
 		}, {
 			Header: 'HR',
 			accessor: 'HR',
-	    width: 40,
+	    width: 50,
 		}, {
 			Header: 'BB',
 			accessor: 'BB',
-	    width: 40,
+	    width: 50,
 		}]
 	    return (
-	    	<div>
-	    	<div>Top Batting MiLB Teams
+	    	<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+	    	<div style={{marginRight: '1vw'}}>
+	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
+	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Batting</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
+	    	</div>
 	    		<ReactTable 
-	    		style={{fontSize: '.8em'}}
+	    		style={{fontSize: '1em'}}
 	    			data={props.bestBatTeams}
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
@@ -116,9 +121,14 @@ console.log(bBatTeams)
 	    			getTrProps={onRowClick}
 	    		/>
 	    		</div>
-	    		<div>Top Pitching MiLB Teams
+	    		<div style={{marginLeft: '1vw'}}>
+	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
+	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Pitching</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
+	    	</div>
 	    		<ReactTable 
-	    		style={{fontSize: '.8em'}}
+	    		style={{fontSize: '1em'}}
 	    			data={props.bestPitchTeams}
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}

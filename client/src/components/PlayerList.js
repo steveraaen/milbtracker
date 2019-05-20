@@ -8,80 +8,78 @@ import mlbLogos from '../data/franchiseLogos.json'
 export default function PlayerList(props) {
 		var batterColumns = [
 				{
-	    Header: 'Current Team',
-	    accessor: 'tmStr',
-	    width: 110,
-		},
-		{
 	    Header: 'Player',
-	    accessor: 'playerName',
-	    width: 100,
+	    accessor: 'tmStr',
+	    width: 144,
 		}, {
 			Header: 'TB',
 			accessor: 'TB',
-	    	width: 40,
+	    	width: 54,
 		}, {
 			Header: 'AB',
 			accessor: 'AB',
-	    	width: 40,
+	    	width: 54,
 		}, {
 			Header: 'AVG',
 			accessor: 'AVG',
-	    	width: 50,
+	    	width: 54,
 		}, {
 			Header: 'H',
 			accessor: 'H',
-	    	width: 40,
+	    	width: 54,
 		}, {
 			Header: 'HR',
 			accessor: 'HR',
-	    	width: 40,
+	    	width: 54,
 		}, {
 			Header: 'BB',
 			accessor: 'BB',
-	    	width: 40,
+	    	width: 54,
 		}, {
 			Header: 'SB',
 			accessor: 'SB',
-	    	width: 40,
+	    	width: 54,
 		}];
 		var pitcherColumns = [
 		{
-	    Header: 'Current Team',
-	    accessor: 'tmStr',
-	    width: 110,
-		},
-		{
 	    Header: 'Player',
-	    accessor: 'playerName',
-	    width: 110,
+	    accessor: 'tmStr',
+	    width: 144,
 		},{
 			Header: 'IP-ER',
 			accessor: 'IPER',
-	    width: 40,
+	    width: 54,
 		},  {
 			Header: 'W',
 			accessor: 'W',
-	    width: 40,
+	    width: 54,
 		}, {
 			Header: 'L',
 			accessor: 'L',
-	    width: 40,
+	    width: 54,
+		}, {
+			Header: 'SV',
+			accessor: 'SV',
+	    width: 54,
 		}, {
 			Header: 'SO',
 			accessor: 'SO',
-	    width: 40,
+	    width: 54,
 		}, {
 			Header: 'HR',
 			accessor: 'HR',
-	    width: 40,
+	    width: 54,
 		}, {
 			Header: 'BB',
 			accessor: 'BB',
-	    width: 40,
+	    width: 54,
 		}]
 		if(props.playerList && props.pitcherList && mlbLogos) {
 			for(let i =0; i < props.playerList.length; i++) {
+
+				props.playerList[i].playerURL = `https://www.baseball-reference.com/players/${props.playerList[i].playerID[0]}/${props.playerList[i].playerID}.shtml`
+
+
 				for(let j =0; j < mlbLogos.length; j++) {
 					if(props.playerList[i].curTeam === mlbLogos[j].majteam) {
 						props.playerList[i].curLogo = mlbLogos[j].picurl
@@ -96,27 +94,39 @@ export default function PlayerList(props) {
 			}
 		}
 		props.playerList.map( tm => {
-			tm.tmStr = <div><Image size='mini' src={tm.curLogo}/><div style={{fontSize: '.8em'}}>{tm.franchiseName}</div></div>
+			tm.tmStr = <div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
+			<a href={tm.playerURL}>{tm.playerName}</a>
+			</div>
 			return tm
 		})
 		props.pitcherList.map( ptm => {
-			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo}/><div style={{fontSize: '.8em'}}>{ptm.franchiseName}</div></div>
+			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo}/>
+			<a href={ptm.playerURL}>{ptm.playerName}</a>
+			</div>
 			return ptm
 		})
 	    return (
-	    	<div>
-	    	<div>Selected Team Individual Batting
+	    	<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+	    	<div style={{marginRight: '1vw'}}>
+	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
+	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}> {props.pitcherList[0].yr}</div>
+	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.pitcherList[0].team}</div>
+	    		</div>
 	    		<ReactTable 
-	    		style={{fontSize: '.8em'}}
+	    		style={{fontSize: '1em'}}
 	    			data={props.playerList}
 	    			columns={batterColumns}
-	    			showPageSizeOptions={false}
+	    			showPageSizeOptions={false} 
 	    			defaultPageSize={5}
 	    		/>
 	    		</div>
-	    		<div>Selected Team Individual Pitching
+	    		<div style={{marginLeft: '1vw'}}>
+	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
+	    			<div style={{marginRight: '1vw'}}> {props.pitcherList[0].yr}</div>
+	    			<div>{props.pitcherList[0].team}</div>
+	    		</div>
 	    		<ReactTable 
-	    		style={{fontSize: '.8em'}}
+	    		style={{fontSize: '1em'}}
 	    			data={props.pitcherList}
 	    			columns={pitcherColumns}
 	    			showPageSizeOptions={false}

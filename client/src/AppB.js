@@ -31,7 +31,7 @@ function AppB() {
     const [years] = useState(yrs);
     const [/*bestMinors,*/ setBestMinors] = useState();
     const [allMLB] = useState(mlbTeams);
-    const [selectedYear, setSelectedYear] = useState(yrs[0].value);
+    const [selectedYear, setSelectedYear] = useState(yrs[0]);
     const [playerList, setPlayerList] = useState();
     const [pitcherList, setPitcherList] = useState();
     const [classIcon] = useState('angle down');
@@ -81,8 +81,8 @@ function AppB() {
     async function getTopTen(cl, yr, dv) {
       try {
                
-        const bestPitchPromise = axios('/api/teamPitch', { params: { cl, yr, dv } })
-        const bestBatPromise = axios('/api/teamBat', { params: { cl, yr, dv } })
+        const bestPitchPromise = axios('/api/teamPitch', { params: { cl, yr } })
+        const bestBatPromise = axios('/api/teamBat', { params: { cl, yr } })
         const bestPitch = await bestPitchPromise; 
         const bestBat = await bestBatPromise; 
      
@@ -277,7 +277,7 @@ function AppB() {
     }
     
     useEffect(() => {
-        getTopTen(selectedClass.code, selectedYear, selectedDivision.value)
+        getTopTen(selectedClass.code, selectedYear.value, selectedDivision.value)
     }, {});
 
     useEffect(() => {
@@ -350,8 +350,8 @@ function AppB() {
        
         <Sidebar.Pusher>  
 
-<div style={{display: 'flex', flexDirection: 'row'}}>
-<div style={{width: '48vw', marginRight: '.5vw'}}>
+<div>
+<div>
     <LiveResults 
       {...bestBat}
       {...bestPitch}
@@ -367,7 +367,7 @@ function AppB() {
       selectedClass={selectedClass}      
     />
 </div>
-<div style={{width: '48vw', marginLeft: '.5vw'}}>
+<div>
 <PlayerList 
       {...playerList}
       {...pitcherList}

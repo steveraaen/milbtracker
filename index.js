@@ -40,6 +40,7 @@ superPlayerHist.imgURL,
 superPlayerHist.franchLogo,  
 superPlayerHist.team,  
 latestPitching.playerName as playerName,
+latestPitching.playerID,
 latestPitching.tm as curTeam,
 latestPitching.IP - latestPitching.R AS IPER, 
 latestPitching.W AS W, 
@@ -70,6 +71,7 @@ superPlayerHist.franchiseName,
 superPlayerHist.team,
 superPlayerHist.yr,
 latestBatting.playerName,
+latestBatting.playerID,
 latestBatting.tm as curTeam,
 latestBatting.AB, 
 latestBatting.H, 
@@ -86,7 +88,7 @@ from superPlayerHist, latestBatting
 where superPlayerHist.playerID= latestBatting.playerID 
 and superPlayerHist.franchise = ?
 and superPlayerHist.class = ?
-and superPlayerHist.yr = ?
+and superPlayerHist.yr like ?
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
 
         console.log(results)
@@ -100,6 +102,7 @@ console.log(req.query)
 superPlayerHist.franchise,
 superPlayerHist.franchiseName,
 superPlayerHist.class,
+superPlayerHist.an AS lg,
 superPlayerHist.yr,  
 superPlayerHist.imgURL,  
 superPlayerHist.franchLogo,  
@@ -119,7 +122,7 @@ where superPlayerHist.playerID= latestPitching.playerID
 and superPlayerHist.class like ?
 and superPlayerHist.yr like ?
 group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
-order by SUM(latestPitching.IP - latestPitching.R) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
     if (error) throw error;
@@ -131,6 +134,7 @@ console.log(req.query)
 superPlayerHist.franchise,
 superPlayerHist.franchiseName,
 superPlayerHist.class,
+superPlayerHist.an AS lg,
 superPlayerHist.yr,  
 superPlayerHist.imgURL,  
 superPlayerHist.franchLogo,  
@@ -152,7 +156,7 @@ where superPlayerHist.playerID= latestBatting.playerID
 and superPlayerHist.class like ?
 and superPlayerHist.yr like ?
 group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
-order by SUM(latestBatting.TB) desc limit 20`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
     if (error) throw error;
