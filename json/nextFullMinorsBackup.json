@@ -1,0 +1,154 @@
+[
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2010,
+		"age" : 20,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "AZL Royals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2010,
+		"age" : 20,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "Idaho Falls Chukars"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2010,
+		"age" : 20,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "Burlington Royals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2012,
+		"age" : 22,
+		"class" : "A",
+		"franchise" : "KCR",
+		"Tm" : "Lexington Legends"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2012,
+		"age" : 22,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "Idaho Falls Chukars"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2012,
+		"age" : 22,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "Burlington Royals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2012,
+		"age" : 22,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "AZL Royals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2013,
+		"age" : 23,
+		"class" : "A",
+		"franchise" : "KCR",
+		"Tm" : "Lexington Legends"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2013,
+		"age" : 23,
+		"class" : "AA",
+		"franchise" : "KCR",
+		"Tm" : "Northwest Arkansas Naturals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2013,
+		"age" : 23,
+		"class" : "A+",
+		"franchise" : "KCR",
+		"Tm" : "Wilmington Blue Rocks"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2014,
+		"age" : 24,
+		"class" : "AA",
+		"franchise" : "KCR",
+		"Tm" : "Northwest Arkansas Naturals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2014,
+		"age" : 24,
+		"class" : "AAA",
+		"franchise" : "KCR",
+		"Tm" : "Omaha Storm Chasers"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2015,
+		"age" : 25,
+		"class" : "AAA",
+		"franchise" : "KCR",
+		"Tm" : "Omaha Storm Chasers"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2016,
+		"age" : 26,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "AZL Royals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2016,
+		"age" : 26,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "Idaho Falls Chukars"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2016,
+		"age" : 26,
+		"class" : "AAA",
+		"franchise" : "KCR",
+		"Tm" : "Omaha Storm Chasers"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2016,
+		"age" : 26,
+		"class" : "Rk",
+		"franchise" : "KCR",
+		"Tm" : "Burlington Royals"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2017,
+		"age" : 27,
+		"class" : "AAA",
+		"franchise" : "KCR",
+		"Tm" : "Omaha Storm Chasers"
+	},
+	{
+		"playerID" : "alexasc02",
+		"yr" : 2018,
+		"age" : 28,
+		"class" : "AAA",
+		"franchise" : "LAD",
+		"Tm" : "Oklahoma City Dodgers"
+	}
+]
