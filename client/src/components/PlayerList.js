@@ -87,6 +87,7 @@ export default function PlayerList(props) {
 			}
 		}
 			for(let i =0; i < props.pitcherList.length; i++) {
+				props.pitcherList[i].playerURL = `https://www.baseball-reference.com/players/${props.pitcherList[i].playerID[0]}/${props.pitcherList[i].playerID}.shtml`
 				for(let j =0; j < mlbLogos.length; j++) {
 					if(props.pitcherList[i].curTeam === mlbLogos[j].majteam) {
 						props.pitcherList[i].curLogo = mlbLogos[j].picurl
