@@ -3,7 +3,7 @@ import {Image} from 'semantic-ui-react'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
-
+import {Grid} from 'semantic-ui-react'
 import mlbLogos from '../data/franchiseLogos.json'
 export default function PlayerList(props) {
 		var batterColumns = [
@@ -96,18 +96,19 @@ export default function PlayerList(props) {
 		}
 		props.playerList.map( tm => {
 			tm.tmStr = <div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
-			<a href={tm.playerURL}>{tm.playerName}</a>
+			<a style={{color:   tm.lg === "AL" ? 'red' : 'blue'}} href={tm.playerURL}>{tm.playerName}</a>
 			</div>
 			return tm
 		})
 		props.pitcherList.map( ptm => {
 			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo}/>
-			<a href={ptm.playerURL}>{ptm.playerName}</a>
+			<a style={{color: ptm.lg === "AL" ? 'red' : 'blue'}}  href={ptm.playerURL}>{ptm.playerName}</a>
 			</div>
 			return ptm
 		})
 	    return (
-	    	<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+	    	<Grid stackable columns={2}>
+	    	 <Grid.Column>
 	    	<div style={{marginRight: '1vw'}}>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}> {props.pitcherList[0].yr}</div>
@@ -121,6 +122,8 @@ export default function PlayerList(props) {
 	    			defaultPageSize={5}
 	    		/>
 	    		</div>
+	    		 </Grid.Column>
+	    		 <Grid.Column>
 	    		<div style={{marginLeft: '1vw'}}>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    			<div style={{marginRight: '1vw'}}> {props.pitcherList[0].yr}</div>
@@ -134,7 +137,8 @@ export default function PlayerList(props) {
 	    			defaultPageSize={5}
 	    		/>
 	    	</div>
-	    	</div>
+	    	 </Grid.Column>
+	    	 </Grid>
           )
 	} else {
 			return <div style={{marginLeft: '3vw'}}>no</div>

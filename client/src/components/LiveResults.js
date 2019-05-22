@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Image} from 'semantic-ui-react'
+import {Grid, Image} from 'semantic-ui-react'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
@@ -7,13 +7,15 @@ export default function LiveResults(props) {
 	if(props.bestBatTeams && props.bestPitchTeams && props.selectedClass && props.selectedDivision && props.selectedYear) {
 		var { bestBatTeams: bBatTeams, bestPitchTeams: bPitchTeams } = props
 		bBatTeams = bBatTeams.map( tm => {
+			tm.color = tm.lg === "A" ? 'red' : 'blue'
 			tm.tmStr = <div><Image size='mini' src={tm.imgURL}/><div style={{fontSize: '.8em'}}>{tm.yr}</div></div>
-			tm.tmStr2 = <div><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
+			tm.tmStr2 = <div style={{color: tm.lg === "A" ? 'red' : 'blue'}}><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
 			return tm
 		})
 		bPitchTeams = bPitchTeams.map( ptm => {
+			ptm.color = ptm.lg === "A" ? 'red' : 'blue'
 			ptm.ptmStr = <div><Image size='mini' src={ptm.imgURL}/><div style={{fontSize: '.8em'}}>{ptm.yr}</div></div>
-			ptm.ptmStr2 = <div><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
+			ptm.ptmStr2 = <div style={{color: ptm.lg === "A" ? 'red' : 'blue'}}><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
 			return ptm
 		})
 const onRowClick = (state, rowInfo, column, instance) => {
@@ -105,7 +107,8 @@ console.log(bBatTeams)
 	    width: 50,
 		}]
 	    return (
-	    	<div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+	    	<Grid stackable columns={2}>
+	    	 <Grid.Column>
 	    	<div style={{marginRight: '1vw'}}>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Batting</div>
@@ -119,8 +122,10 @@ console.log(bBatTeams)
 	    			showPageSizeOptions={false}
 	    			defaultPageSize={5}
 	    			getTrProps={onRowClick}
-	    		/>
+	    		/> 
 	    		</div>
+	    		 </Grid.Column>
+	    		  <Grid.Column>
 	    		<div style={{marginLeft: '1vw'}}>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Pitching</div>
@@ -135,8 +140,9 @@ console.log(bBatTeams)
 	    			defaultPageSize={5}	    			
 	    			getTrProps={onRowClick}
 	    		/>
-	    	</div>
-	    	</div>
+	    	</div> 
+	    	 </Grid.Column> 
+	    	</Grid>
           )
 		} else {
 			return <div style={{marginLeft: '3vw'}}>no</div>

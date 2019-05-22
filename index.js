@@ -39,6 +39,7 @@ superPlayerHist.yr,
 superPlayerHist.imgURL,  
 superPlayerHist.franchLogo,  
 superPlayerHist.team,  
+latestPitching.lg,
 latestPitching.playerName as playerName,
 latestPitching.playerID,
 latestPitching.tm as curTeam,
@@ -70,6 +71,7 @@ superPlayerHist.franchise,
 superPlayerHist.franchiseName,
 superPlayerHist.team,
 superPlayerHist.yr,
+latestBatting.lg,
 latestBatting.playerName,
 latestBatting.playerID,
 latestBatting.tm as curTeam,
@@ -161,6 +163,7 @@ order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],func
       res.json(results)
     if (error) throw error;
    });
+ 
 })
 
 app.get('/api/newBestMinorsBat', function(req, res) {

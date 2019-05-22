@@ -289,12 +289,13 @@ function AppB() {
 
 
     return (
-            <div style={{fontSize:'1rem', backgroundColor: 'white'}} > 
+            <div style={{fontSize:'1rem', backgroundColor: 'lightBlue'}} > 
 
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
             <Icon name="bars" disabled={visible} onClick={toggleSidebar} />
-
-               
+            <div style={{alignContent: 'center'}}>
+               Farm Team Fantasy
+             </div> 
              </div> 
              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
              </div>
