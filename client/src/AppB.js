@@ -294,7 +294,7 @@ function AppB() {
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
             <Icon name="bars" disabled={visible} onClick={toggleSidebar} />
             <div style={{alignContent: 'center'}}>
-               Farm Team Fantasy
+               Farm Team Fantasy - Current Major League Performance of Recent Minor league Teams
              </div> 
              </div> 
              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>

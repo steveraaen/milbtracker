@@ -39,11 +39,11 @@ console.log(bBatTeams)
 			Header: 'Team',
 			accessor: 'tmStr2', 
 			minWidth: 124
-		},  {
+		},  /*{
 			Header: 'Players',
 			accessor: 'players',
 	    	width: 58,
-		},{
+		},*/{
 			Header: 'TB',
 			accessor: 'TB',
 	    	width: 46,
@@ -77,11 +77,11 @@ console.log(bBatTeams)
 			Header: 'Team',
 			accessor: 'ptmStr2', 
 			minWidth: 124
-		}, {
+		}, /*{
 			Header: 'Players',
 			accessor: 'players',
 	    width: 58,
-		},{
+		},*/{
 			Header: 'IP-ER',
 			accessor: 'IPER',
 	    width: 50,
@@ -109,35 +109,38 @@ console.log(bBatTeams)
 	    return (
 	    	<Grid stackable columns={2}>
 	    	 <Grid.Column>
-	    	<div style={{marginRight: '1vw'}}>
+	    	<div style={{marginRight: '.5vw'}}>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Batting</div>
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
-	    		style={{fontSize: '1em'}}
+	    		isSelected
+	    		showPagination={false}
+	    		style={{fontSize: '1em', height: '40vh'}}
 	    			data={props.bestBatTeams}
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
-	    			defaultPageSize={5}
+	    			
 	    			getTrProps={onRowClick}
 	    		/> 
 	    		</div>
 	    		 </Grid.Column>
 	    		  <Grid.Column>
-	    		<div style={{marginLeft: '1vw'}}>
+	    		<div style={{marginLeft: '.5vw'}}>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Pitching</div>
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
-	    		style={{fontSize: '1em'}}
+	    		showPagination={false}
+	    		style={{fontSize: '1em', height: '40vh'}}
 	    			data={props.bestPitchTeams}
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}
-	    			defaultPageSize={5}	    			
+	    				    			
 	    			getTrProps={onRowClick}
 	    		/>
 	    	</div> 
