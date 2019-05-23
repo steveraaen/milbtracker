@@ -377,6 +377,7 @@ function AppB() {
       selectedDivision={selectedDivision} 
       selectedMiLBTeam={selectedMiLBTeam} 
 />
+<div>Data derived from <a href="https://www.baseball-reference.com/">Baseball Reference</a></div>
 </div>
 </div>
   </Sidebar.Pusher>
