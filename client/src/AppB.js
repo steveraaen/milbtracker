@@ -291,7 +291,7 @@ function AppB() {
 
     return (  
 <div>
-<div style={{display: 'flex',flexDirection: 'column', alignItems: 'center'}}>
+<div style={{display: 'flex',flexDirection: 'column', alignItems: 'center', textAlign: 'center'}}>
       <Image src={ftflogo} width={150} height={80} />
                 Current Major League Performance of Recent Minor league Teams
 </div>
