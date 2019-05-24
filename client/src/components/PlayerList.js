@@ -107,7 +107,8 @@ export default function PlayerList(props) {
 			return ptm
 		})
 	    return (
-	    	<Grid stackable columns={2} stretched>
+	    	<Grid stackable columns={2} stretched
+	    	>
 	    	 <Grid.Column>
 	    	<div style={{marginRight: '1vw'}}>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>

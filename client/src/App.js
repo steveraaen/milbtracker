@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Header, Icon} from 'semantic-ui-react'
+import { Grid, Header, Icon, Image} from 'semantic-ui-react'
 
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
@@ -9,6 +9,7 @@ import { BestFive, ClassPicker,   YearPicker, Divisions, Stats } from './compone
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
+import milbAnim from './assets/milbanim.gif'
 /*import leagues from './assets/leagues.js'*/
 
 const yrs = [
@@ -268,7 +269,8 @@ function App() {
     return (
 
   <Grid  stackable centered>
-<Grid.Row columns={1}>  
+<Grid.Row columns={1}> 
+<Image width="15vw"src={milbAnim} /> 
     <Grid.Column >
       <Header as="h1" style={{fontSize: '1.8rem',display: 'flex', flexDirection: 'row', justifyContent: 'center', color: 'LemonChiffon'}}>2018 MLB Performance of MiLB Teams (2013-2018)</Header>
     </Grid.Column>

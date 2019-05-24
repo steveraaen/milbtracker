@@ -3,11 +3,12 @@ import {Grid, Image} from 'semantic-ui-react'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
+import deepsea from "../assets/deepsea.jpg"
 export default function LiveResults(props) {
 	if(props.bestBatTeams && props.bestPitchTeams && props.selectedClass && props.selectedDivision && props.selectedYear) {
 		var { bestBatTeams: bBatTeams, bestPitchTeams: bPitchTeams } = props
 		bBatTeams = bBatTeams.map( tm => {
-			tm.color = tm.lg === "A" ? 'red' : 'blue'
+			tm.color = tm.lg === "A" ? 'LightRed' : 'lightBlue'
 			tm.tmStr = <div><Image size='mini' src={tm.imgURL}/><div style={{fontSize: '.8em'}}>{tm.yr}</div></div>
 			tm.tmStr2 = <div style={{color: tm.lg === "A" ? 'red' : 'blue'}}><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
 			return tm
@@ -118,7 +119,7 @@ console.log(bBatTeams)
 	    		<ReactTable 
 	    		isSelected
 	    		showPagination={false}
-	    		style={{fontSize: '1em', height: '40vh'}}
+	    		style={{fontSize: '.8em', height: '46vh'}}
 	    			data={props.bestBatTeams}
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
@@ -136,7 +137,7 @@ console.log(bBatTeams)
 	    	</div>
 	    		<ReactTable 
 	    		showPagination={false}
-	    		style={{fontSize: '1em', height: '40vh'}}
+	    		style={{fontSize: '.8em', height: '46vh'}}
 	    			data={props.bestPitchTeams}
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}

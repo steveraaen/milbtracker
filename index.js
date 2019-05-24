@@ -59,7 +59,9 @@ and superPlayerHist.franchise = ?
 and superPlayerHist.yr like ?
 order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, req.query.y], function (error, results, fields) {
 
-    /*    console.log(results)*/
+
+var today = new Date();
+console.log(today.getDate());
       res.json(results)
     if (error) throw error;
    })
@@ -93,7 +95,7 @@ and superPlayerHist.class = ?
 and superPlayerHist.yr like ?
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
 
-        console.log(results)
+      /*  console.log(results)*/
       res.json(results)
     if (error) throw error;
    })
@@ -163,7 +165,7 @@ order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],func
       res.json(results)
     if (error) throw error;
    });
- 
+
 })
 
 app.get('/api/newBestMinorsBat', function(req, res) {

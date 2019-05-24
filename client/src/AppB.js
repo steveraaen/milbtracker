@@ -5,6 +5,7 @@ import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker,  YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
 import  LiveResults  from './components/LiveResults.js'
 import  PlayerList  from './components/PlayerList.js'
+import  ftflogo  from './assets/ftflogo.png'
 
 
 import './App.css'
@@ -288,13 +289,18 @@ function AppB() {
     }, {});*/
 
 
-    return (
+    return (  
+<div>
+<div style={{display: 'flex',flexDirection: 'column', alignItems: 'center'}}>
+      <Image src={ftflogo} width={150} height={80} />
+                Current Major League Performance of Recent Minor league Teams
+</div>
             <div style={{fontSize:'1rem', backgroundColor: 'lightBlue'}} > 
 
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
             <Icon name="bars" disabled={visible} onClick={toggleSidebar} />
-            <div style={{alignContent: 'center'}}>
-               Farm Team Fantasy - Current Major League Performance of Recent Minor league Teams
+            <div style={{alignContent: 'center', fontSize: '1.2em', fontWeight: 600}}>
+
              </div> 
              </div> 
              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
@@ -377,11 +383,14 @@ function AppB() {
       selectedDivision={selectedDivision} 
       selectedMiLBTeam={selectedMiLBTeam} 
 />
+
 <div>Data derived from <a href="https://www.baseball-reference.com/">Baseball Reference</a></div>
+<div>Logos provided by <a href="http://www.sportslogos.net/">Chris Creamer's Sportslogos.net</a></div>
 </div>
 </div>
   </Sidebar.Pusher>
    </Sidebar.Pushable>
+   </div>
    </div>
     );
 }
