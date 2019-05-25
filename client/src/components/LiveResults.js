@@ -119,7 +119,7 @@ console.log(bBatTeams)
 	    		<ReactTable 
 	    		isSelected
 	    		showPagination={false}
-	    		style={{fontSize: '.9em', fontWeight: 600, height: '46vh', backgroundColor: 'whitesmoke'}}
+	    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
 	    			data={props.bestBatTeams}
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
@@ -137,7 +137,7 @@ console.log(bBatTeams)
 	    	</div>
 	    		<ReactTable 
 	    		showPagination={false}
-	    		style={{fontSize: '.9em',   fontWeight: 600, height: '46vh', backgroundColor: 'whitesmoke'}}
+	    		style={{fontSize: '.9em',   fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
 	    			data={props.bestPitchTeams}
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}

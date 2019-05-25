@@ -31,7 +31,7 @@ export default function PlayerList(props) {
 			Header: 'HR',
 			accessor: 'HR',
 	    	width: 54,
-		}, {
+		}/*, {
 			Header: 'BB',
 			accessor: 'BB',
 	    	width: 54,
@@ -39,7 +39,7 @@ export default function PlayerList(props) {
 			Header: 'SB',
 			accessor: 'SB',
 	    	width: 54,
-		}];
+		}*/];
 		var pitcherColumns = [
 		{
 	    Header: 'Player',
@@ -65,7 +65,7 @@ export default function PlayerList(props) {
 			Header: 'SO',
 			accessor: 'SO',
 	    width: 54,
-		}, {
+		}/*, {
 			Header: 'HR',
 			accessor: 'HR',
 	    width: 54,
@@ -73,7 +73,7 @@ export default function PlayerList(props) {
 			Header: 'BB',
 			accessor: 'BB',
 	    width: 54,
-		}]
+		}*/]
 		if(props.playerList && props.pitcherList && mlbLogos) {
 			for(let i =0; i < props.playerList.length; i++) {
 
@@ -107,7 +107,9 @@ export default function PlayerList(props) {
 			return ptm
 		})
 	    return (
-	    	<Grid stackable columns={2} stretched
+	    	<Grid columns={1} 
+	    	stretched
+	    	style={{marginTop: '16vh' ,backgroundColor: 'rgba(255,255,255,50)'}}
 	    	>
 	    	 <Grid.Column>
 	    	<div>
@@ -118,15 +120,14 @@ export default function PlayerList(props) {
 	    		<ReactTable 
 
 	    		showPagination={false}
-	    		style={{fontSize: '.9em', fontWeight: 600, height: '46vh'}}
+	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
 	    			data={props.playerList}
 	    			columns={batterColumns}
 	    			showPageSizeOptions={false} 
 	    			
 	    		/>
 	    		</div>
-	    		 </Grid.Column>
-	    		 <Grid.Column>
+
 	    		<div>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    			<div style={{marginRight: '1vw'}}> {props.pitcherList[0].yr}</div>
@@ -134,7 +135,7 @@ export default function PlayerList(props) {
 	    		</div>
 	    		<ReactTable 
 	    		showPagination={false}
-	    		style={{fontSize: '.9em', fontWeight: 600, height: '46vh'}}
+	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
 	    			data={props.pitcherList}
 	    			columns={pitcherColumns}
 	    			showPageSizeOptions={false}
