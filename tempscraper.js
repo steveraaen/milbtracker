@@ -8,12 +8,15 @@ var connection = mysql.createConnection({
     port: '3306',
     user: process.env.DB_USER,
     password: process.env.DB_PW,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    multipleStatements: true
 });
 /*setInterval(function() {*/
 
 (async () => {
-    connection.query(`TRUNCATE latestPitching`)
+    connection.query(`TRUNCATE TABLE secondLatestPitching;
+        INSERT INTO secondLatestPitching SELECT * FROM latestPitching;
+        TRUNCATE TABLE latestPitching;`)
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto('https://www.baseball-reference.com/leagues/MLB/2019-standard-pitching.shtml', { waitUntil: 'networkidle2' })
@@ -60,7 +63,9 @@ var connection = mysql.createConnection({
     await browser.close()
 })();
 (async () => {
-    connection.query(`TRUNCATE latestBatting`)
+    connection.query(`TRUNCATE TABLE secondLatestBatting;
+        INSERT INTO secondLatestBatting SELECT * FROM latestBatting;
+        TRUNCATE TABLE latestBatting;`)
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto('https://www.baseball-reference.com/leagues/MLB/2019-standard-batting.shtml', { waitUntil: 'networkidle2' })

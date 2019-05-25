@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import {Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar} from 'semantic-ui-react'
+import {Button, Container, Grid, Header, Icon, Image,  Segment, Sidebar, Visibility} from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker,  YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
 import  LiveResults  from './components/LiveResults.js'
 import  PlayerList  from './components/PlayerList.js'
 import  ftflogo  from './assets/ftflogo.png'
+import  eveSun  from './assets/eveSun.jpg'
 
 
 import './App.css'
@@ -16,12 +17,27 @@ import newMinors from './newMinors.json'
 console.log(newMinors)
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
-    { text: "2013", value: 2013, key: "2013" },
-    { text: "2014", value: 2014, key: "2014" },
-    { text: "2015", value: 2015, key: "2015" },
+    { text: "2018", value: 2018, key: "2018" },
+    { text: "2017", value: 2017, key: "2017" },  
     { text: "2016", value: 2016, key: "2016" },
-    { text: "2017", value: 2017, key: "2017" },
-    { text: "2018", value: 2018, key: "2018" }
+    { text: "2015", value: 2015, key: "2015" },    
+    { text: "2014", value: 2014, key: "2014" },  
+    { text: "2013", value: 2013, key: "2013" },
+    { text: "2012", value: 2012, key: "2012" },
+    { text: "2011", value: 2011, key: "2011" },
+    { text: "2010", value: 2010, key: "2010" },
+    { text: "2009", value: 2009, key: "2009" },
+    { text: "2008", value: 2008, key: "2008" },
+    { text: "2007", value: 2007, key: "2007" },
+    { text: "2006", value: 2006, key: "2006" },
+    { text: "2005", value: 2005, key: "2005" },
+    { text: "2004", value: 2004, key: "2004" },
+    { text: "2003", value: 2003, key: "2003" },
+
+
+
+
+
 ]
 
 function AppB() {
@@ -290,15 +306,16 @@ function AppB() {
 
 
     return (  
-<div>
-<div style={{display: 'flex',flexDirection: 'column', alignItems: 'center', textAlign: 'center'}}>
+<div> 
+<div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+<Icon name="bars" disabled={visible} onClick={toggleSidebar} />
       <Image src={ftflogo} width={150} height={80} />
                 Current Major League Performance of Recent Minor league Teams
 </div>
-            <div style={{fontSize:'1rem', backgroundColor: 'lightBlue'}} > 
+        
 
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
-            <Icon name="bars" disabled={visible} onClick={toggleSidebar} />
+           
             <div style={{alignContent: 'center', fontSize: '1.2em', fontWeight: 600}}>
 
              </div> 
@@ -307,7 +324,7 @@ function AppB() {
              </div>
             <Sidebar.Pushable as={Segment}>
           <Sidebar
-            animation='uncover'
+            animation='scale down'
             icon='labeled'
             inverted='true'
             onHide={() => setVisible(false)}
@@ -390,7 +407,7 @@ function AppB() {
 </div>
   </Sidebar.Pusher>
    </Sidebar.Pushable>
-   </div>
+   
    </div>
     );
 }

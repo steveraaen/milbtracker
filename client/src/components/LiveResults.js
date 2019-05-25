@@ -8,15 +8,15 @@ export default function LiveResults(props) {
 	if(props.bestBatTeams && props.bestPitchTeams && props.selectedClass && props.selectedDivision && props.selectedYear) {
 		var { bestBatTeams: bBatTeams, bestPitchTeams: bPitchTeams } = props
 		bBatTeams = bBatTeams.map( tm => {
-			tm.color = tm.lg === "A" ? 'LightRed' : 'lightBlue'
-			tm.tmStr = <div><Image size='mini' src={tm.imgURL}/><div style={{fontSize: '.8em'}}>{tm.yr}</div></div>
-			tm.tmStr2 = <div style={{color: tm.lg === "A" ? 'red' : 'blue'}}><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
+			tm.color = tm.lg === "A" ? 'crimson' : 'indigo'
+			tm.tmStr = <div><Image rounded size='mini' src={tm.imgURL}/><div style={{fontSize: '.8em'}}>{tm.yr}</div></div>
+			tm.tmStr2 = <div style={{color: tm.lg === "A" ? 'crimson' : 'indigo'}}><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
 			return tm
 		})
 		bPitchTeams = bPitchTeams.map( ptm => {
-			ptm.color = ptm.lg === "A" ? 'red' : 'blue'
+			ptm.color = ptm.lg === "A" ? 'crimson' : 'indigo'
 			ptm.ptmStr = <div><Image size='mini' src={ptm.imgURL}/><div style={{fontSize: '.8em'}}>{ptm.yr}</div></div>
-			ptm.ptmStr2 = <div style={{color: ptm.lg === "A" ? 'red' : 'blue'}}><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
+			ptm.ptmStr2 = <div style={{color: ptm.lg === "A" ? 'crimson' : 'indigo'}}><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
 			return ptm
 		})
 const onRowClick = (state, rowInfo, column, instance) => {
@@ -39,7 +39,7 @@ console.log(bBatTeams)
 		}, {
 			Header: 'Team',
 			accessor: 'tmStr2', 
-			minWidth: 124
+			minWidth: 14
 		},  /*{
 			Header: 'Players',
 			accessor: 'players',
@@ -47,28 +47,28 @@ console.log(bBatTeams)
 		},*/{
 			Header: 'TB',
 			accessor: 'TB',
-	    	width: 46,
-		}, {
+	    	width: 51,
+		},/* {
 			Header: 'AB',
 			accessor: 'AB',
 	    	width: 46,
-		}, {
+		},*/ {
 			Header: 'AVG',
 			accessor: 'AVG',
-	    	width: 60,
+	    	width: 65,
 		}, {
 			Header: 'H',
 			accessor: 'H',
-	    	width: 46,
+	    	width: 51,
 		}, {
 			Header: 'HR',
 			accessor: 'HR',
-	    	width: 46,
-		}, {
+	    	width: 51,
+		}/*, {
 			Header: 'BB',
 			accessor: 'BB',
 	    	width: 46,
-		}];
+		}*/];
 		var pitchColumns = [
 		{
 	    Header: '',
@@ -77,7 +77,7 @@ console.log(bBatTeams)
 		}, {
 			Header: 'Team',
 			accessor: 'ptmStr2', 
-			minWidth: 124
+			minWidth: 104
 		}, /*{
 			Header: 'Players',
 			accessor: 'players',
@@ -85,20 +85,20 @@ console.log(bBatTeams)
 		},*/{
 			Header: 'IP-ER',
 			accessor: 'IPER',
-	    width: 50,
+	    width: 55,
 		},  {
 			Header: 'W',
 			accessor: 'W',
-	    width: 50,
+	    width: 55,
 		}, {
 			Header: 'L',
 			accessor: 'L',
-	    width: 50,
+	    width: 55,
 		}, {
 			Header: 'SO',
 			accessor: 'SO',
-	    width: 50,
-		}, {
+	    width: 55,
+		}/*, {
 			Header: 'HR',
 			accessor: 'HR',
 	    width: 50,
@@ -106,11 +106,11 @@ console.log(bBatTeams)
 			Header: 'BB',
 			accessor: 'BB',
 	    width: 50,
-		}]
+		}*/]
 	    return (
 	    	<Grid stackable columns={2}>
 	    	 <Grid.Column>
-	    	<div style={{marginRight: '.5vw'}}>
+	    	<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Batting</div>
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
@@ -119,7 +119,7 @@ console.log(bBatTeams)
 	    		<ReactTable 
 	    		isSelected
 	    		showPagination={false}
-	    		style={{fontSize: '.8em', height: '46vh'}}
+	    		style={{fontSize: '.9em', fontWeight: 600, height: '46vh', backgroundColor: 'whitesmoke'}}
 	    			data={props.bestBatTeams}
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
@@ -129,7 +129,7 @@ console.log(bBatTeams)
 	    		</div>
 	    		 </Grid.Column>
 	    		  <Grid.Column>
-	    		<div style={{marginLeft: '.5vw'}}>
+	    		<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Pitching</div>
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
@@ -137,7 +137,7 @@ console.log(bBatTeams)
 	    	</div>
 	    		<ReactTable 
 	    		showPagination={false}
-	    		style={{fontSize: '.8em', height: '46vh'}}
+	    		style={{fontSize: '.9em',   fontWeight: 600, height: '46vh', backgroundColor: 'whitesmoke'}}
 	    			data={props.bestPitchTeams}
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}

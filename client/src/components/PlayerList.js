@@ -110,7 +110,7 @@ export default function PlayerList(props) {
 	    	<Grid stackable columns={2} stretched
 	    	>
 	    	 <Grid.Column>
-	    	<div style={{marginRight: '1vw'}}>
+	    	<div>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}> {props.pitcherList[0].yr}</div>
 	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.pitcherList[0].team}</div>
@@ -118,7 +118,7 @@ export default function PlayerList(props) {
 	    		<ReactTable 
 
 	    		showPagination={false}
-	    		style={{fontSize: '1em', height: '40vh'}}
+	    		style={{fontSize: '.9em', fontWeight: 600, height: '46vh'}}
 	    			data={props.playerList}
 	    			columns={batterColumns}
 	    			showPageSizeOptions={false} 
@@ -127,14 +127,14 @@ export default function PlayerList(props) {
 	    		</div>
 	    		 </Grid.Column>
 	    		 <Grid.Column>
-	    		<div style={{marginLeft: '1vw'}}>
+	    		<div>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    			<div style={{marginRight: '1vw'}}> {props.pitcherList[0].yr}</div>
 	    			<div>{props.pitcherList[0].team}</div>
 	    		</div>
 	    		<ReactTable 
 	    		showPagination={false}
-	    		style={{fontSize: '1em', height: '40vh'}}
+	    		style={{fontSize: '.9em', fontWeight: 600, height: '46vh'}}
 	    			data={props.pitcherList}
 	    			columns={pitcherColumns}
 	    			showPageSizeOptions={false}
