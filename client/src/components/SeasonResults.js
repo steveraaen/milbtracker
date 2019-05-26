@@ -4,7 +4,8 @@ import {Grid, Image} from 'semantic-ui-react'
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
 import deepsea from "../assets/deepsea.jpg"
-export default function LiveResults(props) {
+
+export default function SeasonResults(props) {
 	if(props.bestBatTeams && props.bestPitchTeams && props.selectedClass && props.selectedDivision && props.selectedYear) {
 		var { bestBatTeams: bBatTeams, bestPitchTeams: bPitchTeams } = props
 		bBatTeams = bBatTeams.map( tm => {
@@ -24,8 +25,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
-            console.log('It was in this row:', rowInfo.original)
-          
+            console.log('It was in this row:', rowInfo.original)          
         }
     }
 }

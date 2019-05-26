@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Grid, Header, Icon, Image, Segment, Sidebar, Visibility } from 'semantic-ui-react'
+import { Button, Container, Grid, Header, Icon, Image, Segment, Sidebar, Tab, Visibility } from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker, YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
-import LiveResults from './components/LiveResults.js'
+import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import ftflogo from './assets/ftflogo.png'
 import eveSun from './assets/eveSun.jpg'
-
 
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import newMinors from './newMinors.json'
 /*import leagues from './assets/leagues.js'*/
-console.log(newMinors)
+
+
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
     { text: "2018", value: 2018, key: "2018" },
@@ -26,18 +26,7 @@ const yrs = [
     { text: "2012", value: 2012, key: "2012" },
     { text: "2011", value: 2011, key: "2011" },
     { text: "2010", value: 2010, key: "2010" },
-    { text: "2009", value: 2009, key: "2009" },
-    { text: "2008", value: 2008, key: "2008" },
-    { text: "2007", value: 2007, key: "2007" },
-    { text: "2006", value: 2006, key: "2006" },
-    { text: "2005", value: 2005, key: "2005" },
-    { text: "2004", value: 2004, key: "2004" },
-    { text: "2003", value: 2003, key: "2003" },
-
-
-
-
-
+    { text: "2009", value: 2009, key: "2009" }
 ]
 
 function AppB() {
@@ -63,6 +52,7 @@ function AppB() {
     const [topTen, setTopTen] = useState();
     const [bestBat, setBestBat] = useState();
     const [bestPitch, setBestPitch] = useState();
+    const [timeframe, setTimeframe] = useState('/api/oneDay');
     /*    const [classStats, setClassStats] = useState();*/
     /* const [column, setColumn] = useState();*/
     /*   const [direction, setDirection] = useState();*/
@@ -72,10 +62,16 @@ function AppB() {
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
 
+    const seasonBatURL = '/api/teamBat'
+    const yestBatURL = '/api/oneDay'
+
+
+
+
+
     function toggleFormSidebar() {
         !formVisible ? setFormVisible({ formVisible: true }) : setFormVisible({ formVisible: false })
     }
-
     function showPlayersSidebar() {
         setPlayersVisible({ playersVisible: true }) 
     }
@@ -102,17 +98,15 @@ function AppB() {
         })
     }
 
-    async function getTopTen(cl, yr, dv) {
+    async function getTopTen(cl, yr, tf) {
         try {
-
+          console.log(timeframe)
             const bestPitchPromise = axios('/api/teamPitch', { params: { cl, yr } })
-            const bestBatPromise = axios('/api/teamBat', { params: { cl, yr } })
+            const bestBatPromise = axios(tf , { params: {tf, cl, yr } })
             const bestPitch = await bestPitchPromise;
             const bestBat = await bestBatPromise;
 
             bestBat.data.map(ba => ba.AVG = parseFloat((ba.AVG / 10).toFixed(3)))
-
-
 
             setBestBat({
                 bestBatTeams: bestBat.data
@@ -120,33 +114,10 @@ function AppB() {
             setBestPitch({
                 bestPitchTeams: bestPitch.data
             })
-            /*      setTopTen({
-                    topTenBatting: topTen.data[1],
-                    topTenPitching: topTen.data[0]
-                  })
-                   setTopTenHit({
-                    topTenHit: topTen.data[1]
-                  })
-                   setTopTenPitch({
-                    topTenPitch: topTen.data[0]
-                  })*/
-            /*                 setPlayerList({
-                                playerList: null
-                            })
-                             setPitcherList({
-                                pitcherList: null
-                            })
-                             setSelectedMiLBTeam({
-                                selectedMiLBTeam: null
-                            })
-                             setSynthStats({
-                                synthStats: null
-                            })*/
         } catch (e) {
             console.error(e);
         };
     }
-
     function makeDivs() {
         var uniqueDivisions = allMLB.filter((thing, index, self) =>
             index === self.findIndex((t) => (
@@ -155,70 +126,6 @@ function AppB() {
         )
         return setAllDivisions({ allDivisions: uniqueDivisions })
     }
-    /*    async function saveStats(tm, yr, dv, cl, ba, pi) {
-            await axios.get('/api/sendStats', { params: {tm, yr, dv, cl, ba, pi}})
-                .catch(err => {
-                    console.log(err);
-                    return null;
-                });
-        }*/
-    /*    async function getMinors() {
-            await axios.get('/api/allMinors')
-                .then(res => {
-                    console.log(res)
-                    setMinors({
-                        minors: res.data
-                    })
-                })
-                .catch(err => {
-                    console.log(err);
-                    return null;
-                });
-        }*/
-    /*    async function getBestMinors(p, d, m, y) {
-          console.log(p,d, m,y)
-            await axios.get('/api/bestMinors', { params: { p, d, m, y } })
-                .then(res => {
-                  console.log(res.data)
-                    var radialFormatted = res.data.map((tm, idx) => {
-                    var radObj = {}
-                    for(let i = 0; i < allMLB.length; i++) {
-                      if(tm.franchise === allMLB[i].teamCode) {
-                        radObj.fill = allMLB[i].color
-                        radObj.franchiseLogo = allMLB[i].picUrl
-                        radObj.division= allMLB[i].display
-                        radObj.franchise= allMLB[i].teamCode
-                        }
-                    }
-                      radObj.name = tm.team
-                      radObj.value= tm.playerCount
-                      radObj.logo= tm.logo
-                      
-                      return radObj
-                    })
-                     setRadialData({
-                       radialData: radialFormatted.sort((a, b) => (a.value < b.value) ? 1 : -1)
-                     })
-                  
-                    setBestMinors({
-                        bestMinors: res.data
-                    })
-                     setPlayerList({
-                        playerList: null
-                    })
-                     setPitcherList({
-                        pitcherList: null
-                    })
-                     setSelectedMiLBTeam({
-                        selectedMiLBTeam: null
-                    })
-                })
-                .catch(err => {
-                    console.log(err);
-                    return null;
-                });
-        }*/
-
 
     async function getPlayerList(f, c, y) {
         console.log(f, c, y)
@@ -297,28 +204,38 @@ function AppB() {
             console.error(e);
         };
     }
+const handleClick = (e, { value }) => {
+console.log(value)
+  getTopTen( selectedClass.code, selectedYear.value, value)
+  setTimeframe(value)
+}
+
 
     useEffect(() => {
-        getTopTen(selectedClass.code, selectedYear.value, selectedDivision.value)
+
+        getTopTen(selectedClass.code, selectedYear.value, timeframe)
     }, {});
 
-    useEffect(() => {
-        makeDivs()
-    }, {});
     /*    useEffect(() => {
             getBestMinors(selectedClass.code, selectedDivision.value, selectedClass.regex, selectedYear)
         }, {});*/
 
-
     return (
-        <div> 
+<div> 
+  <div>
+    <Button
+      value="/api/teamBat"
+      onClick={handleClick}
+    >Season</Button>
+    <Button
+    value="/api/oneDay"
+     onClick={handleClick}
+    >Yesterday</Button>
+  </div>
 <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
 <Icon name="bars" disabled={formVisible} onClick={toggleFormSidebar} />
-      <Image rounded src={ftflogo} width={150} height={80} />
-                Current Major League Performance of Recent Minor league Teams
 </div>
-        
-
+    
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
            
             <div style={{alignContent: 'center', fontSize: '1.2em', fontWeight: 600}}>
@@ -329,7 +246,7 @@ function AppB() {
              </div>
             <Sidebar.Pushable as={Segment}>
           <Sidebar
-            animation='push'
+
             icon='labeled'
             inverted='true'
             onHide={() => setFormVisible(false)}
@@ -338,7 +255,7 @@ function AppB() {
           >       
            <Segment>
             <ClassPicker
-        
+              timeframe={timeframe}
               years={years}
               classes={classes} 
               getTopTen={getTopTen}
@@ -360,7 +277,7 @@ function AppB() {
               topTen={topTen}
               years={years} 
               classes={classes} 
-         
+               timeframe={timeframe}
               getTopTen={getTopTen}
               getPlayerList={getPlayerList}  
               selectedClass={selectedClass} 
@@ -371,16 +288,11 @@ function AppB() {
               selectedMiLBTeam={selectedMiLBTeam}
               setSelectedMiLBTeam={setSelectedMiLBTeam}
               />  
-                
               </Segment>        
-        
-           </Sidebar>
-       
+           </Sidebar>      
         <Sidebar.Pusher>  
-
-<div>
-<div>
-    <LiveResults 
+  <div>
+    <SeasonResults 
       {...bestBat}
       {...bestPitch}
       {...playerList}
@@ -392,24 +304,24 @@ function AppB() {
       selectedMiLBTeam={selectedMiLBTeam} 
       selectedYear={selectedYear}    
       selectedDivision={selectedDivision}
-      selectedClass={selectedClass}      
+      selectedClass={selectedClass} 
+      timeframe={timeframe}     
     />
 </div>
 <div>
 
 
-{/*<div>Data derived from <a href="https://www.baseball-reference.com/">Baseball Reference</a></div>
-<div>Logos provided by <a href="http://www.sportslogos.net/">Chris Creamer's Sportslogos.net</a></div>*/}
-</div>
+
 </div>
   </Sidebar.Pusher>
    </Sidebar.Pushable>
              <Sidebar
              width='very wide'
+                direction='right'
             animation='scale down'
-            direction='right'
+         
             onHide={() => setPlayersVisible(false)}
-            vertical='true'
+         
             visible={playersVisible}           
           > 
           <PlayerList 

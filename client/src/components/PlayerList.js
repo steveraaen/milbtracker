@@ -109,7 +109,7 @@ export default function PlayerList(props) {
 	    return (
 	    	<Grid columns={1} 
 	    	stretched
-	    	style={{marginTop: '16vh' ,backgroundColor: 'rgba(255,255,255,50)'}}
+	    	style={{paddingTop: '7vh' ,backgroundColor: 'rgba(255,255,255,50)'}}
 	    	>
 	    	 <Grid.Column>
 	    	<div>

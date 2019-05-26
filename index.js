@@ -51,7 +51,7 @@ order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, r
    })
 })
 app.get('/api/newBatList', function(req, res) {
-  console.log('newBatList.  ' + JSON.stringify(req.query))
+/*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
   connection.query(`select 
 superPlayerHist.franchise,
 superPlayerHist.franchiseName,
@@ -84,7 +84,7 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], functi
    })
 })
 app.get('/api/teamPitch', function(req, res) {
-console.log(req.query)
+/*console.log(req.query)*/
   connection.query(`select 
 superPlayerHist.franchise,
 superPlayerHist.franchiseName,
@@ -115,8 +115,9 @@ order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl
     if (error) throw error;
    });
 })
+
 app.get('/api/teamBat', function(req, res) {
-console.log(req.query)
+/*console.log(req.query)*/
   connection.query(`select 
 superPlayerHist.franchise,
 superPlayerHist.franchiseName,
@@ -178,7 +179,7 @@ SUM(latestPitching.BF - secondLatestPitching.BF) as BF
 FROM latestPitching, secondLatestPitching
 WHERE latestPitching.playerID = secondLatestPitching.playerID
 group by latestPitching.playerID
-ORDER BY SUM((latestPitching.IP - secondLatestPitching.IP) - (latestPitching.H - secondLatestPitching.H))  DESC`, function (error, results, fields) {
+ORDER BY SUM((latestPitching.IP - secondLatestPitching.IP) - (latestPitching.H - secondLatestPitching.H)) DESC limit 40`, function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    })
@@ -210,11 +211,46 @@ SUM(latestBatting.POS - secondLatestBatting.POS) as POS
 FROM latestBatting, secondLatestBatting
 WHERE latestBatting.playerID = secondLatestBatting.playerID
 group by latestBatting.playerID
-ORDER BY SUM((latestBatting.TB - secondLatestBatting.TB) + (latestBatting.RBI - secondLatestBatting.RBI))  DESC
+ORDER BY SUM((latestBatting.TB - secondLatestBatting.TB) + (latestBatting.RBI - secondLatestBatting.RBI)) DESC LIMIT 40
 `, function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    })
+})
+app.get('/api/oneDay', function(req, res) {
+console.log(req.query)
+  connection.query(`select 
+superPlayerHist.franchise,
+superPlayerHist.franchiseName,
+superPlayerHist.class,
+superPlayerHist.an AS lg,
+superPlayerHist.yr,  
+superPlayerHist.imgURL,  
+superPlayerHist.franchLogo,  
+superPlayerHist.team,  
+count(oneDayBatting.playerName) as players,
+SUM(oneDayBatting.AB) AS AB, 
+SUM(oneDayBatting.H) AS H, 
+SUM(oneDayBatting.HR) AS HR,
+SUM(oneDayBatting.RBI) AS RBI,
+SUM(oneDayBatting.R) AS R,
+SUM(oneDayBatting.BB) AS BB,
+SUM(oneDayBatting.B2) AS B2,
+SUM(oneDayBatting.B3) AS B3,
+SUM(oneDayBatting.TB) AS TB,
+SUM(oneDayBatting.SB) AS B3,
+SUM(oneDayBatting.H / oneDayBatting.AB) as AVG
+from superPlayerHist, oneDayBatting 
+where superPlayerHist.playerID= oneDayBatting.playerID 
+and oneDayBatting.AB > 1
+and superPlayerHist.class like ?
+and superPlayerHist.yr like ?
+group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
+order by SUM(oneDayBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
+ /*   console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   });
 })
 const port = process.env.PORT || 5001;
 app.listen(port);
