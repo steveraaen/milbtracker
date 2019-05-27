@@ -5,8 +5,6 @@ import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker, YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
-import ftflogo from './assets/ftflogo.png'
-import eveSun from './assets/eveSun.jpg'
 
 import './App.css'
 import classes from './classes.js'
@@ -51,8 +49,11 @@ function AppB() {
     const [topTenPitch, setTopTenPitch] = useState();
     const [topTen, setTopTen] = useState();
     const [bestBat, setBestBat] = useState();
+    const [yestBat, setYestBat] = useState();
     const [bestPitch, setBestPitch] = useState();
-    const [timeframe, setTimeframe] = useState('/api/oneDay');
+    const [yestPitch, setYestPitch] = useState();
+    const [timeframe, setTimeframe] = useState('season');
+    const [tfObj, settfObj] = useState({});
     /*    const [classStats, setClassStats] = useState();*/
     /* const [column, setColumn] = useState();*/
     /*   const [direction, setDirection] = useState();*/
@@ -61,12 +62,6 @@ function AppB() {
     const [modalOpen, setModalOpen] = useState();
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
-
-    const seasonBatURL = '/api/teamBat'
-    const yestBatURL = '/api/oneDay'
-
-
-
 
 
     function toggleFormSidebar() {
@@ -97,24 +92,62 @@ function AppB() {
             topTenPitch: newArr
         })
     }
-
-    async function getTopTen(cl, yr, tf) {
+/*    function handleTimeFrame() {
+        if(timeframe === 'season') {
+              settfObj({
+                tfObj: {
+               bestBatTeams: bestBat,
+                bestPitchTeams: bestPitch
+              }
+              })
+              } else {
+             settfObj({
+               tfObj: {
+                bestBatTeams: yestBat,
+                bestPitchTeams: yestPitch
+              }
+              }) 
+            }
+    }*/
+    async function getTopTen(cl, yr) {
         try {
           console.log(timeframe)
-            const bestPitchPromise = axios('/api/teamPitch', { params: { cl, yr } })
-            const bestBatPromise = axios(tf , { params: {tf, cl, yr } })
-            const bestPitch = await bestPitchPromise;
-            const bestBat = await bestBatPromise;
+            const tmPitSeasPromise = axios('/api/teamPitchSeason', { params: { cl, yr } })
+            const tmPitYestPromise = axios('/api/teamPitchYest' , { params: { cl, yr } })
+            const tmBatSeasPromise = axios('/api/teamBatSeason' , { params: { cl, yr } })
+            const tmBatYestPromise = axios('/api/teamBatYest' , { params: { cl, yr } })
+            
+            const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);
 
-            bestBat.data.map(ba => ba.AVG = parseFloat((ba.AVG / 10).toFixed(3)))
-
-            setBestBat({
-                bestBatTeams: bestBat.data
+            console.log(timeframe)
+        if(timeframe === 'season') {
+              settfObj({
+                tfObj: {
+               bestBatTeams: tmBatS.data,
+                bestPitchTeams: tmPitS.data
+              }
+              })
+              } else {
+             settfObj({
+               tfObj: {
+                bestBatTeams: tmBatY.data,
+                bestPitchTeams: tmPitY.data
+              }
+              }) 
+            }      
+             setBestBat({
+                bestBatTeams: tmBatS.data
             })
             setBestPitch({
-                bestPitchTeams: bestPitch.data
+                bestPitchTeams: tmPitS.data
+            })            
+             setYestBat({
+                yestBatTeams: tmBatY.data
             })
-        } catch (e) {
+            setYestPitch({
+                yestPitchTeams: tmPitY.data
+            })      }        
+         catch (e) {
             console.error(e);
         };
     }
@@ -132,50 +165,9 @@ function AppB() {
         try {
             /*        const batterPromise = axios('/api/batterList', { params: { r, f, y, t } })
                     const pitcherPromise = axios('/api/newPitchers', { params: { r, f, y, t } })*/
-            const newBatterPromise = axios('/api/newBatList', { params: { f, c, y } })
-            const newPitcherPromise = axios('/api/newPitchList', { params: { f, c, y } })
-            const [newBatters, newPitchers] = await Promise.all([newBatterPromise, newPitcherPromise]);
-
-            console.log(newBatters)
-            var batStats = {}
-            batStats.bat = newBatters.data.reduce((a, b) => ({
-                AB: a.AB + b.AB,
-                H: a.H + b.H,
-                AVG: ((a.H + b.H) / (a.AB + b.AB)).toFixed(3),
-                SB: a.SB = b.SB,
-                SO: a.SO + b.SO,
-                HR: a.HR + b.HR,
-                HBP: a.HBP + b.HBP,
-                BB: a.BB + b.BB,
-                G: a.G + b.G,
-                RBI: a.RBI + b.RBI,
-                YR: a.YR
-
-            }))
-            var pitStats = {}
-            pitStats.pit = newPitchers.data.reduce((a, b) => ({
-                ERA: (9 * (a.ER + b.ER) / (a.IP + b.IP)).toFixed(2),
-                IP: a.IP + b.IP,
-                SO: a.SO + b.SO,
-                BB: a.BB + b.BB,
-                ER: a.ER + b.ER,
-                H: a.H + b.H,
-                SV: a.SV + b.SV,
-                W: a.W + b.W,
-                L: a.L + b.L,
-                G: a.G + b.G,
-                GS: a.GS + b.GS,
-                HBP: a.HBP + b.HBP,
-                IBB: a.IBB + b.IBB,
-                YR: a.YR
-            }))
-            setSynthStats({
-                synthStats: {
-                    batting: batStats,
-                    pitching: pitStats,
-                    allPlayers: { ...batStats, ...pitStats }
-                }
-            })
+            const newBatterPromise = axios('/api/playerBatSeason', { params: { f, c, y } })
+            const newPitcherPromise = axios('/api/playerPitchSeason', { params: { f, c, y } })
+            const [newBatters, newPitchers] = await Promise.all([newBatterPromise ,newPitcherPromise]);
 
             newBatters.data.map((plyr, idx) => {
                 for (let i = 0; i < allMLB.length; i++) {
@@ -199,20 +191,33 @@ function AppB() {
             setPitcherList({
                 pitcherList: newPitchers.data
             })
+
             showPlayersSidebar()
         } catch (e) {
             console.error(e);
         };
     }
 const handleClick = (e, { value }) => {
-console.log(value)
-  getTopTen( selectedClass.code, selectedYear.value, value)
   setTimeframe(value)
+        if(value === 'season') {
+              settfObj({
+                tfObj: {
+               bestBatTeams: bestBat,
+                bestPitchTeams: bestPitch
+              }
+              })
+              } else {
+             settfObj({
+               tfObj: {
+                bestBatTeams: yestBat,
+                bestPitchTeams: yestPitch
+              }
+              }) 
+            }
+
 }
 
-
     useEffect(() => {
-
         getTopTen(selectedClass.code, selectedYear.value, timeframe)
     }, {});
 
@@ -224,11 +229,11 @@ console.log(value)
 <div> 
   <div>
     <Button
-      value="/api/teamBat"
+      value="season"
       onClick={handleClick}
     >Season</Button>
     <Button
-    value="/api/oneDay"
+    value="yesterday"
      onClick={handleClick}
     >Yesterday</Button>
   </div>
@@ -293,8 +298,11 @@ console.log(value)
         <Sidebar.Pusher>  
   <div>
     <SeasonResults 
+    {...tfObj}
       {...bestBat}
       {...bestPitch}
+      {...yestBat}
+      {...yestPitch}
       {...playerList}
       {...pitcherList}
       getPlayerList={getPlayerList}
@@ -305,7 +313,7 @@ console.log(value)
       selectedYear={selectedYear}    
       selectedDivision={selectedDivision}
       selectedClass={selectedClass} 
-      timeframe={timeframe}     
+      timeframe={timeframe}    
     />
 </div>
 <div>
@@ -326,6 +334,7 @@ console.log(value)
           > 
           <PlayerList 
       {...playerList}
+      {...yestBat}
       {...pitcherList}
       selectedClass={selectedClass} 
       selectedYear={selectedYear} 

@@ -54,9 +54,37 @@ var connection = mysql.createConnection({
         return results;
     })
     for (let i = 0; i < eachPlayer.length; i++) {
-        connection.query(`INSERT INTO latestPitching(playerName,playerID,Age,Tm,Lg,W,L,G,GS,GF,CG,SHO,SV,IP,H,R,HR,BB,IBB,SO,HBP,BK,WP,BF)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [eachPlayer[i].playerName, eachPlayer[i].playerID, eachPlayer[i].age, eachPlayer[i].tm, eachPlayer[i].lg, eachPlayer[i].W, eachPlayer[i].L, eachPlayer[i].G, eachPlayer[i].GS, eachPlayer[i].GF, eachPlayer[i].CG, eachPlayer[i].SHO, eachPlayer[i].SV, eachPlayer[i].IP, eachPlayer[i].H, eachPlayer[i].R, eachPlayer[i].HR, eachPlayer[i].BB, eachPlayer[i].IBB, eachPlayer[i].SO, eachPlayer[i].HBP, eachPlayer[i].BK, eachPlayer[i].WP, eachPlayer[i].BF], function(error) {
-            if (error) throw error;
-            console.log(chalk.red(`record added to db`))
+        connection.query(`INSERT INTO latestPitching(playerName,playerID,Age,Tm,Lg,W,L,G,GS,GF,CG,SHO,SV,IP,H,R,HR,BB,IBB,SO,HBP,BK,WP,BF)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+            DROP VIEW oneDayPitching;
+            CREATE VIEW oneDayPitching AS
+            SELECT
+            latestPitching.playerID,
+            latestPitching.playerName,
+            latestPitching.tm as TM,
+            latestPitching.lg as LG,
+            SUM(latestPitching.W - secondLatestPitching.W) as W,
+            SUM(latestPitching.L - secondLatestPitching.L) as L,
+            SUM((latestPitching.IP - secondLatestPitching.IP) - (latestPitching.R - secondLatestPitching.R))  as IP_R,
+            SUM(latestPitching.G - secondLatestPitching.G) as G,
+            SUM(latestPitching.GS - secondLatestPitching.GS) as GS,
+            SUM(latestPitching.GF - secondLatestPitching.GF) as GF,
+            SUM(latestPitching.CG - secondLatestPitching.CG) as CG,
+            SUM(latestPitching.SHO - secondLatestPitching.SHO) as SHO,
+            SUM(latestPitching.SV - secondLatestPitching.SV) as SV,
+            SUM(latestPitching.IP - secondLatestPitching.IP) as IP,
+            SUM(latestPitching.H - secondLatestPitching.H) as H,
+            SUM(latestPitching.R - secondLatestPitching.R) as R,
+            SUM(latestPitching.HR - secondLatestPitching.HR) as HR,
+            SUM(latestPitching.BB - secondLatestPitching.BB) as BB,
+            SUM(latestPitching.SO - secondLatestPitching.SO) as SO,
+            SUM(latestPitching.HBP - secondLatestPitching.HBP) as HBP,
+            SUM(latestPitching.BK - secondLatestPitching.BK) as BK,
+            SUM(latestPitching.WP - secondLatestPitching.WP) as WP
+            FROM latestPitching, secondLatestPitching
+            WHERE latestPitching.playerID = secondLatestPitching.playerID
+            group by latestPitching.playerID`, [eachPlayer[i].playerName, eachPlayer[i].playerID, eachPlayer[i].age, eachPlayer[i].tm, eachPlayer[i].lg, eachPlayer[i].W, eachPlayer[i].L, eachPlayer[i].G, eachPlayer[i].GS, eachPlayer[i].GF, eachPlayer[i].CG, eachPlayer[i].SHO, eachPlayer[i].SV, eachPlayer[i].IP, eachPlayer[i].H, eachPlayer[i].R, eachPlayer[i].HR, eachPlayer[i].BB, eachPlayer[i].IBB, eachPlayer[i].SO, eachPlayer[i].HBP, eachPlayer[i].BK, eachPlayer[i].WP, eachPlayer[i].BF], function(error) {
+                        if (error) throw error;
+            console.log(chalk.red(`eachPlayer[i].playerName added`))
             console.log(Date.now())
         });
     }
@@ -104,15 +132,42 @@ var connection = mysql.createConnection({
         return results;
     })
     for (let i = 0; i < eachPlayer.length; i++) {
-        connection.query(`INSERT INTO latestBatting(playerName,playerID,age,tm,lg,G,PA,AB,R,H,B2,B3,HR,RBI,SB,CS,BB,SO,TB,GDP,HBP,SH,SF,IBB,POS)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [eachPlayer[i].playerName, eachPlayer[i].playerID, eachPlayer[i].age, eachPlayer[i].tm, eachPlayer[i].lg, eachPlayer[i].G, eachPlayer[i].PA, eachPlayer[i].AB, eachPlayer[i].R, eachPlayer[i].H, eachPlayer[i].B2, eachPlayer[i].B3, eachPlayer[i].HR, eachPlayer[i].RBI, eachPlayer[i].SB, eachPlayer[i].CS, eachPlayer[i].BB, eachPlayer[i].SO, eachPlayer[i].TB, eachPlayer[i].GDP, eachPlayer[i].HBP, eachPlayer[i].SH, eachPlayer[i].SF, eachPlayer[i].IBB, eachPlayer[i].POS], function(error) {
-            if (error) throw error;
-            console.log(chalk.white(`${eachPlayer[i]}record added to db`))
+        connection.query(`INSERT INTO latestBatting(playerName,playerID,age,tm,lg,G,PA,AB,R,H,B2,B3,HR,RBI,SB,CS,BB,SO,TB,GDP,HBP,SH,SF,IBB,POS)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+            DROP VIEW oneDayBatting;
+            CREATE VIEW oneDayBatting AS
+            SELECT
+            latestBatting.playerID,
+            latestBatting.playerName,
+            SUM(latestBatting.G - secondLatestBatting.G) as G,
+            SUM(latestBatting.PA - secondLatestBatting.PA) as PA,
+            SUM((latestBatting.TB - secondLatestBatting.TB) + (latestBatting.RBI - secondLatestBatting.RBI))  as TBRBI,
+            SUM(latestBatting.AB - secondLatestBatting.AB) as AB,
+            SUM(latestBatting.R - secondLatestBatting.R) as R,
+            SUM(latestBatting.H - secondLatestBatting.H) as H,
+            SUM(latestBatting.B2 - secondLatestBatting.B2) as B2,
+            SUM(latestBatting.B3 - secondLatestBatting.B3) as B3,
+            SUM(latestBatting.HR - secondLatestBatting.HR) as HR,
+            SUM(latestBatting.RBI - secondLatestBatting.RBI) as RBI,
+            SUM(latestBatting.SB - secondLatestBatting.SB) as SB,
+            SUM(latestBatting.CS - secondLatestBatting.CS) as CS,
+            SUM(latestBatting.BB - secondLatestBatting.BB) as BB,
+            SUM(latestBatting.SO - secondLatestBatting.SO) as SO,
+            SUM(latestBatting.TB - secondLatestBatting.TB) as TB,
+            SUM(latestBatting.GDP - secondLatestBatting.GDP) as GDP,
+            SUM(latestBatting.SH - secondLatestBatting.SH) as SH,
+            SUM(latestBatting.SF - secondLatestBatting.SF) as SF,
+            SUM(latestBatting.IBB - secondLatestBatting.IBB) as IBB,
+            SUM(latestBatting.POS - secondLatestBatting.POS) as POS
+            FROM latestBatting, secondLatestBatting
+            WHERE latestBatting.playerID = secondLatestBatting.playerID
+            group by latestBatting.playerID`, [eachPlayer[i].playerName, eachPlayer[i].playerID, eachPlayer[i].age, eachPlayer[i].tm, eachPlayer[i].lg, eachPlayer[i].G, eachPlayer[i].PA, eachPlayer[i].AB, eachPlayer[i].R, eachPlayer[i].H, eachPlayer[i].B2, eachPlayer[i].B3, eachPlayer[i].HR, eachPlayer[i].RBI, eachPlayer[i].SB, eachPlayer[i].CS, eachPlayer[i].BB, eachPlayer[i].SO, eachPlayer[i].TB, eachPlayer[i].GDP, eachPlayer[i].HBP, eachPlayer[i].SH, eachPlayer[i].SF, eachPlayer[i].IBB, eachPlayer[i].POS], function(error) {
+                        if (error) throw error;
+            console.log(chalk.white(`${eachPlayer[i].playerName} added to latestBatting`))
            
-           console.log(Date.now())
         });
     }
     await browser.close()
-})()
+})();
 
 /*}, 900000)*/
 

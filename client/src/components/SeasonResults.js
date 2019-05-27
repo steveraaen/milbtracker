@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Grid, Image} from 'semantic-ui-react'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
-import deepsea from "../assets/deepsea.jpg"
 
 export default function SeasonResults(props) {
-	if(props.bestBatTeams && props.bestPitchTeams && props.selectedClass && props.selectedDivision && props.selectedYear) {
-		var { bestBatTeams: bBatTeams, bestPitchTeams: bPitchTeams } = props
-		bBatTeams = bBatTeams.map( tm => {
+	if(props.tfObj && props.timeframe && props.bestBatTeams && props.bestPitchTeams && props.yestBatTeams && props.yestPitchTeams && props.selectedClass  && props.selectedYear) {
+
+var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.yestBatTeams
+var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
+
+		currentBatData.map( tm => {
 			tm.color = tm.lg === "A" ? 'crimson' : 'indigo'
 			tm.tmStr = <div><Image rounded size='mini' src={tm.imgURL}/><div style={{fontSize: '.8em'}}>{tm.yr}</div></div>
 			tm.tmStr2 = <div style={{color: tm.lg === "A" ? 'crimson' : 'indigo'}}><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
 			return tm
 		})
-		bPitchTeams = bPitchTeams.map( ptm => {
+		currentPitchData.map( ptm => {
 			ptm.color = ptm.lg === "A" ? 'crimson' : 'indigo'
 			ptm.ptmStr = <div><Image size='mini' src={ptm.imgURL}/><div style={{fontSize: '.8em'}}>{ptm.yr}</div></div>
 			ptm.ptmStr2 = <div style={{color: ptm.lg === "A" ? 'crimson' : 'indigo'}}><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
@@ -25,11 +27,11 @@ const onRowClick = (state, rowInfo, column, instance) => {
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
-            console.log('It was in this row:', rowInfo.original)          
+            console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)          
         }
     }
 }
-console.log(bBatTeams)
+
 
 		var batColumns = [
 		{
@@ -120,7 +122,8 @@ console.log(bBatTeams)
 	    		isSelected
 	    		showPagination={false}
 	    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
-	    			data={props.bestBatTeams}
+	    			data={currentBatData}
+	    			resolveData={data => data.map(row => row)}
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
 	    			
@@ -138,7 +141,8 @@ console.log(bBatTeams)
 	    		<ReactTable 
 	    		showPagination={false}
 	    		style={{fontSize: '.9em',   fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
-	    			data={props.bestPitchTeams}
+	    			data={currentPitchData}
+	    			resolveData={data => data.map(row => row)}
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}
 	    				    			

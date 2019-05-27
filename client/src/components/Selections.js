@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Container,  Form, Grid, Icon, Image, List, Loader, Modal, Placeholder, Statistic, Segment,  Table } from 'semantic-ui-react'
-import ReactTable from 'react-table'
+import { Card, Container,  Form, Grid, Image, Loader, Segment,  Table } from 'semantic-ui-react'
 import '../App.css'
 
 function Teams(props) {

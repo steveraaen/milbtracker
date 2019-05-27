@@ -17,8 +17,8 @@ var connection  = mysql.createConnection({
     database: process.env.DB_NAME,
      multipleStatements: true
 });
-
-app.get('/api/newPitchList', function(req, res) {
+// Retrieve pitch data for getPlayerList
+app.get('/api/playerPitchSeason', function(req, res) {
   connection.query(`select 
 superPlayerHist.franchise,
 superPlayerHist.franchiseName,
@@ -50,7 +50,42 @@ order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, r
     if (error) throw error;
    })
 })
-app.get('/api/newBatList', function(req, res) {
+app.get('/api/playerPitchYest', function(req, res) {
+/*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
+  connection.query(`select 
+superPlayerHist.franchise,
+superPlayerHist.franchiseName,
+superPlayerHist.class,
+superPlayerHist.yr,  
+superPlayerHist.imgURL,  
+superPlayerHist.franchLogo,  
+superPlayerHist.team,  
+oneDayPitching.lg,
+oneDayPitching.playerName as playerName,
+oneDayPitching.playerID,
+oneDayPitching.tm as curTeam,
+oneDayPitching.IP - oneDayPitching.R AS IPER, 
+oneDayPitching.W AS W, 
+oneDayPitching.L AS L,
+oneDayPitching.SV AS SV,
+oneDayPitching.SO AS SO,
+oneDayPitching.H AS H,
+oneDayPitching.HR AS HR,
+oneDayPitching.BB AS BB,
+9 * (oneDayPitching.R / oneDayPitching.IP) as ERA
+from superPlayerHist, oneDayPitching 
+where superPlayerHist.playerID= oneDayPitching.playerID
+and superPlayerHist.class like ?
+and superPlayerHist.franchise = ?
+and superPlayerHist.yr like ?
+order by oneDayPitching.IP - oneDayPitching.R desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
+      /*  console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+app.get('/api/playerBatSeason', function(req, res) {
 /*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
   connection.query(`select 
 superPlayerHist.franchise,
@@ -83,7 +118,39 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], functi
     if (error) throw error;
    })
 })
-app.get('/api/teamPitch', function(req, res) {
+app.get('/api/playerBatYest', function(req, res) {
+/*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
+  connection.query(`select 
+superPlayerHist.franchise,
+superPlayerHist.franchiseName,
+superPlayerHist.team,
+superPlayerHist.yr,
+superPlayerHist.class,
+oneDayBatting.playerName,
+oneDayBatting.playerID,
+oneDayBatting.AB, 
+oneDayBatting.H, 
+oneDayBatting.HR,
+oneDayBatting.RBI,
+oneDayBatting.R,
+oneDayBatting.BB,
+oneDayBatting.B2,
+oneDayBatting.B3,
+oneDayBatting.TB,
+oneDayBatting.SB,
+oneDayBatting.H / oneDayBatting.AB as AVG
+from superPlayerHist, oneDayBatting 
+where superPlayerHist.playerID= oneDayBatting.playerID 
+and superPlayerHist.franchise = ?
+and superPlayerHist.class = ?
+and superPlayerHist.yr like ?
+order by oneDayBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
+      /*  console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
+})
+app.get('/api/teamPitchSeason', function(req, res) {
 /*console.log(req.query)*/
   connection.query(`select 
 superPlayerHist.franchise,
@@ -116,7 +183,38 @@ order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl
    });
 })
 
-app.get('/api/teamBat', function(req, res) {
+app.get('/api/teamPitchYest', function(req, res) {
+  connection.query(`select 
+superPlayerHist.franchise,
+superPlayerHist.franchiseName,
+superPlayerHist.class,
+superPlayerHist.an AS lg,
+superPlayerHist.yr,  
+superPlayerHist.imgURL,  
+superPlayerHist.franchLogo,  
+superPlayerHist.team,  
+count(oneDayPitching.playerName) as players,
+SUM(oneDayPitching.IP - oneDayPitching.R) AS IPER, 
+SUM(oneDayPitching.W) AS W, 
+SUM(oneDayPitching.L) AS L,
+SUM(oneDayPitching.SV) AS SV,
+SUM(oneDayPitching.SO) AS SO,
+SUM(oneDayPitching.H) AS H,
+SUM(oneDayPitching.HR) AS HR,
+SUM(oneDayPitching.BB) AS BB,
+SUM(9 * (oneDayPitching.R / oneDayPitching.IP)) as ERA
+from superPlayerHist, oneDayPitching 
+where superPlayerHist.playerID= oneDayPitching.playerID 
+and superPlayerHist.class like ?
+and superPlayerHist.yr like ?
+group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
+order by SUM(oneDayPitching.IP - oneDayPitching.R) desc limit 40`,[req.query.cl, req.query.yr], function (error, results, fields) {
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+app.get('/api/teamBatSeason', function(req, res) {
 /*console.log(req.query)*/
   connection.query(`select 
 superPlayerHist.franchise,
@@ -145,79 +243,12 @@ and superPlayerHist.class like ?
 and superPlayerHist.yr like ?
 group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
 order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
- /*   console.log(results)*/
+
       res.json(results)
     if (error) throw error;
    });
-
 })
-app.get('/api/yesterdayPitching', function(req, res) {
-  connection.query(`SELECT
-latestPitching.playerID,
-latestPitching.playerName,
-latestPitching.tm,
-latestPitching.lg,
-SUM(latestPitching.W - secondLatestPitching.W) as W,
-SUM(latestPitching.L - secondLatestPitching.L) as L,
-SUM(latestPitching.G - secondLatestPitching.G) as G,
-SUM(latestPitching.GS - secondLatestPitching.GS) as GS,
-SUM(latestPitching.GF - secondLatestPitching.GF) as GF,
-SUM(latestPitching.CG - secondLatestPitching.CG) as CG,
-SUM(latestPitching.SHO - secondLatestPitching.SHO) as SHO,
-SUM(latestPitching.SV - secondLatestPitching.SV) as SV,
-SUM(latestPitching.IP - secondLatestPitching.IP) as IP,
-SUM(latestPitching.H - secondLatestPitching.H) as H,
-SUM(latestPitching.R - secondLatestPitching.R) as R,
-SUM(latestPitching.HR - secondLatestPitching.HR) as HR,
-SUM(latestPitching.BB - secondLatestPitching.BB) as BB,
-SUM(latestPitching.IBB - secondLatestPitching.IBB) as IBB,
-SUM(latestPitching.SO - secondLatestPitching.SO) as SO,
-SUM(latestPitching.HBP - secondLatestPitching.HBP) as HBP,
-SUM(latestPitching.BK - secondLatestPitching.BK) as BK,
-SUM(latestPitching.WP - secondLatestPitching.WP) as WP,
-SUM(latestPitching.BF - secondLatestPitching.BF) as BF
-FROM latestPitching, secondLatestPitching
-WHERE latestPitching.playerID = secondLatestPitching.playerID
-group by latestPitching.playerID
-ORDER BY SUM((latestPitching.IP - secondLatestPitching.IP) - (latestPitching.H - secondLatestPitching.H)) DESC limit 40`, function (error, results, fields) {
-      res.json(results)
-    if (error) throw error;
-   })
-})
-app.get('/api/yesterdayBatting', function(req, res) {
-  connection.query(`SELECT
-latestBatting.playerID,
-latestBatting.playerName,
-SUM(latestBatting.G - secondLatestBatting.G) as G,
-SUM(latestBatting.PA - secondLatestBatting.PA) as PA,
-SUM((latestBatting.TB - secondLatestBatting.TB) + (latestBatting.RBI - secondLatestBatting.RBI))  as TBRBI,
-SUM(latestBatting.AB - secondLatestBatting.AB) as AB,
-SUM(latestBatting.R - secondLatestBatting.R) as R,
-SUM(latestBatting.H - secondLatestBatting.H) as H,
-SUM(latestBatting.B2 - secondLatestBatting.B2) as B2,
-SUM(latestBatting.B3 - secondLatestBatting.B3) as B3,
-SUM(latestBatting.HR - secondLatestBatting.HR) as HR,
-SUM(latestBatting.RBI - secondLatestBatting.RBI) as RBI,
-SUM(latestBatting.SB - secondLatestBatting.SB) as SB,
-SUM(latestBatting.CS - secondLatestBatting.CS) as CS,
-SUM(latestBatting.BB - secondLatestBatting.BB) as BB,
-SUM(latestBatting.SO - secondLatestBatting.SO) as SO,
-SUM(latestBatting.TB - secondLatestBatting.TB) as TB,
-SUM(latestBatting.GDP - secondLatestBatting.GDP) as GDP,
-SUM(latestBatting.SH - secondLatestBatting.SH) as SH,
-SUM(latestBatting.SF - secondLatestBatting.SF) as SF,
-SUM(latestBatting.IBB - secondLatestBatting.IBB) as IBB,
-SUM(latestBatting.POS - secondLatestBatting.POS) as POS
-FROM latestBatting, secondLatestBatting
-WHERE latestBatting.playerID = secondLatestBatting.playerID
-group by latestBatting.playerID
-ORDER BY SUM((latestBatting.TB - secondLatestBatting.TB) + (latestBatting.RBI - secondLatestBatting.RBI)) DESC LIMIT 40
-`, function (error, results, fields) {
-      res.json(results)
-    if (error) throw error;
-   })
-})
-app.get('/api/oneDay', function(req, res) {
+app.get('/api/teamBatYest', function(req, res) {
 console.log(req.query)
   connection.query(`select 
 superPlayerHist.franchise,
@@ -242,16 +273,16 @@ SUM(oneDayBatting.SB) AS B3,
 SUM(oneDayBatting.H / oneDayBatting.AB) as AVG
 from superPlayerHist, oneDayBatting 
 where superPlayerHist.playerID= oneDayBatting.playerID 
-and oneDayBatting.AB > 1
 and superPlayerHist.class like ?
 and superPlayerHist.yr like ?
 group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
 order by SUM(oneDayBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
- /*   console.log(results)*/
+
       res.json(results)
     if (error) throw error;
    });
 })
+
 const port = process.env.PORT || 5001;
 app.listen(port);
 console.log(`Listening on ${port}`);
