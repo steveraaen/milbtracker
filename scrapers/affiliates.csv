@@ -1,0 +1,240 @@
+franchise, team, class, majLeague
+Arizona Diamondbacks,Reno Aces,AAA,NL
+Arizona Diamondbacks,Jackson Generals,AA,NL
+Arizona Diamondbacks,Visalia Rawhide,A+.,NL
+Arizona Diamondbacks,Kane County Cougars,A,NL
+Arizona Diamondbacks,Hillsboro Hops,A-,NL
+Arizona Diamondbacks,Missoula Osprey,R,NL
+Arizona Diamondbacks,AZL D-backs,R,NL
+Arizona Diamondbacks,DSL D-backs1,R,NL
+Arizona Diamondbacks,DSL D-backs2,R,NL
+Atlanta Braves,Gwinnett Stripers,AAA,NL
+Atlanta Braves,Mississippi Braves,AA,NL
+Atlanta Braves,Florida Fire Frogs,A+.,NL
+Atlanta Braves,Rome Braves,A,NL
+Atlanta Braves,Danville Braves,R,NL
+Atlanta Braves,DSL Braves,R,NL
+Atlanta Braves,GCL Braves,R,NL
+Baltimore Orioles,Norfolk Tides,AAA,AL
+Baltimore Orioles,Bowie Baysox,AA,AL
+Baltimore Orioles,Frederick Keys,A+.,AL
+Baltimore Orioles,Delmarva Shorebirds,A,AL
+Baltimore Orioles,Aberdeen IronBirds,A-,AL
+Baltimore Orioles,DSL Orioles,R,AL
+Baltimore Orioles,GCL Orioles,R,AL
+Boston Red Sox,Pawtucket Red Sox,AAA,AL
+Boston Red Sox,Portland Sea Dogs,AA,AL
+Boston Red Sox,Salem Red Sox,A+.,AL
+Boston Red Sox,Greenville Drive,A,AL
+Boston Red Sox,Lowell Spinners,A-,AL
+Boston Red Sox,DSL Red Sox1,R,AL
+Boston Red Sox,DSL Red Sox2,R,AL
+Boston Red Sox,GCL Red Sox,R,AL
+Chicago Cubs,Iowa Cubs,AAA,NL
+Chicago Cubs,Tennessee Smokies,AA,NL
+Chicago Cubs,Myrtle Beach Pelicans,A+.,NL
+Chicago Cubs,South Bend Cubs,A,NL
+Chicago Cubs,Eugene Emeralds,A-,NL
+Chicago Cubs,AZL Cubs 1,R,NL
+Chicago Cubs,AZL Cubs 2,R,NL
+Chicago Cubs,DSL Cubs1,R,NL
+Chicago Cubs,DSL Cubs2,R,NL
+Chicago White Sox,Charlotte Knights,AAA,AL
+Chicago White Sox,Birmingham Barons,AA,AL
+Chicago White Sox,Winston-Salem Dash,A+.,AL
+Chicago White Sox,Kannapolis Intimidators,A,AL
+Chicago White Sox,Great Falls Voyagers,R,AL
+Chicago White Sox,AZL White Sox,R,AL
+Chicago White Sox,DSL White Sox,R,AL
+Cincinnati Reds,Louisville Bats,AAA,NL
+Cincinnati Reds,Chattanooga Lookouts,AA,NL
+Cincinnati Reds,Daytona Tortugas,A+.,NL
+Cincinnati Reds,Dayton Dragons,A,NL
+Cincinnati Reds,Billings Mustangs,R,NL
+Cincinnati Reds,Greeneville Reds,R,NL
+Cincinnati Reds,AZL Reds,R,NL
+Cincinnati Reds,DSL Reds,R,NL
+Cleveland Indians,Columbus Clippers,AAA,AL
+Cleveland Indians,Akron RubberDucks,AA,AL
+Cleveland Indians,Lynchburg Hillcats,A+.,AL
+Cleveland Indians,Lake County Captains,A,AL
+Cleveland Indians,Mahoning Valley Scrappers,A-,AL
+Cleveland Indians,AZL Indians 1,R,AL
+Cleveland Indians,AZL Indians 2,R,AL
+Cleveland Indians,DSL Indians,R,AL
+Colorado Rockies,Albuquerque Isotopes,AAA,NL
+Colorado Rockies,Hartford Yard Goats,AA,NL
+Colorado Rockies,Lancaster JetHawks,A+.,NL
+Colorado Rockies,Asheville Tourists,A,NL
+Colorado Rockies,Boise Hawks,A-,NL
+Colorado Rockies,Grand Junction Rockies,R,NL
+Colorado Rockies,DSL Colorado,R,NL
+Colorado Rockies,DSL Rockies,R,NL
+Detroit Tigers,Toledo Mud Hens,AAA,AL
+Detroit Tigers,Erie SeaWolves,AA,AL
+Detroit Tigers,Lakeland Flying Tigers,A+.,AL
+Detroit Tigers,West Michigan Whitecaps,A,AL
+Detroit Tigers,Connecticut Tigers,A-,AL
+Detroit Tigers,DSL Tigers1,R,AL
+Detroit Tigers,DSL Tigers2,R,AL
+Detroit Tigers,GCL Tigers East,R,AL
+Detroit Tigers,GCL Tigers West,R,AL
+Houston Astros,Round Rock Express,AAA,AL
+Houston Astros,Corpus Christi Hooks,AA,AL
+Houston Astros,Fayetteville Woodpeckers,A+.,AL
+Houston Astros,Quad Cities River Bandits,A,AL
+Houston Astros,Tri-City ValleyCats,A-,AL
+Houston Astros,DSL Astros,R,AL
+Houston Astros,GCL Astros,R,AL
+Kansas City Royals,Omaha Storm Chasers,AAA,AL
+Kansas City Royals,Northwest Arkansas Naturals,AA,AL
+Kansas City Royals,Wilmington Blue Rocks,A+.,AL
+Kansas City Royals,Lexington Legends,A,AL
+Kansas City Royals,Burlington Royals,R,AL
+Kansas City Royals,Idaho Falls Chukars,R,AL
+Kansas City Royals,AZL Royals,R,AL
+Kansas City Royals,DSL Royals1,R,AL
+Kansas City Royals,DSL Royals2,R,AL
+Los Angeles Angels,Salt Lake Bees,AAA,AL
+Los Angeles Angels,Mobile BayBears,AA,AL
+Los Angeles Angels,Inland Empire 66ers,A+.,AL
+Los Angeles Angels,Burlington Bees,A,AL
+Los Angeles Angels,Orem Owlz,R,AL
+Los Angeles Angels,AZL Angels,R,AL
+Los Angeles Angels,DSL Angels,R,AL
+Los Angeles Dodgers,Oklahoma City Dodgers,AAA,NL
+Los Angeles Dodgers,Tulsa Drillers,AA,NL
+Los Angeles Dodgers,Rancho Cucamonga Quakes,A+.,NL
+Los Angeles Dodgers,Great Lakes Loons,A,NL
+Los Angeles Dodgers,Ogden Raptors,R,NL
+Los Angeles Dodgers,AZL Dodgers,R,NL
+Los Angeles Dodgers,DSL Dodgers Guerrero,R,NL
+Los Angeles Dodgers,DSL Dodgers Robinson,R,NL
+Miami Marlins,New Orleans Baby Cakes,AAA,NL
+Miami Marlins,Jacksonville Jumbo Shrimp,AA,NL
+Miami Marlins,Jupiter Hammerheads,A+.,NL
+Miami Marlins,Clinton LumberKings,A,NL
+Miami Marlins,Batavia Muckdogs,A-,NL
+Miami Marlins,DSL Marlins,R,NL
+Miami Marlins,GCL Marlins,R,NL
+Milwaukee Brewers,San Antonio Missions,AAA,NL
+Milwaukee Brewers,Biloxi Shuckers,AA,NL
+Milwaukee Brewers,Carolina Mudcats,A+.,NL
+Milwaukee Brewers,Wisconsin Timber Rattlers,A,NL
+Milwaukee Brewers,Rocky Mountain Vibes,R,NL
+Milwaukee Brewers,AZL Brewers,R,NL
+Milwaukee Brewers,DSL Brewers,R,NL
+Minnesota Twins,Rochester Red Wings,AAA,AL
+Minnesota Twins,Pensacola Blue Wahoos,AA,AL
+Minnesota Twins,Fort Myers Miracle,A+.,AL
+Minnesota Twins,Cedar Rapids Kernels,A,AL
+Minnesota Twins,Elizabethton Twins,R,AL
+Minnesota Twins,DSL Twins,R,AL
+Minnesota Twins,GCL Twins,R,AL
+New York Mets,Syracuse Mets,AAA,NL
+New York Mets,Binghamton Rumble Ponies,AA,NL
+New York Mets,St. Lucie Mets,A+.,NL
+New York Mets,Columbia Fireflies,A,NL
+New York Mets,Brooklyn Cyclones,A-,NL
+New York Mets,Kingsport Mets,R,NL
+New York Mets,DSL Mets1,R,NL
+New York Mets,DSL Mets2,R,NL
+New York Mets,GCL Mets,R,NL
+New York Yankees,Scranton/Wilkes-Barre RailRiders,AAA,AL
+New York Yankees,Trenton Thunder,AA,AL
+New York Yankees,Tampa Tarpons,A+.,AL
+New York Yankees,Charleston RiverDogs,A,AL
+New York Yankees,Staten Island Yankees,A-,AL
+New York Yankees,Pulaski Yankees,R,AL
+New York Yankees,DSL Yankees,R,AL
+New York Yankees,GCL Yankees East,R,AL
+New York Yankees,GCL Yankees West,R,AL
+Oakland A's,Las Vegas Aviators,AAA,AL
+Oakland A's,Midland RockHounds,AA,AL
+Oakland A's,Stockton Ports,A+.,AL
+Oakland A's,Beloit Snappers,A,AL
+Oakland A's,Vermont Lake Monsters,A-,AL
+Oakland A's,AZL Athletics,R,AL
+Oakland A's,DSL Athletics,R,AL
+Philadelphia Phillies,Lehigh Valley IronPigs,AAA,NL
+Philadelphia Phillies,Reading Fightin Phils,AA,NL
+Philadelphia Phillies,Clearwater Threshers,A+.,NL
+Philadelphia Phillies,Lakewood BlueClaws,A,NL
+Philadelphia Phillies,Williamsport Crosscutters,A-,NL
+Philadelphia Phillies,DSL Phillies Red,R,NL
+Philadelphia Phillies,DSL Phillies White,R,NL
+Philadelphia Phillies,GCL Phillies East,R,NL
+Philadelphia Phillies,GCL Phillies West,R,NL
+Pittsburgh Pirates,Indianapolis Indians,AAA,NL
+Pittsburgh Pirates,Altoona Curve,AA,NL
+Pittsburgh Pirates,Bradenton Marauders,A+.,NL
+Pittsburgh Pirates,Greensboro Grasshoppers,A,NL
+Pittsburgh Pirates,West Virginia Black Bears,A-,NL
+Pittsburgh Pirates,Bristol Pirates,R,NL
+Pittsburgh Pirates,DSL Pirates1,R,NL
+Pittsburgh Pirates,DSL Pirates2,R,NL
+Pittsburgh Pirates,GCL Pirates,R,NL
+San Diego Padres,El Paso Chihuahuas,AAA,NL
+San Diego Padres,Amarillo Sod Poodles,AA,NL
+San Diego Padres,Lake Elsinore Storm,A+.,NL
+San Diego Padres,Fort Wayne TinCaps,A,NL
+San Diego Padres,Tri-City Dust Devils,A-,NL
+San Diego Padres,AZL Padres 1,R,NL
+San Diego Padres,AZL Padres 2,R,NL
+San Diego Padres,DSL Padres,R,NL
+San Francisco Giants,Sacramento River Cats,AAA,NL
+San Francisco Giants,Richmond Flying Squirrels,AA,NL
+San Francisco Giants,San Jose Giants,A+.,NL
+San Francisco Giants,Augusta GreenJackets,A,NL
+San Francisco Giants,Salem-Keizer Volcanoes,A-,NL
+San Francisco Giants,AZL Giants Black,R,NL
+San Francisco Giants,AZL Giants Orange,R,NL
+San Francisco Giants,DSL Giants,R,NL
+Seattle Mariners,Tacoma Rainiers,AAA,AL
+Seattle Mariners,Arkansas Travelers,AA,AL
+Seattle Mariners,Modesto Nuts,A+.,AL
+Seattle Mariners,West Virginia Power,A,AL
+Seattle Mariners,Everett AquaSox,A-,AL
+Seattle Mariners,AZL Mariners,R,AL
+Seattle Mariners,DSL Mariners,R,AL
+St. Louis Cardinals,Memphis Redbirds,AAA,NL
+St. Louis Cardinals,Springfield Cardinals,AA,NL
+St. Louis Cardinals,Palm Beach Cardinals,A+.,NL
+St. Louis Cardinals,Peoria Chiefs,A,NL
+St. Louis Cardinals,State College Spikes,A-,NL
+St. Louis Cardinals,Johnson City Cardinals,R,NL
+St. Louis Cardinals,DSL Cardinals Blue,R,NL
+St. Louis Cardinals,DSL Cardinals Red,R,NL
+St. Louis Cardinals,GCL Cardinals,R,NL
+Tampa Bay Rays,Durham Bulls,AAA,AL
+Tampa Bay Rays,Montgomery Biscuits,AA,AL
+Tampa Bay Rays,Charlotte Stone Crabs,A+.,AL
+Tampa Bay Rays,Bowling Green Hot Rods,A,AL
+Tampa Bay Rays,Hudson Valley Renegades,A-,AL
+Tampa Bay Rays,Princeton Rays,R,AL
+Tampa Bay Rays,DSL Rays1,R,AL
+Tampa Bay Rays,DSL Rays2,R,AL
+Tampa Bay Rays,GCL Rays,R,AL
+Texas Rangers,Nashville Sounds,AAA,AL
+Texas Rangers,Frisco RoughRiders,AA,AL
+Texas Rangers,Down East Wood Ducks,A+.,AL
+Texas Rangers,Hickory Crawdads,A,AL
+Texas Rangers,Spokane Indians,A-,AL
+Texas Rangers,AZL Rangers,R,AL
+Texas Rangers,DSL Rangers1,R,AL
+Texas Rangers,DSL Rangers2,R,AL
+Toronto Blue Jays,Buffalo Bisons,AAA,AL
+Toronto Blue Jays,New Hampshire Fisher Cats,AA,AL
+Toronto Blue Jays,Dunedin Blue Jays,A+.,AL
+Toronto Blue Jays,Lansing Lugnuts,A,AL
+Toronto Blue Jays,Vancouver Canadians,A-,AL
+Toronto Blue Jays,Bluefield Blue Jays,R,AL
+Toronto Blue Jays,DSL Blue Jays,R,AL
+Toronto Blue Jays,GCL Blue Jays,R,AL
+Washington Nationals,Fresno Grizzlies,AAA,NL
+Washington Nationals,Harrisburg Senators,AA,NL
+Washington Nationals,Potomac Nationals,A+.,NL
+Washington Nationals,Hagerstown Suns,A,NL
+Washington Nationals,Auburn Doubledays,A-,NL
+Washington Nationals,DSL Nationals,R,NL
+Washington Nationals,GCL Nationals,R,NL
