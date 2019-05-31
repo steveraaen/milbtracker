@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Grid, Image} from 'semantic-ui-react'
 
 import ReactTable from 'react-table'
@@ -11,33 +11,43 @@ var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.y
 var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
 
 		currentBatData.map( tm => {
-			tm.color = tm.lg === "A" ? 'crimson' : 'indigo'
-			tm.tmStr = <div><Image rounded size='mini' src={tm.imgURL}/><div style={{fontSize: '.8em'}}>{tm.yr}</div></div>
-			tm.tmStr2 = <div style={{color: tm.lg === "A" ? 'crimson' : 'indigo'}}><div>{tm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{tm.class}</div><div>{tm.franchiseName}</div></div></div>
+			tm.color = tm.majLg === "A" ? 'crimson' : 'indigo'
+			tm.tmStr = <div>
+								<Image rounded size='mini' src={tm.franchLogo}/>
+								<div style={{fontSize: '.8em'}}>{tm.franchiseName}</div>
+							</div>
+			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>
+								<Image rounded size='mini' src={tm.imgURL}/>
+								<div style={{fontSize: '.8em'}}>{tm.tmName}</div>
+								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
+									<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
+									<div style={{ marginRight: '1vw'}}>{tm.class}</div>
+									
+								</div>
+							</div>
 			return tm
 		})
 		currentPitchData.map( ptm => {
-			ptm.color = ptm.lg === "A" ? 'crimson' : 'indigo'
+			ptm.color = ptm.majLg === "A" ? 'crimson' : 'indigo'
 			ptm.ptmStr = <div><Image size='mini' src={ptm.imgURL}/><div style={{fontSize: '.8em'}}>{ptm.yr}</div></div>
-			ptm.ptmStr2 = <div style={{color: ptm.lg === "A" ? 'crimson' : 'indigo'}}><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
+			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
 			return ptm
 		})
+
 const onRowClick = (state, rowInfo, column, instance) => {
-	
+
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
-            console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)          
+   /*         console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)  */        
         }
     }
 }
-
-
 		var batColumns = [
 		{
 	    Header: '',
 	    accessor: 'tmStr',
-	    width: 56,
+	    width: 96,
 		}, {
 			Header: 'Team',
 			accessor: 'tmStr2', 
@@ -122,8 +132,9 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    		isSelected
 	    		showPagination={false}
 	    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
+	    		defaultPageSize={30}
 	    			data={currentBatData}
-	    			resolveData={data => data.map(row => row)}
+	    			
 	    			columns={batColumns}
 	    			showPageSizeOptions={false}
 	    			
@@ -142,7 +153,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    		showPagination={false}
 	    		style={{fontSize: '.9em',   fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
 	    			data={currentPitchData}
-	    			resolveData={data => data.map(row => row)}
+	    		
 	    			columns={pitchColumns}
 	    			showPageSizeOptions={false}
 	    				    			

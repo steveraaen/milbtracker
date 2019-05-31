@@ -1,0 +1,20 @@
+[
+{code: "IL",league:"International League", class: "AAA"}
+ {code: "PCL",league:"Pacific Coast League", class: "AAA"}
+ {code: "EL",league:"Eastern League", class: "AA"}
+ {code: "SOUL",league:"Southern League", class: "AA"}
+ {code: "TL",league:"Texas League", class: "AA"}
+ {code: "CALL",league:"California League", class: "A+"}
+ {code: "CARL",league:"Carolina League", class: "A+"}
+ {code: "FLOR",league:"Florida State League", class: "A+"}
+ {code: "MIDW",league:"Midwest League", class: "A"}
+ {code: "SALL",league:"South Atlantic League", class: "A"}
+ {code: "NYPL",league:"New York-Penn League", class: "A-"}
+ {code: "NORW",league:"Northwest League", class: "A-"}
+ {code: "APPY",league:"Appalachian League", class: "Rk"}
+ {code: "PION",league:"Pioneer League", class: "Rk"}
+ {code: "ARIZ",league:"Arizona League", class: "Rk"}
+ {code: "DOSL",league:"Dominican Summer League", class: "FRk"}
+ {code: "NYPL",league:"New York-Pennsylvania League", class: "Rk"}
+ {code: "GULF",league:"Gulf Coast League" class: "Rk"}
+]

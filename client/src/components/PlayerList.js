@@ -76,14 +76,11 @@ export default function PlayerList(props) {
 		}*/]
 		if(props.playerList && props.pitcherList && mlbLogos) {
 			for(let i =0; i < props.playerList.length; i++) {
-
 				props.playerList[i].playerURL = `https://www.baseball-reference.com/players/${props.playerList[i].playerID[0]}/${props.playerList[i].playerID}.shtml`
-
-
 				for(let j =0; j < mlbLogos.length; j++) {
 					if(props.playerList[i].curTeam === mlbLogos[j].majteam) {
 						props.playerList[i].curLogo = mlbLogos[j].picurl
-					}
+				}
 			}
 		}
 			for(let i =0; i < props.pitcherList.length; i++) {
@@ -91,10 +88,10 @@ export default function PlayerList(props) {
 				for(let j =0; j < mlbLogos.length; j++) {
 					if(props.pitcherList[i].curTeam === mlbLogos[j].majteam) {
 						props.pitcherList[i].curLogo = mlbLogos[j].picurl
-					}
+				}
 			}
 		}
-		props.playerList.map( tm => {
+		props.playerList && props.playerList.map( tm => {
 			tm.tmStr = <div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
 			<a style={{color:   tm.lg === "AL" ? 'red' : 'blue'}} href={tm.playerURL}>{tm.playerName}</a>
 			</div>
@@ -118,7 +115,7 @@ export default function PlayerList(props) {
 	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.pitcherList[0].team}</div>
 	    		</div>
 	    		<ReactTable 
-
+	    	
 	    		showPagination={false}
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
 	    			data={props.playerList}
@@ -133,7 +130,8 @@ export default function PlayerList(props) {
 	    			<div style={{marginRight: '1vw'}}> {props.pitcherList[0].yr}</div>
 	    			<div>{props.pitcherList[0].team}</div>
 	    		</div>
-	    		<ReactTable 
+	    		<ReactTable
+
 	    		showPagination={false}
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
 	    			data={props.pitcherList}

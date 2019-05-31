@@ -42,13 +42,14 @@ console.log(eachLeague)
     }
 })();*/
 
-/*var dta = connection.query(`SELECT teamsURL FROM leagueList`,  function(error, results, fields) {
+var dta = connection.query(`SELECT teamsURL FROM leagueList`,  function(error, results, fields) {
    if (error) throw error;
 
    for (let i=0; i< results.length; i++) {
    	   let spltURL = results[i].teamsURL.split('/')
     		let lgCode = spltURL[spltURL.length - 3]
     		let lgName = spltURL[spltURL.length - 4].replace('_', ' ')
+
 	  setTimeout( function timer(){
     	(async () => {
     		const browser = await puppeteer.launch();
@@ -57,11 +58,12 @@ console.log(eachLeague)
 
 			  	const eachTeam = await page.evaluate(() => {
 			  	var teamLogoArr = []
+
 					document.querySelectorAll('#team > .logoWall > li').forEach((item) => {
 					  			teamLogoArr.push({
 					  				text: item.querySelector('a').innerText,
 					  				imgURL: item.querySelector('a img').getAttribute('src'),
-					  				teamsURL:`http://www.sportslogos.net/${item.querySelector('a').getAttribute('href')}` 
+					  				teamsURL:`http://www.sportslogos.net/${item.querySelector('a').getAttribute('href')}`, 
 					  			})   				
 					  		})
 					return teamLogoArr	
@@ -71,14 +73,14 @@ console.log(eachLeague)
 	    		for(let j = 0; j < eachTeam.length; j++) {
         connection.query(`INSERT INTO teamList(team, imgURL, teamsURL, lgCode, lgName)VALUES(?,?,?,?,?)`, [eachTeam[j].text, eachTeam[j].imgURL, eachTeam[j].teamsURL, lgCode, lgName], function(error) {
             if (error) throw error;
-            console.log(chalk.red(`${eachTeam.length}record added to db`))
+            console.log(chalk.red(`${JSON.stringify(eachTeam[j])}record added to db`))
         });
 		}
  	})()	        
-	    }, i*3000 );
+	    }, i*5000 );
 	}
 
-});*/
+});
   
 (async () => {
   const browser = await puppeteer.launch();

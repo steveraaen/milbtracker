@@ -36,8 +36,8 @@ function AppB() {
     const [ /*bestMinors,*/ setBestMinors] = useState();
     const [allMLB] = useState(mlbTeams);
     const [selectedYear, setSelectedYear] = useState(yrs[0]);
-    const [playerList, setPlayerList] = useState();
-    const [pitcherList, setPitcherList] = useState();
+    const [playerList, setPlayerList] = useState({});
+    const [pitcherList, setPitcherList] = useState({});
     const [classIcon] = useState('angle down');
     const [allDivisions, setAllDivisions] = useState();
     const [selectedDivision, setSelectedDivision] = useState({ value: "%L%", display: "All Major League Teams" });
@@ -161,7 +161,7 @@ function AppB() {
     }
 
     async function getPlayerList(f, c, y) {
-        console.log(f, c, y)
+    
         try {
             /*        const batterPromise = axios('/api/batterList', { params: { r, f, y, t } })
                     const pitcherPromise = axios('/api/newPitchers', { params: { r, f, y, t } })*/
@@ -306,9 +306,7 @@ const handleClick = (e, { value }) => {
       {...playerList}
       {...pitcherList}
       getPlayerList={getPlayerList}
-      getTopTen={getTopTen}
-      setModalOpen ={setModalOpen}
-      modalOpen={modalOpen}
+
       selectedMiLBTeam={selectedMiLBTeam} 
       selectedYear={selectedYear}    
       selectedDivision={selectedDivision}

@@ -20,13 +20,14 @@ var connection  = mysql.createConnection({
 // Retrieve pitch data for getPlayerList
 app.get('/api/playerPitchSeason', function(req, res) {
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.class,
-superPlayerHist.yr,  
-superPlayerHist.imgURL,  
-superPlayerHist.franchLogo,  
-superPlayerHist.team,  
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.class,
+finalHist.yr,  
+finalHist.imgURL,  
+finalHist.franchLogo,  
+finalHist.tmName,  
 latestPitching.lg,
 latestPitching.playerName as playerName,
 latestPitching.playerID,
@@ -40,11 +41,11 @@ latestPitching.H AS H,
 latestPitching.HR AS HR,
 latestPitching.BB AS BB,
 9 * (latestPitching.R / latestPitching.IP) as ERA
-from superPlayerHist, latestPitching 
-where superPlayerHist.playerID= latestPitching.playerID
-and superPlayerHist.class like ?
-and superPlayerHist.franchise = ?
-and superPlayerHist.yr like ?
+from finalHist, latestPitching 
+where finalHist.playerID= latestPitching.playerID
+and finalHist.class like ?
+and finalHist.franchise = ?
+and finalHist.yr like ?
 order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, req.query.y], function (error, results, fields) {
       res.json(results)
     if (error) throw error;
@@ -53,13 +54,14 @@ order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, r
 app.get('/api/playerPitchYest', function(req, res) {
 /*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.class,
-superPlayerHist.yr,  
-superPlayerHist.imgURL,  
-superPlayerHist.franchLogo,  
-superPlayerHist.team,  
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.class,
+finalHist.yr,  
+finalHist.imgURL,  
+finalHist.franchLogo,  
+finalHist.tmName,  
 oneDayPitching.lg,
 oneDayPitching.playerName as playerName,
 oneDayPitching.playerID,
@@ -73,11 +75,11 @@ oneDayPitching.H AS H,
 oneDayPitching.HR AS HR,
 oneDayPitching.BB AS BB,
 9 * (oneDayPitching.R / oneDayPitching.IP) as ERA
-from superPlayerHist, oneDayPitching 
-where superPlayerHist.playerID= oneDayPitching.playerID
-and superPlayerHist.class like ?
-and superPlayerHist.franchise = ?
-and superPlayerHist.yr like ?
+from finalHist, oneDayPitching 
+where finalHist.playerID= oneDayPitching.playerID
+and finalHist.class like ?
+and finalHist.franchise = ?
+and finalHist.yr like ?
 order by oneDayPitching.IP - oneDayPitching.R desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
       res.json(results)
@@ -86,12 +88,13 @@ order by oneDayPitching.IP - oneDayPitching.R desc`, [req.query.f, req.query.c, 
 })
 
 app.get('/api/playerBatSeason', function(req, res) {
-/*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
+  console.log(JSON.stringify(req.query))
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.team,
-superPlayerHist.yr,
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.tmName,
+finalHist.yr,
 latestBatting.lg,
 latestBatting.playerName,
 latestBatting.playerID,
@@ -107,11 +110,11 @@ latestBatting.B3,
 latestBatting.TB,
 latestBatting.SB,
 latestBatting.H / latestBatting.AB as AVG
-from superPlayerHist, latestBatting 
-where superPlayerHist.playerID= latestBatting.playerID 
-and superPlayerHist.franchise = ?
-and superPlayerHist.class = ?
-and superPlayerHist.yr like ?
+from finalHist, latestBatting 
+where finalHist.playerID= latestBatting.playerID 
+and finalHist.franchise = ?
+and finalHist.class = ?
+and finalHist.yr like ?
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
       res.json(results)
@@ -121,11 +124,12 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], functi
 app.get('/api/playerBatYest', function(req, res) {
 /*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.team,
-superPlayerHist.yr,
-superPlayerHist.class,
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.tmName,
+finalHist.yr,
+finalHist.class,
 oneDayBatting.playerName,
 oneDayBatting.playerID,
 oneDayBatting.AB, 
@@ -139,11 +143,11 @@ oneDayBatting.B3,
 oneDayBatting.TB,
 oneDayBatting.SB,
 oneDayBatting.H / oneDayBatting.AB as AVG
-from superPlayerHist, oneDayBatting 
-where superPlayerHist.playerID= oneDayBatting.playerID 
-and superPlayerHist.franchise = ?
-and superPlayerHist.class = ?
-and superPlayerHist.yr like ?
+from finalHist, oneDayBatting 
+where finalHist.playerID= oneDayBatting.playerID 
+and finalHist.franchise = ?
+and finalHist.class = ?
+and finalHist.yr like ?
 order by oneDayBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
       res.json(results)
@@ -153,14 +157,14 @@ order by oneDayBatting.TB desc`, [req.query.f, req.query.c, req.query.y], functi
 app.get('/api/teamPitchSeason', function(req, res) {
 /*console.log(req.query)*/
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.class,
-superPlayerHist.an AS lg,
-superPlayerHist.yr,  
-superPlayerHist.imgURL,  
-superPlayerHist.franchLogo,  
-superPlayerHist.team,  
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.class,
+finalHist.yr,  
+finalHist.imgURL,  
+finalHist.franchLogo,  
+finalHist.tmName,  
 count(latestPitching.playerName) as players,
 SUM(latestPitching.IP - latestPitching.R) AS IPER, 
 SUM(latestPitching.W) AS W, 
@@ -171,11 +175,11 @@ SUM(latestPitching.H) AS H,
 SUM(latestPitching.HR) AS HR,
 SUM(latestPitching.BB) AS BB,
 SUM(9 * (latestPitching.R / latestPitching.IP)) as ERA
-from superPlayerHist, latestPitching 
-where superPlayerHist.playerID= latestPitching.playerID 
-and superPlayerHist.class like ?
-and superPlayerHist.yr like ?
-group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
+from finalHist, latestPitching 
+where finalHist.playerID= latestPitching.playerID 
+and finalHist.class like ?
+and finalHist.yr like ?
+group by finalHist.class , finalHist.franchise, finalHist.yr
 order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
@@ -185,14 +189,14 @@ order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl
 
 app.get('/api/teamPitchYest', function(req, res) {
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.class,
-superPlayerHist.an AS lg,
-superPlayerHist.yr,  
-superPlayerHist.imgURL,  
-superPlayerHist.franchLogo,  
-superPlayerHist.team,  
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.class,
+finalHist.yr,  
+finalHist.imgURL,  
+finalHist.franchLogo,  
+finalHist.tmName,  
 count(oneDayPitching.playerName) as players,
 SUM(oneDayPitching.IP - oneDayPitching.R) AS IPER, 
 SUM(oneDayPitching.W) AS W, 
@@ -203,11 +207,11 @@ SUM(oneDayPitching.H) AS H,
 SUM(oneDayPitching.HR) AS HR,
 SUM(oneDayPitching.BB) AS BB,
 SUM(9 * (oneDayPitching.R / oneDayPitching.IP)) as ERA
-from superPlayerHist, oneDayPitching 
-where superPlayerHist.playerID= oneDayPitching.playerID 
-and superPlayerHist.class like ?
-and superPlayerHist.yr like ?
-group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
+from finalHist, oneDayPitching 
+where finalHist.playerID= oneDayPitching.playerID 
+and finalHist.class like ?
+and finalHist.yr like ?
+group by finalHist.class , finalHist.franchise, finalHist.yr
 order by SUM(oneDayPitching.IP - oneDayPitching.R) desc limit 40`,[req.query.cl, req.query.yr], function (error, results, fields) {
       res.json(results)
     if (error) throw error;
@@ -217,14 +221,14 @@ order by SUM(oneDayPitching.IP - oneDayPitching.R) desc limit 40`,[req.query.cl,
 app.get('/api/teamBatSeason', function(req, res) {
 /*console.log(req.query)*/
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.class,
-superPlayerHist.an AS lg,
-superPlayerHist.yr,  
-superPlayerHist.imgURL,  
-superPlayerHist.franchLogo,  
-superPlayerHist.team,  
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.class,
+finalHist.yr,  
+finalHist.imgURL,  
+finalHist.franchLogo,  
+finalHist.tmName,  
 count(latestBatting.playerName) as players,
 SUM(latestBatting.AB) AS AB, 
 SUM(latestBatting.H) AS H, 
@@ -236,12 +240,12 @@ SUM(latestBatting.B2) AS B2,
 SUM(latestBatting.B3) AS B3,
 SUM(latestBatting.TB) AS TB,
 SUM(latestBatting.SB) AS B3,
-SUM(latestBatting.H / latestBatting.AB) as AVG
-from superPlayerHist, latestBatting 
-where superPlayerHist.playerID= latestBatting.playerID 
-and superPlayerHist.class like ?
-and superPlayerHist.yr like ?
-group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
+SUM(latestBatting.H) / SUM(latestBatting.AB) as AVG
+from finalHist, latestBatting 
+where finalHist.playerID= latestBatting.playerID 
+and finalHist.class like ?
+and finalHist.yr like ?
+group by finalHist.class , finalHist.franchise, finalHist.yr
 order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)
@@ -251,14 +255,14 @@ order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],func
 app.get('/api/teamBatYest', function(req, res) {
 console.log(req.query)
   connection.query(`select 
-superPlayerHist.franchise,
-superPlayerHist.franchiseName,
-superPlayerHist.class,
-superPlayerHist.an AS lg,
-superPlayerHist.yr,  
-superPlayerHist.imgURL,  
-superPlayerHist.franchLogo,  
-superPlayerHist.team,  
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.class,
+finalHist.yr,  
+finalHist.imgURL,  
+finalHist.franchLogo,  
+finalHist.tmName,  
 count(oneDayBatting.playerName) as players,
 SUM(oneDayBatting.AB) AS AB, 
 SUM(oneDayBatting.H) AS H, 
@@ -271,11 +275,11 @@ SUM(oneDayBatting.B3) AS B3,
 SUM(oneDayBatting.TB) AS TB,
 SUM(oneDayBatting.SB) AS B3,
 SUM(oneDayBatting.H / oneDayBatting.AB) as AVG
-from superPlayerHist, oneDayBatting 
-where superPlayerHist.playerID= oneDayBatting.playerID 
-and superPlayerHist.class like ?
-and superPlayerHist.yr like ?
-group by superPlayerHist.class , superPlayerHist.franchise, superPlayerHist.yr
+from finalHist, oneDayBatting 
+where finalHist.playerID= oneDayBatting.playerID 
+and finalHist.class like ?
+and finalHist.yr like ?
+group by finalHist.class , finalHist.franchise, finalHist.yr
 order by SUM(oneDayBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)

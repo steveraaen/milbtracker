@@ -8,7 +8,7 @@ const chalk = require('chalk');
 var baseURL ='https://www.baseball-reference.com/players'
 var tail = '.shtml'
 var codes = [
-"/a/acunaro01",
+/*"/a/acunaro01",
 "/a/adamewi01",
 "/a/adamsau02",
 "/a/adamsma01",
@@ -1002,7 +1002,7 @@ var codes = [
 "/h/hembrhe01",
 "/h/hernada02",
 "/h/herreke01",
-"/h/hillti01",
+"/h/hillti01",*/
 "/h/huangwe01",
 "/j/jamesjo02",
 "/j/jimened01",
@@ -1141,14 +1141,17 @@ var leagues = [
 ]
 function parseTeams(tm) {
   var tmArr = []
+  var lgArr = []
   for(let i = 0; i < tm.length; i++) {
-  !leagues.includes(tm[i].title) ? tmArr.push(tm[i].title) : console.log('no match') 
+    if(!leagues.includes(tm[i].title)) {
+      tmArr.push(tm[i].title)
+    }  else {
+      lgArr.push(tm[i].textContent)
+    }
   }
-  return tmArr
+  return [tmArr, lgArr]
 }
-
-
-     return {
+  return {
        yr: result.querySelector('th:nth-child(1)').textContent,
        age: result.querySelector('td:nth-child(2)').textContent,
        franchise: result.querySelector('td:nth-child(3)').textContent.replace('-min', ''),
@@ -1168,24 +1171,28 @@ for(let i = 0; i < lines.length; i++) {
 }
 
 for(let i = 0; i < lines.length; i++) {
-
-    for(let j = 0; j < lines[i].classes.length; j++) {
+            for(let k = 0; k <= lines[i].tmName.length; k++) {
+  /*  for(let j = 0; j < lines[i].classes.length; j++) {*/
+       
         var obj = {}
         var tmArr = []
         obj.yr = lines[i].yr
         obj.age = lines[i].age
         obj.franchise = lines[i].franchise
-        obj.class = lines[i].classes[j]
         obj.playerID = lines[i].playerID
-        obj.teams = lines[i].tmName
-
-        console.log(chalk.cyanBright(JSON.stringify(obj)))
-/*           connection.query(`INSERT INTO  teamSeason (playerID, yr, age, class, franchise, tmName)VALUES (?,?,?,?,?,?)`, [obj.playerID, obj.yr, obj.age, obj.class, obj.franchise, obj.tmName], function (error) {
+        obj.class = lines[i].classes[k]
+        obj.team = lines[i].tmName[0][k]
+        obj.league = lines[i].tmName[1][k]
+      if(obj.league) {
+        console.log(chalk.blueBright(JSON.stringify(obj))) 
+     connection.query(`INSERT INTO  teamSeason (playerID, yr, age, franchise, tmName, class, league)VALUES (?,?,?,?,?,?,?)`, [obj.playerID, obj.yr, obj.age, obj.franchise, obj.team, obj.class, obj.league], function (error) {
       if (error) throw error;
           console.log(chalk.red(`record added to db`))         
-   }); */
-
+   }); 
     }
+
+}
+
 }
  await browser.close();
 })();
