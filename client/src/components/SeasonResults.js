@@ -5,7 +5,8 @@ import ReactTable from 'react-table'
 import "react-table/react-table.css";
 
 export default function SeasonResults(props) {
-	if(props.tfObj && props.timeframe && props.bestBatTeams && props.bestPitchTeams && props.yestBatTeams && props.yestPitchTeams && props.selectedClass  && props.selectedYear) {
+
+	if( props.timeframe && props.bestBatTeams && props.bestPitchTeams && props.yestBatTeams && props.yestPitchTeams && props.selectedClass  && props.selectedYear) {
 
 var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.yestBatTeams
 var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
@@ -39,7 +40,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
-   /*         console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)  */        
+            console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)          
         }
     }
 }

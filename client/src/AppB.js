@@ -15,6 +15,7 @@ import newMinors from './newMinors.json'
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
+    { text: "2019", value: 2019, key: "2019" },
     { text: "2018", value: 2018, key: "2018" },
     { text: "2017", value: 2017, key: "2017" },
     { text: "2016", value: 2016, key: "2016" },
@@ -120,7 +121,7 @@ function AppB() {
             const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);
 
             console.log(timeframe)
-        if(timeframe === 'season') {
+   /*     if(timeframe === 'season') {
               settfObj({
                 tfObj: {
                bestBatTeams: tmBatS.data,
@@ -130,11 +131,11 @@ function AppB() {
               } else {
              settfObj({
                tfObj: {
-                bestBatTeams: tmBatY.data,
-                bestPitchTeams: tmPitY.data
+                bestBatTeams: {},
+                bestPitchTeams: {}
               }
               }) 
-            }      
+            }  */    
              setBestBat({
                 bestBatTeams: tmBatS.data
             })
@@ -151,17 +152,17 @@ function AppB() {
             console.error(e);
         };
     }
-    function makeDivs() {
+/*    function makeDivs() {
         var uniqueDivisions = allMLB.filter((thing, index, self) =>
             index === self.findIndex((t) => (
                 t.league === thing.league && t.color === thing.color
             ))
         )
         return setAllDivisions({ allDivisions: uniqueDivisions })
-    }
+    }*/
 
     async function getPlayerList(f, c, y) {
-    
+    console.log('getPlayerList')
         try {
             /*        const batterPromise = axios('/api/batterList', { params: { r, f, y, t } })
                     const pitcherPromise = axios('/api/newPitchers', { params: { r, f, y, t } })*/
@@ -332,7 +333,7 @@ const handleClick = (e, { value }) => {
           > 
           <PlayerList 
       {...playerList}
-      {...yestBat}
+     
       {...pitcherList}
       selectedClass={selectedClass} 
       selectedYear={selectedYear} 

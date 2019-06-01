@@ -46,6 +46,7 @@ where finalHist.playerID= latestPitching.playerID
 and finalHist.class like ?
 and finalHist.franchise = ?
 and finalHist.yr like ?
+group by playerID
 order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, req.query.y], function (error, results, fields) {
       res.json(results)
     if (error) throw error;
@@ -115,8 +116,9 @@ where finalHist.playerID= latestBatting.playerID
 and finalHist.franchise = ?
 and finalHist.class = ?
 and finalHist.yr like ?
+group by playerID
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
-      /*  console.log(results)*/
+   /*     console.log(results)*/
       res.json(results)
     if (error) throw error;
    })
