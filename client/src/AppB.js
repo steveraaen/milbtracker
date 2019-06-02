@@ -63,7 +63,8 @@ function AppB() {
     const [modalOpen, setModalOpen] = useState();
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
-
+   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
+   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible({ formVisible: true }) : setFormVisible({ formVisible: false })
@@ -152,22 +153,12 @@ function AppB() {
             console.error(e);
         };
     }
-/*    function makeDivs() {
-        var uniqueDivisions = allMLB.filter((thing, index, self) =>
-            index === self.findIndex((t) => (
-                t.league === thing.league && t.color === thing.color
-            ))
-        )
-        return setAllDivisions({ allDivisions: uniqueDivisions })
-    }*/
 
     async function getPlayerList(f, c, y) {
     console.log('getPlayerList')
         try {
-            /*        const batterPromise = axios('/api/batterList', { params: { r, f, y, t } })
-                    const pitcherPromise = axios('/api/newPitchers', { params: { r, f, y, t } })*/
-            const newBatterPromise = axios('/api/playerBatSeason', { params: { f, c, y } })
-            const newPitcherPromise = axios('/api/playerPitchSeason', { params: { f, c, y } })
+            const newBatterPromise = axios.get(timeBatURL, { params: { f, c, y } })
+            const newPitcherPromise = axios.get(timePitchURL, { params: { f, c, y } })
             const [newBatters, newPitchers] = await Promise.all([newBatterPromise ,newPitcherPromise]);
 
             newBatters.data.map((plyr, idx) => {
@@ -200,21 +191,28 @@ function AppB() {
     }
 const handleClick = (e, { value }) => {
   setTimeframe(value)
+
         if(value === 'season') {
-              settfObj({
+/*              settfObj({
                 tfObj: {
                bestBatTeams: bestBat,
                 bestPitchTeams: bestPitch
               }
-              })
-              } else {
-             settfObj({
+              })*/
+              setTimeBatURL('/api/playerBatSeason')
+              setTimePitchURL('/api/playerPitchSeason')
+              } else if(value === 'yesterday'){
+/*             settfObj({
                tfObj: {
                 bestBatTeams: yestBat,
                 bestPitchTeams: yestPitch
               }
-              }) 
+              }) */
+              setTimeBatURL('/api/playerBatYest')
+              setTimePitchURL('/api/playerPitchYest')
             }
+console.log(timeBatURL)
+console.log(timePitchURL)
 
 }
 
@@ -307,12 +305,13 @@ const handleClick = (e, { value }) => {
       {...playerList}
       {...pitcherList}
       getPlayerList={getPlayerList}
-
       selectedMiLBTeam={selectedMiLBTeam} 
       selectedYear={selectedYear}    
       selectedDivision={selectedDivision}
       selectedClass={selectedClass} 
       timeframe={timeframe}    
+      timeBatURL={timeBatURL}    
+      timePitchURL={timePitchURL}    
     />
 </div>
 <div>
@@ -333,12 +332,15 @@ const handleClick = (e, { value }) => {
           > 
           <PlayerList 
       {...playerList}
-     
+      {...yestBat}
       {...pitcherList}
       selectedClass={selectedClass} 
       selectedYear={selectedYear} 
       selectedDivision={selectedDivision} 
       selectedMiLBTeam={selectedMiLBTeam} 
+      timeframe={timeframe} 
+      timeBatURL={timeBatURL}    
+      timePitchURL={timePitchURL}  
 />
           </Sidebar>
    </div>

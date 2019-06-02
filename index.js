@@ -63,25 +63,26 @@ finalHist.yr,
 finalHist.imgURL,  
 finalHist.franchLogo,  
 finalHist.tmName,  
-oneDayPitching.lg,
-oneDayPitching.playerName as playerName,
-oneDayPitching.playerID,
-oneDayPitching.tm as curTeam,
-oneDayPitching.IP - oneDayPitching.R AS IPER, 
-oneDayPitching.W AS W, 
-oneDayPitching.L AS L,
-oneDayPitching.SV AS SV,
-oneDayPitching.SO AS SO,
-oneDayPitching.H AS H,
-oneDayPitching.HR AS HR,
-oneDayPitching.BB AS BB,
-9 * (oneDayPitching.R / oneDayPitching.IP) as ERA
-from finalHist, oneDayPitching 
-where finalHist.playerID= oneDayPitching.playerID
+odp.lg,
+odp.playerName as playerName,
+odp.playerID,
+odp.tm as curTeam,
+odp.IP - odp.R AS IPER, 
+odp.W AS W, 
+odp.L AS L,
+odp.SV AS SV,
+odp.SO AS SO,
+odp.H AS H,
+odp.HR AS HR,
+odp.BB AS BB,
+9 * (odp.R / odp.IP) as ERA
+from finalHist, odp 
+where finalHist.playerID= odp.playerID
 and finalHist.class like ?
 and finalHist.franchise = ?
 and finalHist.yr like ?
-order by oneDayPitching.IP - oneDayPitching.R desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
+group by playerID
+order by odp.IP - odp.R desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
       res.json(results)
     if (error) throw error;
@@ -110,7 +111,7 @@ latestBatting.B2,
 latestBatting.B3,
 latestBatting.TB,
 latestBatting.SB,
-latestBatting.H / latestBatting.AB as AVG
+latestBatting.AB / latestBatting.H as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 
 and finalHist.franchise = ?
@@ -132,25 +133,26 @@ finalHist.majLg,
 finalHist.tmName,
 finalHist.yr,
 finalHist.class,
-oneDayBatting.playerName,
-oneDayBatting.playerID,
-oneDayBatting.AB, 
-oneDayBatting.H, 
-oneDayBatting.HR,
-oneDayBatting.RBI,
-oneDayBatting.R,
-oneDayBatting.BB,
-oneDayBatting.B2,
-oneDayBatting.B3,
-oneDayBatting.TB,
-oneDayBatting.SB,
-oneDayBatting.H / oneDayBatting.AB as AVG
-from finalHist, oneDayBatting 
-where finalHist.playerID= oneDayBatting.playerID 
+odb.playerName,
+odb.playerID,
+odb.AB, 
+odb.H, 
+odb.HR,
+odb.RBI,
+odb.R,
+odb.BB,
+odb.B2,
+odb.B3,
+odb.TB,
+odb.SB,
+odb.H / odb.AB as AVG
+from finalHist, odb 
+where finalHist.playerID= odb.playerID 
 and finalHist.franchise = ?
 and finalHist.class = ?
 and finalHist.yr like ?
-order by oneDayBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
+group by playerID
+order by odb.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
       res.json(results)
     if (error) throw error;

@@ -30,8 +30,19 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 		})
 		currentPitchData.map( ptm => {
 			ptm.color = ptm.majLg === "A" ? 'crimson' : 'indigo'
-			ptm.ptmStr = <div><Image size='mini' src={ptm.imgURL}/><div style={{fontSize: '.8em'}}>{ptm.yr}</div></div>
-			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}><div>{ptm.team}</div><div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}><div style={{ marginRight: '1vw'}}>{ptm.class}</div><div>{ptm.franchiseName}</div></div></div>
+			ptm.ptmStr = <div>
+								<Image rounded size='mini' src={ptm.franchLogo}/>
+								<div style={{fontSize: '.8em'}}>{ptm.franchiseName}</div>
+							</div>
+			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>
+								<Image rounded size='mini' src={ptm.imgURL}/>
+								<div style={{fontSize: '.8em'}}>{ptm.tmName}</div>
+								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
+									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
+									<div style={{ marginRight: '1vw'}}>{ptm.class}</div>
+									
+								</div>
+							</div>
 			return ptm
 		})
 
@@ -52,7 +63,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 		}, {
 			Header: 'Team',
 			accessor: 'tmStr2', 
-			minWidth: 14
+			minWidth: 104
 		},  /*{
 			Header: 'Players',
 			accessor: 'players',
@@ -86,7 +97,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 		{
 	    Header: '',
 	    accessor: 'ptmStr',
-	    width: 56,
+	    width: 96,
 		}, {
 			Header: 'Team',
 			accessor: 'ptmStr2', 

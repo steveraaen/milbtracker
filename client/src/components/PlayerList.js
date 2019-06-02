@@ -74,7 +74,7 @@ export default function PlayerList(props) {
 			accessor: 'BB',
 	    width: 54,
 		}*/]
-		if(props.playerList && props.pitcherList && mlbLogos) {
+		if(props.playerList &&  mlbLogos) {
 			for(let i =0; i < props.playerList.length; i++) {
 				props.playerList[i].playerURL = `https://www.baseball-reference.com/players/${props.playerList[i].playerID[0]}/${props.playerList[i].playerID}.shtml`
 				for(let j =0; j < mlbLogos.length; j++) {
@@ -83,6 +83,22 @@ export default function PlayerList(props) {
 				}
 			}
 		}
+		props.playerList.map( tm => {
+			tm.tmStr = <div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
+			<a style={{color:   tm.lg === "AL" ? 'red' : 'blue'}} href={tm.playerURL}>{tm.playerName}</a>
+			</div>
+			return tm
+		})
+
+	} else {
+			return <div style={{marginLeft: '3vw'}}>no</div>
+			}
+
+
+
+
+
+			if(props.pitcherList && mlbLogos) {
 			for(let i =0; i < props.pitcherList.length; i++) {
 				props.pitcherList[i].playerURL = `https://www.baseball-reference.com/players/${props.pitcherList[i].playerID[0]}/${props.pitcherList[i].playerID}.shtml`
 				for(let j =0; j < mlbLogos.length; j++) {
@@ -91,39 +107,41 @@ export default function PlayerList(props) {
 				}
 			}
 		}
-		props.playerList && props.playerList.map( tm => {
-			tm.tmStr = <div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
-			<a style={{color:   tm.lg === "AL" ? 'red' : 'blue'}} href={tm.playerURL}>{tm.playerName}</a>
-			</div>
-			return tm
-		})
-		props.pitcherList.map( ptm => {
+			props.pitcherList.map( ptm => {
 			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo}/>
 			<a style={{color: ptm.lg === "AL" ? 'red' : 'blue'}}  href={ptm.playerURL}>{ptm.playerName}</a>
 			</div>
 			return ptm
 		})
+	} else {
+			return <div style={{marginLeft: '3vw'}}>no</div>
+			}
+
 	    return (
 	    	<Grid columns={1} 
 	    	stretched
 	    	style={{paddingTop: '7vh' ,backgroundColor: 'rgba(255,255,255,50)'}}
 	    	>
 	    	 <Grid.Column>
+
+
 	    	<div>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}> {props.pitcherList[0].yr}</div>
 	    			<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.pitcherList[0].team}</div>
 	    		</div>
-	    		<ReactTable 
-	    	
+	    		<ReactTable 	    	
 	    		showPagination={false}
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
-	    			data={props.playerList}
-	    			columns={batterColumns}
-	    			showPageSizeOptions={false} 
+    			data={props.playerList}
+    			columns={batterColumns}
+    			showPageSizeOptions={false} 
 	    			
 	    		/>
 	    		</div>
+
+
+
 
 	    		<div>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
@@ -131,19 +149,16 @@ export default function PlayerList(props) {
 	    			<div>{props.pitcherList[0].team}</div>
 	    		</div>
 	    		<ReactTable
-
 	    		showPagination={false}
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
-	    			data={props.pitcherList}
-	    			columns={pitcherColumns}
-	    			showPageSizeOptions={false}
+    			data={props.pitcherList}
+    			columns={pitcherColumns}
+    			showPageSizeOptions={false}
 	    			
 	    		/>
 	    	</div>
 	    	 </Grid.Column>
 	    	 </Grid>
           )
-	} else {
-			return <div style={{marginLeft: '3vw'}}>no</div>
-			}
+
 		}
