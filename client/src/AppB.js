@@ -65,6 +65,7 @@ function AppB() {
     const [playersVisible, setPlayersVisible] = useState(false);
    const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
+   const [loading, setLoading] = useState(true);
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible({ formVisible: true }) : setFormVisible({ formVisible: false })
@@ -120,7 +121,9 @@ function AppB() {
             const tmBatYestPromise = axios('/api/teamBatYest' , { params: { cl, yr } })
             
             const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);
-
+              if(tmPitS && tmPitY &&tmBatS && tmBatY) {
+                setLoading(false)
+              }
             console.log(timeframe)
    /*     if(timeframe === 'season') {
               settfObj({
@@ -288,6 +291,7 @@ console.log(timePitchURL)
         <Sidebar.Pusher>  
   <div>
     <SeasonResults 
+    loading={loading}
     {...tfObj}
       {...bestBat}
       {...bestPitch}
