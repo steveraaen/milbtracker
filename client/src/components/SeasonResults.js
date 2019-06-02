@@ -88,7 +88,7 @@ console.log(rowInfo)
 	    	width: 51,
 		}, {
 			Header: 'HR',
-			accessor: 'TmStr3',
+			accessor: 'HR',
 	    	width: 51,
 		}/*, {
 			Header: 'BB',
