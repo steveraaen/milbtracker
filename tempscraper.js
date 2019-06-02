@@ -55,9 +55,8 @@ var connection = mysql.createConnection({
     })
     for (let i = 0; i < eachPlayer.length; i++) {
         connection.query(`INSERT INTO latestPitching(playerName,playerID,Age,Tm,Lg,W,L,G,GS,GF,CG,SHO,SV,IP,H,R,HR,BB,IBB,SO,HBP,BK,WP,BF)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-            DROP VIEW oneDayPitching;
-            CREATE VIEW oneDayPitching AS
-            SELECT
+            TRUNCATE TABLE odp;          
+            INSERT INTO odp SELECT
             latestPitching.playerID,
             latestPitching.playerName,
             latestPitching.tm as TM,
@@ -133,11 +132,14 @@ var connection = mysql.createConnection({
     })
     for (let i = 0; i < eachPlayer.length; i++) {
         connection.query(`INSERT INTO latestBatting(playerName,playerID,age,tm,lg,G,PA,AB,R,H,B2,B3,HR,RBI,SB,CS,BB,SO,TB,GDP,HBP,SH,SF,IBB,POS)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
-            DROP VIEW oneDayBatting;
-            CREATE VIEW oneDayBatting AS
+            TRUNCATE TABLE odb;
+            INSERT INTO odb
             SELECT
             latestBatting.playerID,
+            latestBatting.age,
             latestBatting.playerName,
+            latestBatting.tm as TM,
+            latestBatting.lg AS LG,
             SUM(latestBatting.G - secondLatestBatting.G) as G,
             SUM(latestBatting.PA - secondLatestBatting.PA) as PA,
             SUM((latestBatting.TB - secondLatestBatting.TB) + (latestBatting.RBI - secondLatestBatting.RBI))  as TBRBI,

@@ -26,6 +26,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 									
 								</div>
 							</div>
+			tm.tmStr3 = <div>{tm.AVG.toFixed(3)}</div>
 			return tm
 		})
 		currentPitchData.map( ptm => {
@@ -47,7 +48,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 		})
 
 const onRowClick = (state, rowInfo, column, instance) => {
-
+console.log(rowInfo)
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
@@ -57,20 +58,21 @@ const onRowClick = (state, rowInfo, column, instance) => {
 }
 		var batColumns = [
 		{
-	    Header: '',
+	    Header: 'Franchise',
 	    accessor: 'tmStr',
 	    width: 96,
+
 		}, {
 			Header: 'Team',
 			accessor: 'tmStr2', 
-			minWidth: 104
+			width: 124
 		},  /*{
 			Header: 'Players',
 			accessor: 'players',
 	    	width: 58,
 		},*/{
-			Header: 'TB',
-			accessor: 'TB',
+			Header: 'AB',
+			accessor: 'AB',
 	    	width: 51,
 		},/* {
 			Header: 'AB',
@@ -86,7 +88,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    	width: 51,
 		}, {
 			Header: 'HR',
-			accessor: 'HR',
+			accessor: 'TmStr3',
 	    	width: 51,
 		}/*, {
 			Header: 'BB',
@@ -95,13 +97,13 @@ const onRowClick = (state, rowInfo, column, instance) => {
 		}*/];
 		var pitchColumns = [
 		{
-	    Header: '',
+	    Header: 'Franchise',
 	    accessor: 'ptmStr',
 	    width: 96,
 		}, {
 			Header: 'Team',
 			accessor: 'ptmStr2', 
-			minWidth: 104
+			width: 124
 		}, /*{
 			Header: 'Players',
 			accessor: 'players',

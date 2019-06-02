@@ -82,8 +82,8 @@ and finalHist.class like ?
 and finalHist.franchise = ?
 and finalHist.yr like ?
 group by playerID
-order by odp.IP - odp.R desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
-      /*  console.log(results)*/
+order by odp.IP - odp.R desc`, [req.query.c, req.query.f, req.query.y], function (error, results, fields) {
+        console.log(results)
       res.json(results)
     if (error) throw error;
    })
@@ -111,7 +111,7 @@ latestBatting.B2,
 latestBatting.B3,
 latestBatting.TB,
 latestBatting.SB,
-latestBatting.AB / latestBatting.H as AVG
+latestBatting.H / latestBatting.AB as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 
 and finalHist.franchise = ?
@@ -201,22 +201,22 @@ finalHist.yr,
 finalHist.imgURL,  
 finalHist.franchLogo,  
 finalHist.tmName,  
-count(oneDayPitching.playerName) as players,
-SUM(oneDayPitching.IP - oneDayPitching.R) AS IPER, 
-SUM(oneDayPitching.W) AS W, 
-SUM(oneDayPitching.L) AS L,
-SUM(oneDayPitching.SV) AS SV,
-SUM(oneDayPitching.SO) AS SO,
-SUM(oneDayPitching.H) AS H,
-SUM(oneDayPitching.HR) AS HR,
-SUM(oneDayPitching.BB) AS BB,
-SUM(9 * (oneDayPitching.R / oneDayPitching.IP)) as ERA
-from finalHist, oneDayPitching 
-where finalHist.playerID= oneDayPitching.playerID 
+count(odp.playerName) as players,
+SUM(odp.IP - odp.R) AS IPER, 
+SUM(odp.W) AS W, 
+SUM(odp.L) AS L,
+SUM(odp.SV) AS SV,
+SUM(odp.SO) AS SO,
+SUM(odp.H) AS H,
+SUM(odp.HR) AS HR,
+SUM(odp.BB) AS BB,
+SUM(9 * (odp.R / odp.IP)) as ERA
+from finalHist, odp 
+where finalHist.playerID= odp.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
 group by finalHist.class , finalHist.franchise, finalHist.yr
-order by SUM(oneDayPitching.IP - oneDayPitching.R) desc limit 40`,[req.query.cl, req.query.yr], function (error, results, fields) {
+order by SUM(odp.IP - odp.R) desc limit 40`,[req.query.cl, req.query.yr], function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    })
@@ -267,24 +267,24 @@ finalHist.yr,
 finalHist.imgURL,  
 finalHist.franchLogo,  
 finalHist.tmName,  
-count(oneDayBatting.playerName) as players,
-SUM(oneDayBatting.AB) AS AB, 
-SUM(oneDayBatting.H) AS H, 
-SUM(oneDayBatting.HR) AS HR,
-SUM(oneDayBatting.RBI) AS RBI,
-SUM(oneDayBatting.R) AS R,
-SUM(oneDayBatting.BB) AS BB,
-SUM(oneDayBatting.B2) AS B2,
-SUM(oneDayBatting.B3) AS B3,
-SUM(oneDayBatting.TB) AS TB,
-SUM(oneDayBatting.SB) AS B3,
-SUM(oneDayBatting.H / oneDayBatting.AB) as AVG
-from finalHist, oneDayBatting 
-where finalHist.playerID= oneDayBatting.playerID 
+count(odb.playerName) as players,
+SUM(odb.AB) AS AB, 
+SUM(odb.H) AS H, 
+SUM(odb.HR) AS HR,
+SUM(odb.RBI) AS RBI,
+SUM(odb.R) AS R,
+SUM(odb.BB) AS BB,
+SUM(odb.B2) AS B2,
+SUM(odb.B3) AS B3,
+SUM(odb.TB) AS TB,
+SUM(odb.SB) AS B3,
+SUM(odb.H / odb.AB) as AVG
+from finalHist, odb 
+where finalHist.playerID= odb.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
 group by finalHist.class , finalHist.franchise, finalHist.yr
-order by SUM(oneDayBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)
     if (error) throw error;

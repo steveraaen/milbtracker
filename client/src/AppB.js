@@ -193,21 +193,12 @@ const handleClick = (e, { value }) => {
   setTimeframe(value)
 
         if(value === 'season') {
-/*              settfObj({
-                tfObj: {
-               bestBatTeams: bestBat,
-                bestPitchTeams: bestPitch
-              }
-              })*/
+
               setTimeBatURL('/api/playerBatSeason')
               setTimePitchURL('/api/playerPitchSeason')
-              } else if(value === 'yesterday'){
-/*             settfObj({
-               tfObj: {
-                bestBatTeams: yestBat,
-                bestPitchTeams: yestPitch
-              }
-              }) */
+              } 
+              else if(value === 'yesterday'){
+
               setTimeBatURL('/api/playerBatYest')
               setTimePitchURL('/api/playerPitchYest')
             }
@@ -315,20 +306,15 @@ console.log(timePitchURL)
     />
 </div>
 <div>
-
-
-
 </div>
   </Sidebar.Pusher>
    </Sidebar.Pushable>
-             <Sidebar
-             width='very wide'
-                direction='right'
-            animation='scale down'
-         
-            onHide={() => setPlayersVisible(false)}
-         
-            visible={playersVisible}           
+       <Sidebar
+      width='very wide'
+      direction='right'
+      animation='scale down'         
+      onHide={() => setPlayersVisible(false)}         
+      visible={playersVisible}           
           > 
           <PlayerList 
       {...playerList}
