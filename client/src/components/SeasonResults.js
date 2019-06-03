@@ -26,7 +26,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 									
 								</div>
 							</div>
-			tm.tmStr3 = <div>{tm.AVG.toFixed(3)}</div>
+		
 			return tm
 		})
 		currentPitchData.map( ptm => {
