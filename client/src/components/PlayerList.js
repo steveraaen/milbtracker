@@ -77,7 +77,7 @@ export default function PlayerList(props) {
 		if(props.playerList && mlbLogos) {
 
 			var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: '8vh', width: '10vw'}}>
-									<div style={{marginLeft: '10vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
+									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
 									<Image size='tiny' src={props.playerList[0].imgURL} />
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>

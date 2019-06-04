@@ -101,7 +101,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 		{
 			headerStyle: {fontSize: '.9em'},
 			Header: '',
-			accessor: 'ptmStr1',
+			accessor: 'ptmStr',
 			width: 50
 		},{
 			headerStyle: {fontSize: '.9em'},
@@ -145,8 +145,8 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    	<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Batting</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedClass.displayName}</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
 	    			className="-highlight"
@@ -164,8 +164,8 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    		<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Pitching</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedClass.displayName}</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedClass.displayName}</div>
+	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
 	    			className="-highlight"
