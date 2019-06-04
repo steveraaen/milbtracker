@@ -8,7 +8,7 @@ import mlbLogos from '../data/franchiseLogos.json'
 export default function PlayerList(props) {
 		var batterColumns = [
 				{
-	    Header: 'Player',
+	    Header: 'Batting',
 	    accessor: 'tmStr',
 	    width: 144,
 		}, {
@@ -42,7 +42,7 @@ export default function PlayerList(props) {
 		}*/];
 		var pitcherColumns = [
 		{
-	    Header: 'Player',
+	    Header: 'Pitching',
 	    accessor: 'tmStr',
 	    width: 144,
 		},{
@@ -75,6 +75,16 @@ export default function PlayerList(props) {
 	    width: 54,
 		}*/]
 		if(props.playerList && mlbLogos) {
+
+			var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: '8vh', width: '10vw'}}>
+									<div style={{marginLeft: '10vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
+									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
+									<Image size='tiny' src={props.playerList[0].imgURL} />
+									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
+								</div>
+								
+								
+
 			for(let i =0; i < props.playerList.length; i++) {
 				props.playerList[i].playerURL = `https://www.baseball-reference.com/players/${props.playerList[i].playerID[0]}/${props.playerList[i].playerID}.shtml`
 				for(let j =0; j < mlbLogos.length; j++) {
@@ -92,6 +102,14 @@ export default function PlayerList(props) {
 }
 // ---------------------------------------------------------------------
 	if(props.pitcherList && mlbLogos) {
+
+			var ptchrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: '8vh', width: '10vw'}}>
+									<div style={{marginLeft: '10vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
+									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
+									<Image size='tiny' src={props.playerList[0].imgURL} />
+									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
+								</div>
+
 			for(let i =0; i < props.pitcherList.length; i++) {
 				props.pitcherList[i].playerURL = `https://www.baseball-reference.com/players/${props.pitcherList[i].playerID[0]}/${props.pitcherList[i].playerID}.shtml`
 				for(let j =0; j < mlbLogos.length; j++) {
@@ -109,18 +127,15 @@ export default function PlayerList(props) {
 	}		
 	if(props.pitcherList || props.playerList) {
 	    return (
-	 
+	 <div>
 	    	<Grid columns={1} 
 	    	stretched
 	    	style={{paddingTop: '7vh' ,backgroundColor: 'rgba(255,255,255,50)'}}
-	    	>
+	    	> 
 	    	 <Grid.Column>
-
+{plyrSum}
 
 	    	<div>
-	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
-
-	    		</div>
 	    		<ReactTable 	    	
 	    		showPagination={false}
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
@@ -149,6 +164,7 @@ export default function PlayerList(props) {
 	    	</div>
 	    	 </Grid.Column>
 	    	 </Grid>
+	    	 </div>
           )
 	 } else { return(<div> no results</div>)
 		}

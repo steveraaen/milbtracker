@@ -53,7 +53,7 @@ function AppB() {
     const [yestBat, setYestBat] = useState();
     const [bestPitch, setBestPitch] = useState();
     const [yestPitch, setYestPitch] = useState();
-    const [timeframe, setTimeframe] = useState('season');
+    const [timeframe, setTimeframe] = useState('yesterday');
     const [tfObj, settfObj] = useState({});
     /*    const [classStats, setClassStats] = useState();*/
     /* const [column, setColumn] = useState();*/
@@ -220,18 +220,21 @@ console.log(timePitchURL)
 
     return (
 <div> 
+
+<div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+<Icon name="bars" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
   <div>
     <Button
       value="season"
       onClick={handleClick}
+      active={timeframe === "season"}
     >Season</Button>
     <Button
     value="yesterday"
      onClick={handleClick}
+     active={timeframe === "yesterday"}
     >Yesterday</Button>
   </div>
-<div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
-<Icon name="bars" disabled={formVisible} onClick={toggleFormSidebar} />
 </div>
     
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>

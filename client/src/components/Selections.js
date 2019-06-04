@@ -64,7 +64,7 @@ function YearPicker(props) {
                value={yr}
                key={idx} 
                onChange={handleChange}
-               checked={props.selectedYear === yr.value}
+               checked={props.selectedYear === yr}
                >
                </Form.Checkbox>
             )
@@ -95,19 +95,11 @@ function ClassPicker(props) {
         <div> 
    
        <Form.Group> 
-        <Form.Checkbox
-         toggle
-          key={'allClasses'}
-          label={"All MiLB Classes"}
-          value={tempObj}          
-          onChange={handleChange}
-          checked={props.selectedClass === tempObj}
-        />
         { props.classes.map((cl, idx) => {
           return(
              <Form.Checkbox 
              toggle
-             label={cl.name}
+             label={cl.displayName}
              key={cl.regex} 
              value={cl}
              onChange={handleChange}

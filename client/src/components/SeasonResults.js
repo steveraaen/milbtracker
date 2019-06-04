@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Grid, Image} from 'semantic-ui-react'
+import {Grid, Image, Popup} from 'semantic-ui-react'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
@@ -13,30 +13,29 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 
 		currentBatData.map( tm => {
 			tm.color = tm.majLg === "A" ? 'crimson' : 'indigo'
-			tm.tmStr = <div>
-								<Image rounded size='mini' src={tm.franchLogo}/>
-								<div style={{fontSize: '.8em'}}>{tm.franchiseName}</div>
-							</div>
+			tm.tmStr = <Image rounded size='mini' src={tm.imgURL}/>
 			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>
-								<Image rounded size='mini' src={tm.imgURL}/>
+								
 								<div style={{fontSize: '.8em'}}>{tm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{tm.class}</div>
+									<div style={{ marginRight: '1vw'}}>{tm.franchise}</div>
 									
 								</div>
 							</div>
-		
+
 			return tm
 		})
 		currentPitchData.map( ptm => {
 			ptm.color = ptm.majLg === "A" ? 'crimson' : 'indigo'
-			ptm.ptmStr = <div>
-								<Image rounded size='mini' src={ptm.franchLogo}/>
-								<div style={{fontSize: '.8em'}}>{ptm.franchiseName}</div>
-							</div>
-			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>
+
+			ptm.ptmStr = <div style={{justifyContent: 'center'}}>
 								<Image rounded size='mini' src={ptm.imgURL}/>
+							</div>
+
+			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>
+						
 								<div style={{fontSize: '.8em'}}>{ptm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
@@ -48,91 +47,98 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 		})
 
 const onRowClick = (state, rowInfo, column, instance) => {
-console.log(rowInfo)
+
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
-            console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)          
+           /* console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)   */       
         }
     }
 }
 		var batColumns = [
 		{
-	    Header: 'Franchise',
-	    accessor: 'tmStr',
-	    width: 96,
-
-		}, {
+			headerStyle: {fontSize: '.9em'},
+			Header: '',
+			accessor: 'tmStr',
+			width: 40
+		},{
+			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
-			accessor: 'tmStr2', 
-			width: 124
-		},  /*{
+			accessor: 'tmStr2',
+			width: 120
+		},  {
+			headerStyle: {fontSize: '.9em'},
 			Header: 'Players',
 			accessor: 'players',
-	    	width: 58,
-		},*/{
+			width: 60
+		},{
+			headerStyle: {fontSize: '.9em'},
 			Header: 'AB',
 			accessor: 'AB',
-	    	width: 51,
-		},/* {
-			Header: 'AB',
-			accessor: 'AB',
-	    	width: 46,
-		},*/ {
+			width: 56
+		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: 'AVG',
 			accessor: 'AVG',
-	    	width: 65,
+			width: 56
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: 'H',
 			accessor: 'H',
-	    	width: 51,
+			width: 56
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: 'HR',
 			accessor: 'HR',
-	    	width: 51,
-		}/*, {
-			Header: 'BB',
-			accessor: 'BB',
-	    	width: 46,
-		}*/];
+			width: 56
+		}, {
+			headerStyle: {fontSize: '.9em'},
+			Header: 'SB',
+			accessor: 'SB',
+			width: 56
+		}];
 		var pitchColumns = [
 		{
-	    Header: 'Franchise',
-	    accessor: 'ptmStr',
-	    width: 96,
-		}, {
+			headerStyle: {fontSize: '.9em'},
+			Header: '',
+			accessor: 'ptmStr1',
+			width: 40
+		},{
+			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
-			accessor: 'ptmStr2', 
-			width: 124
-		}, /*{
+			accessor: 'ptmStr2',
+			width: 120
+		},	{
+			headerStyle: {fontSize: '.9em'},
 			Header: 'Players',
 			accessor: 'players',
-	    width: 58,
-		},*/{
+			width: 60
+		},	{
+			headerStyle: {fontSize: '.9em'},
 			Header: 'IP-ER',
 			accessor: 'IPER',
-	    width: 55,
+			width: 56
 		},  {
+			headerStyle: {fontSize: '.9em'},
 			Header: 'W',
 			accessor: 'W',
-	    width: 55,
+			width: 56
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: 'L',
 			accessor: 'L',
-	    width: 55,
+			width: 56
 		}, {
+			headerStyle: {fontSize: '.9em'},
+			Header: 'SV',
+			accessor: 'SV',
+			width: 56
+		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: 'SO',
 			accessor: 'SO',
-	    width: 55,
-		}/*, {
-			Header: 'HR',
-			accessor: 'HR',
-	    width: 50,
-		}, {
-			Header: 'BB',
-			accessor: 'BB',
-	    width: 50,
-		}*/]
+			width: 56
+		}]
 	    return (
 	    	<Grid stackable columns={2}>
 	    	 <Grid.Column>
@@ -143,15 +149,13 @@ console.log(rowInfo)
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
-	    		isSelected
-	    		showPagination={false}
-	    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
-	    		defaultPageSize={30}
-	    			data={currentBatData}
-	    			
+	    			className="-highlight"
+		    		showPagination={false}
+		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'white'}}
+		    		defaultPageSize={30}
+	    			data={currentBatData}    			
 	    			columns={batColumns}
-	    			showPageSizeOptions={false}
-	    			
+	    			showPageSizeOptions={false}	    			
 	    			getTrProps={onRowClick}
 	    		/> 
 	    		</div>
@@ -164,13 +168,13 @@ console.log(rowInfo)
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, marginLeft: '1vw'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
-	    		showPagination={false}
-	    		style={{fontSize: '.9em',   fontWeight: 600, height: '76vh', backgroundColor: 'whitesmoke'}}
-	    			data={currentPitchData}
-	    		
+	    			className="-highlight"
+		    		showPagination={false}
+		    		style={{fontSize: '.9em',   fontWeight: 600, height: '76vh', backgroundColor: 'white'}}
+		    		defaultPageSize={30}
+	    			data={currentPitchData}	    		
 	    			columns={pitchColumns}
-	    			showPageSizeOptions={false}
-	    				    			
+	    			showPageSizeOptions={false}	    				    			
 	    			getTrProps={onRowClick}
 	    		/>
 	    	</div> 
@@ -178,7 +182,7 @@ console.log(rowInfo)
 	    	</Grid>
           )
 		} else {
-			return <div style={{marginLeft: '3vw'}}>no</div>
+			return null
 		}
 
 }
