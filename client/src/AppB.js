@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Grid, Header, Icon, Image, Segment, Sidebar, Tab, Visibility } from 'semantic-ui-react'
+import { Button, Container, Grid, Header, Icon, Image, Segment, Sidebar, Tab, Transition } from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker, YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
+import IsLoading from './components/IsLoading.js'
 
 import './App.css'
 import classes from './classes.js'
@@ -217,37 +218,37 @@ console.log(timePitchURL)
     /*    useEffect(() => {
             getBestMinors(selectedClass.code, selectedDivision.value, selectedClass.regex, selectedYear)
         }, {});*/
-
-    return (
+if(loading) {
+  return (    <IsLoading />)
+} else {
+return (
+<Transition visible={!loading} animation='scale' duration={1000}>
 <div> 
-
-<div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
-<Icon name="bars" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
-  <div>
-    <Button
-      value="season"
-      onClick={handleClick}
-      active={timeframe === "season"}
-    >Season</Button>
-    <Button
-    value="yesterday"
-     onClick={handleClick}
-     active={timeframe === "yesterday"}
-    >Yesterday</Button>
-  </div>
-</div>
-    
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
-           
-            <div style={{alignContent: 'center', fontSize: '1.2em', fontWeight: 600}}>
-
-             </div> 
-             </div> 
-             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-             </div>
-            <Sidebar.Pushable as={Segment}>
+    <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+    <Icon corner='top left' name="bars" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
+    <div style={{fontSize: '1.8em', fontWeight: 600}}>Farm Team Fantasy</div>
+      <div>
+        <Button
+          value="season"
+          onClick={handleClick}
+          active={timeframe === "season"}
+        >Season</Button>
+        <Button
+        value="yesterday"
+         onClick={handleClick}
+         active={timeframe === "yesterday"}
+        >Yesterday</Button>
+      </div>
+    </div>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>          
+        <div style={{alignContent: 'center', fontSize: '1.2em', fontWeight: 600}}>
+         </div> 
+         </div> 
+         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+      </div>
+        <Sidebar.Pushable as={Segment}>
           <Sidebar
-
+            style={{marginRight: '1vw'}}
             icon='labeled'
             inverted='true'
             onHide={() => setFormVisible(false)}
@@ -270,9 +271,7 @@ console.log(timePitchURL)
               selectedMiLBTeam={selectedMiLBTeam}
               setSelectedMiLBTeam={setSelectedMiLBTeam}
               />   
-                
-              </Segment>   
-         
+         </Segment>            
          <Segment>  
            <YearPicker 
               topTen={topTen}
@@ -292,10 +291,10 @@ console.log(timePitchURL)
               </Segment>        
            </Sidebar>      
         <Sidebar.Pusher>  
-  <div>
+      <div>
     <SeasonResults 
-    loading={loading}
-    {...tfObj}
+      loading={loading}
+      {...tfObj}
       {...bestBat}
       {...bestPitch}
       {...yestBat}
@@ -316,14 +315,14 @@ console.log(timePitchURL)
 </div>
   </Sidebar.Pusher>
    </Sidebar.Pushable>
-       <Sidebar
+    <Sidebar
       width='very wide'
       direction='right'
       animation='scale down'         
       onHide={() => setPlayersVisible(false)}         
       visible={playersVisible}           
-          > 
-          <PlayerList 
+    > 
+    <PlayerList 
       {...playerList}
       {...yestBat}
       {...pitcherList}
@@ -337,7 +336,8 @@ console.log(timePitchURL)
 />
           </Sidebar>
    </div>
-    );
+   </Transition>
+    )}
 }
 
 

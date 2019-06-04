@@ -1,5 +1,5 @@
 body {
-  padding: 2vw;
+  padding: 1vw;
 }
 
 .recharts-wrapper {
@@ -13,37 +13,33 @@ table thead tr:first-child > th {
 
 @keyframes spinball {
   from {
-  		width: 4vw;
-  		height: 4vw;
-  		left: 50%;
-  		top: -5%;
-    	transform: rotate(359deg);
+
+    transform: rotate(0deg);
   }
   to {
-  		width: 2vw;
-  		height: 2vw;
-  		left: 50%;
-  		top: 0%;
-    	transform: rotate(0deg);
+
+    transform: rotate(360deg);
   }
 }
 @keyframes mlb {
   from {
-  	left: 110%;
+    top: 50%;
+    left: 1%;
     transform: rotate(180deg);
   }
   to {
-  	left: 80%;
+    top: 50%;
+    left: 40%;
     transform: rotate(360deg);
   }
 }
 @keyframes milb {
   from {
-  	left: 5%;
+
     transform: rotate(180deg);
   }
   to {
-  	left: 58%;
+
     transform: rotate(360deg);
   }
 }
@@ -67,38 +63,41 @@ table thead tr:first-child > th {
 
 .ball {
 
-	animation: spinball 4s;
-	position : relative;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+	animation: spinball 2s linear;
+  left:48vw;
+  top:30vh;
+	position : absolute;
+	animation-iteration-count: 10;
+	/*animation-fill-mode: forwards;*/
 
 /*	animation-delay: 1s;*/
 
 }
 .mlblogo {
-	margin-top: 5vh;
-	width: 10vw;
-  	height: 10vw;
-	animation: mlb 4s ;
-	position : relative;	
-	animation-iteration-count: 1;
+  animation: spinball 4s;
+  width: 14vw;
+  height:14vh;
+	left:38vw;
+  top:48vh;
+  position : absolute;
+  animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 }
 .milblogo {
-	margin-top: 5vh;
-	width: 10vw;
-  	height: 10vw;
-	animation: milb 4s ;
-	position : relative;	
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+  animation: spinball 4s;
+  width: 14vw;
+  height:14vh;
+  position : absolute;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 .blurb {
-	margin-top: 5vh;
-	width: 40vw;
-	animation: blurb 4s ;
-	position : relative;	
-	animation-iteration-count: 1;
+top: 50vh;
+left:38vw;
+font-size: 3em;
+font-weight: 700;
+position : relative;	
+animation-iteration-count: 1;
 }
 .scroller {
 	margin-top: 1vh;

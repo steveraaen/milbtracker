@@ -16,7 +16,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 			tm.tmStr = <Image rounded size='mini' src={tm.imgURL}/>
 			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>
 								
-								<div style={{fontSize: '.8em'}}>{tm.tmName}</div>
+								<div style={{fontSize: '1em'}}>{tm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{tm.class}</div>
@@ -36,7 +36,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 
 			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>
 						
-								<div style={{fontSize: '.8em'}}>{ptm.tmName}</div>
+								<div style={{fontSize: '1em'}}>{ptm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{ptm.class}</div>
@@ -60,7 +60,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: '',
 			accessor: 'tmStr',
-			width: 40
+			width: 50
 		},{
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
@@ -102,7 +102,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: '',
 			accessor: 'ptmStr1',
-			width: 40
+			width: 50
 		},{
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
@@ -178,6 +178,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    			getTrProps={onRowClick}
 	    		/>
 	    	</div> 
+
 	    	 </Grid.Column> 
 	    	</Grid>
           )
