@@ -92,10 +92,11 @@ table thead tr:first-child > th {
   animation-fill-mode: forwards;
 }
 .blurb {
-top: 50vh;
+top: 56vh;
 left:38vw;
 font-size: 3em;
 font-weight: 700;
+margin-top: 2vh;
 position : relative;	
 animation-iteration-count: 1;
 }

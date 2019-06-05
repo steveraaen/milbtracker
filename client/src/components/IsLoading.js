@@ -13,7 +13,7 @@ export default function IsLoading(props) {
 		</div>
 		<div className='blurb'>
 			Farm Team Fantasy
-			<div style={{marginTop: '3vh', fontSize: '.5em', fontWeight: 400, fontStyle: 'italic'}}> Is gathering the latest data ..</div>
+			<div style={{marginTop: '3vh', fontSize: '.5em', fontWeight: 400, fontStyle: 'italic'}}> Is gathering the latest stats ..</div>
 		</div>
 	</div>
 		)

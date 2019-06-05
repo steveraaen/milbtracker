@@ -225,8 +225,8 @@ return (
 <Transition visible={!loading} animation='scale' duration={1000}>
 <div> 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
-    <Icon corner='top left' name="bars" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
-    <div style={{fontSize: '1.8em', fontWeight: 600}}>Farm Team Fantasy</div>
+    <Icon bordered corner='top left' name="bars" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
+    <div style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
       <div>
         <Button
           value="season"
