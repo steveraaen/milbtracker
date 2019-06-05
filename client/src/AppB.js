@@ -68,8 +68,8 @@ function AppB() {
     const [modalOpen, setModalOpen] = useState(true);
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
-   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
-   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
+   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatYest');
+   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchYest');
    const [loading, setLoading] = useState(true);
 
 

@@ -16,12 +16,13 @@ how well their former players are performing in the major leagues this year.`}</
 
 <p style={{display: 'flex', flexWrap: 'wrap'}}>{`It is structured like a MLB fantasy league, only the teams are prebuilt based on which minor league teams
 each player played on earlier in his career.  If a major leaguer played for ten minor league teams over five years, he is a member of all 10 of those minor league teams.`}</p>
+<span style={{color: 'indigo'}}>National League</span><span style={{color: 'crimson'}}>American League</span>
 
 <Header>Metrics</Header>
 <p style={{display: 'flex', flexWrap: 'wrap'}}>{`The batting metric that drives rankings is total bases plus RBIs.
 For pitching, teams are ranked by innings pitched minus earned runs.`}</p>
 
-        
+
      </Modal.Description>
     </Modal.Content>
   )

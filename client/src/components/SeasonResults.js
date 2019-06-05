@@ -40,6 +40,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{ptm.class}</div>
+									<div style={{ marginRight: '1vw'}}>{ptm.franchise}</div>
 									
 								</div>
 							</div>
@@ -65,7 +66,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
 			accessor: 'tmStr2',
-			width: 120
+			width: 130
 		},  {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Players',
@@ -107,7 +108,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
 			accessor: 'ptmStr2',
-			width: 120
+			width: 130
 		},	{
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Players',
