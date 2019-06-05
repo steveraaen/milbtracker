@@ -40,7 +40,7 @@ latestPitching.SO AS SO,
 latestPitching.H AS H,
 latestPitching.HR AS HR,
 latestPitching.BB AS BB,
-9 * (latestPitching.R / latestPitching.IP) as ERA
+FORMAT(9 * (latestPitching.R / latestPitching.IP),2) as ERA
 from finalHist, latestPitching 
 where finalHist.playerID= latestPitching.playerID
 and finalHist.class like ?
@@ -75,7 +75,7 @@ odp.SO AS SO,
 odp.H AS H,
 odp.HR AS HR,
 odp.BB AS BB,
-9 * (odp.R / odp.IP) as ERA
+FORMAT(9 * (odp.R / odp.IP),2) as ERA
 from finalHist, odp 
 where finalHist.playerID= odp.playerID
 and finalHist.class like ?
@@ -114,7 +114,7 @@ latestBatting.B2,
 latestBatting.B3,
 latestBatting.TB,
 latestBatting.SB,
-latestBatting.H / latestBatting.AB as AVG
+FORMAT(latestBatting.H / latestBatting.AB,3) as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 
 and finalHist.franchise = ?
@@ -150,7 +150,7 @@ odb.B2,
 odb.B3,
 odb.TB,
 odb.SB,
-odb.H / odb.AB as AVG
+FORMAT(odb.H / odb.AB, 3) as AVG
 from finalHist, odb 
 where finalHist.playerID= odb.playerID 
 and finalHist.franchise = ?
@@ -183,7 +183,7 @@ SUM(latestPitching.SO) AS SO,
 SUM(latestPitching.H) AS H,
 SUM(latestPitching.HR) AS HR,
 SUM(latestPitching.BB) AS BB,
-SUM(9 * (latestPitching.R / latestPitching.IP)) as ERA
+FORMAT(SUM(9 * (latestPitching.R / latestPitching.IP)),2) as ERA
 from finalHist, latestPitching 
 where finalHist.playerID= latestPitching.playerID 
 and finalHist.class like ?
@@ -215,7 +215,7 @@ SUM(odp.SO) AS SO,
 SUM(odp.H) AS H,
 SUM(odp.HR) AS HR,
 SUM(odp.BB) AS BB,
-SUM(9 * (odp.R / odp.IP)) as ERA
+FORMAT(SUM(9 * (odp.R / odp.IP)),2) as ERA
 from finalHist, odp 
 where finalHist.playerID= odp.playerID 
 and finalHist.class like ?
@@ -249,7 +249,7 @@ SUM(latestBatting.B2) AS B2,
 SUM(latestBatting.B3) AS B3,
 SUM(latestBatting.TB) AS TB,
 SUM(latestBatting.SB) AS SB,
-SUM(latestBatting.H) / SUM(latestBatting.AB) as AVG
+FORMAT(SUM(latestBatting.H) / SUM(latestBatting.AB), 3) as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 
 and finalHist.class like ?
@@ -283,7 +283,7 @@ SUM(odb.B2) AS B2,
 SUM(odb.B3) AS B3,
 SUM(odb.TB) AS TB,
 SUM(odb.SB) AS SB,
-SUM(odb.H / odb.AB) as AVG
+FORMAT(SUM(odb.H) / SUM(odb.AB),3) as AVG
 from finalHist, odb 
 where finalHist.playerID= odb.playerID 
 and finalHist.class like ?

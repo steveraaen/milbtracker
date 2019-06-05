@@ -20,6 +20,7 @@ each player played on earlier in his career.  If a major leaguer played for ten 
 <Header>Metrics</Header>
 <p style={{display: 'flex', flexWrap: 'wrap'}}>{`The batting metric that drives rankings is total bases plus RBIs.
 For pitching, teams are ranked by innings pitched minus earned runs.`}</p>
+
         
      </Modal.Description>
     </Modal.Content>

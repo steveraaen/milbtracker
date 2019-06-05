@@ -63,12 +63,15 @@ function AppB() {
     /*   const [direction, setDirection] = useState();*/
     /*    const [curSortB, setCurSortB] = useState({bsrt: "bBA", bsDir: "desc"});
         const [curSortP, setCurSortP] = useState({psrt: "bBA", bsDir: "desc"});*/
-    const [modalOpen, setModalOpen] = useState();
+
+    const [firstVisit, setFirstVisit] = useState(true);
+    const [modalOpen, setModalOpen] = useState(true);
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
    const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
+
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible({ formVisible: true }) : setFormVisible({ formVisible: false })
@@ -210,9 +213,18 @@ const handleClick = (e, { value }) => {
             }
 console.log(timeBatURL)
 console.log(timePitchURL)
-
 }
-
+function handleFirstVisit() {
+console.log(localStorage)
+    localStorage.setItem('showModal', false)
+    setModalOpen(false)  
+}
+function handleModalClose() {
+  setModalOpen(false)
+}
+    useEffect(() => {
+      localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
+    }, {})
     useEffect(() => {
         getTopTen(selectedClass.code, selectedYear.value, timeframe)
     }, {});
@@ -231,13 +243,20 @@ return (
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
 
-  <Modal trigger={<Icon bordered corner='top left' name="info" size='large' />}>
-      <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: 'gray'}}>
+  <Modal 
+  
+  modalOpen={modalOpen}
+    open={modalOpen}
+    trigger={<Icon bordered corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
+      <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> From Minors ...</div>
         <Image rounded wrapped size='small' src={ftfLogo} />
         <div style={{marginLeft:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> ... To Majors</div>
+        <Icon bordered color='yellow' name="window close outline" size='small' onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain />
+    <a onClick={() => handleFirstVisit()} style={{display: 'flex',justifyContent: 'center', marginBottom: '1vh', fontSize: '.9em', fontWeight: 700, fontStyle: 'italic'}}>Don't show this again</a>
+
   </Modal>
 
 

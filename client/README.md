@@ -1,5 +1,4 @@
-Like fantasy leagues with drafts, Farm Team Fantasy ranks 'synthetic' teams of Major League Baseball players. FTF teams however,
-are constructed based on which Minor League teams the current Major Leaguers played on.
+Like fantasy leagues with drafts, Farm Team Fantasy ranks 'synthetic' teams of Major League Baseball players. FTF teams however, are constructed based on which Minor League teams the current Major Leaguers played on.
 
 Farm Team Fantasy generates bragging rights for minor league baseball teams and their fans based on
 how well their former players are performing in the major leagues this year.
