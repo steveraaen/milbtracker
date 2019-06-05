@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Grid, Header, Icon, Image, Segment, Sidebar, Tab, Transition } from 'semantic-ui-react'
+import { Button, Container, Grid, Header, Icon, Image, Modal, Segment, Sidebar, Tab, Transition } from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker, YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
+import Explain from './components/Explain.js'
 
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import newMinors from './newMinors.json'
+import ftfLogo from './data/ftflogo.png'
 /*import leagues from './assets/leagues.js'*/
 
 
@@ -224,20 +226,37 @@ if(loading) {
 return (
 <Transition visible={!loading} animation='scale' duration={1000}>
 <div> 
+
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
-    <Icon bordered corner='top left' name="bars" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
+      <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
+        <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
+
+  <Modal trigger={<Icon bordered corner='top left' name="info" size='large' />}>
+      <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', backgroundColor: 'gray'}}>
+        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> From Minors ...</div>
+        <Image rounded wrapped size='small' src={ftfLogo} />
+        <div style={{marginLeft:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> ... To Majors</div>
+        </Modal.Header>
+    <Explain />
+  </Modal>
+
+
+        
+      </div>
     <div style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
       <div>
         <Button
+
           value="season"
           onClick={handleClick}
           active={timeframe === "season"}
-        >Season</Button>
+        >Full Season</Button>
         <Button
+
         value="yesterday"
          onClick={handleClick}
          active={timeframe === "yesterday"}
-        >Yesterday</Button>
+        >Last Game</Button>
       </div>
     </div>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>          
