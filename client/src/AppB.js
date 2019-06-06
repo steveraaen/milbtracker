@@ -294,6 +294,8 @@ return (
             visible={formVisible}           
           >       
            <Segment>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}><Icon bordered color='black' name="close" onClick={() => setFormVisible()}/></div>
+
             <ClassPicker
               timeframe={timeframe}
               years={years}
@@ -360,6 +362,9 @@ return (
       onHide={() => setPlayersVisible(false)}         
       visible={playersVisible}           
     > 
+    <Segment>
+     <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}><Icon bordered color='black' name="close" onClick={() => setPlayersVisible(false)}/></div>
+
     <PlayerList 
       {...playerList}
       {...yestBat}
@@ -372,6 +377,7 @@ return (
       timeBatURL={timeBatURL}    
       timePitchURL={timePitchURL}  
 />
+</Segment>
           </Sidebar>
    </div>
    </Transition>
