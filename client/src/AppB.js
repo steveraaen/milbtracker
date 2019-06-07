@@ -7,7 +7,7 @@ import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
-
+import './Dark.css'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
@@ -187,7 +187,7 @@ function AppB() {
                     }
                 }
             })
-           
+
             setPlayerList({
                 playerList: newBatters.data
             })
@@ -264,19 +264,23 @@ return (
 
         
       </div>
-    <div style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
+    <div  style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
       <div style={{marginTop: '1vh'}}>
+      <Button.Group>
         <Button
-          value="season"
-          onClick={handleClick}
-          active={timeframe === "season"}
+        style={{backgroundColor: 'cadetblue', color: 'white'}}
+        value="season"
+        onClick={handleClick}
+        active={timeframe === "season"}
         >Full Season</Button>
+         <Button.Or />
         <Button
-
+        style={{backgroundColor: 'salmon', color: 'white'}}
         value="yesterday"
-         onClick={handleClick}
-         active={timeframe === "yesterday"}
+       onClick={handleClick}
+       active={timeframe === "yesterday"}
         >Last Game</Button>
+          </Button.Group>
       </div>
     </div>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>          
@@ -361,11 +365,13 @@ return (
    </Sidebar.Pushable>
     <Sidebar
     animation='scale down' 
-      width='very wide'
-      direction='right'
-              
-              
-      visible={playersVisible}           
+    width='very wide'
+      direction='right' 
+      icon='labeled'
+      inverted='true'             
+      visible={playersVisible}  
+      vertical='true'     
+      onHide={() => setPlayersVisible(false)}    
     > 
     <Segment>
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>

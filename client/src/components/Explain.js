@@ -19,8 +19,8 @@ each player played on earlier in his career.  If a major leaguer played for ten 
 <span style={{color: 'indigo'}}>National League</span>{` `}<span style={{color: 'crimson'}}>American League</span>
 
 <Header>Metrics</Header>
-<p style={{display: 'flex', flexWrap: 'wrap'}}>{`The batting metric that drives rankings is total bases plus RBIs.
-For pitching, teams are ranked by innings pitched minus earned runs.`}</p>
+
+
 
 
      </Modal.Description>

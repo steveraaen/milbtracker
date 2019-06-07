@@ -114,6 +114,7 @@ latestBatting.B2,
 latestBatting.B3,
 latestBatting.TB,
 latestBatting.SB,
+SUM(latestBatting.TB + latestBatting.RBI) AS TBRBI,
 FORMAT(latestBatting.H / latestBatting.AB,3) as AVG
 from finalHist, latestBatting 
 where latestBatting.AB > 0
@@ -153,6 +154,7 @@ odb.B2,
 odb.B3,
 odb.TB,
 odb.SB,
+SUM(odb.TB + odb.RBI) AS TBRBI,
 FORMAT(odb.H / odb.AB, 3) as AVG
 from finalHist, odb 
 where odb.AB > 0
@@ -253,6 +255,7 @@ SUM(latestBatting.B2) / 2 AS B2,
 SUM(latestBatting.B3) / 2 AS B3,
 SUM(latestBatting.TB) / 2 AS TB,
 SUM(latestBatting.SB) / 2 AS SB,
+SUM(latestBatting.TB + latestBatting.RBI) /2 AS TBRBI,
 FORMAT(SUM(latestBatting.H) / SUM(latestBatting.AB), 3) as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 
@@ -287,6 +290,7 @@ SUM(odb.B2) / 2 AS B2,
 SUM(odb.B3) / 2 AS B3,
 SUM(odb.TB) / 2 AS TB,
 SUM(odb.SB) / 2 AS SB,
+SUM(odb.TB + odb.RBI) / 2 AS TBRBI,
 FORMAT(SUM(odb.H) / SUM(odb.AB),3) as AVG
 from finalHist, odb 
 where odb.AB > 0
