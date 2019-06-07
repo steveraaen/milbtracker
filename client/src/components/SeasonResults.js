@@ -4,6 +4,7 @@ import ReactTooltip from 'react-tooltip'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
+import "../App.css"
 
 export default function SeasonResults(props) {
 
@@ -15,41 +16,34 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 		currentBatData.map( tm => {
 			tm.color = tm.majLg === "A" ? 'crimson' : 'indigo'
 			tm.tmStr = <Image rounded size='mini' src={tm.imgURL}/>
-			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>
-								
+			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>							
 								<div style={{fontSize: '1em'}}>{tm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{tm.class}</div>
-									<div style={{ marginRight: '1vw'}}>{tm.franchise}</div>
-									
+									<div style={{ marginRight: '1vw'}}>{tm.franchise}</div>									
 								</div>
 							</div>
-
 			return tm
 		})
 		currentPitchData.map( ptm => {
 			ptm.color = ptm.majLg === "A" ? 'crimson' : 'indigo'
-
 			ptm.ptmStr = <div style={{justifyContent: 'center'}}>
 								<Image rounded size='mini' src={ptm.imgURL}/>
 							</div>
-
-			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>
-						
+			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>						
 								<div style={{fontSize: '1em'}}>{ptm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{ptm.class}</div>
-									<div style={{ marginRight: '1vw'}}>{ptm.franchise}</div>
-									
+									<div style={{ marginRight: '1vw'}}>{ptm.franchise}</div>									
 								</div>
 							</div>
 			return ptm
 		})
 
 const onRowClick = (state, rowInfo, column, instance) => {
-console.log(rowInfo)
+
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
@@ -71,7 +65,7 @@ console.log(rowInfo)
 			description: '',
 			width: 130
 		},  {
-
+		
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Players',
 			accessor: 'players',
@@ -82,7 +76,8 @@ console.log(rowInfo)
 			Header: 'TB',
 			accessor: 'TB',
 			description: 'Total Bases',
-			width: 56
+			width: 56,
+
 		}, {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'RBI',

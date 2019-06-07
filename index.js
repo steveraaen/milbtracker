@@ -116,7 +116,8 @@ latestBatting.TB,
 latestBatting.SB,
 FORMAT(latestBatting.H / latestBatting.AB,3) as AVG
 from finalHist, latestBatting 
-where finalHist.playerID= latestBatting.playerID 
+where latestBatting.AB > 0
+and finalHist.playerID= latestBatting.playerID 
 and finalHist.franchise = ?
 and finalHist.class = ?
 and finalHist.yr like ?
@@ -154,7 +155,8 @@ odb.TB,
 odb.SB,
 FORMAT(odb.H / odb.AB, 3) as AVG
 from finalHist, odb 
-where finalHist.playerID= odb.playerID 
+where odb.AB > 0
+and finalHist.playerID= odb.playerID 
 and finalHist.franchise = ?
 and finalHist.class = ?
 and finalHist.yr like ?
@@ -177,14 +179,14 @@ finalHist.imgURL,
 finalHist.franchLogo,  
 finalHist.tmName,  
 count(DISTINCT latestPitching.playerName) as players,
-SUM(latestPitching.IP - latestPitching.R) AS IPER, 
-SUM(latestPitching.W) AS W, 
-SUM(latestPitching.L) AS L,
-SUM(latestPitching.SV) AS SV,
-SUM(latestPitching.SO) AS SO,
-SUM(latestPitching.H) AS H,
-SUM(latestPitching.HR) AS HR,
-SUM(latestPitching.BB) AS BB,
+SUM(latestPitching.IP - latestPitching.R) / 2 AS IPER, 
+SUM(latestPitching.W) / 2 AS W, 
+SUM(latestPitching.L) / 2 AS L,
+SUM(latestPitching.SV) / 2 AS SV,
+SUM(latestPitching.SO) / 2 AS SO,
+SUM(latestPitching.H) / 2 AS H,
+SUM(latestPitching.HR) / 2 AS HR,
+SUM(latestPitching.BB) / 2 AS BB,
 9 * (latestPitching.R / latestPitching.IP) as ERA
 from finalHist, latestPitching 
 where finalHist.playerID= latestPitching.playerID 
@@ -210,13 +212,13 @@ finalHist.franchLogo,
 finalHist.tmName,  
 count(DISTINCT odp.playerName) as players,
 SUM(odp.IP - odp.R) AS IPER, 
-SUM(odp.W) AS W, 
-SUM(odp.L) AS L,
-SUM(odp.SV) AS SV,
-SUM(odp.SO) AS SO,
-SUM(odp.H) AS H,
-SUM(odp.HR) AS HR,
-SUM(odp.BB) AS BB,
+SUM(odp.W) / 2 AS W, 
+SUM(odp.L) / 2 AS L,
+SUM(odp.SV) / 2 AS SV,
+SUM(odp.SO) / 2 AS SO,
+SUM(odp.H) / 2 AS H,
+SUM(odp.HR) / 2 AS HR,
+SUM(odp.BB) / 2 AS BB,
 9 * (odp.R / odp.IP) as ERA
 from finalHist, odp 
 where finalHist.playerID= odp.playerID 
@@ -241,22 +243,22 @@ finalHist.imgURL,
 finalHist.franchLogo,  
 finalHist.tmName,  
 count(DISTINCT latestBatting.playerName) as players,
-SUM(latestBatting.AB) AS AB, 
-SUM(latestBatting.H) AS H, 
-SUM(latestBatting.HR) AS HR,
-SUM(latestBatting.RBI) AS RBI,
-SUM(latestBatting.R) AS R,
-SUM(latestBatting.BB) AS BB,
-SUM(latestBatting.B2) AS B2,
-SUM(latestBatting.B3) AS B3,
-SUM(latestBatting.TB) AS TB,
-SUM(latestBatting.SB) AS SB,
+SUM(latestBatting.AB) / 2 AS AB, 
+SUM(latestBatting.H) / 2 AS H, 
+SUM(latestBatting.HR) / 2 AS HR,
+SUM(latestBatting.RBI) / 2 AS RBI,
+SUM(latestBatting.R) / 2 AS R,
+SUM(latestBatting.BB) / 2 AS BB,
+SUM(latestBatting.B2) / 2 AS B2,
+SUM(latestBatting.B3) / 2 AS B3,
+SUM(latestBatting.TB) / 2 AS TB,
+SUM(latestBatting.SB) / 2 AS SB,
 FORMAT(SUM(latestBatting.H) / SUM(latestBatting.AB), 3) as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
-group by finalHist.class , finalHist.franchise, finalHist.yr
+group by finalHist.tmName, finalHist.yr
 order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)
@@ -275,22 +277,23 @@ finalHist.imgURL,
 finalHist.franchLogo,  
 finalHist.tmName,  
 count(DISTINCT odb.playerName) as players,
-SUM(odb.AB) AS AB, 
-SUM(odb.H) AS H, 
-SUM(odb.HR) AS HR,
-SUM(odb.RBI) AS RBI,
-SUM(odb.R) AS R,
-SUM(odb.BB) AS BB,
-SUM(odb.B2) AS B2,
-SUM(odb.B3) AS B3,
-SUM(odb.TB) AS TB,
-SUM(odb.SB) AS SB,
+SUM(odb.AB) / 2 AS AB, 
+SUM(odb.H) / 2 AS H, 
+SUM(odb.HR) / 2 AS HR,
+SUM(odb.RBI) / 2 AS RBI,
+SUM(odb.R) / 2 AS R,
+SUM(odb.BB) / 2 AS BB,
+SUM(odb.B2) / 2 AS B2,
+SUM(odb.B3) / 2 AS B3,
+SUM(odb.TB) / 2 AS TB,
+SUM(odb.SB) / 2 AS SB,
 FORMAT(SUM(odb.H) / SUM(odb.AB),3) as AVG
 from finalHist, odb 
-where finalHist.playerID= odb.playerID 
+where odb.AB > 0
+and finalHist.playerID= odb.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
-group by finalHist.class , finalHist.franchise, finalHist.yr
+group by finalHist.tmName, finalHist.yr
 order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)

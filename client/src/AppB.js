@@ -131,6 +131,7 @@ function AppB() {
                 setLoading(false)
               }
             console.log(timeframe)
+            console.log(tmBatY.data)
    /*     if(timeframe === 'season') {
               settfObj({
                 tfObj: {
@@ -186,6 +187,7 @@ function AppB() {
                     }
                 }
             })
+           
             setPlayerList({
                 playerList: newBatters.data
             })
