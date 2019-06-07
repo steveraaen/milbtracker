@@ -95,7 +95,7 @@ export default function PlayerList(props) {
 		}
 		props.playerList.map( tm => {
 			tm.tmStr = <div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
-			<a style={{color:   tm.lg === "AL" ? 'red' : 'blue'}}target="_blank" rel="noopener noreferrer" href={tm.playerURL}>{tm.playerName}</a>
+			<a style={{color:   tm.lg === "AL"  ? 'red' : 'blue'}}target="_blank" rel="noopener noreferrer" href={tm.playerURL}>{tm.playerName}</a>
 			</div>
 			return tm
 		})
@@ -136,7 +136,9 @@ export default function PlayerList(props) {
 {plyrSum}
 
 	    	<div>
-	    		<ReactTable 	    	
+	    		<ReactTable 
+	    		resizable={false}
+	    		multiSort={false}	    	
 	    		showPagination={false}
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
     			data={props.playerList}
@@ -154,6 +156,8 @@ export default function PlayerList(props) {
 
 	    		</div>
 	    		<ReactTable
+	    		resizable={false}
+	    		multiSort={false}
 	    		showPagination={false}
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
     			data={props.pitcherList}

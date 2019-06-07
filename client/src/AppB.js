@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Grid, Header, Icon, Image, Modal, Segment, Sidebar, Tab, Transition } from 'semantic-ui-react'
+import { Button, Container, Grid, Header, Icon, Image, Modal, Popup, Segment, Sidebar, Tab, Transition } from 'semantic-ui-react'
 import axios from 'axios'
 import Collapsible from 'react-collapsible';
 import { BestFive, ClassPicker, YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
@@ -252,7 +252,7 @@ return (
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> From Minors ...</div>
         <Image rounded wrapped size='small' src={ftfLogo} />
         <div style={{marginLeft:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> ... To Majors</div>
-        <Icon bordered color='yellow' name="window close outline" size='small' onClick={() => setModalOpen(false)}/>
+        <Icon bordered  name="close" size='large' onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain />
     <a onClick={() => handleFirstVisit()} style={{display: 'flex',justifyContent: 'center', marginBottom: '1vh', fontSize: '.9em', fontWeight: 700, fontStyle: 'italic'}}>Don't show this again</a>
@@ -263,9 +263,8 @@ return (
         
       </div>
     <div style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
-      <div>
+      <div style={{marginTop: '1vh'}}>
         <Button
-
           value="season"
           onClick={handleClick}
           active={timeframe === "season"}
@@ -286,6 +285,7 @@ return (
       </div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar
+          animation="scale down"
             style={{marginRight: '1vw'}}
             icon='labeled'
             inverted='true'
@@ -294,7 +294,9 @@ return (
             visible={formVisible}           
           >       
            <Segment>
-          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}><Icon bordered color='black' name="close" onClick={() => setFormVisible()}/></div>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
+          <Icon bordered color='black' name="close" onClick={() => setFormVisible()}/>
+          </div>
 
             <ClassPicker
               timeframe={timeframe}
@@ -356,14 +358,17 @@ return (
   </Sidebar.Pusher>
    </Sidebar.Pushable>
     <Sidebar
+    animation='scale down' 
       width='very wide'
       direction='right'
-      animation='scale down'         
-      onHide={() => setPlayersVisible(false)}         
+              
+              
       visible={playersVisible}           
     > 
     <Segment>
-     <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}><Icon bordered color='black' name="close" onClick={() => setPlayersVisible(false)}/></div>
+     <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
+     <Icon bordered color='black' name="close" onClick={() => setPlayersVisible(false)}/>
+     </div>
 
     <PlayerList 
       {...playerList}

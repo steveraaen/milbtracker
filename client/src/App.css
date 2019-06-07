@@ -1,7 +1,9 @@
 body {
-  padding: 1vw;
+  padding: 3vw;
 }
-
+th:hover { 
+  background-color: yellow;
+}
 .recharts-wrapper {
 	padding-top: -20;
 }

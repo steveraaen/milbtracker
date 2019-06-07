@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {Grid, Image, Popup} from 'semantic-ui-react'
+import ReactTooltip from 'react-tooltip'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
@@ -48,7 +49,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 		})
 
 const onRowClick = (state, rowInfo, column, instance) => {
-
+console.log(rowInfo)
     return {
         onClick: e => {
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
@@ -57,45 +58,54 @@ const onRowClick = (state, rowInfo, column, instance) => {
     }
 }
 		var batColumns = [
-		{
+		{	
 			headerStyle: {fontSize: '.9em'},
 			Header: '',
 			accessor: 'tmStr',
-			width: 50
+			description: '',
+			width: 50,
 		},{
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
 			accessor: 'tmStr2',
+			description: '',
 			width: 130
 		},  {
+
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Players',
 			accessor: 'players',
+			description: 'Number of current major league players',
 			width: 60
 		},{
 			headerStyle: {fontSize: '.9em'},
-			Header: 'AB',
-			accessor: 'AB',
+			Header: 'TB',
+			accessor: 'TB',
+			description: 'Total Bases',
+			width: 56
+		}, {
+			headerStyle: {fontSize: '.9em'},
+			Header: 'RBI',
+			accessor: 'RBI',
+			description: 'Runs Batted In',
 			width: 56
 		}, {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'AVG',
 			accessor: 'AVG',
-			width: 56
-		}, {
-			headerStyle: {fontSize: '.9em'},
-			Header: 'H',
-			accessor: 'H',
+			description: 'Batting Average',
 			width: 56
 		}, {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'HR',
 			accessor: 'HR',
+			description: 'Home Runs',
 			width: 56
 		}, {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'SB',
 			accessor: 'SB',
+			description: 'Stolen Bases',
 			width: 56
 		}];
 		var pitchColumns = [
@@ -103,45 +113,54 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: '',
 			accessor: 'ptmStr',
+			description: '',
 			width: 50
 		},{
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
 			accessor: 'ptmStr2',
+			description: '',
 			width: 130
 		},	{
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Players',
 			accessor: 'players',
+			description: 'Number of current major league players',
 			width: 60
 		},	{
 			headerStyle: {fontSize: '.9em'},
 			Header: 'IP-ER',
 			accessor: 'IPER',
+			description: 'Innings Pitched minus Earned Runs',
 			width: 56
 		},  {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'W',
 			accessor: 'W',
+			description: 'Wins',
 			width: 56
 		}, {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'L',
 			accessor: 'L',
+			description: 'Losses',
 			width: 56
 		}, {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'SV',
 			accessor: 'SV',
+			description: 'Saves',
 			width: 56
 		}, {
 			headerStyle: {fontSize: '.9em'},
 			Header: 'SO',
 			accessor: 'SO',
+			description: 'Strikeouts',
 			width: 56
 		}]
 	    return (
 	    	<Grid stackable columns={2}>
+	    	<ReactTooltip />
 	    	 <Grid.Column>
 	    	<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
@@ -149,7 +168,8 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedClass.displayName}</div>
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedYear.text}</div>
 	    	</div>
-	    		<ReactTable 
+	    		<ReactTable
+	    			resizable={false} 
 	    			className="-highlight"
 		    		showPagination={false}
 		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'white'}}
@@ -169,6 +189,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
+	    			multiSort={false}	 
 	    			className="-highlight"
 		    		showPagination={false}
 		    		style={{fontSize: '.9em',   fontWeight: 600, height: '76vh', backgroundColor: 'white'}}

@@ -40,7 +40,7 @@ latestPitching.SO AS SO,
 latestPitching.H AS H,
 latestPitching.HR AS HR,
 latestPitching.BB AS BB,
-FORMAT(9 * (latestPitching.R / latestPitching.IP),2) as ERA
+9 * (latestPitching.R / latestPitching.IP) as ERA
 from finalHist, latestPitching 
 where finalHist.playerID= latestPitching.playerID
 and finalHist.class like ?
@@ -75,7 +75,7 @@ odp.SO AS SO,
 odp.H AS H,
 odp.HR AS HR,
 odp.BB AS BB,
-FORMAT(9 * (odp.R / odp.IP),2) as ERA
+9 * (odp.R / odp.IP) as ERA
 from finalHist, odp 
 where finalHist.playerID= odp.playerID
 and finalHist.class like ?
@@ -138,6 +138,7 @@ finalHist.yr,
 finalHist.imgURL,  
 finalHist.franchLogo,  
 finalHist.tmName,  
+odb.lg,  
 odb.playerName,
 odb.tm as curTeam,
 odb.playerID,
@@ -184,7 +185,7 @@ SUM(latestPitching.SO) AS SO,
 SUM(latestPitching.H) AS H,
 SUM(latestPitching.HR) AS HR,
 SUM(latestPitching.BB) AS BB,
-FORMAT(SUM(9 * (latestPitching.R / latestPitching.IP)),2) as ERA
+9 * (latestPitching.R / latestPitching.IP) as ERA
 from finalHist, latestPitching 
 where finalHist.playerID= latestPitching.playerID 
 and finalHist.class like ?
@@ -216,7 +217,7 @@ SUM(odp.SO) AS SO,
 SUM(odp.H) AS H,
 SUM(odp.HR) AS HR,
 SUM(odp.BB) AS BB,
-FORMAT(SUM(9 * (odp.R / odp.IP)),2) as ERA
+9 * (odp.R / odp.IP) as ERA
 from finalHist, odp 
 where finalHist.playerID= odp.playerID 
 and finalHist.class like ?
