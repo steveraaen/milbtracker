@@ -259,12 +259,15 @@ return (
     <Explain />
     <a onClick={() => handleFirstVisit()} style={{display: 'flex',justifyContent: 'center', marginBottom: '1vh', fontSize: '.9em', fontWeight: 700, fontStyle: 'italic'}}>Don't show this again</a>
 
-  </Modal>
-
-
-        
+  </Modal>       
       </div>
+    <div>
     <div  style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
+      <ul>
+        <li style={{color: 'crimson', fontWeight: 600}}>American League</li>
+        <li style={{color: 'indigo', fontWeight: 600}}>National League</li>
+      </ul>
+    </div>
       <div style={{marginTop: '1vh'}}>
       <Button.Group>
         <Button
@@ -392,6 +395,7 @@ return (
 />
 </Segment>
           </Sidebar>
+          <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
    </Transition>
     )}

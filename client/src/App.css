@@ -1,5 +1,5 @@
 body {
-  padding: 3vw;
+  padding: 2vw;
 }
 
 @keyframes spinball {
@@ -21,49 +21,15 @@ body {
 }
 
 .ball {
-
 	animation: spinball 2s linear;
-
-
 	position : absolute;
 	animation-iteration-count: 10;
-	/*animation-fill-mode: forwards;*/
-
-/*	animation-delay: 1s;*/
-
-}
-.mlblogo {
-  animation: spinball 4s;
-  width: 14vw;
-  height:14vh;
-	left:38vw;
-  top:48vh;
-  position : absolute;
-  animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-}
-.milblogo {
-  animation: spinball 4s;
-  width: 14vw;
-  height:14vh;
-  position : absolute;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
 }
 .blurb {
-
-
 font-size: 3em;
 font-weight: 700;
 left:18vw;
 padding-top: 4vh;
 position : relative;	
 animation-iteration-count: 1;
-}
-.scroller {
-	margin-top: 1vh;
-	animation: scroller 8s ;
-	position : relative;	
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
 }
