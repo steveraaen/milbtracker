@@ -110,7 +110,7 @@ function AppB() {
                         plyr.color = allMLB[i].color
                         plyr.teamName = allMLB[i].teamName
                         return plyr
-                    } else { return  }
+                    } else { return null }
                 }
             })
             newPitchers.data.map((ptchr, idx) => {
@@ -205,14 +205,14 @@ return (
       <div style={{marginTop: '1vh'}}>
       <Button.Group>
         <Button
-        style={{backgroundColor: 'cadetblue', color: 'navy'}}
+        style={{backgroundColor: 'cadetblue', color: 'black'}}
         value="season"
         onClick={handleClick}
         active={timeframe === "season"}
         >Full Season</Button>
          <Button.Or style={{colr: 'black'}} />
         <Button
-        style={{backgroundColor: 'salmon', color: 'navy'}}
+        style={{backgroundColor: 'salmon', color: 'black'}}
         value="yesterday"
        onClick={handleClick}
        active={timeframe === "yesterday"}

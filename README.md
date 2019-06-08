@@ -10,3 +10,12 @@ Metrics
 The batting metric that drives rankings is total bases plus RBIs.
 For pitching, teams are ranked by innings pitched minus earned runs.
 
+Technology Stack
+Backend: The data is managed by an Express server on a Nodejs runtime.  Data is acquired using Puppeteer and stored in a MySQL database. It
+uses a proxy from the the server to the client. Puppeteer extracts data from Baseball Reference.  Minor League team logos were captured by Pupeteer and are stored locally.  This is because the source, sportslogos.net does not provide https, and it drops cookies on your browser.
+
+Frontend: This project was built on a Create React App template, then ejected.  In addition to React, it relies on three UI libraries:
+"semantic-ui-react" : Sidebars and basic grid structure.  
+"react-table"       : Tables.  
+"react-tooltip".    : Tooltips.
+
