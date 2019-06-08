@@ -7,7 +7,6 @@ import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
-import './Dark.css'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
@@ -56,7 +55,7 @@ function AppB() {
     const [yestBat, setYestBat] = useState();
     const [bestPitch, setBestPitch] = useState();
     const [yestPitch, setYestPitch] = useState();
-    const [timeframe, setTimeframe] = useState('yesterday');
+    const [timeframe, setTimeframe] = useState('season');
     const [tfObj, settfObj] = useState({});
     /*    const [classStats, setClassStats] = useState();*/
     /* const [column, setColumn] = useState();*/
@@ -68,13 +67,13 @@ function AppB() {
     const [modalOpen, setModalOpen] = useState(true);
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
-   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatYest');
-   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchYest');
+   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
+   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
 
 
     function toggleFormSidebar() {
-        !formVisible ? setFormVisible({ formVisible: true }) : setFormVisible({ formVisible: false })
+        !formVisible ? setFormVisible(true) : setFormVisible(false)
     }
     function showPlayersSidebar() {
         setPlayersVisible({ playersVisible: true }) 
@@ -91,7 +90,6 @@ function AppB() {
             topTenHit: newArr
         })
     }
-
     function sortPTable(e) {
         let { topTenPitching } = topTen
         var newArr = topTenPitching.sort((a, b) => {
@@ -101,23 +99,6 @@ function AppB() {
             topTenPitch: newArr
         })
     }
-/*    function handleTimeFrame() {
-        if(timeframe === 'season') {
-              settfObj({
-                tfObj: {
-               bestBatTeams: bestBat,
-                bestPitchTeams: bestPitch
-              }
-              })
-              } else {
-             settfObj({
-               tfObj: {
-                bestBatTeams: yestBat,
-                bestPitchTeams: yestPitch
-              }
-              }) 
-            }
-    }*/
     async function getTopTen(cl, yr) {
         try {
           console.log(timeframe)
@@ -131,22 +112,7 @@ function AppB() {
                 setLoading(false)
               }
             console.log(timeframe)
-            console.log(tmBatY.data)
-   /*     if(timeframe === 'season') {
-              settfObj({
-                tfObj: {
-               bestBatTeams: tmBatS.data,
-                bestPitchTeams: tmPitS.data
-              }
-              })
-              } else {
-             settfObj({
-               tfObj: {
-                bestBatTeams: {},
-                bestPitchTeams: {}
-              }
-              }) 
-            }  */    
+            console.log(tmBatY.data)  
              setBestBat({
                 bestBatTeams: tmBatS.data
             })
@@ -163,7 +129,6 @@ function AppB() {
             console.error(e);
         };
     }
-
     async function getPlayerList(f, c, y) {
     console.log('getPlayerList')
         try {
@@ -215,7 +180,9 @@ const handleClick = (e, { value }) => {
             }
 console.log(timeBatURL)
 console.log(timePitchURL)
+
 }
+
 function handleFirstVisit() {
 console.log(localStorage)
     localStorage.setItem('showModal', false)
@@ -238,13 +205,11 @@ if(loading) {
   return (    <IsLoading />)
 } else {
 return (
-<Transition visible={!loading} animation='scale' duration={1000}>
-<div> 
 
+<div> 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
-
   <Modal 
   
   modalOpen={modalOpen}
@@ -271,14 +236,14 @@ return (
       <div style={{marginTop: '1vh'}}>
       <Button.Group>
         <Button
-        style={{backgroundColor: 'cadetblue', color: 'white'}}
+        style={{backgroundColor: 'cadetblue', color: 'navy'}}
         value="season"
         onClick={handleClick}
         active={timeframe === "season"}
         >Full Season</Button>
-         <Button.Or />
+         <Button.Or style={{colr: 'black'}} />
         <Button
-        style={{backgroundColor: 'salmon', color: 'white'}}
+        style={{backgroundColor: 'salmon', color: 'navy'}}
         value="yesterday"
        onClick={handleClick}
        active={timeframe === "yesterday"}
@@ -306,14 +271,13 @@ return (
           <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
           <Icon bordered color='black' name="close" onClick={() => setFormVisible()}/>
           </div>
-
             <ClassPicker
+            toggleFormSidebar={toggleFormSidebar}
               timeframe={timeframe}
               years={years}
               classes={classes} 
               getTopTen={getTopTen}
-              getPlayerList={getPlayerList} 
-         
+              getPlayerList={getPlayerList}         
               selectedClass={selectedClass} 
               selectedYear={selectedYear} 
               selectedDivision={selectedDivision} 
@@ -325,6 +289,7 @@ return (
          </Segment>            
          <Segment>  
            <YearPicker 
+           toggleFormSidebar={toggleFormSidebar}
               topTen={topTen}
               years={years} 
               classes={classes} 
@@ -340,35 +305,10 @@ return (
               setSelectedMiLBTeam={setSelectedMiLBTeam}
               />  
               </Segment>        
-           </Sidebar>      
-        <Sidebar.Pusher>  
-      <div>
-    <SeasonResults 
-      loading={loading}
-      {...tfObj}
-      {...bestBat}
-      {...bestPitch}
-      {...yestBat}
-      {...yestPitch}
-      {...playerList}
-      {...pitcherList}
-      getPlayerList={getPlayerList}
-      selectedMiLBTeam={selectedMiLBTeam} 
-      selectedYear={selectedYear}    
-      selectedDivision={selectedDivision}
-      selectedClass={selectedClass} 
-      timeframe={timeframe}    
-      timeBatURL={timeBatURL}    
-      timePitchURL={timePitchURL}    
-    />
-</div>
-<div>
-</div>
-  </Sidebar.Pusher>
-   </Sidebar.Pushable>
+           </Sidebar>  
     <Sidebar
-    animation='scale down' 
-    width='very wide'
+      animation='scale down' 
+      width='very wide'
       direction='right' 
       icon='labeled'
       inverted='true'             
@@ -380,7 +320,6 @@ return (
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
      <Icon bordered color='black' name="close" onClick={() => setPlayersVisible(false)}/>
      </div>
-
     <PlayerList 
       {...playerList}
       {...yestBat}
@@ -394,10 +333,34 @@ return (
       timePitchURL={timePitchURL}  
 />
 </Segment>
-          </Sidebar>
+          </Sidebar>    
+            <Sidebar.Pusher>  
+              <div>
+                <SeasonResults 
+                toggleFormSidebar={toggleFormSidebar}
+                  loading={loading}
+                  {...tfObj}
+                  {...bestBat}
+                  {...bestPitch}
+                  {...yestBat}
+                  {...yestPitch}
+                  {...playerList}
+                  {...pitcherList}
+                  getPlayerList={getPlayerList}
+                  selectedMiLBTeam={selectedMiLBTeam} 
+                  selectedYear={selectedYear}    
+                  selectedDivision={selectedDivision}
+                  selectedClass={selectedClass} 
+                  timeframe={timeframe}    
+                  timeBatURL={timeBatURL}    
+                  timePitchURL={timePitchURL}    
+                />
+        </div>
+      </Sidebar.Pusher>
+   </Sidebar.Pushable>
+
           <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
-   </Transition>
     )}
 }
 

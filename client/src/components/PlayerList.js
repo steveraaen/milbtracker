@@ -144,16 +144,10 @@ export default function PlayerList(props) {
     			data={props.playerList}
     			columns={batterColumns}
     			showPageSizeOptions={false} 
-	    			
 	    		/>
 	    		</div>
-
-
-
-
 	    		<div>
 	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
-
 	    		</div>
 	    		<ReactTable
 	    		resizable={false}
@@ -162,8 +156,7 @@ export default function PlayerList(props) {
 	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
     			data={props.pitcherList}
     			columns={pitcherColumns}
-    			showPageSizeOptions={false}
-	    			
+    			showPageSizeOptions={false}	    			
 	    		/>
 	    	</div>
 	    	 </Grid.Column>

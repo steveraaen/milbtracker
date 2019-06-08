@@ -1,0 +1,39 @@
+body {
+  padding: 3vw;
+}
+
+@keyframes spinball {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blurb {
+  from {
+  	height: 20%;
+  }
+  to {
+  	height: 0%;
+  }
+}
+
+.ball {
+	animation: spinball 2s linear;
+	position : absolute;
+	animation-iteration-count: 10;
+}
+.blurb {
+font-size: 3em;
+font-weight: 700;
+left:18vw;
+padding-top: 4vh;
+position : relative;	
+animation-iteration-count: 1;
+}
+.teamGrid {
+  background-color: black,
+  color: white;
+}

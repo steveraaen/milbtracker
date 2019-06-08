@@ -7,7 +7,7 @@ import '../App.css'
 
 export default function IsLoading(props) {
 	return(
-	<div>
+	<div style={{display: 'flex', flexDirection:'column'}}>
 		<div className='ball'>
 			<Image circular src={ball} />
 		</div>

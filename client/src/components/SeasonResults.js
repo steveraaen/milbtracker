@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Grid, Image, Popup} from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
 
@@ -7,6 +7,7 @@ import "react-table/react-table.css";
 import "../App.css"
 
 export default function SeasonResults(props) {
+	useEffect(() =>  ReactTooltip.rebuild()) 
 
 	if( props.timeframe && props.bestBatTeams && props.bestPitchTeams && props.yestBatTeams && props.yestPitchTeams && props.selectedClass  && props.selectedYear) {
 
@@ -71,7 +72,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Number of current major league players">Players</span>
+					<span data-tip="Number of current major league players">Players</span>
 					)
 			},
 			accessor: 'players',
@@ -81,7 +82,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Offensive metric: Total Bases plus RBIs.">TB + RBI</span>
+					<span data-tip="Offensive metric: Total Bases plus RBIs.">TB + RBI</span>
 					)
 			},
 			accessor: 'TBRBI',
@@ -92,7 +93,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Runs Batted In">RBI</span>
+					<span data-tip="Runs Batted In">RBI</span>
 					)
 			},
 			accessor: 'RBI',
@@ -102,7 +103,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Batting Average">H</span>
+					<span data-tip="Batting Average">H</span>
 					)
 			},
 			accessor: 'H',
@@ -112,7 +113,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Batting Average">AVG</span>
+					<span data-tip="Batting Average">AVG</span>
 					)
 			},
 			accessor: 'AVG',
@@ -122,7 +123,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Home Runs">HR</span>
+					<span data-tip="Home Runs">HR</span>
 					)
 			},
 			accessor: 'HR',
@@ -146,7 +147,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Number of current major league players">Players</span>
+					<span data-tip="Number of current major league players">Players</span>
 					)
 			},
 			accessor: 'players',
@@ -156,7 +157,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip={`The main metric:  Innings Pitched minus Earned Runs - a measure of durability and run prevention`}>IP - ER</span>
+					<span data-tip={`The main metric:  Innings Pitched minus Earned Runs - a measure of durability and run prevention`}>IP - ER</span>
 					)
 			},
 			accessor: 'IPER',
@@ -166,7 +167,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Wins">W</span>
+					<span data-tip="Wins">W</span>
 					)
 			},
 			accessor: 'W',
@@ -176,7 +177,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Losses">L</span>
+					<span data-tip="Losses">L</span>
 					)
 			},
 			accessor: 'L',
@@ -186,7 +187,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Saves">SV</span>
+					<span data-tip="Saves">SV</span>
 					)
 			},
 			accessor: 'SV',
@@ -196,7 +197,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span className="tooltip" data-tip="Strikeouts">SO</span>
+					<span data-tip="Strikeouts">SO</span>
 					)
 			},
 			accessor: 'SO',
@@ -205,18 +206,18 @@ const onRowClick = (state, rowInfo, column, instance) => {
 		}]
 	    return (
 <div style={{borderStyle: 'ridge', borderWidth: '1.5pt', borderColor: borderCol}}>
-	    	<Grid 
-
-	    		stackable columns={2}>
 	    	<ReactTooltip
 	    	place="bottom"
-	    	offset={{bottom: 10, right: 10}} />
+	    	offset={{bottom: 10, right: 10}}
+	    	multiline />
+	    	<Grid stackable columns={2}>
+
 	    	 <Grid.Column>
 	    	<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Batting</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedClass.displayName}</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedYear.text}</div>
+	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedClass.displayName}</div>
+	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable
 	    			resizable={false} 
@@ -235,8 +236,8 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    		<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
 	    		<div style={{fontSize: '1.1em', marginLeft: '2vw'}}>Top Pitching</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedClass.displayName}</div>
-	    		<div style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw', color: 'indigo'}}>{props.selectedYear.text}</div>
+	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedClass.displayName}</div>
+	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable 
 	    			multiSort={false}	 

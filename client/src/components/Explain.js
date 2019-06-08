@@ -16,10 +16,10 @@ how well their former players are performing in the major leagues this year.`}</
 
 <p style={{display: 'flex', flexWrap: 'wrap'}}>{`It is structured like a MLB fantasy league, only the teams are prebuilt based on which minor league teams
 each player played on earlier in his career.  If a major leaguer played for ten minor league teams over five years, he is a member of all 10 of those minor league teams.`}</p>
-<span style={{color: 'indigo'}}>National League</span>{` `}<span style={{color: 'crimson'}}>American League</span>
 
 <Header>Metrics</Header>
-
+<div style={{display: 'flex', flexDirection: 'row'}}><div style={{fontSize: '1.1em', fontWeight: 500}}>Batting:</div><div style={{fornSize: '1em'}}>Explaination goes here</div></div>
+<div style={{display: 'flex', flexDirection: 'row'}}><div style={{fontSize: '1.1em', fontWeight: 500}}>Pitching:</div><div style={{fornSize: '1em'}}>Explaination goes here</div></div>
 
 
 

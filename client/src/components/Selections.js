@@ -48,6 +48,7 @@ function YearPicker(props) {
         /* props.getBestMinors(props.selectedClass.code, props.selectedDivision.value, props.selectedClass.regex, value) */
         props.setSelectedYear(value)
         props.getTopTen(props.selectedClass.code, value.value, props.timeframe)
+props.toggleFormSidebar()
        /* props.setSelectedMiLBTeam(props.topTen.topTenBatting[0])*/
         /*  props.getPlayerList(props.selectedClass.regex, props.selectedMiLBTeam.franchise, value, props.selectedMiLBTeam.name)
          */
@@ -82,6 +83,7 @@ function ClassPicker(props) {
          */
         props.setSelectedClass(value)
         props.getTopTen(value.code, props.selectedYear.value, props.timeframe)
+        props.toggleFormSidebar()
         /*        props.getPlayerList(value.regex, props.selectedMiLBTeam.franchise, props.selectedYear, props.selectedMiLBTeam.name)
          */
     }
