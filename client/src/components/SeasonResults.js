@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip'
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
 import "../App.css"
+import tmsLogos from'../lgos/namesAndLogos.js'
 
 export default function SeasonResults(props) {
 	useEffect(() =>  ReactTooltip.rebuild()) 
@@ -15,9 +16,18 @@ var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.y
 var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
 var borderCol = props.timeframe === 'season' ? 'cadetblue' : 'salmon'
 
+
+
 		currentBatData.map( tm => {
 			tm.color = tm.majLg === "A" ? 'crimson' : 'indigo'
-			tm.tmStr = <Image rounded size='mini' src={tm.imgURL}/>
+			for(let i = 0; i < tmsLogos.length; i++) {
+				if(tmsLogos[i].tmName === tm.tmName) {
+					tm.lgo = tmsLogos[i].logoPNG
+					tm.tmStr = <Image rounded size='mini' src={tm.lgo}/>
+				}
+			}
+			
+
 			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>							
 								<div style={{fontSize: '1em'}}>{tm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
@@ -29,11 +39,18 @@ var borderCol = props.timeframe === 'season' ? 'cadetblue' : 'salmon'
 			tm.ttp = <Popup content="Total Bases" trigger={<th></th>}/>
 			return tm
 		})
+
+
+
+
 		currentPitchData.map( ptm => {
 			ptm.color = ptm.majLg === "A" ? 'crimson' : 'indigo'
-			ptm.ptmStr = <div style={{justifyContent: 'center'}}>
-								<Image rounded size='mini' src={ptm.imgURL}/>
-							</div>
+			for(let i = 0; i < tmsLogos.length; i++) {
+				if(tmsLogos[i].tmName === ptm.tmName) {
+					ptm.lgo = tmsLogos[i].logoPNG
+					ptm.ptmStr = <Image rounded size='mini' src={ptm.lgo}/>
+				}
+			}
 			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>						
 								<div style={{fontSize: '1em'}}>{ptm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>

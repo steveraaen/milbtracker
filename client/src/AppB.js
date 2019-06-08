@@ -12,8 +12,9 @@ import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import newMinors from './newMinors.json'
 import ftfLogo from './data/ftflogo.png'
-/*import leagues from './assets/leagues.js'*/
 
+
+/*import leagues from './assets/leagues.js'*/
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
