@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Grid, Header, Icon, Image, Modal, Popup, Segment, Sidebar, Tab, Transition } from 'semantic-ui-react'
+import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
-import Collapsible from 'react-collapsible';
-import { BestFive, ClassPicker, YearPicker, Divisions, /*Stats,*/ Teams } from './components/Selections.js'
+import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
@@ -10,7 +9,6 @@ import Explain from './components/Explain.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
-import newMinors from './newMinors.json'
 import ftfLogo from './data/ftflogo.png'
 
 
@@ -35,36 +33,26 @@ function AppB() {
 
     /* const [allMiLB, setAllMiLB] = useState(allMinorTeams);*/
     const [selectedClass, setSelectedClass] = useState(classes[0]);
-    const [minors, setMinors] = useState(newMinors);
     const [years] = useState(yrs);
-    const [ /*bestMinors,*/ setBestMinors] = useState();
     const [allMLB] = useState(mlbTeams);
     const [selectedYear, setSelectedYear] = useState(yrs[0]);
     const [playerList, setPlayerList] = useState({});
     const [pitcherList, setPitcherList] = useState({});
-    const [classIcon] = useState('angle down');
-    const [allDivisions, setAllDivisions] = useState();
-    const [selectedDivision, setSelectedDivision] = useState({ value: "%L%", display: "All Major League Teams" });
-    const [ /*radialData,*/ setRadialData] = useState();
-    const [synthStats, setSynthStats] = useState();
+    const [selectedDivision] = useState({ value: "%L%", display: "All Major League Teams" });
     const [selectedMiLBTeam, setSelectedMiLBTeam] = useState();
-    /*  const [statsToDb, setStatsToDb] = useState();*/
-    const [topTenHit, setTopTenHit] = useState();
-    const [topTenPitch, setTopTenPitch] = useState();
-    const [topTen, setTopTen] = useState();
     const [bestBat, setBestBat] = useState();
     const [yestBat, setYestBat] = useState();
     const [bestPitch, setBestPitch] = useState();
     const [yestPitch, setYestPitch] = useState();
     const [timeframe, setTimeframe] = useState('season');
-    const [tfObj, settfObj] = useState({});
+    const [tfObj] = useState({});
     /*    const [classStats, setClassStats] = useState();*/
     /* const [column, setColumn] = useState();*/
     /*   const [direction, setDirection] = useState();*/
     /*    const [curSortB, setCurSortB] = useState({bsrt: "bBA", bsDir: "desc"});
         const [curSortP, setCurSortP] = useState({psrt: "bBA", bsDir: "desc"});*/
 
-    const [firstVisit, setFirstVisit] = useState(true);
+  /*  const [firstVisit, setFirstVisit] = useState(true);*/
     const [modalOpen, setModalOpen] = useState(true);
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
@@ -79,27 +67,7 @@ function AppB() {
     function showPlayersSidebar() {
         setPlayersVisible({ playersVisible: true }) 
     }
-    function hidePlayersSideBar(){
-    setPlayersVisible({ playersVisible: false })
-}
-    function sortBTable(e) {
-        let { topTenBatting } = topTen
-        var newArr = topTenBatting.sort((a, b) => {
-            return b[e] - a[e]
-        })
-        setTopTenHit({
-            topTenHit: newArr
-        })
-    }
-    function sortPTable(e) {
-        let { topTenPitching } = topTen
-        var newArr = topTenPitching.sort((a, b) => {
-            return b[e] - a[e]
-        })
-        setTopTenPitch({
-            topTenPitch: newArr
-        })
-    }
+
     async function getTopTen(cl, yr) {
         try {
           console.log(timeframe)
@@ -112,8 +80,7 @@ function AppB() {
               if(tmPitS && tmPitY &&tmBatS && tmBatY) {
                 setLoading(false)
               }
-            console.log(timeframe)
-            console.log(tmBatY.data)  
+
              setBestBat({
                 bestBatTeams: tmBatS.data
             })
@@ -142,7 +109,8 @@ function AppB() {
                     if (plyr.teamID === allMLB[i].teamCode) {
                         plyr.color = allMLB[i].color
                         plyr.teamName = allMLB[i].teamName
-                    } else { return null }
+                        return plyr
+                    } else { return  }
                 }
             })
             newPitchers.data.map((ptchr, idx) => {
@@ -291,7 +259,6 @@ return (
          <Segment>  
            <YearPicker 
            toggleFormSidebar={toggleFormSidebar}
-              topTen={topTen}
               years={years} 
               classes={classes} 
                timeframe={timeframe}

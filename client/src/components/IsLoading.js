@@ -1,8 +1,6 @@
-import React, {useEffect} from 'react';
-import {Grid, Image, Popup} from 'semantic-ui-react'
+import React from 'react';
+import {Image} from 'semantic-ui-react'
 import ball from '../ball.png'
-import mlblogo from '../data/squaremlb.png'
-import milblogo from '../data/squaremilb.png'
 import '../App.css'
 
 export default function IsLoading(props) {

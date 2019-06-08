@@ -1,5 +1,5 @@
 import React from 'react';
-import {Icon, Image} from 'semantic-ui-react'
+import {Image} from 'semantic-ui-react'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
@@ -102,13 +102,6 @@ export default function PlayerList(props) {
 }
 // ---------------------------------------------------------------------
 	if(props.pitcherList && mlbLogos) {
-
-			var ptchrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: '8vh', width: '10vw'}}>
-									<div style={{marginLeft: '10vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
-									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
-									<Image size='tiny' src={props.playerList[0].imgURL} />
-									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
-								</div>
 
 			for(let i =0; i < props.pitcherList.length; i++) {
 				props.pitcherList[i].playerURL = `https://www.baseball-reference.com/players/${props.pitcherList[i].playerID[0]}/${props.pitcherList[i].playerID}.shtml`

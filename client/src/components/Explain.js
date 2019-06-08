@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
-import {Icon, Image, Header, Modal} from 'semantic-ui-react'
-import ftfLogo from '../data/ftflogo.png'
+import React from 'react';
+import { Header, Modal} from 'semantic-ui-react'
 
 
  export default function Explain(props) {
