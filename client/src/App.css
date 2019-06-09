@@ -29,6 +29,15 @@ table thead tr:first-child > th {
     transform: rotate(360deg);
   }
 }
+@keyframes anim {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+
+    transform: rotate(360deg);
+  }
+}
 .ball {
 	animation: spinball 2s linear;
 	position : absolute;
@@ -41,5 +50,29 @@ table thead tr:first-child > th {
   position : relative;
 }
 .anim {
-  top: 30vh;
+  top: 40vh;
+  left: 40vw;
+  transition: opacity 0, opacity 100;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

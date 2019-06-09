@@ -10,7 +10,7 @@ import Explain from './components/Explain.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
-import ftfLogo from './data/ftflogo.png'
+import ftfLogo from './ftflogo.png'
 
 console.disableYellowBox = true;
 /*import leagues from './assets/leagues.js'*/
@@ -52,31 +52,11 @@ function AppB() {
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
 
-   function useInterval(callback, delay) {
-    const savedCallback = useRef();
-
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
-
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
     }
     function showPlayersSidebar() {
-        setPlayersVisible({ playersVisible: true }) 
+        setPlayersVisible(true ) 
     }
 
     async function getTopTen(cl, yr) {
@@ -183,8 +163,7 @@ function handleModalClose() {
         }, {});*/
 if(loading) {
   return (    <IsLoading
-                loading={loading} 
-                useInterval={useInterval}/>)
+                loading={loading}/>)
 } else {
 return (
 
@@ -194,14 +173,14 @@ return (
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
   <Modal 
   
-  modalOpen={modalOpen}
+  modalopen={modalOpen}
     open={modalOpen}
     trigger={<Icon bordered corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> From Minors ...</div>
         <Image rounded wrapped size='small' src={ftfLogo} />
         <div style={{marginLeft:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> ... To Majors</div>
-        <Icon bordered  name="close" size='large' onClick={() => setModalOpen(false)}/>
+        <Icon bordered  name="close" color="yellow" size='large' onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain />
     <a onClick={() => handleFirstVisit()} style={{display: 'flex',justifyContent: 'center', marginBottom: '1vh', fontSize: '.9em', fontWeight: 700, fontStyle: 'italic'}}>Don't show this again</a>
@@ -210,10 +189,10 @@ return (
       </div>
     <div>
     <div  style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
-      <ul>
-        <li style={{color: 'crimson', fontWeight: 600}}>American League</li>
-        <li style={{color: 'indigo', fontWeight: 600}}>National League</li>
-      </ul>
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <span style={{color: 'crimson', fontWeight: 600, marginRight: '3vw'}}>American League</span>
+        <span style={{color: 'indigo', fontWeight: 600}}>National League</span>
+      </div>
     </div>
       <div style={{marginTop: '1vh'}}>
       <Button.Group>

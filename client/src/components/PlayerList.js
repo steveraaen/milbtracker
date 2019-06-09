@@ -4,7 +4,7 @@ import {Image} from 'semantic-ui-react'
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
 import {Grid} from 'semantic-ui-react'
-import mlbLogos from '../data/franchiseLogos.json'
+import mlbLogos from '../franchiseLogos.json'
 export default function PlayerList(props) {
 		var batterColumns = [
 				{

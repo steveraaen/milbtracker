@@ -29,11 +29,11 @@ var borderCol = props.timeframe === 'season' ? 'cadetblue' : 'salmon'
 			
 
 			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>							
-								<div style={{fontSize: '1em'}}>{tm.tmName}</div>
-								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
+								<div style={{fontSize: '1.1em'}}>{tm.tmName}</div>
+								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{tm.class}</div>
-									<div style={{ marginRight: '1vw'}}>{tm.franchise}</div>									
+									<div style={{ marginRight: '1vw', fontSize: '1em', fontWeight: 600}}>{tm.franchise}</div>									
 								</div>
 							</div>
 			tm.ttp = <Popup content="Total Bases" trigger={<th></th>}/>
@@ -52,11 +52,11 @@ var borderCol = props.timeframe === 'season' ? 'cadetblue' : 'salmon'
 				}
 			}
 			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>						
-								<div style={{fontSize: '1em'}}>{ptm.tmName}</div>
-								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".8em", fontWeight: 600}}>
+								<div style={{fontSize: '1.1em'}}>{ptm.tmName}</div>
+								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{ptm.class}</div>
-									<div style={{ marginRight: '1vw'}}>{ptm.franchise}</div>									
+									<div style={{ marginRight: '1vw', fontSize: '1em', fontWeight: 600}}>{ptm.franchise}</div>									
 								</div>
 							</div>
 			return ptm
