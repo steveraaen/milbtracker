@@ -14,13 +14,18 @@ var connection  = mysql.createConnection({
 
 (async () => {
 	connection.query(`TRUNCATE TABLE temp`);
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+    'args' : [
+        '--no-sandbox',
+        '--disable-setuid-sandbox'
+    ]
+});
     const page = await browser.newPage();
     await page.goto('https://www.baseball-reference.com/leagues/MLB/2019-standard-pitching.shtml', { waitUntil: 'networkidle2' })
     let eachPlayer = await page.evaluate(() => {
         let results = [];
         let items = document.querySelectorAll('#players_standard_pitching tr.full_table');
-        items.forEach((item) => {
+        items.forEach((item) => { 
             results.push({
                 playerName: item.querySelector('td').innerText,
                 playerID: item.querySelector('td').getAttribute('data-append-csv'),
@@ -50,12 +55,12 @@ var connection  = mysql.createConnection({
         });
         return results;
     })
-    console.log(eachPlayer[0])
+
     for (let i = 0; i < eachPlayer.length; i++) {
         connection.query(`INSERT INTO temp(playerName,playerID,age,lg,W,L,G,GS,GF,CG,SHO,SV,IP,H,R,HR,BB,IBB,SO,HBP,BK,WP,BF)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
 `, [eachPlayer[i].playerName, eachPlayer[i].playerID, eachPlayer[i].age, eachPlayer[i].tm, eachPlayer[i].lg, eachPlayer[i].W, eachPlayer[i].L, eachPlayer[i].G, eachPlayer[i].GS, eachPlayer[i].GF, eachPlayer[i].CG, eachPlayer[i].SHO, eachPlayer[i].SV, eachPlayer[i].IP, eachPlayer[i].H, eachPlayer[i].R, eachPlayer[i].HR, eachPlayer[i].BB, eachPlayer[i].IBB, eachPlayer[i].SO, eachPlayer[i].HBP, eachPlayer[i].BK, eachPlayer[i].WP, eachPlayer[i].BF], function(error) {
                         if (error) throw error;
-       /*     console.log(chalk.whiteBright(`eachPlayer[i].playerName added`))*/
+            console.log(chalk.whiteBright(`eachPlayer[i].playerName added`))
            
         });
     }
