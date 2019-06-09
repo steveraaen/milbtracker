@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import { ClassPicker, YearPicker } from './components/Selections.js'
@@ -11,7 +12,7 @@ import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import ftfLogo from './data/ftflogo.png'
 
-
+console.disableYellowBox = true;
 /*import leagues from './assets/leagues.js'*/
 
 const yrs = [
@@ -30,8 +31,6 @@ const yrs = [
 ]
 
 function AppB() {
-
-    /* const [allMiLB, setAllMiLB] = useState(allMinorTeams);*/
     const [selectedClass, setSelectedClass] = useState(classes[0]);
     const [years] = useState(yrs);
     const [allMLB] = useState(mlbTeams);
@@ -46,13 +45,6 @@ function AppB() {
     const [yestPitch, setYestPitch] = useState();
     const [timeframe, setTimeframe] = useState('season');
     const [tfObj] = useState({});
-    /*    const [classStats, setClassStats] = useState();*/
-    /* const [column, setColumn] = useState();*/
-    /*   const [direction, setDirection] = useState();*/
-    /*    const [curSortB, setCurSortB] = useState({bsrt: "bBA", bsDir: "desc"});
-        const [curSortP, setCurSortP] = useState({psrt: "bBA", bsDir: "desc"});*/
-
-  /*  const [firstVisit, setFirstVisit] = useState(true);*/
     const [modalOpen, setModalOpen] = useState(true);
     const [formVisible, setFormVisible] = useState(false);
     const [playersVisible, setPlayersVisible] = useState(false);
@@ -60,6 +52,25 @@ function AppB() {
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
 
+   function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
@@ -171,7 +182,9 @@ function handleModalClose() {
             getBestMinors(selectedClass.code, selectedDivision.value, selectedClass.regex, selectedYear)
         }, {});*/
 if(loading) {
-  return (    <IsLoading />)
+  return (    <IsLoading
+                loading={loading} 
+                useInterval={useInterval}/>)
 } else {
 return (
 

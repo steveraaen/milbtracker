@@ -29,64 +29,17 @@ table thead tr:first-child > th {
     transform: rotate(360deg);
   }
 }
-@keyframes mlb {
-  from {
-    top: 50%;
-    left: 1%;
-    transform: rotate(180deg);
-  }
-  to {
-    top: 50%;
-    left: 40%;
-    transform: rotate(360deg);
-  }
-}
-@keyframes milb {
-  from {
-
-    transform: rotate(180deg);
-  }
-  to {
-
-    transform: rotate(360deg);
-  }
-}
-@keyframes blurb {
-  from {
-  	height: 20%;
-  }
-  to {
-  	height: 0%;
-  }
-}
-
-@keyframes scroller {
-  from {
-  	left: 0%;
-  }
-  to {
-  	left: 60%;
-  }
-}
-
 .ball {
 	animation: spinball 2s linear;
-
 	position : absolute;
 	animation-iteration-count: 10;
 }
-
 .blurb {
-font-size: 2.5em;
-font-weight: 700;
-top: 20vh;
-position : relative;	
-animation-iteration-count: 1;
+  font-size: 2.5em;
+  font-weight: 700;
+  top: 20vh;
+  position : relative;
 }
-.scroller {
-	margin-top: 1vh;
-	animation: scroller 8s ;
-	position : relative;	
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+.anim {
+  top: 30vh;
 }

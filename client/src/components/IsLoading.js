@@ -1,9 +1,17 @@
 import React from 'react';
-import {Image} from 'semantic-ui-react'
+import {Grid, Image} from 'semantic-ui-react'
 import ball from '../ball.png'
 import '../App.css'
+import tmsLogos from'../lgos/namesAndLogos.js'
+
+
 
 export default function IsLoading(props) {
+	tmsLogos.map((tm, idx) => {
+setTimeout(() => {
+	console.log(tm.tmName)
+}, 500)	
+})
 	return(
 	<div style={{display: 'flex', flexDirection:'column'}}>
 		<div className='ball'>
@@ -13,6 +21,7 @@ export default function IsLoading(props) {
 			Farm Team Fantasy
 			<div style={{marginTop: '3vh', fontSize: '.5em', fontWeight: 400, fontStyle: 'italic'}}> Is gathering the latest stats ..</div>
 		</div>
+		<div style={{top: '40vh', top: '40vh', position: 'absolute', fontSize:'2em'}}>mmmmmmm</div>
 	</div>
 		)
 

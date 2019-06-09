@@ -1,9 +1,10 @@
 // mysql -h gmgcjwawatv599gq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -u rvd8pk44d3y429e3 -p tqqwr7za0fczmnex vtox5woubolsge6o < tranch5_milb.sql
 
 require('dotenv').config()
+const mysql = require('mysql')
 const express = require('express')
 const path = require('path')
-const mysql = require('mysql')
+
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'client/build')));
