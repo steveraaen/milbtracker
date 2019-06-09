@@ -165,7 +165,7 @@ and finalHist.franchise = ?
 and finalHist.class = ?
 and finalHist.yr like ?
 group by playerID
-order by odb.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
+order by SUM(odb.TB + odb.RBI) desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
       res.json(results)
     if (error) throw error;

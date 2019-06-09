@@ -76,7 +76,7 @@ export default function PlayerList(props) {
 		}*/]
 		if(props.playerList && mlbLogos) {
 
-			var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: '8vh', width: '10vw'}}>
+			var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '10vw'}}>
 									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
 									<Image size='tiny' src={props.playerList[0].imgURL} />
@@ -121,14 +121,14 @@ export default function PlayerList(props) {
 	if(props.pitcherList || props.playerList) {
 	    return (
 	 <div>
-	    	<Grid columns={1} 
-	    	stretched
-	    	style={{paddingTop: '7vh' ,backgroundColor: 'rgba(255,255,255,50)'}}
+	    	<Grid  
+	    	stackable columns={2}
+	    	style={{backgroundColor: 'rgba(255,255,255,50)'}}
 	    	> 
+	    	
 	    	 <Grid.Column>
-{plyrSum}
-
-	    	<div>
+	    	 {plyrSum}
+	   
 	    		<ReactTable 
 	    		resizable={false}
 	    		multiSort={false}	    	
@@ -138,10 +138,9 @@ export default function PlayerList(props) {
     			columns={batterColumns}
     			showPageSizeOptions={false} 
 	    		/>
-	    		</div>
-	    		<div>
-	    		<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
-	    		</div>
+	    		</Grid.Column>
+	    		<Grid.Column>
+	    		{plyrSum}
 	    		<ReactTable
 	    		resizable={false}
 	    		multiSort={false}
@@ -151,7 +150,7 @@ export default function PlayerList(props) {
     			columns={pitcherColumns}
     			showPageSizeOptions={false}	    			
 	    		/>
-	    	</div>
+	  
 	    	 </Grid.Column>
 	    	 </Grid>
 	    	 </div>

@@ -175,7 +175,7 @@ if(loading) {
 } else {
 return (
 
-<div> 
+<div style={{backgroundColor: 'white'}}> 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
@@ -228,10 +228,9 @@ return (
       </div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar
-          animation="scale down"
+          animation="push"
             style={{marginRight: '1vw'}}
             icon='labeled'
-            inverted='true'
             onHide={() => setFormVisible(false)}
             vertical='true'
             visible={formVisible}           
@@ -277,7 +276,7 @@ return (
     <Sidebar
       animation='scale down' 
       width='very wide'
-      direction='right' 
+      direction='top' 
       icon='labeled'
       inverted='true'             
       visible={playersVisible}  

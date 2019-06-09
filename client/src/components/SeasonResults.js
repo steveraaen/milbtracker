@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Grid, Image, Popup} from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
 
