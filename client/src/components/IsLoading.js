@@ -7,11 +7,7 @@ import tmsLogos from'../lgos/namesAndLogos.js'
 
 
 export default function IsLoading(props) {
-	tmsLogos.map((tm, idx) => {
-setTimeout(() => {
-	console.log(tm.tmName)
-}, 500)	
-})
+
 	return(
 	<div style={{display: 'flex', flexDirection:'column'}}>
 		<div className='ball'>
@@ -21,7 +17,7 @@ setTimeout(() => {
 			Farm Team Fantasy
 			<div style={{marginTop: '3vh', fontSize: '.5em', fontWeight: 400, fontStyle: 'italic'}}> Is gathering the latest stats ..</div>
 		</div>
-		<div style={{top: '40vh', top: '40vh', position: 'absolute', fontSize:'2em'}}>mmmmmmm</div>
+		<div style={{top: '40vh', top: '40vh', position: 'absolute', fontSize:'2em'}}></div>
 	</div>
 		)
 
