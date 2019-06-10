@@ -94,6 +94,7 @@ function AppB() {
             console.error(e);
         };
     }
+    
     async function getPlayerList(f, c, y) {
     console.log('getPlayerList')
         try {

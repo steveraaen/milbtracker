@@ -65,7 +65,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 
     return {
         onClick: e => {
-  
+
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
            /* console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)   */       
         }
@@ -222,7 +222,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			width: 56
 		}]
 	    return (
-<div style={{borderStyle: 'ridge', borderWidth: '1.5pt', borderColor: props.borderCol}}>
+<div style={{borderStyle: 'ridge', borderWidth: '4pt', borderColor: props.borderCol}}>
 	    	<ReactTooltip
 	    	place="bottom"
 	    	offset={{bottom: 10, right: 10}}

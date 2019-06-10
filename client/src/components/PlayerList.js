@@ -118,7 +118,7 @@ export default function PlayerList(props) {
 		}
 			props.pitcherList.map( ptm => {
 			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo}/>
-			<a style={{color: ptm.lg === "AL" ? 'red' : 'blue'}} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
+			<a style={{color: ptm.lg === "AL" ? 'crimson' : 'indigo'}} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
 			</div>
 			return ptm
 		})
