@@ -65,6 +65,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 
     return {
         onClick: e => {
+  
         	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
            /* console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)   */       
         }

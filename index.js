@@ -84,7 +84,7 @@ and finalHist.franchise = ?
 and finalHist.yr like ?
 group by playerID
 order by odp.IP - odp.R desc`, [req.query.c, req.query.f, req.query.y], function (error, results, fields) {
-        console.log(results)
+   /*     console.log(results)*/
       res.json(results)
     if (error) throw error;
    })

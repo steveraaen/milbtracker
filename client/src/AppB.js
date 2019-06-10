@@ -53,12 +53,14 @@ function AppB() {
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
    const [borderCol, setBorderCol] = useState();
+   const [btnOpacity, setBtnOpacity] = useState();
+
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
     }
     function showPlayersSidebar() {
-        setPlayersVisible(true ) 
+        setPlayersVisible(true) 
     }
 
     async function getTopTen(cl, yr) {
@@ -133,21 +135,14 @@ function AppB() {
 const handleClick = (e, { value }) => {
   setTimeframe(value)
 console.log(playersVisible)
-        if(value === 'season') {
+        if(timeframe === 'season') {
               setTimeBatURL('/api/playerBatSeason')
               setTimePitchURL('/api/playerPitchSeason')
               } 
-        else if(value === 'yesterday'){
+        if(timeframe === 'yesterday'){
               setTimeBatURL('/api/playerBatYest')
               setTimePitchURL('/api/playerPitchYest')
             }
-
-
-
-
-console.log(timeBatURL)
-console.log(timePitchURL)
-
 }
 
 function handleFirstVisit() {
@@ -166,13 +161,22 @@ function handleModalClose() {
         getTopTen(selectedClass.code, selectedYear.value, timeframe)
     }, {});
     useEffect(() => {
-      setBorderCol(timeframe === 'season' ? 'cadetblue' : 'salmon'
-)
+      setBorderCol(timeframe === 'yesterday' ? 'rgba(47, 79, 79,1)' : 'rgba(178, 34, 34,1)'
+      )
     })
-
-    /*    useEffect(() => {
-            getBestMinors(selectedClass.code, selectedDivision.value, selectedClass.regex, selectedYear)
-        }, {});*/
+/*    useEffect(() => {
+    if(timeframe==='yesterday') {
+        setBtnOpacity({
+        ssn: 1,
+        ystrdy: .4
+         })
+      } else if(timeframe==='season') {
+        setBtnOpacity({
+        ssn: .4,
+        ystrdy: 1
+         })
+      } 
+    })*/
 if(loading) {
   return (    <IsLoading
                 loading={loading}/>)
@@ -209,17 +213,19 @@ return (
       <div style={{marginTop: '1vh'}}>
       <Button.Group>
         <Button
-        style={{backgroundColor: 'cadetblue', color: 'black'}}
-        value="season"
-        onClick={handleClick}
-        active={timeframe === "season"}
+         
+          style={{backgroundColor: `rgba(178, 34, 34,1)`, color: 'white'}}
+          value="season"
+          onClick={handleClick}
+    
         >Full Season</Button>
-         <Button.Or style={{colr: 'black'}} />
+         <Button.Or style={{color: 'black'}} />
         <Button
-        style={{backgroundColor: 'salmon', color: 'black'}}
-        value="yesterday"
-       onClick={handleClick}
-       active={timeframe === "yesterday"}
+       
+          style={{backgroundColor: `rgba(47, 79, 79,1)`, color: 'white'}}
+          value="yesterday"
+          onClick={handleClick}
+   
         >Last Game</Button>
           </Button.Group>
       </div>
@@ -264,7 +270,7 @@ return (
            toggleFormSidebar={toggleFormSidebar}
               years={years} 
               classes={classes} 
-               timeframe={timeframe}
+              timeframe={timeframe}
               getTopTen={getTopTen}
               getPlayerList={getPlayerList}  
               selectedClass={selectedClass} 
@@ -279,7 +285,7 @@ return (
            </Sidebar>  
     <Sidebar
       animation='scale down' 
-      width='full screen'
+      width='very wide'
       direction='top' 
       icon='labeled'
       inverted='true'             
@@ -287,7 +293,7 @@ return (
       vertical='true'     
       onHide={() => setPlayersVisible(false)}    
     > 
-    <Segment style={{borderStyle: 'ridge', borderWidth: '1.5pt', borderColor: borderCol}}>
+    <Segment style={{borderStyle: 'ridge', borderWidth: '4pt', borderColor: borderCol}}>
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
      <Icon bordered color='black' name="close" onClick={() => setPlayersVisible(false)}/>
      </div>
@@ -303,6 +309,7 @@ return (
       timeframe={timeframe} 
       timeBatURL={timeBatURL}    
       timePitchURL={timePitchURL}  
+      playersVisible={playersVisible}
 />
 </Segment>
           </Sidebar>    
@@ -327,7 +334,7 @@ return (
                   selectedClass={selectedClass} 
                   timeframe={timeframe}    
                   timeBatURL={timeBatURL}    
-                  timePitchURL={timePitchURL}    
+                  timePitchURL={timePitchURL}  
                 />
         </div>
       </Sidebar.Pusher>

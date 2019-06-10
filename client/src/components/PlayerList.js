@@ -99,10 +99,15 @@ export default function PlayerList(props) {
 			</div>
 			return tm
 		})
-}
+} else {return(<div></div>)}
 // ---------------------------------------------------------------------
 	if(props.pitcherList && mlbLogos) {
-
+			var ptchrSum =	<div style={{visibility: 'hidden', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '10vw'}}>
+									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
+									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
+									<Image size='tiny' src={props.playerList[0].imgURL} />
+									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
+								</div>
 			for(let i =0; i < props.pitcherList.length; i++) {
 				props.pitcherList[i].playerURL = `https://www.baseball-reference.com/players/${props.pitcherList[i].playerID[0]}/${props.pitcherList[i].playerID}.shtml`
 				for(let j =0; j < mlbLogos.length; j++) {
@@ -117,7 +122,7 @@ export default function PlayerList(props) {
 			</div>
 			return ptm
 		})
-	}		
+	}	 else {return(<div></div>)}	
 	if(props.pitcherList || props.playerList) {
 	    return (
 	 <div>
@@ -140,7 +145,7 @@ export default function PlayerList(props) {
 	    		/>
 	    		</Grid.Column>
 	    		<Grid.Column>
-	    		{plyrSum}
+	    		{ptchrSum}
 	    		<ReactTable
 	    		resizable={false}
 	    		multiSort={false}

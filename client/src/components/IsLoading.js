@@ -17,7 +17,7 @@ export default function IsLoading(props) {
       setVisible(false)    
       i++
 
-    }, 1400);
+    }, 400);
  
     return () => {
       clearInterval(interval);
@@ -33,7 +33,7 @@ export default function IsLoading(props) {
 			Farm Team Fantasy
 			<div style={{marginTop: '3vh', fontSize: '.5em', fontWeight: 400, fontStyle: 'italic'}}> Is gathering the latest stats ..</div>
 		</div>
-	<Transition visible={visible} animation='fade' duration={500}>
+	<Transition visible={visible} animation='fade' duration={200}>
 			<div className="anim" style={{top: '40vh', left: '40vw', position: 'absolute', fontSize:'2em'}}>{<Image src={curLogo} />}</div>
       </Transition>
 	</div>
