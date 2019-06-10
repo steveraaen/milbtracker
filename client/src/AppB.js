@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import { ClassPicker, YearPicker } from './components/Selections.js'
+import chalk from 'chalk'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
@@ -51,6 +52,7 @@ function AppB() {
    const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
+   const [borderCol, setBorderCol] = useState();
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
@@ -62,12 +64,14 @@ function AppB() {
     async function getTopTen(cl, yr) {
         try {
           console.log(timeframe)
+
             const tmPitSeasPromise = axios('/api/teamPitchSeason', { params: { cl, yr } })
             const tmPitYestPromise = axios('/api/teamPitchYest' , { params: { cl, yr } })
             const tmBatSeasPromise = axios('/api/teamBatSeason' , { params: { cl, yr } })
             const tmBatYestPromise = axios('/api/teamBatYest' , { params: { cl, yr } })
             
             const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);
+              console.log(chalk.whiteBright(tmBatS))
               if(tmPitS && tmPitY &&tmBatS && tmBatY) {
                 setLoading(false)
               }
@@ -125,30 +129,34 @@ function AppB() {
             console.error(e);
         };
     }
+
 const handleClick = (e, { value }) => {
   setTimeframe(value)
-
+console.log(playersVisible)
         if(value === 'season') {
-
               setTimeBatURL('/api/playerBatSeason')
               setTimePitchURL('/api/playerPitchSeason')
               } 
-              else if(value === 'yesterday'){
-
+        else if(value === 'yesterday'){
               setTimeBatURL('/api/playerBatYest')
               setTimePitchURL('/api/playerPitchYest')
             }
+
+
+
+
 console.log(timeBatURL)
 console.log(timePitchURL)
 
 }
 
 function handleFirstVisit() {
-console.log(localStorage)
+console.log(chalk.whiteBright(localStorage))
     localStorage.setItem('showModal', false)
     setModalOpen(false)  
 }
 function handleModalClose() {
+
   setModalOpen(false)
 }
     useEffect(() => {
@@ -157,6 +165,10 @@ function handleModalClose() {
     useEffect(() => {
         getTopTen(selectedClass.code, selectedYear.value, timeframe)
     }, {});
+    useEffect(() => {
+      setBorderCol(timeframe === 'season' ? 'cadetblue' : 'salmon'
+)
+    })
 
     /*    useEffect(() => {
             getBestMinors(selectedClass.code, selectedDivision.value, selectedClass.regex, selectedYear)
@@ -267,7 +279,7 @@ return (
            </Sidebar>  
     <Sidebar
       animation='scale down' 
-      width='very wide'
+      width='full screen'
       direction='top' 
       icon='labeled'
       inverted='true'             
@@ -275,11 +287,12 @@ return (
       vertical='true'     
       onHide={() => setPlayersVisible(false)}    
     > 
-    <Segment>
+    <Segment style={{borderStyle: 'ridge', borderWidth: '1.5pt', borderColor: borderCol}}>
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
      <Icon bordered color='black' name="close" onClick={() => setPlayersVisible(false)}/>
      </div>
     <PlayerList 
+    borderCol={borderCol}
       {...playerList}
       {...yestBat}
       {...pitcherList}
@@ -296,8 +309,10 @@ return (
             <Sidebar.Pusher>  
               <div>
                 <SeasonResults 
+                borderCol={borderCol}
                 toggleFormSidebar={toggleFormSidebar}
                   loading={loading}
+                  playersVisible={playersVisible}
                   {...tfObj}
                   {...bestBat}
                   {...bestPitch}

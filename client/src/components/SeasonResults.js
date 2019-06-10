@@ -14,7 +14,6 @@ export default function SeasonResults(props) {
 
 var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.yestBatTeams
 var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
-var borderCol = props.timeframe === 'season' ? 'cadetblue' : 'salmon'
 
 
 
@@ -222,7 +221,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			width: 56
 		}]
 	    return (
-<div style={{borderStyle: 'ridge', borderWidth: '1.5pt', borderColor: borderCol}}>
+<div style={{borderStyle: 'ridge', borderWidth: '1.5pt', borderColor: props.borderCol}}>
 	    	<ReactTooltip
 	    	place="bottom"
 	    	offset={{bottom: 10, right: 10}}

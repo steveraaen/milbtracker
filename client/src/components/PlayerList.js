@@ -123,7 +123,7 @@ export default function PlayerList(props) {
 	 <div>
 	    	<Grid  
 	    	stackable columns={2}
-	    	style={{backgroundColor: 'rgba(255,255,255,50)'}}
+	    	 
 	    	> 
 	    	
 	    	 <Grid.Column>
@@ -133,7 +133,7 @@ export default function PlayerList(props) {
 	    		resizable={false}
 	    		multiSort={false}	    	
 	    		showPagination={false}
-	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
+	    		style={{fontSize: '.8em', fontWeight: 600, height: '66vh'}}
     			data={props.playerList}
     			columns={batterColumns}
     			showPageSizeOptions={false} 
