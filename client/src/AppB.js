@@ -194,9 +194,7 @@ return (
     open={modalOpen}
     trigger={<Icon bordered corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
-        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> From Minors ...</div>
-        <Image rounded wrapped size='small' src={ftfLogo} />
-        <div style={{marginLeft:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> ... To Majors</div>
+        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Current MLB players, grouped by former MiLB teams</div>
         <Icon bordered  name="close" color="yellow" onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain />

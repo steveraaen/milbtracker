@@ -19,7 +19,7 @@ var wikiSnippets = [
 'There are six classes of minor league teams: Triple-A, Double-A, Class A-Advanced, Class A, Class A Short Season, and Rookie',
 'Minor - Major League affiliations can change every two years',
 'Most leagues at Double-A and below play a split season, where the standings are reset at the halfway mark, and the winners of both halves qualify for post-season play',
-'AAA eams usually hold many of the remaining 15 players of the 40-man major league roster',
+'AAA teams usually hold many of the remaining 15 players of the 40-man major league roster',
 'Short-season leagues play 76 games, starting in mid-June and ending in early September',
 'Minor League Umpires are overseen by Minor League Baseball Umpire Development',
 'The parent major league club pays the salaries and benefits of uniformed personnel, and provides bats and balls',
