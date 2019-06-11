@@ -203,7 +203,7 @@ return (
   </Modal>       
       </div>
     <div>
-    <div  style={{marginBottom: '1.5vh', fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
+    <div  style={{marginBottom: '1.5vh', fontSize: '1.8em'}}>Farm Team Fantasy</div>
       <div style={{display: 'flex', flexDirection: 'row'}}>
         <span style={{color: 'crimson', fontWeight: 600, marginRight: '3vw'}}>American League</span>
         <span style={{color: 'indigo', fontWeight: 600}}>National League</span>
