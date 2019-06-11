@@ -11,7 +11,7 @@ return(
     <Item.Group>
     <Item.Header as='h3'>Welcome to Farm Team Fantasy</Item.Header>
     <Item>
-      <Item.Image size='tiny' src={ball} />
+      <Item.Image size='mini' src={ball} />
 
       <Item.Content>
         <Item.Description>
@@ -25,7 +25,7 @@ return(
     </Item>
 <Item.Header as='h3'>Batting Metrics :</Item.Header>
     <Item>
-      <Item.Image size='tiny' src={batPic}/>
+      <Item.Image size='mini' src={batPic}/>
 
       <Item.Content>
         <Item.Description> 		 
@@ -42,7 +42,7 @@ return(
     </Item>
  <Item.Header as='h3'>Pitching Metrics :</Item.Header>
     <Item>
-      <Item.Image size='tiny' src={pitchPic}/>
+      <Item.Image size='mini' src={pitchPic}/>
       <Item.Content>
         <Item.Description> 		 
  		  	 <span>
