@@ -193,7 +193,7 @@ ROUND(SUM(latestPitching.SO) / 2) AS SO,
 ROUND(SUM(latestPitching.H) / 2) AS H,
 ROUND(SUM(latestPitching.HR) / 2) AS HR,
 ROUND(SUM(latestPitching.BB) / 2) AS BB,
-9 * (latestPitching.R / latestPitching.IP) as ERA
+9 * (SUM(latestPitching.R) / (latestPitching.IP)) as ERA
 from finalHist, latestPitching 
 where finalHist.playerID= latestPitching.playerID 
 and finalHist.class like ?
@@ -226,7 +226,7 @@ ROUND(SUM(odp.SO) / 2) AS SO,
 ROUND(SUM(odp.H) / 2) AS H,
 ROUND(SUM(odp.HR) / 2) AS HR,
 ROUND(SUM(odp.BB) / 2) AS BB,
-9 * (odp.R / odp.IP) as ERA
+9 * (SUM(odp.R) / SUM(odp.IP)) as ERA
 from finalHist, odp 
 where finalHist.playerID= odp.playerID 
 and finalHist.class like ?
@@ -261,7 +261,7 @@ ROUND(SUM(latestBatting.B2) / 2) AS B2,
 ROUND(SUM(latestBatting.B3) / 2) AS B3,
 ROUND(SUM(latestBatting.TB) / 2) AS TB,
 ROUND(SUM(latestBatting.SB) / 2) AS SB,
-ROUND(SUM(latestBatting.TB + latestBatting.RBI) /2) AS TBRBI,
+ROUND(SUM(latestBatting.TB) + SUM(latestBatting.RBI) /2) AS TBRBI,
 FORMAT(SUM(latestBatting.H) / SUM(latestBatting.AB), 3) as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 
@@ -297,7 +297,7 @@ ROUND(SUM(odb.B2) / 2) AS B2,
 ROUND(SUM(odb.B3) / 2) AS B3,
 ROUND(SUM(odb.TB) / 2) AS TB,
 ROUND(SUM(odb.SB) / 2) AS SB,
-ROUND(SUM(odb.TB + odb.RBI) / 2) AS TBRBI,
+ROUND(SUM(odb.TB) + SUM(odb.RBI) / 2) AS TBRBI,
 FORMAT(SUM(odb.H) / SUM(odb.AB),3) as AVG
 from finalHist, odb 
 where odb.AB > 0
