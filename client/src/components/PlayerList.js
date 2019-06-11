@@ -9,10 +9,12 @@ export default function PlayerList(props) {
 	useEffect(() =>  ReactTooltip.rebuild()) 
 		var batterColumns = [
 				{
+		 headerStyle: {fontSize: '.9em'},
 	    Header: 'Batting',
 	    accessor: 'tmStr',
 	    width: 144,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Offensive metric: Total Bases plus RBIs">TB + RBI</span>
@@ -21,6 +23,7 @@ export default function PlayerList(props) {
 			accessor: 'TBRBI',
 	    	width: 54,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="At Bats">AB</span>
@@ -29,6 +32,7 @@ export default function PlayerList(props) {
 			accessor: 'AB',
 	    	width: 54,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Batting Average">AVG</span>
@@ -37,6 +41,7 @@ export default function PlayerList(props) {
 			accessor: 'AVG',
 	    	width: 54,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Hits">H</span>
@@ -45,6 +50,7 @@ export default function PlayerList(props) {
 			accessor: 'H',
 	    	width: 54,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Home Runs">HR</span>
@@ -63,6 +69,7 @@ export default function PlayerList(props) {
 		}*/];
 		var pitcherColumns = [
 		{
+			headerStyle: {fontSize: '.9em'},
 	    Header: 'Pitching',
 	    accessor: 'tmStr',
 	    width: 144,
@@ -75,6 +82,7 @@ export default function PlayerList(props) {
 			accessor: 'IPER',
 	    width: 54,
 		},  {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip={`Wins`}>W</span>
@@ -83,6 +91,7 @@ export default function PlayerList(props) {
 			accessor: 'W',
 	    width: 54,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip={`Losses`}>L</span>
@@ -91,6 +100,7 @@ export default function PlayerList(props) {
 			accessor: 'L',
 	    width: 54,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip={`Saves`}>SV</span>
@@ -99,6 +109,7 @@ export default function PlayerList(props) {
 			accessor: 'SV',
 	    width: 54,
 		}, {
+			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip={`Strikeouts`}>SO</span>
@@ -182,7 +193,7 @@ export default function PlayerList(props) {
 	    		resizable={false}
 	    		multiSort={false}	    	
 	    		showPagination={false}
-	    		style={{fontSize: '.8em', fontWeight: 600, height: '66vh'}}
+	    		style={{fontSize: '.9em', fontWeight: 600, height: '66vh'}}
     			data={props.playerList}
     			columns={batterColumns}
     			showPageSizeOptions={false} 
@@ -194,7 +205,7 @@ export default function PlayerList(props) {
 	    		resizable={false}
 	    		multiSort={false}
 	    		showPagination={false}
-	    		style={{fontSize: '.8em', fontWeight: 600, height: '36vh'}}
+	    		style={{fontSize: '.9em', fontWeight: 600, height: '66vh'}}
     			data={props.pitcherList}
     			columns={pitcherColumns}
     			showPageSizeOptions={false}	    			
