@@ -13,8 +13,6 @@ import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import ftfLogo from './ftflogo.png'
 
-console.disableYellowBox = true;
-/*import leagues from './assets/leagues.js'*/
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
@@ -32,6 +30,8 @@ const yrs = [
 ]
 
 function AppB() {
+
+
     const [selectedClass, setSelectedClass] = useState(classes[0]);
     const [years] = useState(yrs);
     const [allMLB] = useState(mlbTeams);
@@ -55,7 +55,6 @@ function AppB() {
    const [borderCol, setBorderCol] = useState();
    const [btnOpacity, setBtnOpacity] = useState();
 
-
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
     }
@@ -65,19 +64,17 @@ function AppB() {
 
     async function getTopTen(cl, yr) {
         try {
-          console.log(timeframe)
-
             const tmPitSeasPromise = axios('/api/teamPitchSeason', { params: { cl, yr } })
             const tmPitYestPromise = axios('/api/teamPitchYest' , { params: { cl, yr } })
             const tmBatSeasPromise = axios('/api/teamBatSeason' , { params: { cl, yr } })
             const tmBatYestPromise = axios('/api/teamBatYest' , { params: { cl, yr } })
-            
             const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);
               console.log(chalk.whiteBright(tmBatS))
               if(tmPitS && tmPitY &&tmBatS && tmBatY) {
                 setLoading(false)
               }
-
+               localStorage.setItem('cachedBatTm', tmBatS.data)
+               localStorage.setItem('cachedPitTm', tmPitS.data)
              setBestBat({
                 bestBatTeams: tmBatS.data
             })
@@ -94,7 +91,7 @@ function AppB() {
             console.error(e);
         };
     }
-    
+
     async function getPlayerList(f, c, y) {
     console.log('getPlayerList')
         try {
@@ -147,7 +144,7 @@ console.log(playersVisible)
 }
 
 function handleFirstVisit() {
-console.log(chalk.whiteBright(localStorage))
+
     localStorage.setItem('showModal', false)
     setModalOpen(false)  
 }
@@ -180,7 +177,10 @@ function handleModalClose() {
     })*/
 if(loading) {
   return (    <IsLoading
-                loading={loading}/>)
+                loading={loading}
+                {...bestBat}
+                {...bestPitch}
+                />)
 } else {
 return (
 
@@ -197,7 +197,7 @@ return (
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> From Minors ...</div>
         <Image rounded wrapped size='small' src={ftfLogo} />
         <div style={{marginLeft:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> ... To Majors</div>
-        <Icon bordered  name="close" color="yellow" size='large' onClick={() => setModalOpen(false)}/>
+        <Icon bordered  name="close" color="yellow" onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain />
     <a onClick={() => handleFirstVisit()} style={{display: 'flex',justifyContent: 'center', marginBottom: '1vh', fontSize: '.9em', fontWeight: 700, fontStyle: 'italic'}}>Don't show this again</a>
@@ -205,7 +205,7 @@ return (
   </Modal>       
       </div>
     <div>
-    <div  style={{fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
+    <div  style={{marginBottom: '1.5vh', fontSize: '1.8em', fontWeight: 600, fontStyle: 'italic'}}>Farm Team Fantasy</div>
       <div style={{display: 'flex', flexDirection: 'row'}}>
         <span style={{color: 'crimson', fontWeight: 600, marginRight: '3vw'}}>American League</span>
         <span style={{color: 'indigo', fontWeight: 600}}>National League</span>
@@ -214,7 +214,7 @@ return (
       <div style={{marginTop: '1vh'}}>
       <Button.Group>
         <Button
-         
+          
           style={{backgroundColor: `rgba(178, 34, 34,1)`, color: 'white'}}
           value="season"
           onClick={handleClick}
@@ -317,6 +317,7 @@ return (
             <Sidebar.Pusher>  
               <div>
                 <SeasonResults 
+         
                 borderCol={borderCol}
                 toggleFormSidebar={toggleFormSidebar}
                   loading={loading}

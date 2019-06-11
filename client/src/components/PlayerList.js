@@ -1,34 +1,55 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Image} from 'semantic-ui-react'
-
 import ReactTable from 'react-table'
+import ReactTooltip from 'react-tooltip'
 import "react-table/react-table.css";
 import {Grid} from 'semantic-ui-react'
 import mlbLogos from '../franchiseLogos.json'
 export default function PlayerList(props) {
+	useEffect(() =>  ReactTooltip.rebuild()) 
 		var batterColumns = [
 				{
 	    Header: 'Batting',
 	    accessor: 'tmStr',
 	    width: 144,
 		}, {
-			Header: 'TB',
-			accessor: 'TB',
+			Header: () => {
+				return (
+					<span data-tip="Offensive metric: Total Bases plus RBIs">TB + RBI</span>
+					)
+			},
+			accessor: 'TBRBI',
 	    	width: 54,
 		}, {
-			Header: 'AB',
+			Header: () => {
+				return (
+					<span data-tip="At Bats">AB</span>
+					)
+			},
 			accessor: 'AB',
 	    	width: 54,
 		}, {
-			Header: 'AVG',
+			Header: () => {
+				return (
+					<span data-tip="Batting Average">AVG</span>
+					)
+			},
 			accessor: 'AVG',
 	    	width: 54,
 		}, {
-			Header: 'H',
+			Header: () => {
+				return (
+					<span data-tip="Hits">H</span>
+					)
+			},
 			accessor: 'H',
 	    	width: 54,
 		}, {
-			Header: 'HR',
+			Header: () => {
+				return (
+					<span data-tip="Home Runs">HR</span>
+					)
+			},
 			accessor: 'HR',
 	    	width: 54,
 		}/*, {
@@ -46,23 +67,43 @@ export default function PlayerList(props) {
 	    accessor: 'tmStr',
 	    width: 144,
 		},{
-			Header: 'IP-ER',
+			Header: () => {
+				return (
+					<span data-tip={`The main metric:  Innings Pitched minus Earned Runs - a measure of durability and run prevention`}>IP - ER</span>
+					)
+			},
 			accessor: 'IPER',
 	    width: 54,
 		},  {
-			Header: 'W',
+			Header: () => {
+				return (
+					<span data-tip={`Wins`}>W</span>
+					)
+			},
 			accessor: 'W',
 	    width: 54,
 		}, {
-			Header: 'L',
+			Header: () => {
+				return (
+					<span data-tip={`Losses`}>L</span>
+					)
+			},
 			accessor: 'L',
 	    width: 54,
 		}, {
-			Header: 'SV',
+			Header: () => {
+				return (
+					<span data-tip={`Saves`}>SV</span>
+					)
+			},
 			accessor: 'SV',
 	    width: 54,
 		}, {
-			Header: 'SO',
+			Header: () => {
+				return (
+					<span data-tip={`Strikeouts`}>SO</span>
+					)
+			},
 			accessor: 'SO',
 	    width: 54,
 		}/*, {
@@ -76,11 +117,11 @@ export default function PlayerList(props) {
 		}*/]
 		if(props.playerList && mlbLogos) {
 
-			var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '10vw'}}>
+			var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center', width: '10vw'}}>
 									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
 									<Image size='tiny' src={props.playerList[0].imgURL} />
-									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
+									<div style={{flex: 1, marginLeft: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
 								</div>
 								
 								
@@ -126,9 +167,12 @@ export default function PlayerList(props) {
 	if(props.pitcherList || props.playerList) {
 	    return (
 	 <div>
+ 	    	<ReactTooltip
+	    		place="bottom"
+	    		offset={{bottom: 10, right: 10}}
+	    		multiline />
 	    	<Grid  
-	    	stackable columns={2}
-	    	 
+	    		stackable columns={2}	    	 
 	    	> 
 	    	
 	    	 <Grid.Column>

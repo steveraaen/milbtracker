@@ -10,7 +10,7 @@ import tmsLogos from'../lgos/namesAndLogos.js'
 export default function SeasonResults(props) {
 	useEffect(() =>  ReactTooltip.rebuild()) 
 
-	if( props.timeframe && props.bestBatTeams && props.bestPitchTeams && props.yestBatTeams && props.yestPitchTeams && props.selectedClass  && props.selectedYear) {
+	if( props.timeframe && props.bestBatTeams && props.bestPitchTeams /*&& props.yestBatTeams && props.yestPitchTeams*/ && props.selectedClass  && props.selectedYear) {
 
 var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.yestBatTeams
 var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
@@ -99,7 +99,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span data-tip="Offensive metric: Total Bases plus RBIs.">TB + RBI</span>
+					<span data-tip="Offensive metric: Total Bases plus RBIs">TB + RBI</span>
 					)
 			},
 			accessor: 'TBRBI',
@@ -224,9 +224,9 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    return (
 <div style={{borderStyle: 'ridge', borderWidth: '4pt', borderColor: props.borderCol}}>
 	    	<ReactTooltip
-	    	place="bottom"
-	    	offset={{bottom: 10, right: 10}}
-	    	multiline />
+		    	place="bottom"
+		    	offset={{bottom: 10, right: 10}}
+		    	multiline />
 	    	<Grid stackable columns={2}>
 
 	    	 <Grid.Column>
