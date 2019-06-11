@@ -1,8 +1,9 @@
 import React from 'react';
 import { Header, Image, Item, Modal} from 'semantic-ui-react'
 
- import pic from '../lgos/playerdog.png'
- import wspic from '../lgos/worldseries.png'
+ import batPic from '../lgos/drawBatter.png'
+ import pitchPic from '../lgos/drawPitch.png'
+import ball from '../ball.png'
 
  export default function Explain(props) {
 return(
@@ -10,7 +11,7 @@ return(
     <Item.Group>
     <Item.Header as='h3'>Welcome to Farm Team Fantasy</Item.Header>
     <Item>
-      <Item.Image src={pic} />
+      <Item.Image size='tiny' src={ball} />
 
       <Item.Content>
         <Item.Description>
@@ -22,18 +23,35 @@ return(
         </Item.Description>
       </Item.Content>
     </Item>
-<Item.Header as='h3'>Metrics</Item.Header>
+<Item.Header as='h3'>Batting Metrics :</Item.Header>
     <Item>
-      <Item.Image src={wspic}/>
+      <Item.Image size='tiny' src={batPic}/>
 
       <Item.Content>
-        <Item.Description>
-        <p style={{fontWeight: 500, fontSize: '1.1em'}}>
-        Teams and players are ranked on just one offensive and defensive metric.
-        </p>
-        
- 		  <h3>Batting:</h3>
- 		  <h3>Pitching:</h3>
+        <Item.Description> 		 
+ 		  	 <span>
+ 		  		<p>Players with high 
+ 		  			<span style={{fontWeight: 700}}> Total Bases </span>
+ 		  			 can be players who hit home runs, walk frequently, steal bases and play every day. Of course those bases may not lead to runs, and since 
+ 		  			 <span style={{fontWeight: 700}}>Runs Batted In</span> 
+ 		  			 are a pure measure of offensive results, they contribute to rankings.</p>
+ 		  		<p>All offensive results are ranked by <span style={{fontWeight: 700}}>Total Bases plus Runs Batted In.</span>  </p>
+ 		  	</span>
+        </Item.Description>
+      </Item.Content>
+    </Item>
+ <Item.Header as='h3'>Pitching Metrics :</Item.Header>
+    <Item>
+      <Item.Image size='tiny' src={pitchPic}/>
+      <Item.Content>
+        <Item.Description> 		 
+ 		  	 <span>
+ 		  		<p><span style={{fontWeight: 700}}>Innings Pitched</span>
+ 		  			 show the durability and to an extent, mound-worthiness. By subtracting
+ 		  			 <span style={{fontWeight: 700}}>Earned Runs</span> allowed, we account for pitchers who may be throwing mop-up innings.
+ 		  		</p>
+ 		  		<p>Pitching is ranked by <span style={{fontWeight: 700}}>Innings Pitched minus Earned Runs.</span>  </p>
+ 		  	</span>
         </Item.Description>
       </Item.Content>
     </Item>
