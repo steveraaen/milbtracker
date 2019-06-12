@@ -116,28 +116,25 @@ function AppB() {
                     }
                 }
             })
-
             setPlayerList({
                 playerList: newBatters.data
             })
             setPitcherList({
                 pitcherList: newPitchers.data
             })
-
             showPlayersSidebar()
         } catch (e) {
             console.error(e);
         };
     }
-
 const handleClick = (e, { value }) => {
   setTimeframe(value)
-console.log(playersVisible)
-        if(timeframe === 'season') {
+
+        if(value === 'season') {
               setTimeBatURL('/api/playerBatSeason')
               setTimePitchURL('/api/playerPitchSeason')
               } 
-        if(timeframe === 'yesterday'){
+        if(value === 'yesterday'){
               setTimeBatURL('/api/playerBatYest')
               setTimePitchURL('/api/playerPitchYest')
             }

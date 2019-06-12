@@ -205,7 +205,6 @@ order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl
     if (error) throw error;
    });
 })
-
 app.get('/api/teamPitchYest', function(req, res) {
   connection.query(`select 
 finalHist.franchise,
