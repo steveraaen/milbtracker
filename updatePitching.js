@@ -13,8 +13,6 @@ var connection = mysql.createConnection({
 /*setInterval(function() {*/
 
 (async () => {
-
-
     const browser = await puppeteer.launch({
             'args' : [
                 '--no-sandbox',
@@ -28,7 +26,7 @@ var connection = mysql.createConnection({
         connection.query(`TRUNCATE TABLE secondLatestPitching;
         INSERT INTO secondLatestPitching SELECT * FROM latestPitching;
         TRUNCATE TABLE latestPitching;`)
-        
+
     let eachPlayer = await page.evaluate(() => {
         let results = [];
         let items = document.querySelectorAll('#players_standard_pitching tr.full_table');
@@ -98,7 +96,7 @@ var connection = mysql.createConnection({
     }
     await browser.close()
 })();
-(async () => {
+/*(async () => {
     connection.query(`TRUNCATE TABLE secondLatestBatting;
         INSERT INTO secondLatestBatting SELECT * FROM latestBatting;
         TRUNCATE TABLE latestBatting;`)
@@ -175,7 +173,7 @@ var connection = mysql.createConnection({
         });
     }
     await browser.close()
-})();
+})();*/
 
 /*}, 900000)*/
 /*(async () => {
