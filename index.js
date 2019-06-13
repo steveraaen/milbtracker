@@ -4,6 +4,7 @@ require('dotenv').config()
 const mysql = require('mysql')
 const express = require('express')
 const path = require('path')
+
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -259,7 +260,7 @@ ROUND(SUM(latestBatting.B2) / 2) AS B2,
 ROUND(SUM(latestBatting.B3) / 2) AS B3,
 ROUND(SUM(latestBatting.TB) / 2) AS TB,
 ROUND(SUM(latestBatting.SB) / 2) AS SB,
-ROUND(SUM(latestBatting.TB) + SUM(latestBatting.RBI) /2) AS TBRBI,
+ROUND(SUM(latestBatting.TB) / 2 + SUM(latestBatting.RBI) /2) AS TBRBI,
 FORMAT(SUM(latestBatting.H) / SUM(latestBatting.AB), 3) as AVG
 from finalHist, latestBatting 
 where finalHist.playerID= latestBatting.playerID 

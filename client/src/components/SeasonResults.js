@@ -84,17 +84,6 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			accessor: 'tmStr2',
 			description: '',
 			width: 130
-		},  {
-		
-			headerStyle: {fontSize: '.9em'},
-			Header: () => {
-				return (
-					<span data-tip="Number of current major league players">Players</span>
-					)
-			},
-			accessor: 'players',
-			description: 'Number of current major league players',
-			width: 60
 		},{
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
@@ -146,6 +135,16 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			accessor: 'HR',
 			description: 'Home Runs',
 			width: 56
+		}, {
+			headerStyle: {fontSize: '.9em'},
+			Header: () => {
+				return (
+					<span data-tip="Stolen Bases">SB</span>
+					)
+			},
+			accessor: 'SB',
+			description: 'Stolen Bases',
+			width: 56
 		}];
 		var pitchColumns = [
 		{
@@ -160,16 +159,6 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			accessor: 'ptmStr2',
 			description: '',
 			width: 130
-		},	{
-			headerStyle: {fontSize: '.9em'},
-			Header: () => {
-				return (
-					<span data-tip="Number of current major league players">Players</span>
-					)
-			},
-			accessor: 'players',
-			description: 'Number of current major league players',
-			width: 60
 		},	{
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
@@ -214,11 +203,21 @@ const onRowClick = (state, rowInfo, column, instance) => {
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span data-tip="Strikeouts">SO</span>
+					<span data-tip="Saves">SO</span>
 					)
 			},
 			accessor: 'SO',
 			description: 'Strikeouts',
+			width: 56
+		}, {
+			headerStyle: {fontSize: '.9em'},
+			Header: () => {
+				return (
+					<span data-tip="Walks">SO</span>
+					)
+			},
+			accessor: 'BB',
+			description: 'Walks',
 			width: 56
 		}]
 	    return (

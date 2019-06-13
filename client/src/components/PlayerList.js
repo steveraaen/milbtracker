@@ -58,15 +58,16 @@ export default function PlayerList(props) {
 			},
 			accessor: 'HR',
 	    	width: 54,
-		}/*, {
-			Header: 'BB',
-			accessor: 'BB',
-	    	width: 54,
 		}, {
-			Header: 'SB',
+			headerStyle: {fontSize: '.9em'},
+			Header: () => {
+				return (
+					<span data-tip="Stolen Bases">SB</span>
+					)
+			},
 			accessor: 'SB',
 	    	width: 54,
-		}*/];
+		}];
 		var pitcherColumns = [
 		{
 			headerStyle: {fontSize: '.9em'},
@@ -117,15 +118,16 @@ export default function PlayerList(props) {
 			},
 			accessor: 'SO',
 	    width: 54,
-		}/*, {
-			Header: 'HR',
-			accessor: 'HR',
-	    width: 54,
 		}, {
-			Header: 'BB',
+			headerStyle: {fontSize: '.9em'},
+			Header: () => {
+				return (
+					<span data-tip={`Walks`}>BB</span>
+					)
+			},
 			accessor: 'BB',
 	    width: 54,
-		}*/]
+		}]
 		if(props.playerList && mlbLogos) {
 
 			var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', justifyContent: 'start', alignItems: 'center', width: '10vw'}}>
