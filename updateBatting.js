@@ -15,7 +15,12 @@ var connection = mysql.createConnection({
     connection.query(`TRUNCATE TABLE secondLatestBatting;
         INSERT INTO secondLatestBatting SELECT * FROM latestBatting;
         TRUNCATE TABLE latestBatting;`)
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+            'args' : [
+                '--no-sandbox',
+                '--disable-setuid-sandbox'
+            ]
+});
     const page = await browser.newPage();
     await page.goto('https://www.baseball-reference.com/leagues/MLB/2019-standard-batting.shtml', { waitUntil: 'networkidle2' })
     let eachPlayer = await page.evaluate(() => {
