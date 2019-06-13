@@ -13,12 +13,22 @@ var connection = mysql.createConnection({
 /*setInterval(function() {*/
 
 (async () => {
-    connection.query(`TRUNCATE TABLE secondLatestPitching;
-        INSERT INTO secondLatestPitching SELECT * FROM latestPitching;
-        TRUNCATE TABLE latestPitching;`)
-    const browser = await puppeteer.launch();
+
+
+    const browser = await puppeteer.launch({
+            'args' : [
+                '--no-sandbox',
+                '--disable-setuid-sandbox'
+            ]
+});
     const page = await browser.newPage();
     await page.goto('https://www.baseball-reference.com/leagues/MLB/2019-standard-pitching.shtml', { waitUntil: 'networkidle2' })
+
+// Don't truncate tables until browser promise resolved!!
+        connection.query(`TRUNCATE TABLE secondLatestPitching;
+        INSERT INTO secondLatestPitching SELECT * FROM latestPitching;
+        TRUNCATE TABLE latestPitching;`)
+        
     let eachPlayer = await page.evaluate(() => {
         let results = [];
         let items = document.querySelectorAll('#players_standard_pitching tr.full_table');
