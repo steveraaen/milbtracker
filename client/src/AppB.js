@@ -69,7 +69,7 @@ function AppB() {
             const tmBatSeasPromise = axios('/api/teamBatSeason' , { params: { cl, yr } })
             const tmBatYestPromise = axios('/api/teamBatYest' , { params: { cl, yr } })
             const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);
-              console.log(chalk.whiteBright(tmBatS))
+             
               if(tmPitS && tmPitY &&tmBatS && tmBatY) {
                 setLoading(false)
               }
@@ -173,6 +173,7 @@ function handleModalClose() {
       } 
     })*/
 if(loading) {
+   console.log(chalk.whiteBright('Thank you for visiting Farm Team Fantasy'))
   return (    <IsLoading
                 loading={loading}
                 {...bestBat}
