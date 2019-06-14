@@ -1,4 +1,3 @@
-// mysql -h gmgcjwawatv599gq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com -u rvd8pk44d3y429e3 -p tqqwr7za0fczmnex vtox5woubolsge6o < tranch5_milb.sql
 
 require('dotenv').config()
 const mysql = require('mysql')
@@ -21,14 +20,13 @@ var connection  = mysql.createConnection({
 // Retrieve pitch data for getPlayerList
 app.get('/api/playerPitchSeason', function(req, res) {
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL,  
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.franchLogo,  
+tmp.tmName,  
 latestPitching.lg,
 latestPitching.playerName as playerName,
 latestPitching.playerID,
@@ -42,11 +40,11 @@ latestPitching.H AS H,
 latestPitching.HR AS HR,
 latestPitching.BB AS BB,
 9 * (latestPitching.R / latestPitching.IP) as ERA
-from finalHist, latestPitching 
-where finalHist.playerID= latestPitching.playerID
-and finalHist.class like ?
-and finalHist.franchise = ?
-and finalHist.yr like ?
+from tmp, latestPitching 
+where tmp.playerID= latestPitching.playerID
+and tmp.class like ?
+and tmp.franchise = ?
+and tmp.yr like ?
 group by playerID
 order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, req.query.y], function (error, results, fields) {
       res.json(results)
@@ -56,14 +54,13 @@ order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, r
 app.get('/api/playerPitchYest', function(req, res) {
 /*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL,  
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.franchLogo,  
+tmp.tmName,  
 odp.lg,
 odp.playerName as playerName,
 odp.playerID,
@@ -77,11 +74,11 @@ odp.H AS H,
 odp.HR AS HR,
 odp.BB AS BB,
 9 * (odp.R / odp.IP) as ERA
-from finalHist, odp 
-where finalHist.playerID= odp.playerID
-and finalHist.class like ?
-and finalHist.franchise = ?
-and finalHist.yr like ?
+from tmp, odp 
+where tmp.playerID= odp.playerID
+and tmp.class like ?
+and tmp.franchise = ?
+and tmp.yr like ?
 group by playerID
 order by odp.IP - odp.R desc`, [req.query.c, req.query.f, req.query.y], function (error, results, fields) {
    /*     console.log(results)*/
@@ -93,15 +90,14 @@ order by odp.IP - odp.R desc`, [req.query.c, req.query.f, req.query.y], function
 app.get('/api/playerBatSeason', function(req, res) {
   console.log(JSON.stringify(req.query))
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL,
-finalHist.logoPNG,  
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.logoPNG,  
+tmp.franchLogo,  
+tmp.tmName,  
 latestBatting.lg,
 latestBatting.playerName,
 latestBatting.playerID,
@@ -118,12 +114,12 @@ latestBatting.TB,
 latestBatting.SB,
 SUM(latestBatting.TB + latestBatting.RBI) AS TBRBI,
 FORMAT(latestBatting.H / latestBatting.AB,3) as AVG
-from finalHist, latestBatting 
+from tmp, latestBatting 
 where latestBatting.AB > 0
-and finalHist.playerID= latestBatting.playerID 
-and finalHist.franchise = ?
-and finalHist.class = ?
-and finalHist.yr like ?
+and tmp.playerID= latestBatting.playerID 
+and tmp.franchise = ?
+and tmp.class = ?
+and tmp.yr like ?
 group by playerID
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
    /*     console.log(results)*/
@@ -134,15 +130,14 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], functi
 app.get('/api/playerBatYest', function(req, res) {
 /*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL,
-finalHist.logoPNG,  
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.logoPNG,  
+tmp.franchLogo,  
+tmp.tmName,  
 odb.lg,  
 odb.playerName,
 odb.tm as curTeam,
@@ -159,12 +154,12 @@ odb.TB,
 odb.SB,
 SUM(odb.TB + odb.RBI) AS TBRBI,
 FORMAT(odb.H / odb.AB, 3) as AVG
-from finalHist, odb 
+from tmp, odb 
 where odb.AB > 0
-and finalHist.playerID= odb.playerID 
-and finalHist.franchise = ?
-and finalHist.class = ?
-and finalHist.yr like ?
+and tmp.playerID= odb.playerID 
+and tmp.franchise = ?
+and tmp.class = ?
+and tmp.yr like ?
 group by playerID
 order by SUM(odb.TB + odb.RBI) desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
@@ -175,30 +170,29 @@ order by SUM(odb.TB + odb.RBI) desc`, [req.query.f, req.query.c, req.query.y], f
 app.get('/api/teamPitchSeason', function(req, res) {
 /*console.log(req.query)*/
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL,  
-finalHist.logoPNG,
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.logoPNG,
+tmp.franchLogo,  
+tmp.tmName,  
 count(DISTINCT latestPitching.playerName) as players,
-ROUND(SUM(latestPitching.IP - latestPitching.R) / 2) AS IPER, 
-ROUND(SUM(latestPitching.W) / 2) AS W, 
-ROUND(SUM(latestPitching.L) / 2) AS L,
-ROUND(SUM(latestPitching.SV) / 2) AS SV,
-ROUND(SUM(latestPitching.SO) / 2) AS SO,
-ROUND(SUM(latestPitching.H) / 2) AS H,
-ROUND(SUM(latestPitching.HR) / 2) AS HR,
-ROUND(SUM(latestPitching.BB) / 2) AS BB,
+ROUND(SUM(latestPitching.IP - latestPitching.R)) AS IPER, 
+ROUND(SUM(latestPitching.W)) AS W, 
+ROUND(SUM(latestPitching.L)) AS L,
+ROUND(SUM(latestPitching.SV)) AS SV,
+ROUND(SUM(latestPitching.SO)) AS SO,
+ROUND(SUM(latestPitching.H)) AS H,
+ROUND(SUM(latestPitching.HR)) AS HR,
+ROUND(SUM(latestPitching.BB)) AS BB,
 9 * (SUM(latestPitching.R) / (latestPitching.IP)) as ERA
-from finalHist, latestPitching 
-where finalHist.playerID= latestPitching.playerID 
-and finalHist.class like ?
-and finalHist.yr like ?
-group by finalHist.class , finalHist.franchise, finalHist.yr
+from tmp, latestPitching 
+where tmp.playerID= latestPitching.playerID 
+and tmp.class like ?
+and tmp.yr like ?
+group by tmp.class , tmp.franchise, tmp.yr
 order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
@@ -207,30 +201,29 @@ order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl
 })
 app.get('/api/teamPitchYest', function(req, res) {
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL,
-finalHist.logoPNG,  
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.logoPNG,  
+tmp.franchLogo,  
+tmp.tmName,  
 count(DISTINCT odp.playerName) as players,
 SUM(odp.IP - odp.R) AS IPER, 
-ROUND(SUM(odp.W) / 2) AS W, 
-ROUND(SUM(odp.L) / 2) AS L,
-ROUND(SUM(odp.SV) / 2) AS SV,
-ROUND(SUM(odp.SO) / 2) AS SO,
-ROUND(SUM(odp.H) / 2) AS H,
-ROUND(SUM(odp.HR) / 2) AS HR,
-ROUND(SUM(odp.BB) / 2) AS BB,
+ROUND(SUM(odp.W)) AS W, 
+ROUND(SUM(odp.L)) AS L,
+ROUND(SUM(odp.SV)) AS SV,
+ROUND(SUM(odp.SO)) AS SO,
+ROUND(SUM(odp.H)) AS H,
+ROUND(SUM(odp.HR)) AS HR,
+ROUND(SUM(odp.BB)) AS BB,
 9 * (SUM(odp.R) / SUM(odp.IP)) as ERA
-from finalHist, odp 
-where finalHist.playerID= odp.playerID 
-and finalHist.class like ?
-and finalHist.yr like ?
-group by finalHist.class , finalHist.franchise, finalHist.yr
+from tmp, odp 
+where tmp.playerID= odp.playerID 
+and tmp.class like ?
+and tmp.yr like ?
+group by tmp.class , tmp.franchise, tmp.yr
 order by SUM(odp.IP - odp.R) desc limit 40`,[req.query.cl, req.query.yr], function (error, results, fields) {
       res.json(results)
     if (error) throw error;
@@ -240,33 +233,32 @@ order by SUM(odp.IP - odp.R) desc limit 40`,[req.query.cl, req.query.yr], functi
 app.get('/api/teamBatSeason', function(req, res) {
 /*console.log(req.query)*/
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL, 
-finalHist.logoPNG, 
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.logoPNG, 
+tmp.franchLogo,  
+tmp.tmName,  
 count(DISTINCT latestBatting.playerName) as players,
-ROUND(SUM(latestBatting.AB) / 2) AS AB, 
-ROUND(SUM(latestBatting.H) / 2) AS H, 
-ROUND(SUM(latestBatting.HR) / 2) AS HR,
-ROUND(SUM(latestBatting.RBI) / 2) AS RBI,
-ROUND(SUM(latestBatting.R) / 2) AS R,
-ROUND(SUM(latestBatting.BB) / 2) AS BB,
-ROUND(SUM(latestBatting.B2) / 2) AS B2,
-ROUND(SUM(latestBatting.B3) / 2) AS B3,
-ROUND(SUM(latestBatting.TB) / 2) AS TB,
-ROUND(SUM(latestBatting.SB) / 2) AS SB,
-ROUND(SUM(latestBatting.TB) / 2 + SUM(latestBatting.RBI) /2) AS TBRBI,
+ROUND(SUM(latestBatting.AB)) AS AB, 
+ROUND(SUM(latestBatting.H)) AS H, 
+ROUND(SUM(latestBatting.HR)) AS HR,
+ROUND(SUM(latestBatting.RBI)) AS RBI,
+ROUND(SUM(latestBatting.R)) AS R,
+ROUND(SUM(latestBatting.BB)) AS BB,
+ROUND(SUM(latestBatting.B2)) AS B2,
+ROUND(SUM(latestBatting.B3)) AS B3,
+ROUND(SUM(latestBatting.TB)) AS TB,
+ROUND(SUM(latestBatting.SB)) AS SB,
+ROUND(SUM(latestBatting.TB) + SUM(latestBatting.RBI)) AS TBRBI,
 FORMAT(SUM(latestBatting.H) / SUM(latestBatting.AB), 3) as AVG
-from finalHist, latestBatting 
-where finalHist.playerID= latestBatting.playerID 
-and finalHist.class like ?
-and finalHist.yr like ?
-group by finalHist.tmName, finalHist.yr
+from tmp, latestBatting 
+where tmp.playerID= latestBatting.playerID 
+and tmp.class like ?
+and tmp.yr like ?
+group by tmp.tmName, tmp.yr
 order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)
@@ -276,34 +268,33 @@ order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],func
 app.get('/api/teamBatYest', function(req, res) {
 console.log(req.query)
   connection.query(`select 
-finalHist.franchise,
-finalHist.franchiseName,
-finalHist.majLg,
-finalHist.class,
-finalHist.yr,  
-finalHist.imgURL, 
-finalHist.logoPNG, 
-finalHist.franchLogo,  
-finalHist.tmName,  
+tmp.franchise,
+tmp.franchiseName,
+tmp.majLg,
+tmp.class,
+tmp.yr,  
+tmp.logoPNG, 
+tmp.franchLogo,  
+tmp.tmName,  
 count(DISTINCT odb.playerName) as players,
-ROUND(SUM(odb.AB) / 2) AS AB, 
-ROUND(SUM(odb.H) / 2) AS H, 
-ROUND(SUM(odb.HR) / 2) AS HR,
-ROUND(SUM(odb.RBI) / 2) AS RBI,
-ROUND(SUM(odb.R) / 2) AS R,
-ROUND(SUM(odb.BB) / 2) AS BB,
-ROUND(SUM(odb.B2) / 2) AS B2,
-ROUND(SUM(odb.B3) / 2) AS B3,
-ROUND(SUM(odb.TB) / 2) AS TB,
-ROUND(SUM(odb.SB) / 2) AS SB,
-ROUND(SUM(odb.TB) + SUM(odb.RBI) / 2) AS TBRBI,
+ROUND(SUM(odb.AB)) AS AB, 
+ROUND(SUM(odb.H)) AS H, 
+ROUND(SUM(odb.HR)) AS HR,
+ROUND(SUM(odb.RBI)) AS RBI,
+ROUND(SUM(odb.R)) AS R,
+ROUND(SUM(odb.BB)) AS BB,
+ROUND(SUM(odb.B2)) AS B2,
+ROUND(SUM(odb.B3)) AS B3,
+ROUND(SUM(odb.TB)) AS TB,
+ROUND(SUM(odb.SB)) AS SB,
+ROUND(SUM(odb.TB) + SUM(odb.RBI)) AS TBRBI,
 FORMAT(SUM(odb.H) / SUM(odb.AB),3) as AVG
-from finalHist, odb 
+from tmp, odb 
 where odb.AB > 0
-and finalHist.playerID= odb.playerID 
-and finalHist.class like ?
-and finalHist.yr like ?
-group by finalHist.tmName, finalHist.yr
+and tmp.playerID= odb.playerID 
+and tmp.class like ?
+and tmp.yr like ?
+group by tmp.tmName, tmp.yr
 order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)
@@ -314,23 +305,4 @@ order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (erro
 const port = process.env.PORT || 5001;
 app.listen(port);
 console.log(`Listening on ${port}`);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
