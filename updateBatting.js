@@ -12,9 +12,7 @@ var connection = mysql.createConnection({
 });
 
 (async () => {
-    connection.query(`TRUNCATE TABLE secondLatestBatting;
-        INSERT INTO secondLatestBatting SELECT * FROM latestBatting;
-        TRUNCATE TABLE latestBatting;`)
+
     const browser = await puppeteer.launch({
             'args' : [
                 '--no-sandbox',
@@ -23,6 +21,9 @@ var connection = mysql.createConnection({
 });
     const page = await browser.newPage();
     await page.goto('https://www.baseball-reference.com/leagues/MLB/2019-standard-batting.shtml', { waitUntil: 'networkidle2' })
+       connection.query(`TRUNCATE TABLE secondLatestBatting;
+        INSERT INTO secondLatestBatting SELECT * FROM latestBatting;
+        TRUNCATE TABLE latestBatting;`)
     let eachPlayer = await page.evaluate(() => {
         let results = [];
         let items = document.querySelectorAll('#players_standard_batting tr.full_table');

@@ -289,8 +289,7 @@ ROUND(SUM(odb.TB)) AS TB,
 ROUND(SUM(odb.SB)) AS SB,
 ROUND(SUM(odb.TB) + SUM(odb.RBI)) AS TBRBI,
 FORMAT(SUM(odb.H) / SUM(odb.AB),3) as AVG
-from finalHist, odb 
-where odb.AB > 0
+from finalHist, odb
 and finalHist.playerID= odb.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
