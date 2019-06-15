@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Stylesheet } from 'react';
 import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import { ClassPicker, YearPicker } from './components/Selections.js'
@@ -8,6 +8,7 @@ import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
+import Banner from './components/Banner.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
@@ -30,7 +31,6 @@ const yrs = [
 ]
 
 function AppB() {
-
 
     const [selectedClass, setSelectedClass] = useState(classes[0]);
     const [years] = useState(yrs);
@@ -140,9 +140,9 @@ const handleClick = (e, { value }) => {
             }
 }
 
-function handleFirstVisit() {
+async function handleFirstVisit() {
 
-    localStorage.setItem('showModal', false)
+  await  localStorage.setItem('showModal', false)
     setModalOpen(false)  
 }
 function handleModalClose() {
@@ -183,6 +183,7 @@ if(loading) {
 return (
 
 <div style={{backgroundColor: 'white'}}> 
+   <Banner />
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
@@ -203,8 +204,6 @@ return (
     <div>
     <div  style={{marginBottom: '1.5vh', fontSize: '1.8em'}}>Farm Team Fantasy</div>
       <div style={{display: 'flex', flexDirection: 'row'}}>
-        <span style={{color: 'crimson', fontWeight: 600, marginRight: '3vw'}}>American League</span>
-        <span style={{color: 'indigo', fontWeight: 600}}>National League</span>
       </div>
     </div>
       <div style={{marginTop: '1vh'}}>

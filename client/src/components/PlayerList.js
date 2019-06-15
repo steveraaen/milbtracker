@@ -5,7 +5,9 @@ import ReactTooltip from 'react-tooltip'
 import "react-table/react-table.css";
 import {Grid} from 'semantic-ui-react'
 import mlbLogos from '../franchiseLogos.json'
+import wikiSnippets from './wikiSnippets.js'
 export default function PlayerList(props) {
+	console.log(wikiSnippets)
 	useEffect(() =>  ReactTooltip.rebuild()) 
 		var batterColumns = [
 				{
