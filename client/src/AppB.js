@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useRef, Stylesheet } from 'react';
 import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
-import { ClassPicker, YearPicker } from './components/Selections.js'
 import chalk from 'chalk'
+import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
@@ -53,7 +53,17 @@ function AppB() {
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
    const [borderCol, setBorderCol] = useState();
-   const [btnOpacity, setBtnOpacity] = useState();
+   const  [ theme, setTheme ] = useState('dark');
+
+   const toggleTheme = () => {
+    if (theme !== "dark") {
+      localStorage.setItem("theme", "dark");
+      setTheme("dark");
+    } else {
+      localStorage.setItem("theme", "light");
+      setTheme("light");
+    }
+  };
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
@@ -150,6 +160,9 @@ function handleModalClose() {
   setModalOpen(false)
 }
     useEffect(() => {
+       setTheme(localStorage.getItem('theme'))
+    }, {})
+    useEffect(() => {
       localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
     }, {})
     useEffect(() => {
@@ -182,7 +195,7 @@ if(loading) {
 } else {
 return (
 
-<div style={{backgroundColor: 'white'}}> 
+<div className={`App ${theme}`}> 
    <Banner />
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
@@ -202,7 +215,8 @@ return (
   </Modal>       
       </div>
     <div>
-    <div  style={{marginBottom: '1.5vh', fontSize: '1.8em'}}>Farm Team Fantasy</div>
+    <div style={{marginBottom: '1.5vh', fontSize: '1.8em'}}
+    onClick={() => toggleTheme()}>Farm Team Fantasy</div>
       <div style={{display: 'flex', flexDirection: 'row'}}>
       </div>
     </div>
@@ -226,15 +240,11 @@ return (
           </Button.Group>
       </div>
     </div>
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>          
-        <div style={{alignContent: 'center', fontSize: '1.2em', fontWeight: 600}}>
-         </div> 
-         </div> 
-         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-      </div>
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar
-          animation="push"
+        <Sidebar.Pushable 
+            as={Segment}>
+          <Sidebar 
+          className={`App ${theme}`}         
+            animation="push"
             style={{marginRight: '1vw'}}
             icon='labeled'
             onHide={() => setFormVisible(false)}
@@ -246,7 +256,8 @@ return (
           <Icon bordered color='black' name="close" onClick={() => setFormVisible()}/>
           </div>
             <ClassPicker
-            toggleFormSidebar={toggleFormSidebar}
+              theme={theme}
+              toggleFormSidebar={toggleFormSidebar}
               timeframe={timeframe}
               years={years}
               classes={classes} 
@@ -263,7 +274,8 @@ return (
          </Segment>            
          <Segment>  
            <YearPicker 
-           toggleFormSidebar={toggleFormSidebar}
+             theme={theme}
+             toggleFormSidebar={toggleFormSidebar}
               years={years} 
               classes={classes} 
               timeframe={timeframe}
@@ -280,6 +292,7 @@ return (
               </Segment>        
            </Sidebar>  
     <Sidebar
+    className={`App ${theme}`}
       animation='scale down' 
       width='very wide'
       direction='top' 
@@ -289,30 +302,31 @@ return (
       vertical='true'     
       onHide={() => setPlayersVisible(false)}    
     > 
-    <Segment style={{borderStyle: 'ridge', borderWidth: '4pt', borderColor: borderCol}}>
+    <div>
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
-     <Icon bordered color='black' name="close" onClick={() => setPlayersVisible(false)}/>
+     <Icon bordered  name="close" onClick={() => setPlayersVisible(false)}/>
      </div>
-    <PlayerList 
-    borderCol={borderCol}
-      {...playerList}
-      {...yestBat}
-      {...pitcherList}
-      selectedClass={selectedClass} 
-      selectedYear={selectedYear} 
-      selectedDivision={selectedDivision} 
-      selectedMiLBTeam={selectedMiLBTeam} 
-      timeframe={timeframe} 
-      timeBatURL={timeBatURL}    
-      timePitchURL={timePitchURL}  
-      playersVisible={playersVisible}
-/>
-</Segment>
+        <PlayerList 
+          theme={theme} 
+          borderCol={borderCol}
+          {...playerList}
+          {...yestBat}
+          {...pitcherList}
+          selectedClass={selectedClass} 
+          selectedYear={selectedYear} 
+          selectedDivision={selectedDivision} 
+          selectedMiLBTeam={selectedMiLBTeam} 
+          timeframe={timeframe} 
+          timeBatURL={timeBatURL}    
+          timePitchURL={timePitchURL}  
+          playersVisible={playersVisible}
+    />
+</div>
           </Sidebar>    
             <Sidebar.Pusher>  
               <div>
-                <SeasonResults 
-         
+                <SeasonResults  
+                theme={theme}       
                 borderCol={borderCol}
                 toggleFormSidebar={toggleFormSidebar}
                   loading={loading}
@@ -341,6 +355,5 @@ return (
    </div>
     )}
 }
-
 
 export default AppB

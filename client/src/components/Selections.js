@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Container,  Form, Grid, Image, Loader, Segment,  Table } from 'semantic-ui-react'
+import { Card, Container,  Form, Grid, Image, Label, Loader, Segment,  Table } from 'semantic-ui-react'
 import '../App.css'
 
 function Teams(props) {
@@ -48,14 +48,16 @@ function YearPicker(props) {
         /* props.getBestMinors(props.selectedClass.code, props.selectedDivision.value, props.selectedClass.regex, value) */
         props.setSelectedYear(value)
         props.getTopTen(props.selectedClass.code, value.value, props.timeframe)
-props.toggleFormSidebar()
+        props.toggleFormSidebar()
        /* props.setSelectedMiLBTeam(props.topTen.topTenBatting[0])*/
         /*  props.getPlayerList(props.selectedClass.regex, props.selectedMiLBTeam.franchise, value, props.selectedMiLBTeam.name)
          */
     }
     return (
-        <div>  
-        <Form.Group>
+        <Form className={`App ${props.theme}`}>
+        <Form.Group 
+       
+        style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
 
         { props.years.map((yr, idx) => {
           return(
@@ -72,7 +74,7 @@ props.toggleFormSidebar()
         })        
        }
         </Form.Group>
-       </div>
+     </Form>
     )
 }
 
@@ -94,9 +96,11 @@ function ClassPicker(props) {
         regex: "%"
     }
     return (
-        <div> 
+        
    
-       <Form.Group> 
+       <Form.Group 
+       className={`App ${props.theme}`}
+         style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', color: 'gray'}}> 
         { props.classes.map((cl, idx) => {
           return(
              <Form.Checkbox 
@@ -112,81 +116,11 @@ function ClassPicker(props) {
         })         
         }
         </Form.Group>
-     </div>
+  
     );
 }
 
-function Divisions(props) {
-    function handleChange(e, { value, label }) {
-        console.log(value)
-        props.setSelectedDivision({ value: value, display: label })
-        props.getTopTen(props.selectedClass.name, props.selectedYear, value)
-        /*  props.getPlayerList(props.selectedClass.regex, props.selectedMiLBTeam.franchise, props.selectedYear, props.selectedMiLBTeam.name)*/
-    }
-    if (props.allDivisions) {
-        return (
-   <div>
-       <Form.Group> 
-        <Form.Checkbox
-         toggle
-          key={'allMajors'}
-          label={"All Major Leagues"}
-          value={"%L%"}          
-          onChange={handleChange}
-          checked={props.selectedDivision.value === "%L%"}
-        />
-        <Form.Checkbox
-         toggle
-          key={'allAL'}
-          label={"All American League"}
-          value={"A%%"}          
-          onChange={handleChange}
-          checked={props.selectedDivision.value === "A%%"}
-        />
-       {props.allDivisions.map((dv, idx) => {
-         if(dv.league === "ALE" || dv.league === "ALC" || dv.league === "ALW") {
-         return(
-         <Form.Checkbox
-         style={{backgroundColor: dv.color, width: 180}}
-         toggle
-          key={idx}
-          label={dv.display}
-          value={dv.league}          
-          onChange={handleChange}
-          checked={props.selectedDivision.value === dv.league}
-        />
-           )} else {return null}
-       })}     
-    </Form.Group>
-     <Form.Group>   
-        <Form.Checkbox
-         toggle
-          key={'allNL'}
-          label={"All National League"}
-          value={"N%%"}          
-          onChange={handleChange}
-          checked={props.selectedDivision.value === "N%%"}
-        />
-       {props.allDivisions.map((dv, idx) => {
-         if(dv.league === "NLE" || dv.league === "NLC" || dv.league === "NLW") {
-         return(
-         <Form.Checkbox
-         style={{backgroundColor: dv.color, width: 180}}
-         toggle
-          key={idx}
-          label={dv.display}
-          value={dv.league}          
-          onChange={handleChange}
-          checked={props.selectedDivision.value === dv.league}
-        />
-           )} else {return null}
-       })}     
-    </Form.Group>
-   
-    </div>
-        )
-    } else { return <Loader active /> }
-}
+
 
 
 const Batters = (props) => {
@@ -259,72 +193,6 @@ function Pitchers(props) {
     } else { return (<div></div>) }
 }
 
-/*function Stats(props) {
-    if (props.synthStats && props.selectedMiLBTeam.name && props.playerList && props.pitcherList) {
-        return (
-      <Modal 
-        closeIcon 
-        onClose={() => props.setModalOpen(false)}
-        open={props.modalOpen}
-        fullscreen="true"  
-        style={{width: '1fr'}} 
-        >
-
-    <Modal.Content >
-  <Segment  style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center'}}>
-   <div style={{display: 'flex', flexDirection: 'row', color: 'DarkSlateGrey', fontSize: '1.6rem', fontWeight: 600}}>{props.synthStats.batting.bat.YR}
-   <div style={{fontSize: '1.6rem', fontWeight: 600,  color: props.selectedMiLBTeam.color}}>{props.selectedMiLBTeam.name}</div></div>          
-
-   <Image rounded src={props.selectedMiLBTeam.logo} width={110} height={84}/>
- </Segment>
-
-    <Segment >  
-          <Statistic size="mini"> 
-        <Statistic.Value>{props.playerList.length + props.pitcherList.length}</Statistic.Value> 
-        <Statistic.Label>2018 MLB Players</Statistic.Label>       
-      </Statistic>   
-      <Statistic size="mini">
-        <Statistic.Value>{props.synthStats.batting.bat.AB}</Statistic.Value> 
-        <Statistic.Label>At Bats</Statistic.Label>       
-      </Statistic>
-      <Statistic size="mini">
-        <Statistic.Value>{props.synthStats.batting.bat.AVG}</Statistic.Value>   
-        <Statistic.Label>Batting Average</Statistic.Label>     
-      </Statistic>
-      <Statistic size="mini">
-        <Statistic.Value>{props.synthStats.pitching.pit.IP.toFixed(1)}</Statistic.Value>  
-        <Statistic.Label>Innings Pitched</Statistic.Label>      
-      </Statistic>
-      <Statistic size="mini">
-
-        <Statistic.Value>{props.synthStats.pitching.pit.ERA}</Statistic.Value> 
-        <Statistic.Label>ER Avg.</Statistic.Label>       
-      </Statistic>
-  
-    
-   </Segment>
-   <Segment style={{display: 'flex', flexDirection: 'row'}}>
-         <Batters
-          playerList={props.playerList} 
-          selectedMiLBTeam={props.selectedMiLBTeam} 
-          synthStats={props.synthStats} />
-     <Pitchers
-          pitcherList={props.pitcherList} 
-          selectedMiLBTeam={props.selectedMiLBTeam} 
-          synthStats={props.synthStats} />
-   </Segment>
-
-    </Modal.Content>
-  </Modal>
-
-        )
-    } else {
-        return (
-            <Placeholder />
-        )
-    }
-}
-*/
 function BestFive(props) {
 
     if (props.topTen && props.allMLB && props.selectedClass /*&& props.selectedMiLBTeam*/ ) {
@@ -552,7 +420,7 @@ function BestPlayers(props) {
 }
 
 
-export { BestFive, BestPlayers, ClassPicker, Divisions, Batters, Pitchers, /*Stats,*/ Teams, YearPicker };
+export { BestFive, BestPlayers, ClassPicker,  Batters, Pitchers, /*Stats,*/ Teams, YearPicker };
 
 
 

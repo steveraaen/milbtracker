@@ -4,7 +4,6 @@ import ReactTooltip from 'react-tooltip'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
-import "../App.css"
 import tmsLogos from'../lgos/namesAndLogos.js'
 
 export default function SeasonResults(props) {
@@ -14,11 +13,8 @@ export default function SeasonResults(props) {
 
 var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.yestBatTeams
 var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
-
-
-
 		currentBatData.map( tm => {
-			tm.color = tm.majLg === "A" ? 'crimson' : 'indigo'
+			tm.lg = tm.majLg === "A" ? 'al' : 'nl'
 			for(let i = 0; i < tmsLogos.length; i++) {
 				if(tmsLogos[i].tmName === tm.tmName) {
 					tm.lgo = tmsLogos[i].logoPNG
@@ -27,7 +23,7 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 			}
 			
 
-			tm.tmStr2 = <div style={{color: tm.majLg === "A" ? 'crimson' : 'indigo'}}>							
+			tm.tmStr2 = <div className={`lg ${tm.lg} ${props.theme}`}>							
 								<div style={{fontSize: '1.1em'}}>{tm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
@@ -43,14 +39,14 @@ var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : pro
 
 
 		currentPitchData.map( ptm => {
-			ptm.color = ptm.majLg === "A" ? 'crimson' : 'indigo'
+			ptm.lg = ptm.majLg === "A" ? 'al' : 'nl'
 			for(let i = 0; i < tmsLogos.length; i++) {
 				if(tmsLogos[i].tmName === ptm.tmName) {
 					ptm.lgo = tmsLogos[i].logoPNG
 					ptm.ptmStr = <Image rounded size='mini' src={ptm.lgo}/>
 				}
 			}
-			ptm.ptmStr2 = <div style={{color: ptm.majLg === "A" ? 'crimson' : 'indigo'}}>						
+			ptm.ptmStr2 = <div className={`lg ${ptm.lg} ${props.theme}`}>					
 								<div style={{fontSize: '1.1em'}}>{ptm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
@@ -66,168 +62,170 @@ const onRowClick = (state, rowInfo, column, instance) => {
     return {
         onClick: e => {
 
-        	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)
-           /* console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)   */       
+        	props.getPlayerList(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)    
         }
     }
 }
 		var batColumns = [
-		{	
+		{	headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: '',
+			className: `App ${props.theme}`,
 			accessor: 'tmStr',
-			description: '',
-			width: 50,
+			width: 50
+			
 		},{
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
+			className: `App ${props.theme}`,
 			accessor: 'tmStr2',
-			description: '',
 			width: 130
 		},{
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Offensive metric: Total Bases plus RBIs">TB + RBI</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'TBRBI',
-			description: 'Total Bases',
-			width: 56,
 
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Runs Batted In">RBI</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'RBI',
-			description: 'Runs Batted In',
-			width: 56
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Batting Average">H</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'H',
-			description: 'Hits',
-			width: 56
 		},{
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Batting Average">AVG</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'AVG',
-			description: 'Batting Average',
-			width: 56
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Home Runs">HR</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'HR',
-			description: 'Home Runs',
-			width: 56
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Stolen Bases">SB</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'SB',
-			description: 'Stolen Bases',
-			width: 56
 		}];
 		var pitchColumns = [
 		{
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: '',
+			className: `App ${props.theme}`,
 			accessor: 'ptmStr',
-			description: '',
 			width: 50
 		},{
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: 'Team',
+			className: `App ${props.theme}`,
 			accessor: 'ptmStr2',
-			description: '',
 			width: 130
 		},	{
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip={`The main metric:  Innings Pitched minus Earned Runs - a measure of durability and run prevention`}>IP - ER</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'IPER',
-			description: 'Innings Pitched minus Earned Runs',
-			width: 56
 		},  {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Wins">W</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'W',
-			description: 'Wins',
-			width: 56
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Losses">L</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'L',
-			description: 'Losses',
-			width: 56
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Saves">SV</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'SV',
-			description: 'Saves',
-			width: 56
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
 					<span data-tip="Saves">SO</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'SO',
-			description: 'Strikeouts',
-			width: 56
 		}, {
+			headerClassName: `App ${props.theme}`,
 			headerStyle: {fontSize: '.9em'},
 			Header: () => {
 				return (
-					<span data-tip="Walks">SO</span>
+					<span data-tip="Walks">BB</span>
 					)
 			},
+			className: `App ${props.theme}`,
 			accessor: 'BB',
-			description: 'Walks',
-			width: 56
 		}]
 	    return (
-<div style={{borderStyle: 'ridge', borderWidth: '4pt', borderColor: props.borderCol}}>
+<div className={`App ${props.theme}`} style={{borderStyle: 'ridge', borderWidth: '4pt', borderColor: props.borderCol}}>
 	    	<ReactTooltip
 		    	place="bottom"
 		    	offset={{bottom: 10, right: 10}}
 		    	multiline />
 	    	<Grid stackable columns={2}>
-
 	    	 <Grid.Column>
 	    	<div>
 	    	<div style={{display: 'flex', flexDirection: 'row', fontWeight: 600}}>
@@ -235,9 +233,9 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedClass.displayName}</div>
 	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedYear.text}</div>
 	    	</div>
-	    		<ReactTable
-	    			resizable={false} 
-	    			className="-highlight"
+	    		<ReactTable	    		
+	    			multiSort={true}
+	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
 		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'white'}}
 		    		defaultPageSize={30}
@@ -257,7 +255,7 @@ const onRowClick = (state, rowInfo, column, instance) => {
 	    	</div>
 	    		<ReactTable 
 	    			multiSort={false}	 
-	    			className="-highlight"
+	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
 		    		style={{fontSize: '.9em',   fontWeight: 600, height: '76vh', backgroundColor: 'white'}}
 		    		defaultPageSize={30}
