@@ -23,7 +23,7 @@ console.log(rowInfo)
 		var batterColumns = [
 				{
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: 'Batting',
 		className: `App ${props.theme}`,
 		accessor: 'tmStr',
@@ -41,7 +41,7 @@ console.log(rowInfo)
 		},
 		 {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip="At Bats">AB</span>
@@ -51,7 +51,7 @@ console.log(rowInfo)
 		accessor: 'AB'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip="Batting Average">AVG</span>
@@ -61,7 +61,7 @@ console.log(rowInfo)
 		accessor: 'AVG'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip="Hits">H</span>
@@ -71,7 +71,7 @@ console.log(rowInfo)
 		accessor: 'H'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip="Home Runs">HR</span>
@@ -81,7 +81,7 @@ console.log(rowInfo)
 		accessor: 'HR'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip="Stolen Bases">SB</span>
@@ -93,7 +93,7 @@ console.log(rowInfo)
 		var pitcherColumns = [
 		{
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: 'Pitching',
 		className: `App ${props.theme}`,
 		accessor: 'tmStr',
@@ -113,7 +113,7 @@ console.log(rowInfo)
 
 		  {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip={`Wins`}>W</span>
@@ -123,7 +123,7 @@ console.log(rowInfo)
 		accessor: 'W'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip={`Losses`}>L</span>
@@ -133,7 +133,7 @@ console.log(rowInfo)
 		accessor: 'L'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip={`Saves`}>SV</span>
@@ -143,7 +143,7 @@ console.log(rowInfo)
 		accessor: 'SV'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip={`Strikeouts`}>SO</span>
@@ -153,7 +153,7 @@ console.log(rowInfo)
 		accessor: 'SO'
 		}, {
 		headerClassName: `App ${props.theme}`,
-		headerStyle: {fontSize: '.9em'},
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip={`Walks`}>BB</span>
@@ -194,7 +194,7 @@ console.log(tmsLogos[0])
 			var ptchrSum =	<div style={{visibility: 'hidden', display: 'flex', flexDirection: 'row'}}>
 									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
-									<Image size='tiny' src={props.playerList[0].logoPNG} />
+									<Image size='tiny' src={props.playerList[0].logoPNG} alt="Minor league logo"/>
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
 								</div>
 			for(let i =0; i < props.pitcherList.length; i++) {
@@ -207,7 +207,7 @@ console.log(tmsLogos[0])
 			}
 		}
 			props.pitcherList.map( ptm => {
-			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo}/>
+			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo} alt="Current major leagu team logo"/>
 			<a style={{color: ptm.lg === "AL" ? 'crimson' : 'indigo'}} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
 			</div>
 			return ptm
@@ -228,7 +228,7 @@ console.log(tmsLogos[0])
 	    			multiSort={true}
 	    			className={`-highlight App ${props.theme}`}	    	
 		    		showPagination={false}
-		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'white'}}
+		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
 	    			data={props.playerList}
 	    			columns={batterColumns}
 	    			showPageSizeOptions={false} 
@@ -241,7 +241,7 @@ console.log(tmsLogos[0])
 	    			multiSort={true}
 	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
-		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: 'white'}}
+		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
 	    			data={props.pitcherList}
 	    			columns={pitcherColumns}
 	    			showPageSizeOptions={false}	    			

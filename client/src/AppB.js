@@ -2,7 +2,8 @@
 import React, { useState, useEffect, useRef, Stylesheet } from 'react';
 import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
-import chalk from 'chalk'
+import Switch from 'react-toggle-switch'
+
 import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
@@ -159,9 +160,9 @@ function handleModalClose() {
 
   setModalOpen(false)
 }
-    useEffect(() => {
+/*    useEffect(() => {
        setTheme(localStorage.getItem('theme'))
-    }, {})
+    }, {})*/
     useEffect(() => {
       localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
     }, {})
@@ -169,8 +170,9 @@ function handleModalClose() {
         getTopTen(selectedClass.code, selectedYear.value, timeframe)
     }, {});
     useEffect(() => {
-      setBorderCol(timeframe === 'yesterday' ? 'rgba(47, 79, 79,1)' : 'rgba(178, 34, 34,1)'
+      setBorderCol(timeframe === 'yesterday' ? '#3E85CA' : '#ABBB3D'
       )
+
     })
 /*    useEffect(() => {
     if(timeframe==='yesterday') {
@@ -186,8 +188,8 @@ function handleModalClose() {
       } 
     })*/
 if(loading) {
-   console.log(chalk.whiteBright('Thank you for visiting Farm Team Fantasy'))
   return (    <IsLoading
+                theme={theme}
                 loading={loading}
                 {...bestBat}
                 {...bestPitch}
@@ -209,7 +211,9 @@ return (
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Current MLB players, grouped by former MiLB teams</div>
         <Icon bordered  name="close" color="yellow" onClick={() => setModalOpen(false)}/>
         </Modal.Header>
-    <Explain />
+    <Explain
+      theme={theme}
+      />
     <a onClick={() => handleFirstVisit()} style={{display: 'flex',justifyContent: 'center', marginBottom: '1vh', fontSize: '.9em', fontWeight: 700, fontStyle: 'italic'}}>Don't show this again</a>
 
   </Modal>       
@@ -220,19 +224,25 @@ return (
       <div style={{display: 'flex', flexDirection: 'row'}}>
       </div>
     </div>
-      <div style={{marginTop: '1vh'}}>
+    <Switch />
+      <div style={{marginTop: '1vh', marginRight: '2vw'}}>
       <Button.Group>
         <Button
+        active
+          size='mini'
+     
           
-          style={{backgroundColor: `rgba(178, 34, 34,1)`, color: 'white'}}
+          color='olive'
           value="season"
           onClick={handleClick}
     
         >Full Season</Button>
          <Button.Or style={{color: 'black'}} />
         <Button
-       
-          style={{backgroundColor: `rgba(47, 79, 79,1)`, color: 'white'}}
+       size='mini'
+      
+         
+         color='blue'
           value="yesterday"
           onClick={handleClick}
    
@@ -243,19 +253,20 @@ return (
         <Sidebar.Pushable 
             as={Segment}>
           <Sidebar 
-          className={`App ${theme}`}         
+                  
             animation="push"
             style={{marginRight: '1vw'}}
-            icon='labeled'
+          
             onHide={() => setFormVisible(false)}
             vertical='true'
             visible={formVisible}           
           >       
            <Segment>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
-          <Icon bordered color='black' name="close" onClick={() => setFormVisible()}/>
+          <Icon bordered color="grey" name="close" onClick={() => setFormVisible()}/>
           </div>
             <ClassPicker
+           
               theme={theme}
               toggleFormSidebar={toggleFormSidebar}
               timeframe={timeframe}

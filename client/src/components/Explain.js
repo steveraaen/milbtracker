@@ -7,7 +7,7 @@ import ball from '../ball.png'
 
  export default function Explain(props) {
 return(
-    <Modal.Content>
+    <Modal.Content  className={`App ${props.theme}`} >
     <Item.Group>
     <Item.Header as='h3'>Welcome to Farm Team Fantasy</Item.Header>
     <Item>

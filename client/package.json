@@ -9,6 +9,7 @@
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "react-table": "^6.10.0",
+    "react-toggle-switch": "^3.0.4",
     "react-tooltip": "^3.10.0",
     "react-typist": "^2.0.5",
     "semantic-ui-css": "^2.4.1",

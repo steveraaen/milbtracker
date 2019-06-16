@@ -23,8 +23,7 @@ return (
         </div>
         </Card.Header>
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Image height={60} src={crd.logo} />
-          <Image height={40} src={crd.franchiseLogo} />
+
          </div>
           <Card.Content>
             <Card.Description> <div>At Bats:  {crd.bAB}</div></Card.Description>
@@ -54,9 +53,9 @@ function YearPicker(props) {
          */
     }
     return (
-        <Form className={`App ${props.theme}`}>
+        <Form>
         <Form.Group 
-       
+        
         style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
 
         { props.years.map((yr, idx) => {
@@ -99,8 +98,8 @@ function ClassPicker(props) {
         
    
        <Form.Group 
-       className={`App ${props.theme}`}
-         style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', color: 'gray'}}> 
+       
+         style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}> 
         { props.classes.map((cl, idx) => {
           return(
              <Form.Checkbox 
@@ -273,7 +272,7 @@ function BestFive(props) {
               {idx + 1}
               </Table.Cell>
               <Table.Cell value={btm}>
-                <Image size="tiny" src={btm.logo} />
+             
                 <p>{btm.cl}</p>
               </Table.Cell>
                 <Table.Cell value={btm}>
@@ -330,7 +329,6 @@ function BestFive(props) {
                      key={ix}>
               <Table.Cell>{ix + 1}</Table.Cell>
               <Table.Cell>
-                <Image size="tiny" src={ptm.logo} />
                 <p>{ptm.cl}</p>
               </Table.Cell>
                 <Table.Cell>

@@ -1,3 +1,5 @@
+
+@import "../node_modules/react-toggle-switch/dist/css/switch.min.css"
 @font-face {
   font-family: "Open Sans Regular";
   font-display: auto;
@@ -11,10 +13,29 @@ tr {
   border-width: 1px;
   border-color: gray;
 }
+label.dark{
+  background: #000;
+  color: #fff;
+  transition: 0.3s all;  
+}
+label.light{
+  background: #fff;
+  color: #000;
+  transition: 0.3s all; 
+}
 .App.dark {
   background: #000;
   color: #fff;
   transition: 0.3s all;
+}
+.App.light {
+  background: #fff;
+  color: #000;
+  transition: 0.3s all;
+}
+
+.App p {
+  font-size: 24pt;
 }
 .lg.nl.dark{
    background: #000;
@@ -45,9 +66,7 @@ tr {
 .App p {
   font-size: 24pt;
 }
-body {
-  padding: 1.4vw;
-}
+
 .trows{
   background-color: pink;
 }
