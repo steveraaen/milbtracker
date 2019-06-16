@@ -27,7 +27,7 @@ console.log(rowInfo)
 		Header: 'Batting',
 		className: `App ${props.theme}`,
 		accessor: 'tmStr',
-		width: 144,
+		width: 160,
 		}, 
 		{
 		headerClassName: `App ${props.theme}`,
@@ -38,7 +38,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'TBRBI'
+		accessor: 'TBRBI',
+		width: 60  
 		},
 		 {
 		headerClassName: `App ${props.theme}`,
@@ -49,7 +50,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,			
-		accessor: 'AB'
+		accessor: 'AB',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -59,7 +61,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'AVG'
+		accessor: 'AVG',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -69,7 +72,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'H'
+		accessor: 'H',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -79,7 +83,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'HR'
+		accessor: 'HR',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -89,7 +94,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'SB'
+		accessor: 'SB',
+		width: 60  
 	}];
 		var pitcherColumns = [
 		{
@@ -110,7 +116,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'IPER'
+		accessor: 'IPER',
+		width: 60  
 		},
 
 		  {
@@ -122,7 +129,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'W'
+		accessor: 'W',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -132,7 +140,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'L'
+		accessor: 'L',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -142,7 +151,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'SV'
+		accessor: 'SV',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -152,7 +162,8 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'SO'
+		accessor: 'SO',
+		width: 60  
 		}, {
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
@@ -162,11 +173,12 @@ console.log(rowInfo)
 				)
 		},
 		className: `App ${props.theme}`,
-		accessor: 'BB'
+		accessor: 'BB',
+		width: 60  
 		}]
 		if(props.playerList && mlbLogos) {
 console.log(tmsLogos[0])
-	var plyrSum =	<div style={{display: 'flex', flexDirection: 'row'}}>
+	var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', marginBottom: '1.6vh', justifyContent: 'center'}}>
 							<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 							<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
 						
@@ -193,7 +205,7 @@ console.log(tmsLogos[0])
 } else {return(<div></div>)}
 // ---------------------------------------------------------------------
 	if(props.pitcherList && mlbLogos) {
-			var ptchrSum =	<div style={{visibility: 'hidden', display: 'flex', flexDirection: 'row'}}>
+			var ptchrSum =	<div style={{display: 'flex', flexDirection: 'row', marginBottom: '1.6vh', justifyContent: 'center'}}>
 									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
 								

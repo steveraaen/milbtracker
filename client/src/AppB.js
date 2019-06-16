@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef, Stylesheet } from 'react';
-import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
+import { Button, Icon, Image, Modal, Segment, Sidebar, Transition} from 'semantic-ui-react'
 import axios from 'axios'
 import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
@@ -186,12 +186,15 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
-
-   <Banner
-     hideBanner={hideBanner}
-     bannerVis={bannerVis} 
-     theme={theme}
+        <Transition visible={bannerVis} animation='fade' duration={500}>
+          <Banner
+             hideBanner={hideBanner}
+             bannerVis={bannerVis} 
+             theme={theme}
      />
+        </Transition>  
+ 
+
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
@@ -213,9 +216,8 @@ return (
   </Modal>       
       </div>
     <div>
-    <div style={{marginBottom: '1.5vh', marginTop: '1.5vh',fontSize: '1.4em'}}>Farm Team Fantasy</div>
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-      </div>
+    <div style={{marginBottom: '1.5vh', marginTop: '2.5vh',fontSize: '1.4em'}}>Farm Team Fantasy</div>
+
     </div>
       <Switch toggleTheme={toggleTheme}
               theme={theme}

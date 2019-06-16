@@ -64,15 +64,14 @@ export default function SeasonResults(props) {
             Header: '',
             className: `App ${props.theme}`,
             accessor: 'tmStr',
-            width: 50
-
+            width: 60
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
             Header: 'Team',
             className: `App ${props.theme}`,
             accessor: 'tmStr2',
-            width: 130
+            width: 150        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -83,7 +82,7 @@ export default function SeasonResults(props) {
             },
             className: `App ${props.theme}`,
             accessor: 'TBRBI',
-
+            width: 60
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -93,7 +92,8 @@ export default function SeasonResults(props) {
                 )
             },
             className: `App ${props.theme}`,
-            accessor: 'RBI',
+            accessor: 'RBI', 
+            width: 60       
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -103,7 +103,8 @@ export default function SeasonResults(props) {
                 )
             },
             className: `App ${props.theme}`,
-            accessor: 'H',
+            accessor: 'H',        
+            width: 60
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -113,7 +114,8 @@ export default function SeasonResults(props) {
                 )
             },
             className: `App ${props.theme}`,
-            accessor: 'AVG',
+            accessor: 'AVG', 
+            width: 60       
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -123,7 +125,8 @@ export default function SeasonResults(props) {
                 )
             },
             className: `App ${props.theme}`,
-            accessor: 'HR',
+            accessor: 'HR', 
+            width: 60       
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -134,6 +137,7 @@ export default function SeasonResults(props) {
             },
             className: `App ${props.theme}`,
             accessor: 'SB',
+            width: 60
         }];
         var pitchColumns = [{
             headerClassName: `App ${props.theme}`,
@@ -141,14 +145,14 @@ export default function SeasonResults(props) {
             Header: '',
             className: `App ${props.theme}`,
             accessor: 'ptmStr',
-            width: 50
+            width: 60        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
             Header: 'Team',
             className: `App ${props.theme}`,
             accessor: 'ptmStr2',
-            width: 130
+            width: 150        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -158,7 +162,8 @@ export default function SeasonResults(props) {
                 )
             },
             className: `App ${props.theme}`,
-            accessor: 'IPER',
+            accessor: 'IPER', 
+            width: 60       
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -169,6 +174,7 @@ export default function SeasonResults(props) {
             },
             className: `App ${props.theme}`,
             accessor: 'W',
+            width: 60        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -179,6 +185,7 @@ export default function SeasonResults(props) {
             },
             className: `App ${props.theme}`,
             accessor: 'L',
+            width: 60        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -189,6 +196,7 @@ export default function SeasonResults(props) {
             },
             className: `App ${props.theme}`,
             accessor: 'SV',
+            width: 60        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -199,6 +207,7 @@ export default function SeasonResults(props) {
             },
             className: `App ${props.theme}`,
             accessor: 'SO',
+            width: 60        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -209,6 +218,7 @@ export default function SeasonResults(props) {
             },
             className: `App ${props.theme}`,
             accessor: 'BB',
+            width: 60        
         }]
         return (
             <div className={`App ${props.theme}`}>
@@ -224,8 +234,8 @@ export default function SeasonResults(props) {
 	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedClass.displayName}</div>
 	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedYear.text}</div>
 	    	</div>
-	    		<ReactTable	    		
-	    			multiSort={true}
+	    		<ReactTable
+                    resizable={false}	    			    		
 	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
 		    		style={{fontSize: '.9em', backgroundColor: props.borderCol , fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
@@ -244,8 +254,9 @@ export default function SeasonResults(props) {
 	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedClass.displayName}</div>
 	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedYear.text}</div>
 	    	</div>
-	    		<ReactTable 
-	    			multiSort={false}	 
+	    		<ReactTable
+                    resizable={false} 
+	    				 
 	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
 		    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
