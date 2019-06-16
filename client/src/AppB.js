@@ -54,8 +54,12 @@ function AppB() {
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
    const [borderCol, setBorderCol] = useState();
-   const  [ theme, setTheme ] = useState('dark');
+   const  [theme, setTheme] = useState('dark');
+   const  [bannerVis, setBannerVis] = useState(true);
 
+   const hideBanner = () => {
+     setBannerVis(false)
+   }
    const toggleTheme = () => {
     if (theme !== "dark") {
       localStorage.setItem("theme", "dark");
@@ -174,19 +178,7 @@ function handleModalClose() {
       )
 
     })
-/*    useEffect(() => {
-    if(timeframe==='yesterday') {
-        setBtnOpacity({
-        ssn: 1,
-        ystrdy: .4
-         })
-      } else if(timeframe==='season') {
-        setBtnOpacity({
-        ssn: .4,
-        ystrdy: 1
-         })
-      } 
-    })*/
+
 if(loading) {
   return (    <IsLoading
                 theme={theme}
@@ -198,7 +190,13 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
-   <Banner />
+
+   <Banner
+     hideBanner={hideBanner}
+     bannerVis={bannerVis} 
+     theme={theme}
+     />
+
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
@@ -219,7 +217,7 @@ return (
   </Modal>       
       </div>
     <div>
-    <div style={{marginBottom: '1.5vh', fontSize: '1.8em'}}
+    <div style={{marginBottom: '1.5vh', marginTop: '1.5vh',fontSize: '1.8em'}}
     onClick={() => toggleTheme()}>Farm Team Fantasy</div>
       <div style={{display: 'flex', flexDirection: 'row'}}>
       </div>
