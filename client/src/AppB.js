@@ -2,14 +2,13 @@
 import React, { useState, useEffect, useRef, Stylesheet } from 'react';
 import { Button, Icon, Image, Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
-import Switch from 'react-toggle-switch'
-
 import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
 import Banner from './components/Banner.js'
+import Switch from './components/Switch.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
@@ -60,14 +59,11 @@ function AppB() {
    const hideBanner = () => {
      setBannerVis(false)
    }
-   const toggleTheme = () => {
-    if (theme !== "dark") {
-      localStorage.setItem("theme", "dark");
-      setTheme("dark");
-    } else {
-      localStorage.setItem("theme", "light");
-      setTheme("light");
-    }
+   const toggleTheme = (th) => {
+
+      localStorage.setItem("theme", th);
+      setTheme(th);
+
   };
 
     function toggleFormSidebar() {
@@ -217,12 +213,15 @@ return (
   </Modal>       
       </div>
     <div>
-    <div style={{marginBottom: '1.5vh', marginTop: '1.5vh',fontSize: '1.8em'}}
-    onClick={() => toggleTheme()}>Farm Team Fantasy</div>
+    <div style={{marginBottom: '1.5vh', marginTop: '1.5vh',fontSize: '1.4em'}}>Farm Team Fantasy</div>
       <div style={{display: 'flex', flexDirection: 'row'}}>
       </div>
     </div>
-    <Switch />
+      <Switch toggleTheme={toggleTheme}
+              theme={theme}
+      >
+        
+      </Switch>
       <div style={{marginTop: '1vh', marginRight: '2vw'}}>
       <Button.Group>
         <Button

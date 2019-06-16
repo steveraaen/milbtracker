@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css'
-
+import "../node_modules/react-toggle-switch/dist/css/switch.min.css"
 import AppB from './AppB';
 import * as serviceWorker from './serviceWorker';
 

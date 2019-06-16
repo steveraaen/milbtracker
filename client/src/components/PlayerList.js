@@ -31,6 +31,7 @@ console.log(rowInfo)
 		}, 
 		{
 		headerClassName: `App ${props.theme}`,
+			headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip="Offensive metric: Total Bases plus RBIs">TB + RBI</span>
@@ -102,6 +103,7 @@ console.log(rowInfo)
 
 		{
 		headerClassName: `App ${props.theme}`,
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: () => {
 			return (
 				<span data-tip={`The main metric:  Innings Pitched minus Earned Runs - a measure of durability and run prevention`}>IP - ER</span>
@@ -184,7 +186,7 @@ console.log(tmsLogos[0])
 		}
 		props.playerList.map( tm => {
 			tm.tmStr = <div  className={`App ${props.theme}`}><div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
-			<a   className={`lg ${tm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={tm.playerURL}>{tm.playerName}</a>
+			<a  className={`lg ${tm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={tm.playerURL}>{tm.playerName}</a>
 			</div></div>
 			return tm
 		})
@@ -194,7 +196,7 @@ console.log(tmsLogos[0])
 			var ptchrSum =	<div style={{visibility: 'hidden', display: 'flex', flexDirection: 'row'}}>
 									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
-									<Image size='tiny' src={props.playerList[0].logoPNG} alt="Minor league logo"/>
+								
 									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
 								</div>
 			for(let i =0; i < props.pitcherList.length; i++) {
@@ -208,7 +210,7 @@ console.log(tmsLogos[0])
 		}
 			props.pitcherList.map( ptm => {
 			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo} alt="Current major leagu team logo"/>
-			<a style={{color: ptm.lg === "AL" ? 'crimson' : 'indigo'}} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
+			<a  className={`lg ${ptm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
 			</div>
 			return ptm
 		})
