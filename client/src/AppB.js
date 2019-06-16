@@ -233,7 +233,7 @@ return (
           value="season"
           onClick={handleClick}
     
-        >Full Season</Button>
+        >Season</Button>
          <Button.Or style={{color: 'black'}} />
         <Button
        size='mini'
@@ -243,7 +243,7 @@ return (
           value="yesterday"
           onClick={handleClick}
    
-        >Last Game</Button>
+        >Latest</Button>
           </Button.Group>
       </div>
     </div>
