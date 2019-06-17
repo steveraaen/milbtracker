@@ -72,7 +72,7 @@ export default function SeasonResults(props) {
         }
         var batColumns = [{
             headerClassName: `App ${props.theme}`,
-            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            headerStyle: {tabindex: 0, fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
             Header: 'Rank',
             className: `App ${props.theme}`,
             accessor: 'rnk',

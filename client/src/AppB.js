@@ -7,7 +7,6 @@ import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
-import Banner from './components/Banner.js'
 import Switch from './components/Switch.js'
 import './App.css'
 import classes from './classes.js'
@@ -187,27 +186,12 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
-        <Transition 
-          visible={bannerVis} 
-          animation='slide up' 
-          duration={1000} 
-        
-          directional={true} >
-          <Container>
-          <Banner
-             bannerVis={bannerVis}
-             hideBanner={hideBanner} 
-             theme={theme}
-     />
-     </Container>
-        </Transition>  
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
-  <Modal 
-  
-  modalopen={modalOpen}
+  <Modal   
+    modalopen={modalOpen}
     open={modalOpen}
     trigger={<Icon bordered corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
