@@ -54,9 +54,6 @@ var wikiSnippets = [
 			Farm Team Fantasy
 			<div style={{marginTop: '3vh', fontSize: '.5em', fontWeight: 400, fontStyle: 'italic'}}> Is gathering the latest stats ..</div>
 		</div>
-	<Transition visible={visible} animation='fade' duration={2000}>
-			<p className="anim" style={{width: '70vw', top: '40vh', left: '20vw', position: 'absolute', fontSize:'2em'}}>{curSnippet}</p>
-      </Transition>
 	</div>
 		)
 

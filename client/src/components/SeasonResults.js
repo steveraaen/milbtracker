@@ -51,7 +51,7 @@ export default function SeasonResults(props) {
         })
 
         const onRowClick = (state, rowInfo, column, instance) => {
-console.log(rowInfo.index)
+
             return {
                 onClick: e => {
 

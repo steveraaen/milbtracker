@@ -186,20 +186,7 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
-        <Transition 
-          visible={bannerVis} 
-          animation='scale flash' 
-          duration={1000} 
-          unmountOnHide
-          directional={true} >
-      <Container>
-          <Banner
-             bannerVis={bannerVis}
-             hideBanner={hideBanner} 
-             theme={theme}
-     />
-     </Container>
-        </Transition>  
+ 
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
