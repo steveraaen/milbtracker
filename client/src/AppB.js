@@ -160,9 +160,9 @@ function handleModalClose() {
 
   setModalOpen(false)
 }
-/*    useEffect(() => {
+    useEffect(() => {
        setTheme(localStorage.getItem('theme'))
-    }, {})*/
+    }, {})
     useEffect(() => {
       localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
     }, {})
@@ -184,9 +184,22 @@ if(loading) {
                 />)
 } else {
 return (
-<main>
+
 <div className={`App ${theme}`}> 
- 
+        <Transition 
+          visible={bannerVis} 
+          animation='slide up' 
+          duration={1000} 
+        
+          directional={true} >
+          <Container>
+          <Banner
+             bannerVis={bannerVis}
+             hideBanner={hideBanner} 
+             theme={theme}
+     />
+     </Container>
+        </Transition>  
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
@@ -213,11 +226,13 @@ return (
     </div>
       <Switch toggleTheme={toggleTheme}
               theme={theme}
-      />
+      >
+        
+      </Switch>
       <div style={{marginTop: '1vh', marginRight: '2vw'}}>
       <Button.Group>
         <Button
-          active
+        active
           size='mini'          
           color='olive'
           value="season"
@@ -346,7 +361,6 @@ return (
 
           <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
-   </main>
     )}
 }
 

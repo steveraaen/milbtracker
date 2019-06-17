@@ -121,8 +121,7 @@ table thead tr:first-child > th {
   transition: opacity 0, opacity 100;
 }
 .banner {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1.5em;
+  font-size: 1.2em;
   padding-top: 1.5vh;
 }
 
