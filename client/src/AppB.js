@@ -55,6 +55,7 @@ function AppB() {
    const [borderCol, setBorderCol] = useState();
    const  [theme, setTheme] = useState('dark');
    const  [bannerVis, setBannerVis] = useState(true);
+    const [rowInfo, setRowInfo ] = useState();
 
    const hideBanner = () => {
      setBannerVis(false)
@@ -333,7 +334,9 @@ return (
           </Sidebar>    
             <Sidebar.Pusher>  
               <div>
-                <SeasonResults  
+                <SeasonResults 
+                setRowInfo={setRowInfo} 
+                rowInfo={rowInfo} 
                 theme={theme}       
                 borderCol={borderCol}
                 toggleFormSidebar={toggleFormSidebar}
