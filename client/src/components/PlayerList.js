@@ -213,7 +213,7 @@ console.log(tmsLogos[0])
 			}
 		}
 		props.playerList.map( tm => {
-			tm.tmStr = <Image size='tiny' rounded src={tm.curLogo} />
+			tm.tmStr = <Image size='tiny' rounded src={tm.curLogo} alt="players current team logo"/>
 			tm.tmStr2 = <div  className={`App ${props.theme}`}><div style={{fontSize: '1.1em'}}>
 			<a  className={`lg ${tm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={tm.playerURL}>{tm.playerName}</a>
 			</div></div>
@@ -238,7 +238,7 @@ console.log(tmsLogos[0])
 			}
 		}
 			props.pitcherList.map( ptm => {
-			ptm.tmStr = <Image size='tiny' src={ptm.curLogo} alt="Current major leagu team logo"/>
+			ptm.tmStr = <Image size='tiny' src={ptm.curLogo} alt="Current major league team logo"/>
 			ptm.tmStr2 = <div>
 			<a  className={`lg ${ptm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
 			</div>

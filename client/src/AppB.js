@@ -184,7 +184,7 @@ if(loading) {
                 />)
 } else {
 return (
-
+<main>
 <div className={`App ${theme}`}> 
  
 
@@ -346,6 +346,7 @@ return (
 
           <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
+   </main>
     )}
 }
 

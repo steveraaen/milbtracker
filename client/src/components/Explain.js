@@ -11,7 +11,7 @@ return(
     <Item.Group>
     <Item.Header as='h3'>Welcome to Farm Team Fantasy</Item.Header>
     <Item>
-      <Item.Image size='mini' src={ball} />
+      <Item.Image size='mini' src={ball} alt="baseball icon" />
 
       <Item.Content>
         <Item.Description>

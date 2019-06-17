@@ -16,7 +16,7 @@ export default function SeasonResults(props) {
             for (let i = 0; i < tmsLogos.length; i++) {
                 if (tmsLogos[i].tmName === tm.tmName) {
                     tm.lgo = tmsLogos[i].logoPNG
-                    tm.tmStr = <Image rounded size='tiny' src={tm.lgo}/>
+                    tm.tmStr = <Image rounded size='tiny' src={tm.lgo} alt="teeam logo"/>
                 }
             }
             tm.tmStr2 = <div className={`lg ${tm.lg} ${props.theme}`}>							
