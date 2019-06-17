@@ -59,7 +59,8 @@ var connection = mysql.createConnection({
         return results;
     });
     for (let i = 0; i < eachPlayer.length; i++) {
-        connection.query(`INSERT INTO latestBatting(playerName,playerID,age,tm,lg,G,PA,AB,R,H,B2,B3,HR,RBI,SB,CS,BB,SO,TB,GDP,HBP,SH,SF,IBB)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+        connection.query(`DELETE FROM latestBatting WHERE tm = 'TOT';
+            INSERT INTO latestBatting(playerName,playerID,age,tm,lg,G,PA,AB,R,H,B2,B3,HR,RBI,SB,CS,BB,SO,TB,GDP,HBP,SH,SF,IBB)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
             TRUNCATE TABLE odb;
             INSERT INTO odb SELECT
             latestBatting.playerName,

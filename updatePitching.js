@@ -61,7 +61,8 @@ var connection = mysql.createConnection({
         return results;
     })
     for (let i = 0; i < eachPlayer.length; i++) {
-        connection.query(`INSERT INTO latestPitching(playerName,playerID,Age,Tm,Lg,W,L,G,GS,GF,CG,SHO,SV,IP,H,R,HR,BB,IBB,SO,HBP,BK,WP,BF)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+        connection.query(`DELETE FROM latestPitching WHERE tm = 'TOT'
+            INSERT INTO latestPitching(playerName,playerID,Age,Tm,Lg,W,L,G,GS,GF,CG,SHO,SV,IP,H,R,HR,BB,IBB,SO,HBP,BK,WP,BF)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
             TRUNCATE TABLE odp;          
             INSERT INTO odp SELECT
             latestPitching.playerID,

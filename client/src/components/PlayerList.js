@@ -10,16 +10,7 @@ import tmsLogos from'../lgos/namesAndLogos.js'
 export default function PlayerList(props) {
 	
 	useEffect(() =>  ReactTooltip.rebuild()) 
-	const onRowClick = (state, rowInfo, column, instance) => {
-console.log(rowInfo)
-    return {
-        onClick: e => {
 
-        	console.log(e)
-           /* console.log(rowInfo.original.franchise,rowInfo.original.class,rowInfo.original.yr)   */       
-        }
-    }
-}
 		var batterColumns = [
 		{
 		headerClassName: `App ${props.theme}`,
@@ -192,8 +183,15 @@ console.log(rowInfo)
 		accessor: 'BB',
 		width: 60  
 		}]
+   const onRowClick = (state, rowInfo, column, instance) => {           
+      return {
+          onClick: e => {
+              window.open(rowInfo.original.playerURL)
+          }
+      }
+  }
 		if(props.playerList && mlbLogos) {
-console.log(tmsLogos[0])
+
 	var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', marginBottom: '1.6vh', justifyContent: 'center'}}>
 							<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
 							<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
@@ -215,7 +213,7 @@ console.log(tmsLogos[0])
 		props.playerList.map( tm => {
 			tm.tmStr = <Image size='tiny' rounded src={tm.curLogo} alt="players current team logo"/>
 			tm.tmStr2 = <div  className={`App ${props.theme}`}><div style={{fontSize: '1.1em'}}>
-			<a  className={`lg ${tm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={tm.playerURL}>{tm.playerName}</a>
+			<span  className={`lg ${tm.curColor} ${props.theme}`}>{tm.playerName}</span>
 			</div></div>
 			return tm
 		})
@@ -240,10 +238,19 @@ console.log(tmsLogos[0])
 			props.pitcherList.map( ptm => {
 			ptm.tmStr = <Image size='tiny' src={ptm.curLogo} alt="Current major league team logo"/>
 			ptm.tmStr2 = <div>
-			<a  className={`lg ${ptm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
+			<span  className={`lg ${ptm.curColor} ${props.theme}`}>{ptm.playerName}</span>
 			</div>
 			return ptm
 		})
+			const onRowClick = (state, rowInfo, column, instance) => {    
+				console.log(rowInfo)       
+            return {
+                onClick: e => {
+                
+                  /*  window.open('http://www.website.com/page')*/
+                }
+            }
+        }
 	}	 else {return(<div></div>)}	
 	if(props.pitcherList || props.playerList) {
 	    return (
@@ -264,6 +271,7 @@ console.log(tmsLogos[0])
 	    			data={props.playerList}
 	    			columns={batterColumns}
 	    			showPageSizeOptions={false} 
+	    			getTrProps={onRowClick}
 	    		/>
   		
 	    		</Grid.Column>
@@ -276,7 +284,8 @@ console.log(tmsLogos[0])
 		    		style={{fontSize: '.9em', fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
 	    			data={props.pitcherList}
 	    			columns={pitcherColumns}
-	    			showPageSizeOptions={false}	    			
+	    			showPageSizeOptions={false}
+	    			getTrProps={onRowClick}	    			
 	    		/>
 	  
 	    	 </Grid.Column>

@@ -43,7 +43,6 @@ export default function SeasonResults(props) {
             ptm.rank= ix + 1
             ptm.lg = ptm.majLg === "A" ? 'al' : 'nl'
             for (let i = 0; i < tmsLogos.length; i++) {
-
                 if (tmsLogos[i].tmName === ptm.tmName) {
                     ptm.lgo = tmsLogos[i].logoPNG
                     ptm.ptmStr = <Image rounded size='tiny' src={ptm.lgo} alt="Pitcher team "/>
@@ -63,11 +62,10 @@ export default function SeasonResults(props) {
 /*        const getRowInfo = (state, rowInfo, column, instance) => {
 
         }*/
-        const onRowClick = (state, rowInfo, column, instance) => {
-            
+        let onRowClick = (state, rowInfo, column, instance) => {           
             return {
-
                 onClick: e => {
+
                     props.getPlayerList(rowInfo.original.franchise, rowInfo.original.class, rowInfo.original.yr)
                 }
             }

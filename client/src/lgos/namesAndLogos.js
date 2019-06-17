@@ -1,5 +1,9 @@
 const tmsLogos =[
 	{
+		"tmName" : "Scranton/Wilkes-Barre RailRiders",
+		"logoPNG" : require("./Scranton-Wilkes-Barre_RailRiders.png")
+	},
+	{
 		"tmName" : "Gwinnett Braves",
 		"logoPNG" : require("./Gwinnett_Braves.png")
 	},
