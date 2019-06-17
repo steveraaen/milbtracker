@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Image, Popup } from 'semantic-ui-react'
+import { Grid, Image, Label, Popup, Segment } from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
 
 import ReactTable from 'react-table'
@@ -28,6 +28,8 @@ export default function SeasonResults(props) {
 									</div>
 								</div>
             tm.ttp = <Popup content="Total Bases" trigger={<th></th>}/>
+            tm.lbl = <Segment><Label ribbon > !st </Label></Segment>
+           
             return tm
         })
         currentPitchData.map(ptm => {
@@ -50,7 +52,7 @@ export default function SeasonResults(props) {
         })
 
         const onRowClick = (state, rowInfo, column, instance) => {
-
+console.log(rowInfo.index)
             return {
                 onClick: e => {
 
@@ -59,6 +61,13 @@ export default function SeasonResults(props) {
             }
         }
         var batColumns = [{
+            headerClassName: `App ${props.theme}`,
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            Header: '',
+            className: `App ${props.theme}`,
+            accessor: 'lbl',
+            width: 100
+        },{
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
             Header: '',

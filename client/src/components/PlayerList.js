@@ -27,7 +27,7 @@ console.log(rowInfo)
 		Header: 'Batting',
 		className: `App ${props.theme}`,
 		accessor: 'tmStr',
-		width: 160,
+		minWidth: 160,
 		}, 
 		{
 		headerClassName: `App ${props.theme}`,
@@ -104,7 +104,7 @@ console.log(rowInfo)
 		Header: 'Pitching',
 		className: `App ${props.theme}`,
 		accessor: 'tmStr',
-		width: 144,
+		minWidth: 144,
 		},
 
 		{

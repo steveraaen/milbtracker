@@ -226,9 +226,7 @@ return (
     </div>
       <Switch toggleTheme={toggleTheme}
               theme={theme}
-      >
-        
-      </Switch>
+      />
       <div style={{marginTop: '1vh', marginRight: '2vw'}}>
       <Button.Group>
         <Button
