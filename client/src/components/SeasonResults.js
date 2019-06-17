@@ -71,7 +71,7 @@ export default function SeasonResults(props) {
             Header: 'Team',
             className: `App ${props.theme}`,
             accessor: 'tmStr2',
-            width: 150        
+            minWidth: 150        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
@@ -152,7 +152,7 @@ export default function SeasonResults(props) {
             Header: 'Team',
             className: `App ${props.theme}`,
             accessor: 'ptmStr2',
-            width: 150        
+            minWidth: 150        
         }, {
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },

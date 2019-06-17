@@ -1,5 +1,5 @@
 import React from 'react';
-import {Icon, Image, Transition} from 'semantic-ui-react'
+import {Icon, Image} from 'semantic-ui-react'
 
 export default function Switch(props) {
 	var sunOp, moonOp;

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef, Stylesheet } from 'react';
-import { Button, Icon, Image, Modal, Segment, Sidebar, Transition} from 'semantic-ui-react'
+import { Button, Container, Icon, Image, Modal, Segment, Sidebar, Transition} from 'semantic-ui-react'
 import axios from 'axios'
 import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
@@ -48,7 +48,7 @@ function AppB() {
     const [tfObj] = useState({});
     const [modalOpen, setModalOpen] = useState(true);
     const [formVisible, setFormVisible] = useState(false);
-    const [playersVisible, setPlayersVisible] = useState(false);
+    const [playersVisible, setPlayersVisible] = useState();
    const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
    const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
    const [loading, setLoading] = useState(true);
@@ -186,15 +186,20 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
-        <Transition visible={bannerVis} animation='fade' duration={500}>
+        <Transition 
+          visible={bannerVis} 
+          animation='scale flash' 
+          duration={1000} 
+          unmountOnHide
+          directional={true} >
+      <Container>
           <Banner
-             hideBanner={hideBanner}
-             bannerVis={bannerVis} 
+             bannerVis={bannerVis}
+             hideBanner={hideBanner} 
              theme={theme}
      />
+     </Container>
         </Transition>  
- 
-
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
       <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
@@ -227,10 +232,8 @@ return (
       <div style={{marginTop: '1vh', marginRight: '2vw'}}>
       <Button.Group>
         <Button
-        active
-          size='mini'
-     
-          
+          active
+          size='mini'          
           color='olive'
           value="season"
           onClick={handleClick}
@@ -238,24 +241,20 @@ return (
         >Season</Button>
          <Button.Or style={{color: 'black'}} />
         <Button
-       size='mini'
-      
-         
-         color='blue'
-          value="yesterday"
-          onClick={handleClick}
-   
-        >Latest</Button>
+            size='mini'        
+            color='blue'
+            value="yesterday"
+            onClick={handleClick}  
+        >Latest
+        </Button>
           </Button.Group>
       </div>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
-          <Sidebar 
-                  
+          <Sidebar                   
             animation="push"
-            style={{marginRight: '1vw'}}
-          
+            style={{marginRight: '1vw'}}          
             onHide={() => setFormVisible(false)}
             vertical='true'
             visible={formVisible}           
@@ -264,8 +263,7 @@ return (
           <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
           <Icon bordered color="grey" name="close" onClick={() => setFormVisible()}/>
           </div>
-            <ClassPicker
-           
+            <ClassPicker           
               theme={theme}
               toggleFormSidebar={toggleFormSidebar}
               timeframe={timeframe}
@@ -310,7 +308,7 @@ return (
       inverted='true'             
       visible={playersVisible}  
       vertical='true'     
-      onHide={() => setPlayersVisible(false)}    
+    
     > 
     <div>
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>

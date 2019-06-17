@@ -8,13 +8,13 @@ export default function Banner(props) {
 
 	return (
 
-		<Message className={`App ${props.theme}`}>
+		<div className={`App ${props.theme}`}>
 			<Typist  
 				style={{display: 'flex', flexWrap: 'no-wrap', fontSize: '1.4em'}}
 				onTypingDone={() => props.hideBanner()} >
-				{wikiSnippets[0]}
+				{wikiSnippets[3]}
 			</Typist>
-		</Message>
+		</div>
 
 		)
 }
