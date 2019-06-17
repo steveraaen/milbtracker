@@ -16,11 +16,11 @@ export default function SeasonResults(props) {
             for (let i = 0; i < tmsLogos.length; i++) {
                 if (tmsLogos[i].tmName === tm.tmName) {
                     tm.lgo = tmsLogos[i].logoPNG
-                    tm.tmStr = <Image rounded size='mini' src={tm.lgo}/>
+                    tm.tmStr = <Image rounded size='tiny' src={tm.lgo}/>
                 }
             }
             tm.tmStr2 = <div className={`lg ${tm.lg} ${props.theme}`}>							
-									<div style={{fontSize: '1.1em'}}>{tm.tmName}</div>
+									<div style={{fontSize: '1.1em', textAlign: 'left'}}>{tm.tmName}</div>
 									<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 										<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
 										<div style={{ marginRight: '1vw'}}>{tm.class}</div>
@@ -28,8 +28,7 @@ export default function SeasonResults(props) {
 									</div>
 								</div>
             tm.ttp = <Popup content="Total Bases" trigger={<th></th>}/>
-            tm.lbl = <Segment><Label ribbon > !st </Label></Segment>
-           
+             
             return tm
         })
         currentPitchData.map(ptm => {
@@ -37,11 +36,11 @@ export default function SeasonResults(props) {
             for (let i = 0; i < tmsLogos.length; i++) {
                 if (tmsLogos[i].tmName === ptm.tmName) {
                     ptm.lgo = tmsLogos[i].logoPNG
-                    ptm.ptmStr = <Image rounded size='mini' src={ptm.lgo} alt="Pitcher team "/>
+                    ptm.ptmStr = <Image rounded size='tiny' src={ptm.lgo} alt="Pitcher team "/>
                 }
             }
             ptm.ptmStr2 = <div className={`lg ${ptm.lg} ${props.theme}`}>					
-								<div style={{fontSize: '1.1em'}}>{ptm.tmName}</div>
+								<div style={{fontSize: '1.1em', textAlign: 'left'}}>{ptm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>
 									<div style={{ marginRight: '1vw'}}>{ptm.class}</div>
@@ -61,13 +60,6 @@ console.log(rowInfo.index)
             }
         }
         var batColumns = [{
-            headerClassName: `App ${props.theme}`,
-            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
-            Header: '',
-            className: `App ${props.theme}`,
-            accessor: 'lbl',
-            width: 100
-        },{
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
             Header: '',

@@ -21,13 +21,21 @@ console.log(rowInfo)
     }
 }
 		var batterColumns = [
+		{
+		headerClassName: `App ${props.theme}`,
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
+		Header: 'Pitching',
+		className: `App ${props.theme}`,
+		accessor: 'tmStr',
+		minWidth: 60,
+		},
 				{
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: 'Batting',
 		className: `App ${props.theme}`,
-		accessor: 'tmStr',
-		minWidth: 160,
+		accessor: 'tmStr2',
+		minWidth: 140,
 		}, 
 		{
 		headerClassName: `App ${props.theme}`,
@@ -98,13 +106,21 @@ console.log(rowInfo)
 		width: 60  
 	}];
 		var pitcherColumns = [
+				{
+		headerClassName: `App ${props.theme}`,
+		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
+		Header: '',
+		className: `App ${props.theme}`,
+		accessor: 'tmStr',
+		minWidth: 60,
+		},
 		{
 		headerClassName: `App ${props.theme}`,
 		headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol},
 		Header: 'Pitching',
 		className: `App ${props.theme}`,
-		accessor: 'tmStr',
-		minWidth: 144,
+		accessor: 'tmStr2',
+		minWidth: 140,
 		},
 
 		{
@@ -197,7 +213,8 @@ console.log(tmsLogos[0])
 			}
 		}
 		props.playerList.map( tm => {
-			tm.tmStr = <div  className={`App ${props.theme}`}><div style={{fontSize: '1.1em'}}><Image size='mini' src={tm.curLogo}/>
+			tm.tmStr = <Image size='tiny' rounded src={tm.curLogo} />
+			tm.tmStr2 = <div  className={`App ${props.theme}`}><div style={{fontSize: '1.1em'}}>
 			<a  className={`lg ${tm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={tm.playerURL}>{tm.playerName}</a>
 			</div></div>
 			return tm
@@ -221,7 +238,8 @@ console.log(tmsLogos[0])
 			}
 		}
 			props.pitcherList.map( ptm => {
-			ptm.tmStr = <div><Image size='mini' src={ptm.curLogo} alt="Current major leagu team logo"/>
+			ptm.tmStr = <Image size='tiny' src={ptm.curLogo} alt="Current major leagu team logo"/>
+			ptm.tmStr2 = <div>
 			<a  className={`lg ${ptm.curColor} ${props.theme}`} target="_blank" rel="noopener noreferrer" href={ptm.playerURL}>{ptm.playerName}</a>
 			</div>
 			return ptm
