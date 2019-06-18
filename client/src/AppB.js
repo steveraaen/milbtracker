@@ -186,9 +186,10 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
+  <heading><div style={{marginBottom: '1.5vh', marginTop: '2.5vh',fontSize: '1.2em'}}>Farm Team Fantasy</div></heading>
 
-    <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
-      <div style={{display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
+    <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>
+      <div style={{ display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
   <Modal   
     modalopen={modalOpen}
@@ -206,14 +207,15 @@ return (
   </Modal>       
       </div>
     <div>
-    <div style={{marginBottom: '1.5vh', marginTop: '2.5vh',fontSize: '1.4em'}}>Farm Team Fantasy</div>
-
-    </div>
-      <Switch toggleTheme={toggleTheme}
-              theme={theme}
+       <Switch 
+        toggleTheme={toggleTheme}
+        theme={theme}
       >
         
-      </Switch>
+      </Switch>   
+
+    </div>
+
       <div style={{marginTop: '1vh', marginRight: '2vw'}}>
       <Button.Group>
         <Button
