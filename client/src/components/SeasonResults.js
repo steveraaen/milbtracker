@@ -65,7 +65,7 @@ export default function SeasonResults(props) {
         let onRowClick = (state, rowInfo, column, instance) => {           
             return {
                 onClick: e => {
-
+                    props.playersVisible ? props.setPlayerVisible(false) : console.log('window wasnt open')
                     props.getPlayerList(rowInfo.original.franchise, rowInfo.original.class, rowInfo.original.yr)
                 }
             }

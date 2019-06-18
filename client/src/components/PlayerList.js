@@ -264,6 +264,7 @@ export default function PlayerList(props) {
 	    	 <Grid.Column>
 	    	 {plyrSum}	   
 	    		<ReactTable 
+	    			minRows={10}
 	    			multiSort={true}
 	    			className={`-highlight App ${props.theme}`}	    	
 		    		showPagination={false}
@@ -278,6 +279,7 @@ export default function PlayerList(props) {
 	    		<Grid.Column>	  
 	    			{ptchrSum}
 	    		<ReactTable
+	    			minRows={10}
 	    			multiSort={true}
 	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}

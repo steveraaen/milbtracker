@@ -140,7 +140,7 @@ function AppB() {
     }
 const handleClick = (e, { value }) => {
   setTimeframe(value)
-
+    playersVisible ? setPlayersVisible(false) : console.log('window wasnt open')
         if(value === 'season') {
               setTimeBatURL('/api/playerBatSeason')
               setTimePitchURL('/api/playerPitchSeason')
@@ -321,6 +321,7 @@ return (
             <Sidebar.Pusher>  
               <div>
                 <SeasonResults 
+                setPlayersVisible={setPlayersVisible}
                 theme={theme}       
                 borderCol={borderCol}
                 toggleFormSidebar={toggleFormSidebar}
