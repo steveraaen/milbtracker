@@ -128,7 +128,7 @@ order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], functi
    })
 })
 app.get('/api/playerBatYest', function(req, res) {
-/*  console.log('newBatList.  ' + JSON.stringify(req.query))*/
+  console.log('newBatList.  ' + JSON.stringify(req.query))
   connection.query(`select 
 finalHist.franchise,
 finalHist.franchiseName,
@@ -301,7 +301,14 @@ order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (erro
     if (error) throw error;
    });
 })
+app.get('/api/minorMaster', function(req, res) {
+console.log(req.query)
+  connection.query(`select * from minorMaster`,function (error, results, fields) {
 
+      res.json(results)
+    if (error) throw error;
+   });
+})
 const port = process.env.PORT || 5001;
 app.listen(port);
 console.log(`Listening on ${port}`);

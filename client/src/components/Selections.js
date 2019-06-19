@@ -2,62 +2,17 @@ import React, { useEffect } from 'react';
 import { Card, Container,  Form, Grid, Image, Label, Loader, Segment,  Table } from 'semantic-ui-react'
 import '../App.css'
 
-function Teams(props) {
-return (
-  <div>
-  {props.topTenBatting && props.allMLB && props.topTenBatting.map((crd, idx) => {
-    return(
-       <Card key={idx}>
-       <Card.Header>            
-       <Card.Meta>{crd.yr}</Card.Meta>
-         <div style={{display: 'flex', flrxDirection: 'row', justifyContent: 'space-between'}}>
-         <div>
-         {crd.milbTeam}
-        </div>
-        {props.allMLB && props.allMLB.map((mjr, ix) => {
-          if(mjr.teamCode === crd.majteam) {
-            return (mjr.teamName)
-          } else{return null}
-        })}
-        
-        </div>
-        </Card.Header>
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-
-         </div>
-          <Card.Content>
-            <Card.Description> <div>At Bats:  {crd.bAB}</div></Card.Description>
-            <Card.Description> <div>Average:  {crd.bBA}</div></Card.Description>
-            <Card.Description> <div>Hits:  {crd.bH}</div></Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-
-          </Card.Content>
-        </Card>
-      )
-  })}
-</div>
-)
-
-}
-
 function YearPicker(props) {
     function handleChange(e, { value, label }) {
         console.log(e.target)
-        /* props.getBestMinors(props.selectedClass.code, props.selectedDivision.value, props.selectedClass.regex, value) */
         props.setSelectedYear(value)
         props.getTopTen(props.selectedClass.code, value.value, props.timeframe)
         props.toggleFormSidebar()
-       /* props.setSelectedMiLBTeam(props.topTen.topTenBatting[0])*/
-        /*  props.getPlayerList(props.selectedClass.regex, props.selectedMiLBTeam.franchise, value, props.selectedMiLBTeam.name)
-         */
     }
     return (
         <Form>
         <Form.Group 
-        
         style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
-
         { props.years.map((yr, idx) => {
           return(
              <Form.Checkbox 
@@ -76,17 +31,12 @@ function YearPicker(props) {
      </Form>
     )
 }
-
 function ClassPicker(props) {
     function handleChange(e, { value }) {
         console.log(value)
-        /*      props.getBestMinors(JSON.parse(value).code, props.selectedDivision.value, JSON.parse(value).regex, props.selectedYear) 
-         */
         props.setSelectedClass(value)
         props.getTopTen(value.code, props.selectedYear.value, props.timeframe)
         props.toggleFormSidebar()
-        /*        props.getPlayerList(value.regex, props.selectedMiLBTeam.franchise, props.selectedYear, props.selectedMiLBTeam.name)
-         */
     }
     var tempObj = {
         displayName: "All MiLB Classes",
@@ -95,10 +45,7 @@ function ClassPicker(props) {
         regex: "%"
     }
     return (
-        
-   
-       <Form.Group 
-       
+       <Form.Group       
          style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}> 
         { props.classes.map((cl, idx) => {
           return(
@@ -114,18 +61,12 @@ function ClassPicker(props) {
             )
         })         
         }
-        </Form.Group>
-  
+        </Form.Group> 
     );
 }
-
-
-
-
 const Batters = (props) => {
     if (props.playerList) {
-
-        return (
+       return (
             <div style={{width: '45vw', marginTop: 2, height: 240, overflowY: 'scroll', paddingBottom: 10}}>
     <Segment>
  
@@ -157,7 +98,6 @@ const Batters = (props) => {
         )
     } else { return (<div></div>) }
 }
-
 function Pitchers(props) {
     if (props.pitcherList) {
         return (
@@ -191,177 +131,6 @@ function Pitchers(props) {
         )
     } else { return (<div></div>) }
 }
-
-function BestFive(props) {
-
-    if (props.topTen && props.allMLB && props.selectedClass /*&& props.selectedMiLBTeam*/ ) {
-        useEffect(() => {
-            props.setSelectedMiLBTeam({ name: props.topTen.topTenBatting[0].milbTeam, logo: props.topTen.topTenBatting[0].logo, franchise: props.topTen.topTenBatting[0].majteam, franchiseLogo: props.topTen.topTenBatting[0].franchiseLogo, color: props.topTen.topTenBatting[0].color })
-            /*       props.getPlayerList(props.selectedClass.regex, props.topTen.topTenBatting[0].majteam, props.topTen.topTenBatting[0].yr, props.topTen.topTenBatting[0].milbTeam)
-             */
-            /*  props.setSelectedYear(props.topTen.topTenBatting[0].yr) */
-        }, {})
-        const handleClick = (e) => {
-            console.log(e)
-            props.getPlayerList(props.selectedClass.code, props.selectedClass.regex, e.majteam, e.yr, e.milbTeam)
-            props.setSelectedMiLBTeam({ name: e.milbTeam, logo: e.logo, franchise: e.majteam, franchiseLogo: e.franchiseLogo, color: e.color, t_id: e.id })
-            props.setModalOpen(true)
-            /* props.setSelectedYear(e.yr) */
-        }
-        const handleBSort = (e) => {
-            console.log(e)
-            props.sortBTable(e)
-        }
-        const handlePSort = (e) => {
-            console.log(e)
-            props.sortPTable(e)
-        }
-        return (
-            <Grid>  
-   <Grid.Row columns="2">
-   <Grid.Column  style={{display: 'flex', flexDirection: 'row'}}>
-   <div style={{minWidth: '45vw', maxHeight: 500, overflowY: 'scroll'}}>
-        <Table style={{backgroundColor: 'seashell'}} collapsible='true'>
-      
-          <Table.Header>
-          
-          <Table.Row   style={{fontSize: '.7rem'}}>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell  
-            onClick={() => handleBSort('bBA')}
-           >AVG
-            
-            </Table.HeaderCell>
-            <Table.HeaderCell  
-            onClick={() => handleBSort('bHR')}
-           >HRs
-            
-            </Table.HeaderCell>
-            <Table.HeaderCell  
-            onClick={() => handleBSort('bH')}
-           >Hits
-            
-            </Table.HeaderCell>
-            <Table.HeaderCell  
-            onClick={() => handleBSort('bBB')}
-           >Walks
-            
-            </Table.HeaderCell>
-            <Table.HeaderCell  
-            onClick={() => handleBSort('bAB')}
-           >At Bats
-            
-            </Table.HeaderCell>
-          </Table.Row>
-          
-        </Table.Header>
-        
-        <Table.Body>
-          { props.topTenHit && props.topTenHit.map((btm, idx) => {
-            btm.id=idx
-            return(
-              <Table.Row                 
-                    onClick={(e) => {   
-                      handleClick(btm, props.selectedMiLBTeam)                                  
-                    }}   
-                    active={props.selectedMiLBTeam.t_id === idx}             
-                     key={idx}>
-              <Table.Cell>
-              {idx + 1}
-              </Table.Cell>
-              <Table.Cell value={btm}>
-             
-                <p>{btm.cl}</p>
-              </Table.Cell>
-                <Table.Cell value={btm}>
-                  <p style={{fontSize: '.8rem', fontWeight: 600}}>{btm.yr}</p>
-                  <p style={{color: btm.color, fontSize: '.8rem', fontWeight: 600}}>
-                    {btm.milbTeam}
-                   </p>
-                  <p style={{fontSize: '1rem'}}>
-                    {props.allMLB.map(nm => {
-                      if(nm.teamCode === btm.majteam) {
-                        return nm.teamName
-                      } else {return null}
-                    })}
-                  </p>
-                </Table.Cell>
-                <Table.Cell value={btm}>{btm.bBA}</Table.Cell>
-                <Table.Cell value={btm}>{btm.bHR}</Table.Cell>
-                <Table.Cell value={btm}>{btm.bH}</Table.Cell>
-                <Table.Cell value={btm}>{btm.bBB}</Table.Cell>
-                <Table.Cell value={btm}>{btm.bAB}</Table.Cell>
-              </Table.Row>
-              )
-          })}
-        </Table.Body>
-        </Table>        
-        </div>
-        </Grid.Column>
-        <Grid.Column>
-          <div style={{minWidth: '45vw', maxHeight: 500, overflowY: 'scroll'}}>
-        <Table style={{backgroundColor: 'seashell'}} collapsible='true'>
-     
-          <Table.Header>
-          <Table.Row style={{fontSize: '.7rem'}}>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
-            <Table.HeaderCell onClick={() => handlePSort('pERA')}>ERA</Table.HeaderCell>
-            <Table.HeaderCell onClick={() => handlePSort('pW')}>Wins</Table.HeaderCell>
-            <Table.HeaderCell onClick={() => handlePSort('pL')}>Losses</Table.HeaderCell>
-            <Table.HeaderCell onClick={() => handlePSort('pSV')}>Saves</Table.HeaderCell>
-            <Table.HeaderCell onClick={() => handlePSort('pIP')}>Innings </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {props.topTenPitch && props.topTenPitch.map((ptm, ix) => {
-            ptm.id=ix + 5
-            return(
-
-              <Table.Row                 
-                    onClick={(e) => {   
-                      handleClick(ptm, props.selectedMiLBTeam)                                  
-                    }}   
-                    active={props.selectedMiLBTeam.t_id === ix + 5}             
-                     key={ix}>
-              <Table.Cell>{ix + 1}</Table.Cell>
-              <Table.Cell>
-                <p>{ptm.cl}</p>
-              </Table.Cell>
-                <Table.Cell>
-                <p style={{fontSize: '.8rem', fontWeight: 600}}>{ptm.yr}</p>
-                  <p style={{color: ptm.color, fontSize: '.8rem', fontWeight: 600}}>
-                    {ptm.milbTeam}
-                   </p>
-                  <p style={{fontSize: '1rem'}}>
-                    {props.allMLB.map(nm => {
-                      if(nm.teamCode === ptm.majteam) {
-                        return nm.teamName
-                      } else {return null}
-                    })}
-                  </p>
-                </Table.Cell>
-                <Table.Cell>{ptm.pERA}</Table.Cell>
-                <Table.Cell>{ptm.pW}</Table.Cell>
-                <Table.Cell>{ptm.pL}</Table.Cell>
-                <Table.Cell>{ptm.pSV}</Table.Cell>
-                <Table.Cell>{ptm.pIP}</Table.Cell>
-              </Table.Row>
-              )
-          })}
-        </Table.Body>
-        </Table>
-        </div>
-        </Grid.Column>
-        </Grid.Row>
-       </Grid>
-        )
-    } else { return <div>...</div> }
-}
-
 function BestPlayers(props) {
     if (props.players.playerList && props.players.pitcherList) {
         return (
@@ -416,9 +185,7 @@ function BestPlayers(props) {
         )
     } else { return <div></div> }
 }
-
-
-export { BestFive, BestPlayers, ClassPicker,  Batters, Pitchers, /*Stats,*/ Teams, YearPicker };
+export { BestPlayers, ClassPicker,  Batters, Pitchers, YearPicker };
 
 
 

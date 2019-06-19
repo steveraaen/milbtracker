@@ -187,6 +187,7 @@ export default function PlayerList(props) {
       return {
           onClick: e => {
               window.open(rowInfo.original.playerURL)
+              props.setShowTRMenu(false)
           }
       }
   }
@@ -236,21 +237,13 @@ export default function PlayerList(props) {
 			}
 		}
 			props.pitcherList.map( ptm => {
-			ptm.tmStr = <Image size='tiny' src={ptm.curLogo} alt="Current major league team logo"/>
+			ptm.tmStr = <Image size='tiny' rounded src={ptm.curLogo} alt="Current major league team logo"/>
 			ptm.tmStr2 = <div>
 			<span  className={`lg ${ptm.curColor} ${props.theme}`}>{ptm.playerName}</span>
 			</div>
 			return ptm
 		})
-			const onRowClick = (state, rowInfo, column, instance) => {    
-				console.log(rowInfo)       
-            return {
-                onClick: e => {
-                
-                  /*  window.open('http://www.website.com/page')*/
-                }
-            }
-        }
+
 	}	 else {return(<div></div>)}	
 	if(props.pitcherList || props.playerList) {
 	    return (

@@ -4,10 +4,11 @@ import ReactTooltip from 'react-tooltip'
 
 import ReactTable from 'react-table'
 import "react-table/react-table.css";
+import TeamRowMenu from './TeamRowMenu.js'
 import tmsLogos from '../lgos/namesAndLogos.js'
 
 export default function SeasonResults(props) {
-   
+
 
     useEffect(() => ReactTooltip.rebuild())
     if (props.timeframe && props.bestBatTeams && props.bestPitchTeams /*&& props.yestBatTeams && props.yestPitchTeams*/ && props.selectedClass && props.selectedYear) {
@@ -18,7 +19,7 @@ export default function SeasonResults(props) {
           tm.rankCol =  idx < 9 ? 'orange' : 'gray'
 
             tm.rank= idx + 1
-            tm.lg = tm.majLg === "A" ? 'al' : 'nl'
+            tm.lg = tm.majLg
             for (let i = 0; i < tmsLogos.length; i++) {
                 if (tmsLogos[i].tmName === tm.tmName) {
                     tm.lgo = tmsLogos[i].logoPNG
@@ -35,7 +36,7 @@ export default function SeasonResults(props) {
 						</div>
             tm.ttp = <Popup content="Total Bases" trigger={<th></th>}/>
 
-            tm.rnk =  <div style={{color: tm.rankCol}}>{tm.rank}</div>                    
+            tm.rnk =  <div style={{color: tm.rankCol}}>{tm.rank}</div>  
             return tm
         })
         currentPitchData.map((ptm, ix) => {
@@ -59,14 +60,20 @@ export default function SeasonResults(props) {
              ptm.prnk =  <div style={{color: ptm.rankCol}}>{ptm.rank}</div>  
             return ptm
         })
-/*        const getRowInfo = (state, rowInfo, column, instance) => {
-
-        }*/
-        let onRowClick = (state, rowInfo, column, instance) => {           
+        let onRowClick = (state, rowInfo, column, instance) => {   
+        props.setFranchise(rowInfo.original.franchise)
+             
             return {
                 onClick: e => {
-                    props.playersVisible ? props.setPlayerVisible(false) : console.log('window wasnt open')
-                    props.getPlayerList(rowInfo.original.franchise, rowInfo.original.class, rowInfo.original.yr)
+                    console.log(rowInfo.original)
+                     props.setShowTRMenu(true)
+                     props.setSelectedMiLBName(rowInfo.original.tmName) 
+                     props.setSelectedMiLBClass(rowInfo.original.class) 
+                     props.setSelectedMiLBLogo(rowInfo.original.lgo) 
+                     props.setSelectedMiLBYr(rowInfo.original.yr) 
+                     props.setSelectedMiLBParentLogo(rowInfo.original.franchLogo) 
+                     props.setSelectedMiLBParentLg(rowInfo.original.majLg) 
+                     props.logKey(e) 
                 }
             }
         }
@@ -252,6 +259,34 @@ export default function SeasonResults(props) {
 		    	place="bottom"
 		    	offset={{bottom: 10, right: 10}}
 		    	multiline />
+        {props.showTRMenu && 
+            <TeamRowMenu
+                selectedMiLBParentLg={props.selectedMiLBParentLg}
+                setSelectedMiLBParentLg={props.setSelectedMiLBParentLg}
+                selectedMiLBName={props.selectedMiLBName}
+                selectedMiLBClass={props.selectedMiLBClass}
+                selectedMiLBYr={props.selectedMiLBYr}
+                selectedMiLBLogo={props.selectedMiLBLogo}
+                selectedMiLBParentLogo={props.selectedMiLBParentLogo}
+                theme={props.theme}
+                getPlayerList={props.getPlayerList}
+                setShowTRMenu={props.setShowTRMenu}
+                showTRMenu={props.showTRMenu}
+                franchise={props.franchise}
+                myAAA={props.myAAA}
+                setMyAAA={props.setMyAAA}
+                myAA={props.myAA}
+                setMyAA={props.setMyAA}
+                myAPlus={props.myAPlus}
+                setMyAPlus={props.setMyAPlus}                  
+                myA={props.myA}                  
+                setMyA={props.setMyA}                  
+                myAMinus={props.myAMinus}
+                setMyAMinus={props.setMyAMinus}
+                myRk={props.myRk}
+                setMyRk={props.setMyRk}
+             />
+            }
 	    	<Grid stackable columns={2}>
 	    	 <Grid.Column>
 	    	<div>
@@ -281,8 +316,7 @@ export default function SeasonResults(props) {
 	    		<div onClick={()=> props.toggleFormSidebar()} style={{fontSize: '1.1em', fontWeight: 600, fontStyle: 'italic', marginLeft: '5vw'}}>{props.selectedYear.text}</div>
 	    	</div>
 	    		<ReactTable
-                    resizable={false} 
-	    				 
+                    resizable={false} 				 
 	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
 		    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}

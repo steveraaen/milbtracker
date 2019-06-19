@@ -8,11 +8,11 @@ import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
 import Switch from './components/Switch.js'
+import CurrentTeam from './components/CurrentTeam.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import ftfLogo from './ftflogo.png'
-
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
@@ -28,42 +28,59 @@ const yrs = [
     { text: "2010", value: 2010, key: "2010" },
     { text: "2009", value: 2009, key: "2009" }
 ]
-
+console.log(localStorage)
 function AppB() {
+  const [selectedClass, setSelectedClass] = useState(classes[0]);
+  const [years] = useState(yrs);
+  const [allMLB] = useState(mlbTeams);
+  const [selectedYear, setSelectedYear] = useState(yrs[0]);
+  const [playerList, setPlayerList] = useState({});
+  const [pitcherList, setPitcherList] = useState({});
+  const [selectedDivision] = useState({ value: "%L%", display: "All Major League Teams" });
 
-    const [selectedClass, setSelectedClass] = useState(classes[0]);
-    const [years] = useState(yrs);
-    const [allMLB] = useState(mlbTeams);
-    const [selectedYear, setSelectedYear] = useState(yrs[0]);
-    const [playerList, setPlayerList] = useState({});
-    const [pitcherList, setPitcherList] = useState({});
-    const [selectedDivision] = useState({ value: "%L%", display: "All Major League Teams" });
-    const [selectedMiLBTeam, setSelectedMiLBTeam] = useState();
-    const [bestBat, setBestBat] = useState();
-    const [yestBat, setYestBat] = useState();
-    const [bestPitch, setBestPitch] = useState();
-    const [yestPitch, setYestPitch] = useState();
-    const [timeframe, setTimeframe] = useState('season');
-    const [tfObj] = useState({});
-    const [modalOpen, setModalOpen] = useState(true);
-    const [formVisible, setFormVisible] = useState(false);
-    const [playersVisible, setPlayersVisible] = useState();
-   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
-   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
-   const [loading, setLoading] = useState(true);
-   const [borderCol, setBorderCol] = useState();
-   const  [theme, setTheme] = useState('dark');
-   const  [bannerVis, setBannerVis] = useState(true);
+  const [bestBat, setBestBat] = useState();
+  const [yestBat, setYestBat] = useState();
+  const [bestPitch, setBestPitch] = useState();
+  const [yestPitch, setYestPitch] = useState();
+  const [timeframe, setTimeframe] = useState('season');
+  const [tfObj] = useState({});
+  const [modalOpen, setModalOpen] = useState(true);
+  const [formVisible, setFormVisible] = useState(false);
+  const [playersVisible, setPlayersVisible] = useState();
+  const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
+  const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
+  const [loading, setLoading] = useState(true);
+  const [borderCol, setBorderCol] = useState();
+  const [theme, setTheme] = useState('dark');
+  const [franchise, setFranchise] = useState(true);
+  const [mousePos, setMousePos] = useState();
+  const [selectedMiLBName, setSelectedMiLBName] = useState();
+  const [selectedMiLBYr, setSelectedMiLBYr] = useState();
+  const [selectedMiLBClass, setSelectedMiLBClass] = useState();
+  const [selectedMiLBLogo, setSelectedMiLBLogo] = useState();
+  const [selectedMiLBParentLogo, setSelectedMiLBParentLogo] = useState();
+  const [selectedMiLBParentLg, setSelectedMiLBParentLg] = useState();
+  const [showTRMenu, setShowTRMenu] = useState();
+  const [myAAA, setMyAAA] = useState();
+  const [myAA, setMyAA] = useState();
+  const [myAPlus, setMyAPlus] = useState();
+  const [myA, setMyA] = useState();
+  const [myAMinus, setMyAMinus] = useState();
+  const [myRk, setMyRk] = useState();
+  const [minorMaster, setMinorMaster] = useState();
 
+  document.addEventListener("click", logKey); 
 
-   const hideBanner = () => {
-     setBannerVis(false)
-   }
-   const toggleTheme = (th) => {
+  const logKey = (e) => { 
+      setMousePos({
+          X: e.pageX,
+          Y: e.pageY
+      }) 
+}
 
+  const toggleTheme = (th) => {
       localStorage.setItem("theme", th);
       setTheme(th);
-
   };
 
     function toggleFormSidebar() {
@@ -72,6 +89,15 @@ function AppB() {
     function showPlayersSidebar() {
         setPlayersVisible(true) 
     }
+async function getMinorMaster() {
+  try {
+    const minorMasterPromise = axios('/api/minorMaster')
+    const mmstr = await minorMasterPromise 
+    setMinorMaster(mmstr.data)
+  }         catch (e) {
+            console.error(e);
+        };
+}
 
     async function getTopTen(cl, yr) {
         try {
@@ -141,6 +167,7 @@ function AppB() {
 const handleClick = (e, { value }) => {
   setTimeframe(value)
     playersVisible ? setPlayersVisible(false) : console.log('window wasnt open')
+  /*  playersVisible ? getPlayerList(franchise, selectedClass.code, selectedYear.value) : console.log('window wasnt open')*/
         if(value === 'season') {
               setTimeBatURL('/api/playerBatSeason')
               setTimePitchURL('/api/playerPitchSeason')
@@ -151,15 +178,25 @@ const handleClick = (e, { value }) => {
             }
 }
 
-async function handleFirstVisit() {
+/*async function handleFirstVisit() {
 
   await  localStorage.setItem('showModal', false)
     setModalOpen(false)  
-}
+}*/
 function handleModalClose() {
 
   setModalOpen(false)
-}
+}   useEffect(() => {
+      getMinorMaster()
+}, {})
+    useEffect(() => {
+       setMyAAA(localStorage.getItem('AAA'))
+       setMyAA(localStorage.getItem('AA'))
+       setMyAPlus(localStorage.getItem('APlus'))
+       setMyA(localStorage.getItem('A'))
+       setMyAMinus(localStorage.getItem('AMinus'))
+       setMyRk(localStorage.getItem('Rk'))
+    }, {})
     useEffect(() => {
        setTheme(localStorage.getItem('theme'))
     }, {})
@@ -174,7 +211,6 @@ function handleModalClose() {
       )
 
     })
-
 if(loading) {
   return (    <IsLoading
                 theme={theme}
@@ -190,33 +226,31 @@ return (
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>
       <div style={{ display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
-        <Icon bordered corner='top left' name="settings" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
+        <Icon bordered  corner='top left' name="setting" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
   <Modal   
     modalopen={modalOpen}
     open={modalOpen}
-    trigger={<Icon bordered corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
+    trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Current MLB players, grouped by former MiLB teams</div>
-        <Icon bordered  name="close" color="yellow" onClick={() => setModalOpen(false)}/>
+        <Icon bordered bordered  name="close" color="yellow" onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain
       theme={theme}
       />
-    <a onClick={() => handleFirstVisit()} style={{display: 'flex',justifyContent: 'center', marginBottom: '1vh', fontSize: '.9em', fontWeight: 700, fontStyle: 'italic'}}>Don't show this again</a>
-
+ 
   </Modal>       
       </div>
     <div>
        <Switch 
         toggleTheme={toggleTheme}
         theme={theme}
-      >
-        
+      >       
       </Switch>   
-
     </div>
 
-      <div style={{marginTop: '1vh', marginRight: '2vw'}}>
+      <div style={{marginTop: '1vh', marginRight: '2vw', opacity: 1}}>
+
       <Button.Group>
         <Button
         active
@@ -235,7 +269,9 @@ return (
         >Latest
         </Button>
           </Button.Group>
+
       </div>
+      <Icon bordered name="list" size="large"/>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
@@ -263,8 +299,8 @@ return (
               selectedDivision={selectedDivision} 
               setSelectedYear={setSelectedYear}
               setSelectedClass={setSelectedClass}
-              selectedMiLBTeam={selectedMiLBTeam}
-              setSelectedMiLBTeam={setSelectedMiLBTeam}
+              selectedMiLBName={selectedMiLBName}
+              setSelectedMiLBName={setSelectedMiLBName}
               />   
          </Segment>            
          <Segment>  
@@ -281,8 +317,9 @@ return (
               selectedYear={selectedYear} 
               selectedDivision={selectedDivision} 
               setSelectedYear={setSelectedYear} 
-              selectedMiLBTeam={selectedMiLBTeam}
-              setSelectedMiLBTeam={setSelectedMiLBTeam}
+              selectedMiLBName={selectedMiLBName}
+              setSelectedMiLBName={setSelectedMiLBName}
+
               />  
               </Segment>        
            </Sidebar>  
@@ -299,7 +336,7 @@ return (
     > 
     <div>
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
-     <Icon bordered  name="close" onClick={() => setPlayersVisible(false)}/>
+     <Icon bordered  name="close" onClick={() => {setPlayersVisible(false); setShowTRMenu(false)}}/>
      </div>
         <PlayerList 
           theme={theme} 
@@ -310,21 +347,26 @@ return (
           selectedClass={selectedClass} 
           selectedYear={selectedYear} 
           selectedDivision={selectedDivision} 
-          selectedMiLBTeam={selectedMiLBTeam} 
+          selectedMiLBName={selectedMiLBName} 
           timeframe={timeframe} 
           timeBatURL={timeBatURL}    
           timePitchURL={timePitchURL}  
           playersVisible={playersVisible}
+          setShowTRMenu={setShowTRMenu}
+          showTRMenu={showTRMenu}
     />
 </div>
           </Sidebar>    
             <Sidebar.Pusher>  
               <div>
                 <SeasonResults 
-                setPlayersVisible={setPlayersVisible}
-                theme={theme}       
-                borderCol={borderCol}
-                toggleFormSidebar={toggleFormSidebar}
+                  mousePos={mousePos} 
+                  logKey={logKey}
+                  franchise={franchise}
+                  setFranchise={setFranchise}
+                  theme={theme}       
+                  borderCol={borderCol}
+                  toggleFormSidebar={toggleFormSidebar}
                   loading={loading}
                   playersVisible={playersVisible}
                   {...tfObj}
@@ -335,21 +377,88 @@ return (
                   {...playerList}
                   {...pitcherList}
                   getPlayerList={getPlayerList}
-                  selectedMiLBTeam={selectedMiLBTeam} 
+                  selectedMiLBName={selectedMiLBName} 
                   selectedYear={selectedYear}    
                   selectedDivision={selectedDivision}
                   selectedClass={selectedClass} 
                   timeframe={timeframe}    
                   timeBatURL={timeBatURL}    
-                  timePitchURL={timePitchURL}  
+                  timePitchURL={timePitchURL}
+                  selectedMiLBName={selectedMiLBName}
+                  setSelectedMiLBName={setSelectedMiLBName } 
+                  setSelectedMiLBLogo={setSelectedMiLBLogo}
+                  selectedMiLBLogo={selectedMiLBLogo}
+                  setSelectedMiLBClass={setSelectedMiLBClass}
+                  selectedMiLBClass={selectedMiLBClass}
+                  setSelectedMiLBYr={setSelectedMiLBYr}
+                  selectedMiLBYr={selectedMiLBYr}
+                  setSelectedMiLBParentLogo={setSelectedMiLBParentLogo}
+                  selectedMiLBParentLogo={selectedMiLBParentLogo}
+                  setSelectedMiLBParentLg={setSelectedMiLBParentLg}
+                  selectedMiLBParentLg={selectedMiLBParentLg}
+                  selectedMiLBParentLg={selectedMiLBParentLg}
+                  setSelectedMiLBParentLg={setSelectedMiLBParentLg}
+                  setShowTRMenu={setShowTRMenu}
+                  showTRMenu={showTRMenu}
+                  myAAA={myAAA}
+                  setMyAAA={setMyAAA}
+                  myAA={myAA}
+                  setMyAA={setMyAA}
+                  myAPlus={myAPlus}
+                  setMyAPlus={setMyAPlus}  
+                  myA={myA}
+                  setMyA={setMyA}                  
+                  myAMinus={myAMinus}
+                  setMyAMinus={setMyAMinus}
+                  myRk={myRk}
+                  setMyRk={setMyRk}
                 />
         </div>
       </Sidebar.Pusher>
    </Sidebar.Pushable>
-
-          <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
+   <CurrentTeam
+     minorMaster={minorMaster}
+      myAAA={myAAA}
+      setMyAAA={setMyAAA}
+      myAA={myAA}
+      setMyAA={setMyAA}
+      myAPlus={myAPlus}
+      setMyAPlus={setMyAPlus}  
+      myA={myA}
+      setMyA={setMyA}                  
+      myAMinus={myAMinus}
+      setMyAMinus={setMyAMinus}
+      myRk={myRk}
+      setMyRk={setMyRk}
+      />
+    <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
     )}
 }
 
 export default AppB
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
