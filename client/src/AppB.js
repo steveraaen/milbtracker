@@ -189,14 +189,14 @@ function handleModalClose() {
 }   useEffect(() => {
       getMinorMaster()
 }, {})
-    useEffect(() => {
+/*    useEffect(() => {
        setMyAAA(localStorage.getItem('AAA'))
        setMyAA(localStorage.getItem('AA'))
        setMyAPlus(localStorage.getItem('APlus'))
        setMyA(localStorage.getItem('A'))
        setMyAMinus(localStorage.getItem('AMinus'))
        setMyRk(localStorage.getItem('Rk'))
-    }, {})
+    }, {})*/
     useEffect(() => {
        setTheme(localStorage.getItem('theme'))
     }, {})
@@ -346,14 +346,17 @@ return (
           {...pitcherList}
           selectedClass={selectedClass} 
           selectedYear={selectedYear} 
-          selectedDivision={selectedDivision} 
+          selectedDivision={selectedDivision}
+          selectedMiLBLogo={selectedMiLBLogo} 
           selectedMiLBName={selectedMiLBName} 
+          selectedMiLBYr={selectedMiLBYr} 
           timeframe={timeframe} 
           timeBatURL={timeBatURL}    
           timePitchURL={timePitchURL}  
           playersVisible={playersVisible}
           setShowTRMenu={setShowTRMenu}
           showTRMenu={showTRMenu}
+
     />
 </div>
           </Sidebar>    

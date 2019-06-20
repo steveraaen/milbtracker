@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Container, Icon, Image, Input, Label, Menu, Popup, Segment, Statistic } from 'semantic-ui-react'
+import { Button, Container, Divider, Icon, Image, Input, Label, Menu, Popup, Segment, Statistic } from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
 
 export default function TeamRowMenu(props) {
-	const handleTeamSet = () => {
+/*	const handleTeamSet = () => {
 		switch(props.selectedMiLBClass) {
 			case "AAA":
 			props.setMyAAA(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
@@ -30,7 +30,7 @@ export default function TeamRowMenu(props) {
 			localStorage.setItem('Rk', (`${props.selectedMiLBYr} ${props.selectedMiLBName}`))
 			break
 		}
-	}
+	}*/
 
 	return(
 <Segment className={`App ${props.theme}`}>
@@ -59,14 +59,14 @@ export default function TeamRowMenu(props) {
 	  <Button.Group >
 	    <Button onClick={() => props.getPlayerList(props.franchise, props.selectedMiLBClass, props.selectedMiLBYr)}>View Current MLB Players</Button>
 	    <Button.Or />
-    <Button animated  onClick={() => handleTeamSet()}>
+    <Button animated  >
       <Button.Content visible>{`Select as current ${props.selectedMiLBClass} team`}</Button.Content>
       <Button.Content hidden>
         <div>{`${props.myAA}`}</div>
       </Button.Content>
     </Button>
-
 	  </Button.Group>
+
 </Segment>
 		)
 }

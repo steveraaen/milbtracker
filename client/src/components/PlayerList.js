@@ -186,18 +186,17 @@ export default function PlayerList(props) {
    const onRowClick = (state, rowInfo, column, instance) => {           
       return {
           onClick: e => {
-              window.open(rowInfo.original.playerURL)
-              props.setShowTRMenu(false)
+              window.open(rowInfo.original.playerURL)              
           }
       }
   }
 		if(props.playerList && mlbLogos) {
 
-	var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', marginBottom: '1.6vh', justifyContent: 'center'}}>
-							<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
-							<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
-						
-							<div style={{flex: 1, marginLeft: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
+	var plyrSum =	<div style={{display: 'flex', flexDirection: 'row', marginBottom: '1.6vh', marginTop: '-2vh', justifyContent: 'space-around'}}>
+							<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.8em', fontWeight: 600}}>{props.selectedMiLBYr}</div>
+							<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.8em', fontWeight: 600}}>{props.playerList[0].class}</div>
+							<Image size="tiny" rounded src={props.selectedMiLBLogo} />
+							<div style={{fontSize: "1.8em", fontWeight: 600}}>{props.selectedMiLBName}</div>
 						</div>
 						
 						
@@ -221,12 +220,12 @@ export default function PlayerList(props) {
 } else {return(<div></div>)}
 // ---------------------------------------------------------------------
 	if(props.pitcherList && mlbLogos) {
-			var ptchrSum =	<div style={{display: 'flex', flexDirection: 'row', marginBottom: '1.6vh', justifyContent: 'center'}}>
-									<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].yr}</div>
-									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].class}</div>
-								
-									<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.3em', fontWeight: 600}}>{props.playerList[0].tmName}</div>
-								</div>
+			var ptchrSum =	<div style={{visibility: 'hidden', display: 'flex', flexDirection: 'row', marginBottom: '1.6vh', marginTop: '-2vh', justifyContent: 'space-around'}}>
+							<div style={{marginLeft: '2vw', marginRight: '1vw', fontSize: '1.8em', fontWeight: 600}}>{props.selectedMiLBYr}</div>
+							<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.8em', fontWeight: 600}}>{props.playerList[0].class}</div>
+							<Image size="tiny" rounded src={props.selectedMiLBLogo} />
+							<div style={{fontSize: "1.8em", fontWeight: 600}}>{props.selectedMiLBName}</div>
+						</div>
 			for(let i =0; i < props.pitcherList.length; i++) {
 				props.pitcherList[i].playerURL = `https://www.baseball-reference.com/players/${props.pitcherList[i].playerID[0]}/${props.pitcherList[i].playerID}.shtml`
 				for(let j =0; j < mlbLogos.length; j++) {
