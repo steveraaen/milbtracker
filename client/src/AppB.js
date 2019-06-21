@@ -69,6 +69,7 @@ function AppB() {
   const [myRk, setMyRk] = useState(() => localStorage.getItem('myRk' || ''));
   const [minorMaster, setMinorMaster] = useState();
   const [showTeamSelect, setShowTeamSelect] = useState(false);
+  const [selectedTmYrs, setSelectedTmYrs] = useState();
 
   document.addEventListener("click", logKey); 
 
@@ -95,11 +96,19 @@ async function getMinorMaster() {
     const minorMasterPromise = axios('/api/minorMaster')
     const mmstr = await minorMasterPromise 
     setMinorMaster(mmstr.data)
-  }         catch (e) {
-            console.error(e);
-        };
+      }   catch (e) {
+        console.error(e);
+    };
 }
-
+async function getTeamYears(tm) {
+  try {
+    const tmYearsPromise = axios('/api/teamYrs', {params: {tm}})
+    const tmYrs = await tmYearsPromise
+    setSelectedTmYrs(tmYrs.data)
+      }   catch (e) {
+        console.error(e);
+    };
+}
     async function getTopTen(cl, yr) {
         try {
             const tmPitSeasPromise = axios('/api/teamPitchSeason', { params: { cl, yr } })
@@ -433,6 +442,8 @@ return (
         </Modal.Header>
         <Modal.Content>
              <CurrentTeam
+             selectedTmYrs={selectedTmYrs}
+             getTeamYears={getTeamYears}
                minorMaster={minorMaster}
                 myAAA={myAAA}
                 setMyAAA={setMyAAA}

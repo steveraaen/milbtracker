@@ -10,6 +10,7 @@ var optAAA =[], optAA =[], optAP =[], optA =[], optAM =[], optRk =[]
 function handleTeamSelect(lcl, mycl, tm) {
 	mycl(tm)
 	localStorage.setItem(lcl, tm)
+	props.getTeamYears(tm)
 }
 
 if(props.minorMaster) {
@@ -60,31 +61,37 @@ if(props.minorMaster) {
 		}
 	}
 }
-
+const yrs = ['2013', '2014', '2015', '2016', '2017', '2018', ]
 	return(
-		<Form size='mini'>			
+		<Form >			
 				 <div style={{display: 'flex', flexDirection: 'row'}}>
 				 <Form.Select  label="Triple A" options={optAAA} placeholder='Triple A' />
+				 <Form.Select  options={yrs} placeholder='Triple A' />
 				 <div>{props.myAAA}</div>
 				 </div>
 				 <div style={{display: 'flex', flexDirection: 'row'}}>
 				 <Form.Select  label="Double A" options={optAA} placeholder='Double A' />
+				 <Form.Select   options={yrs} placeholder='Double A' />
 				 <div>{props.myAA}</div>
 				 </div>
 				 <div style={{display: 'flex', flexDirection: 'row'}}>
 				 <Form.Select  label="A Advanced" options={optAP} placeholder='A Advanced' />
+				 <Form.Select options={yrs} placeholder='A Advanced' />
 				 <div>{props.myAPlus}</div>
 				 </div>
 				 <div style={{display: 'flex', flexDirection: 'row'}}>
 				 <Form.Select  label="Class A" options={optA} placeholder='Class A' />
+				 <Form.Select   options={yrs} placeholder='Class A' />
 				 <div>{props.myA}</div>
 				 </div>
 				 <div style={{display: 'flex', flexDirection: 'row'}}>
 				 <Form.Select  label="A Short" options={optAM} placeholder='A Short' />
+				 <Form.Select  options={yrs} placeholder='A Short' />
 				 <div>{props.myAMinus}</div>
 				 </div>
 				 <div style={{display: 'flex', flexDirection: 'row'}}>
 				 <Form.Select  label="Rookie" options={optRk} placeholder='Rookie' />
+				 <Form.Select   options={yrs} placeholder='Rookie' />
 				 <div>{props.myRk}</div>
 				 </div>
 		
