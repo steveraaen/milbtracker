@@ -44,7 +44,7 @@ function AppB() {
   const [yestPitch, setYestPitch] = useState();
   const [timeframe, setTimeframe] = useState('season');
   const [tfObj] = useState({});
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState();
   const [formVisible, setFormVisible] = useState(false);
   const [playersVisible, setPlayersVisible] = useState();
   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
@@ -61,13 +61,14 @@ function AppB() {
   const [selectedMiLBParentLogo, setSelectedMiLBParentLogo] = useState();
   const [selectedMiLBParentLg, setSelectedMiLBParentLg] = useState();
   const [showTRMenu, setShowTRMenu] = useState();
-  const [myAAA, setMyAAA] = useState();
-  const [myAA, setMyAA] = useState();
-  const [myAPlus, setMyAPlus] = useState();
-  const [myA, setMyA] = useState();
-  const [myAMinus, setMyAMinus] = useState();
-  const [myRk, setMyRk] = useState();
+  const [myAAA, setMyAAA] = useState(() => localStorage.getItem('myAAA' || ''));
+  const [myAA, setMyAA] = useState(() => localStorage.getItem('myAA' || ''));
+  const [myAPlus, setMyAPlus] = useState(() => localStorage.getItem('myAPlus' || ''));
+  const [myA, setMyA] = useState(() => localStorage.getItem('myA' || ''));
+  const [myAMinus, setMyAMinus] = useState(() => localStorage.getItem('myAMinus' || ''));
+  const [myRk, setMyRk] = useState(() => localStorage.getItem('myRk' || ''));
   const [minorMaster, setMinorMaster] = useState();
+  const [showTeamSelect, setShowTeamSelect] = useState(false);
 
   document.addEventListener("click", logKey); 
 
@@ -189,13 +190,16 @@ function handleModalClose() {
 }   useEffect(() => {
       getMinorMaster()
 }, {})
-/*    useEffect(() => {
+
+
+   /* useEffect(() => {
        setMyAAA(localStorage.getItem('AAA'))
        setMyAA(localStorage.getItem('AA'))
        setMyAPlus(localStorage.getItem('APlus'))
        setMyA(localStorage.getItem('A'))
        setMyAMinus(localStorage.getItem('AMinus'))
        setMyRk(localStorage.getItem('Rk'))
+
     }, {})*/
     useEffect(() => {
        setTheme(localStorage.getItem('theme'))
@@ -271,7 +275,7 @@ return (
           </Button.Group>
 
       </div>
-      <Icon bordered name="list" size="large"/>
+      <Icon onClick={() =>setShowTeamSelect(true)} bordered name="list" size="large"/>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
@@ -419,21 +423,33 @@ return (
         </div>
       </Sidebar.Pusher>
    </Sidebar.Pushable>
-   <CurrentTeam
-     minorMaster={minorMaster}
-      myAAA={myAAA}
-      setMyAAA={setMyAAA}
-      myAA={myAA}
-      setMyAA={setMyAA}
-      myAPlus={myAPlus}
-      setMyAPlus={setMyAPlus}  
-      myA={myA}
-      setMyA={setMyA}                  
-      myAMinus={myAMinus}
-      setMyAMinus={setMyAMinus}
-      myRk={myRk}
-      setMyRk={setMyRk}
-      />
+     <Modal   
+    modalopen={showTeamSelect}
+    open={showTeamSelect}
+   >
+      <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
+        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Current MLB players, grouped by former MiLB teams</div>
+        <Icon bordered bordered  name="close" color="yellow" onClick={() => setShowTeamSelect(false)}/>
+        </Modal.Header>
+        <Modal.Content>
+             <CurrentTeam
+               minorMaster={minorMaster}
+                myAAA={myAAA}
+                setMyAAA={setMyAAA}
+                myAA={myAA}
+                setMyAA={setMyAA}
+                myAPlus={myAPlus}
+                setMyAPlus={setMyAPlus}  
+                myA={myA}
+                setMyA={setMyA}                  
+                myAMinus={myAMinus}
+                setMyAMinus={setMyAMinus}
+                myRk={myRk}
+                setMyRk={setMyRk}
+                />
+ </Modal.Content>
+  </Modal>
+
     <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
     )}

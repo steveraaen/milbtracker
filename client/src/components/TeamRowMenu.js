@@ -3,7 +3,7 @@ import { Button, Container, Divider, Icon, Image, Input, Label, Menu, Popup, Seg
 import ReactTooltip from 'react-tooltip'
 
 export default function TeamRowMenu(props) {
-/*	const handleTeamSet = () => {
+	const handleTeamSet = () => {
 		switch(props.selectedMiLBClass) {
 			case "AAA":
 			props.setMyAAA(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
@@ -30,7 +30,7 @@ export default function TeamRowMenu(props) {
 			localStorage.setItem('Rk', (`${props.selectedMiLBYr} ${props.selectedMiLBName}`))
 			break
 		}
-	}*/
+	}
 
 	return(
 <Segment className={`App ${props.theme}`}>
