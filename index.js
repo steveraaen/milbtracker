@@ -304,14 +304,14 @@ and finalHist.yr like ?
 and finalHist.yr > 2013
 group by finalHist.tmName, finalHist.yr
 order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
-
       res.json(results)
     if (error) throw error;
    });
 })
 app.get('/api/minorMaster', function(req, res) {
 console.log(req.query)
-  connection.query(`select * from minorMaster`,function (error, results, fields) {
+  connection.query(`select  distinct tmName, yr, franchise, class, majLg, league, franchiseName, franchLogo, logoPNG 
+from finalHist where yr > 2012 and yr < 2019 group by tmName, yr`,function (error, results, fields) {
 
       res.json(results)
     if (error) throw error;
@@ -320,8 +320,8 @@ console.log(req.query)
 
 app.get('/api/teamYrs', function(req, res) {
 console.log(req.query)
-  connection.query(`select distinct finalHist.yr from finalHist where finalHist.yr > 2013 and tmName = ? order by finalHist.yr desc`,[req.query.tm],function (error, results, fields) {
-
+  connection.query(`select distinct finalHist.yr from finalHist where finalHist.yr > 2013 and finalHist.yr < 2019 and tmName = ? order by finalHist.yr desc`,[req.query.tm],function (error, results, fields) {
+console.log(results)
       res.json(results)
     if (error) throw error;
    });

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Form, Grid, Icon, Image, Label, Popup, Segment } from 'semantic-ui-react'
+import { Container, Form, Grid, Icon, Image, Label, List, Popup, Segment } from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
 import ReactTable from 'react-table'
-
+import tmsLogos from '../lgos/namesAndLogos.js'
 
 export default function CurrentTeam(props) {
 var optAAA =[], optAA =[], optAP =[], optA =[], optAM =[], optRk =[]
@@ -20,14 +20,16 @@ if(props.minorMaster) {
 	optAAA.push({
 		key: i, 
 		text: props.minorMaster[i].tmName,
-		 value:props.minorMaster[i].tmName,
-		 onClick: () => handleTeamSelect('myAAA', props.setMyAAA, props.minorMaster[i].tmName)})
+		value:props.minorMaster[i].tmName,
+		logo: props.minorMaster[i].logoPNG,
+		onClick: () => handleTeamSelect('myAAA', props.setMyAAA, props.minorMaster[i].tmName)})
 	break
 	case 'AA':
 	optAA.push({
 		key: i, 
 		text: props.minorMaster[i].tmName,
 		 value:props.minorMaster[i].tmName,
+		 logo: props.minorMaster[i].logoPNG,
 		 onClick: () => handleTeamSelect('myAA', props.setMyAA, props.minorMaster[i].tmName)})
 	break
 	case 'A+':
@@ -35,6 +37,7 @@ if(props.minorMaster) {
 		key: i, 
 		text: props.minorMaster[i].tmName,
 		 value:props.minorMaster[i].tmName,
+		 logo: props.minorMaster[i].logoPNG,
 		 onClick: () => handleTeamSelect('myAPlus', props.setMyAPlus, props.minorMaster[i].tmName)})
 	break
 	case 'A':
@@ -42,6 +45,7 @@ if(props.minorMaster) {
 		key: i, 
 		text: props.minorMaster[i].tmName,
 		 value:props.minorMaster[i].tmName,
+		 logo: props.minorMaster[i].logoPNG,
 		 onClick: () => handleTeamSelect('myA', props.setMyA, props.minorMaster[i].tmName)})
 	break
 	case 'A-':
@@ -49,6 +53,7 @@ if(props.minorMaster) {
 		key: i, 
 		text: props.minorMaster[i].tmName,
 		 value:props.minorMaster[i].tmName,
+		 logo: props.minorMaster[i].logoPNG,
 		 onClick: () => handleTeamSelect('myAMinus', props.setMyAMinus, props.minorMaster[i].tmName)})
 	break
 	case 'Rk':
@@ -56,45 +61,63 @@ if(props.minorMaster) {
 		key: i, 
 		text: props.minorMaster[i].tmName,
 		 value:props.minorMaster[i].tmName,
+		 logo: props.minorMaster[i].logoPNG,
 		 onClick: () => handleTeamSelect('myRk', props.setMyRk, props.minorMaster[i].tmName)})
 	break
 		}
 	}
 }
-const yrs = ['2013', '2014', '2015', '2016', '2017', '2018', ]
+const classObj = [optAAA,optAA,optAP,optA,optAM,optRk]
+var classCols = [{
+            headerClassName: `App ${props.theme}`,
+            headerStyle: {tabindex: 0, fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            Header: 'Triple A',
+            className: `App ${props.theme}`,
+            accessor: 'optAAA',
+        },{
+            headerClassName: `App ${props.theme}`,
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            Header: 'Double A',
+            className: `App ${props.theme}`,
+            accessor: 'optAA',
+        }, {
+            headerClassName: `App ${props.theme}`,
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
+            Header: 'Advanced A',
+            className: `App ${props.theme}`,
+            accessor: 'optAP',       
+        }, {
+            headerClassName: `App ${props.theme}`,
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
+            Header: 'Class A',
+            className: `App ${props.theme}`,
+            accessor: 'optA',
+        }, {
+            headerClassName: `App ${props.theme}`,
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
+            Header: 'Short A',
+            className: `App ${props.theme}`,
+            accessor: 'optAM',        
+        }, {
+            headerClassName: `App ${props.theme}`,
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
+            Header: 'Rookie',
+            className: `App ${props.theme}`,
+            accessor: 'optRk',        
+        }]
 	return(
-		<Form >			
-				 <div style={{display: 'flex', flexDirection: 'row'}}>
-				 <Form.Select  label="Triple A" options={optAAA} placeholder='Triple A' />
-				 <Form.Select  options={yrs} placeholder='Triple A' />
-				 <div>{props.myAAA}</div>
-				 </div>
-				 <div style={{display: 'flex', flexDirection: 'row'}}>
-				 <Form.Select  label="Double A" options={optAA} placeholder='Double A' />
-				 <Form.Select   options={yrs} placeholder='Double A' />
-				 <div>{props.myAA}</div>
-				 </div>
-				 <div style={{display: 'flex', flexDirection: 'row'}}>
-				 <Form.Select  label="A Advanced" options={optAP} placeholder='A Advanced' />
-				 <Form.Select options={yrs} placeholder='A Advanced' />
-				 <div>{props.myAPlus}</div>
-				 </div>
-				 <div style={{display: 'flex', flexDirection: 'row'}}>
-				 <Form.Select  label="Class A" options={optA} placeholder='Class A' />
-				 <Form.Select   options={yrs} placeholder='Class A' />
-				 <div>{props.myA}</div>
-				 </div>
-				 <div style={{display: 'flex', flexDirection: 'row'}}>
-				 <Form.Select  label="A Short" options={optAM} placeholder='A Short' />
-				 <Form.Select  options={yrs} placeholder='A Short' />
-				 <div>{props.myAMinus}</div>
-				 </div>
-				 <div style={{display: 'flex', flexDirection: 'row'}}>
-				 <Form.Select  label="Rookie" options={optRk} placeholder='Rookie' />
-				 <Form.Select   options={yrs} placeholder='Rookie' />
-				 <div>{props.myRk}</div>
-				 </div>
-		
-		</Form>
+		<Container>			
+	    		<ReactTable
+                    resizable={false} 				 
+	    			className={`-highlight App ${props.theme}`}
+		    		showPagination={false}
+		    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+		    		defaultPageSize={30}
+	    			data={classObj}	    		
+	    			columns={classCols}
+	    			showPageSizeOptions={false}	    				    			
+	    		
+	    		/>
+		</Container>
 		)
 }

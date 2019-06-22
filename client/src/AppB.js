@@ -52,7 +52,7 @@ function AppB() {
   const [loading, setLoading] = useState(true);
   const [borderCol, setBorderCol] = useState();
   const [theme, setTheme] = useState('dark');
-  const [franchise, setFranchise] = useState(true);
+  const [franchise, setFranchise] = useState();
   const [mousePos, setMousePos] = useState();
   const [selectedMiLBName, setSelectedMiLBName] = useState();
   const [selectedMiLBYr, setSelectedMiLBYr] = useState();
@@ -104,6 +104,7 @@ async function getTeamYears(tm) {
   try {
     const tmYearsPromise = axios('/api/teamYrs', {params: {tm}})
     const tmYrs = await tmYearsPromise
+   console.log(tmYrs.data)
     setSelectedTmYrs(tmYrs.data)
       }   catch (e) {
         console.error(e);
@@ -241,7 +242,7 @@ return (
       <div style={{ display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
         <Icon bordered  corner='top left' name="setting" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
   <Modal   
-    modalopen={modalOpen}
+
     open={modalOpen}
     trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
@@ -433,7 +434,7 @@ return (
       </Sidebar.Pusher>
    </Sidebar.Pushable>
      <Modal   
-    modalopen={showTeamSelect}
+    
     open={showTeamSelect}
    >
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>

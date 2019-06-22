@@ -61,11 +61,10 @@ export default function SeasonResults(props) {
             return ptm
         })
         let onRowClick = (state, rowInfo, column, instance) => {   
-        props.setFranchise(rowInfo.original.franchise)
-             
+          
             return {
                 onClick: e => {
-                    console.log(rowInfo.original)
+                     props.setFranchise(rowInfo.original.franchise)
                      props.setShowTRMenu(true)
                      props.setSelectedMiLBName(rowInfo.original.tmName) 
                      props.setSelectedMiLBClass(rowInfo.original.class) 
@@ -74,6 +73,7 @@ export default function SeasonResults(props) {
                      props.setSelectedMiLBParentLogo(rowInfo.original.franchLogo) 
                      props.setSelectedMiLBParentLg(rowInfo.original.majLg) 
                      props.logKey(e) 
+           /*          props.getPlayerList(rowInfo.original.franchise, props.selectedMiLBClass, props.selectedMiLBYr)*/
                 }
             }
         }
@@ -261,6 +261,9 @@ export default function SeasonResults(props) {
 		    	multiline />
         {props.showTRMenu && 
             <TeamRowMenu
+                selectedYear={props.selectedYear}    
+                selectedDivision={props.selectedDivision}
+                selectedClass={props.selectedClass} 
                 selectedMiLBParentLg={props.selectedMiLBParentLg}
                 setSelectedMiLBParentLg={props.setSelectedMiLBParentLg}
                 selectedMiLBName={props.selectedMiLBName}
