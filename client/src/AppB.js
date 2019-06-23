@@ -211,9 +211,9 @@ function handleModalClose() {
        setMyRk(localStorage.getItem('Rk'))
 
     }, {})*/
-    useEffect(() => {
+/*    useEffect(() => {
        setTheme(localStorage.getItem('theme'))
-    }, {})
+    }, {})*/
     useEffect(() => {
       localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
     }, {})
@@ -246,7 +246,7 @@ return (
     open={modalOpen}
     trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
-        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Current MLB players, grouped by former MiLB teams</div>
+        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> </div>
         <Icon bordered bordered  name="close" color="yellow" onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain
@@ -438,11 +438,12 @@ return (
     open={showTeamSelect}
    >
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
-        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Current MLB players, grouped by former MiLB teams</div>
+        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Select one team and year for each class</div>
         <Icon bordered bordered  name="close" color="yellow" onClick={() => setShowTeamSelect(false)}/>
         </Modal.Header>
         <Modal.Content>
              <CurrentTeam
+             theme={theme}
              selectedTmYrs={selectedTmYrs}
              getTeamYears={getTeamYears}
                minorMaster={minorMaster}

@@ -45,7 +45,7 @@ where finalHist.playerID= latestPitching.playerID
 and finalHist.class like ?
 and finalHist.franchise = ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by playerID
 order by latestPitching.IP - latestPitching.R desc`,[req.query.c, req.query.f, req.query.y], function (error, results, fields) {
       res.json(results)
@@ -80,7 +80,7 @@ where finalHist.playerID= odp.playerID
 and finalHist.class like ?
 and finalHist.franchise = ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by playerID
 order by odp.IP - odp.R desc`, [req.query.c, req.query.f, req.query.y], function (error, results, fields) {
    /*     console.log(results)*/
@@ -122,7 +122,7 @@ and finalHist.playerID= latestBatting.playerID
 and finalHist.franchise = ?
 and finalHist.class = ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by playerID
 order by latestBatting.TB desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
    /*     console.log(results)*/
@@ -163,7 +163,7 @@ and finalHist.playerID= odb.playerID
 and finalHist.franchise = ?
 and finalHist.class = ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by playerID
 order by SUM(odb.TB + odb.RBI) desc`, [req.query.f, req.query.c, req.query.y], function (error, results, fields) {
       /*  console.log(results)*/
@@ -196,7 +196,7 @@ from finalHist, latestPitching
 where finalHist.playerID= latestPitching.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by finalHist.class , finalHist.franchise, finalHist.yr
 order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
@@ -228,7 +228,7 @@ from finalHist, odp
 where finalHist.playerID= odp.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by finalHist.class , finalHist.franchise, finalHist.yr
 order by SUM(odp.IP - odp.R) desc limit 40`,[req.query.cl, req.query.yr], function (error, results, fields) {
       res.json(results)
@@ -264,7 +264,7 @@ from finalHist, latestBatting
 where finalHist.playerID= latestBatting.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by finalHist.tmName, finalHist.yr
 order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
@@ -301,7 +301,7 @@ where odb.AB > 0
 and finalHist.playerID= odb.playerID 
 and finalHist.class like ?
 and finalHist.yr like ?
-and finalHist.yr > 2013
+and finalHist.yr > 2012
 group by finalHist.tmName, finalHist.yr
 order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
       res.json(results)
@@ -312,7 +312,6 @@ app.get('/api/minorMaster', function(req, res) {
 console.log(req.query)
   connection.query(`select  distinct tmName, yr, franchise, class, majLg, league, franchiseName, franchLogo, logoPNG 
 from finalHist where yr > 2012 and yr < 2019 group by tmName, yr`,function (error, results, fields) {
-
       res.json(results)
     if (error) throw error;
    });
@@ -320,7 +319,7 @@ from finalHist where yr > 2012 and yr < 2019 group by tmName, yr`,function (erro
 
 app.get('/api/teamYrs', function(req, res) {
 console.log(req.query)
-  connection.query(`select distinct finalHist.yr from finalHist where finalHist.yr > 2013 and finalHist.yr < 2019 and tmName = ? order by finalHist.yr desc`,[req.query.tm],function (error, results, fields) {
+  connection.query(`select distinct finalHist.yr from finalHist where finalHist.yr > 2012 and finalHist.yr < 2019 and tmName = ? order by finalHist.yr desc`,[req.query.tm],function (error, results, fields) {
 console.log(results)
       res.json(results)
     if (error) throw error;
