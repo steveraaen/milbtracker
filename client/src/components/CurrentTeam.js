@@ -3,6 +3,7 @@ import { Container, Form, Grid, Icon, Image, Label, List, Popup, Segment, Tab } 
 import ReactTooltip from 'react-tooltip'
 import ReactTable from 'react-table'
 import ErrorBoundry from './ErrorBoundry.js'
+
 import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
@@ -31,17 +32,19 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
       }
   }
  
-  		if(aaa && tmsLogos) {
+  	
   			for(let i =0; i < aaa.length; i++) {
 				for(let j =0; j < tmsLogos.length; j++) {
 					if(aaa[i].tmName === tmsLogos[j].tmName) {
 						aaa[i].curLogo = tmsLogos[j].logoPNG				
 				}
 			}
-		}
+		
 
 		aaa.map((lgo, idx) => {
-			lgo.logoCell =  <Image key={idx} size='mini' src={lgo.curLogo} />
+			lgo.logoCell =  <Image key={idx} size='mini' rounded src={lgo.curLogo} />
+			lgo.franchL = <Image key={idx} size='mini' rounded src={lgo.franchLogo} />
+			console.log(lgo)
 			return lgo
 		});
 }
@@ -69,22 +72,22 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
             Header: '',
             className: `App ${props.theme}`,
-            accessor: 'yr',
-            aggregate: (values, rows) => values[0],
+            accessor: 'franchL',
+            aggregate: (values, rows) => values[4],
     			Aggregated: row => <span> { row.value } </span>,
-    			width: 80
+    			width: 240
         }]
  
         		const panes = [
   { menuItem: 'Triple A', render: () => {return (
 <ErrorBoundry>
  		<ReactTable
- 			pivotBy={['tmName']}
+ 		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
     		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
-    		defaultPageSize={aaa.length}
+    		defaultPageSize={40}
  			data={aaa}	    		
  			columns={tmCols}
  			showPageSizeOptions={false}	
@@ -98,12 +101,12 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
   { menuItem: 'Double A', render: () => <Tab.Pane>
   <ErrorBoundry>
   	 		<ReactTable
- 			pivotBy={['tmName']}
+ 		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
     		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
-    		defaultPageSize={aaa.length}
+    		defaultPageSize={40}
  			data={aa}	    		
  			columns={tmCols}
  			showPageSizeOptions={false}	
@@ -117,12 +120,12 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
   { menuItem: 'Advanced A', render: () => <Tab.Pane>
   <ErrorBoundry>
   	 		<ReactTable
- 			pivotBy={['tmName']}
+ 		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
     		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
-    		defaultPageSize={aaa.length}
+    		defaultPageSize={40}
  			data={aplus}	    		
  			columns={tmCols}
  			showPageSizeOptions={false}	
@@ -136,12 +139,12 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
   { menuItem: 'Class A', render: () => <Tab.Pane>
   <ErrorBoundry>
   	 		<ReactTable
- 			pivotBy={['tmName']}
+ 		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
     		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
-    		defaultPageSize={aaa.length}
+    		defaultPageSize={40}
  			data={a}	    		
  			columns={tmCols}
  			showPageSizeOptions={false}	
@@ -155,12 +158,12 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
   { menuItem: 'Short Class A', render: () => <Tab.Pane>
   <ErrorBoundry>
   	 		<ReactTable
- 			pivotBy={['tmName']}
+ 		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
     		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
-    		defaultPageSize={aaa.length}
+    		defaultPageSize={40}
  			data={aminus}	    		
  			columns={tmCols}
  			showPageSizeOptions={false}	
@@ -174,12 +177,12 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
   { menuItem: 'Rookie', render: () => <Tab.Pane>
   <ErrorBoundry>
   	 		<ReactTable
- 			pivotBy={['tmName']}
+ 		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
     		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
-    		defaultPageSize={aaa.length}
+    		defaultPageSize={40}
  			data={rk}	    		
  			columns={tmCols}
  			showPageSizeOptions={false}	

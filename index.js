@@ -311,7 +311,7 @@ order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (erro
 app.get('/api/minorMaster', function(req, res) {
 console.log(req.query)
   connection.query(`select  distinct tmName, yr, franchise, class, majLg, league, franchiseName, franchLogo, logoPNG 
-from finalHist where yr > 2012 and yr < 2019 group by tmName, yr`,function (error, results, fields) {
+from finalHist where yr > 2012 and yr < 2019 group by tmName`,function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    });

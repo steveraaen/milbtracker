@@ -197,9 +197,7 @@ export default function PlayerList(props) {
 							<div style={{marginLeft: '1vw', marginRight: '1vw', fontSize: '1.8em', fontWeight: 600}}>{props.playerList[0].class}</div>
 							<Image size="tiny" rounded src={props.selectedMiLBLogo} />
 							<div style={{fontSize: "1.8em", fontWeight: 600}}>{props.selectedMiLBName}</div>
-						</div>
-						
-						
+						</div>					
 
 			for(let i =0; i < props.playerList.length; i++) {
 				props.playerList[i].playerURL = `https://www.baseball-reference.com/players/${props.playerList[i].playerID[0]}/${props.playerList[i].playerID}.shtml`
@@ -215,6 +213,7 @@ export default function PlayerList(props) {
 			tm.tmStr2 = <div  className={`App ${props.theme}`}><div style={{fontSize: '1.1em'}}>
 			<span  className={`lg ${tm.curColor} ${props.theme}`}>{tm.playerName}</span>
 			</div></div>
+			console.log(tm)
 			return tm
 		})
 } else {return(<div></div>)}
