@@ -1,3 +1,5 @@
+'use strict'
+
 import React, { useEffect } from 'react';
 import { Grid,  Image,  Popup} from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
@@ -72,7 +74,7 @@ export default function SeasonResults(props) {
                      props.setSelectedMiLBYr(rowInfo.original.yr) 
                      props.setSelectedMiLBParentLogo(rowInfo.original.franchLogo) 
                      props.setSelectedMiLBParentLg(rowInfo.original.majLg) 
-                     props.logKey(e) 
+                   
            /*          props.getPlayerList(rowInfo.original.franchise, props.selectedMiLBClass, props.selectedMiLBYr)*/
                 }
             }

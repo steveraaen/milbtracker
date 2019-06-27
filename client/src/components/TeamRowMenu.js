@@ -1,3 +1,5 @@
+'use strict'
+
 import React from 'react';
 import { Button, Container,  Icon, Image,   Segment, Statistic } from 'semantic-ui-react'
 

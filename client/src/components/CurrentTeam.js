@@ -1,3 +1,5 @@
+'use strict'
+
 import React from 'react';
 import { Container, Image, Tab } from 'semantic-ui-react'
 import ReactTable from 'react-table'

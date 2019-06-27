@@ -1,3 +1,4 @@
+'use strict'
 
 import React, { useState, useEffect} from 'react';
 import { Button,  Icon,  Modal, Segment, Sidebar} from 'semantic-ui-react'
