@@ -4,8 +4,6 @@ import ReactTable from 'react-table'
 import ReactTooltip from 'react-tooltip'
 import "react-table/react-table.css";
 import mlbLogos from '../franchiseLogos.json'
-import wikiSnippets from './wikiSnippets.js'
-import tmsLogos from'../lgos/namesAndLogos.js'
 
 export default function PlayerList(props) {
 	

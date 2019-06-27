@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Grid, Icon, Image, Label, Popup, Segment } from 'semantic-ui-react'
+import React, { useEffect } from 'react';
+import { Grid,  Image,  Popup} from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
 
 import ReactTable from 'react-table'
@@ -79,14 +79,14 @@ export default function SeasonResults(props) {
         }
         var batColumns = [{
             headerClassName: `App ${props.theme}`,
-            headerStyle: {tabindex: 0, fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            headerStyle: {tabindex: 0, fontSize: '.9em', backgroundColor: props.borderCol  },
             Header: 'Rank',
             className: `App ${props.theme}`,
             accessor: 'rnk',
             width: 40
         },{
             headerClassName: `App ${props.theme}`,
-            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
             Header: '',
             className: `App ${props.theme}`,
             accessor: 'tmStr',
@@ -302,7 +302,7 @@ export default function SeasonResults(props) {
                     resizable={false}	    			    		
 	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
-		    		style={{fontSize: '.9em', backgroundColor: props.borderCol , fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+		    		style={{fontSize: '.9em', backgroundColor: props.borderCol , fontWeight: 600, height: '76vh'}}
 		    		defaultPageSize={30}
 	    			data={currentBatData}    			
 	    			columns={batColumns}
@@ -322,7 +322,7 @@ export default function SeasonResults(props) {
                     resizable={false} 				 
 	    			className={`-highlight App ${props.theme}`}
 		    		showPagination={false}
-		    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+		    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh'}}
 		    		defaultPageSize={30}
 	    			data={currentPitchData}	    		
 	    			columns={pitchColumns}

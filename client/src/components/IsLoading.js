@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {Grid, Image, Transition} from 'semantic-ui-react'
+import React from 'react';
+import { Image} from 'semantic-ui-react'
 import ball from '../ball.png'
 import '../App.css'
 
 
 export default function IsLoading(props) {
-	const [ curSnippet, setCurSnippet ] = useState()
+/*	const [ curSnippet, setCurSnippet ] = useState()
 	const [ visible, setVisible ] = useState()
 
 var wikiSnippets = [
@@ -35,7 +35,7 @@ var wikiSnippets = [
     const interval = setInterval(() => {
     setVisible(true) 
       setCurSnippet(wikiSnippets[Math.floor((Math.random() * wikiSnippets.length) + 1)]); 
-  /*    setVisible(false)   */ 
+
       i++
 
     }, 2400);
@@ -43,7 +43,7 @@ var wikiSnippets = [
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, []);*/
 
 	return(
 	<div style={{display: 'flex', flexDirection:'column'}}>

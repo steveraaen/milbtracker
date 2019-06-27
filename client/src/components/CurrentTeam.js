@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Form, Grid, Icon, Image, Label, List, Popup, Segment, Tab } from 'semantic-ui-react'
-import ReactTooltip from 'react-tooltip'
+import React from 'react';
+import { Container, Image, Tab } from 'semantic-ui-react'
 import ReactTable from 'react-table'
-import ErrorBoundry from './ErrorBoundry.js'
 
 import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
 export default function CurrentTeam(props) {
-var optAAA =[], optAA =[], optAP =[], optA =[], optAM =[], optRk =[]
 
 function handleTeamSelect(lcl, mycl, tm) {
 	mycl(tm)
@@ -52,7 +49,7 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 		console.log(aaa)
         var tmCols = [{
             headerClassName: `App ${props.theme}`,
-            headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol },
             Header: '',
             className: `App ${props.theme}`,
             accessor: 'logoCell',
@@ -61,7 +58,7 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
     			width: 80			
         },{
             headerClassName: `App ${props.theme}`,
-            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol },
             Header: 'Team',
             className: `App ${props.theme}`,
             accessor: 'tmName',
@@ -70,7 +67,7 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
     			width: 240
         },{
             headerClassName: `App ${props.theme}`,
-            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
             Header: '',
             className: `App ${props.theme}`,
             accessor: 'logoMaj',
@@ -81,14 +78,13 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
  
         		const panes = [
   { menuItem: 'Triple A', render: () => {return (
-  	
-<ErrorBoundry>
+
  		<ReactTable
  		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
-    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+    		style={{fontSize: '.9em',fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
     		defaultPageSize={40}
  			data={aaa}	    		
  			columns={tmCols}
@@ -98,16 +94,14 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 			  }]}    				    			
 			getTrProps={onRowClick}	
  		/>
- 		</ErrorBoundry>
   	)} },
   { menuItem: 'Double A', render: () => <Tab.Pane>
-  <ErrorBoundry>
   	 		<ReactTable
  		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
-    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+    		style={{fontSize: '.9em',fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
     		defaultPageSize={40}
  			data={aa}	    		
  			columns={tmCols}
@@ -117,16 +111,14 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 			  }]}    				    			
 			getTrProps={onRowClick}	
  		/>
- 		</ErrorBoundry>
   </Tab.Pane> },
   { menuItem: 'Advanced A', render: () => <Tab.Pane>
-  <ErrorBoundry>
   	 		<ReactTable
  		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
-    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+    		style={{fontSize: '.9em',fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
     		defaultPageSize={40}
  			data={aplus}	    		
  			columns={tmCols}
@@ -136,16 +128,14 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 			  }]}    				    			
 			getTrProps={onRowClick}	
  		/>
- 		</ErrorBoundry>
   </Tab.Pane> },
   { menuItem: 'Class A', render: () => <Tab.Pane>
-  <ErrorBoundry>
   	 		<ReactTable
  		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
-    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+    		style={{fontSize: '.9em',fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
     		defaultPageSize={40}
  			data={a}	    		
  			columns={tmCols}
@@ -155,16 +145,14 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 			  }]}    				    			
 			getTrProps={onRowClick}	
  		/>
- 		</ErrorBoundry>
   </Tab.Pane> },
   { menuItem: 'Short Class A', render: () => <Tab.Pane>
-  <ErrorBoundry>
   	 		<ReactTable
  		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
-    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+    		style={{fontSize: '.9em',fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
     		defaultPageSize={40}
  			data={aminus}	    		
  			columns={tmCols}
@@ -174,16 +162,14 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 			  }]}    				    			
 			getTrProps={onRowClick}	
  		/>
- 		</ErrorBoundry>
   </Tab.Pane> },
   { menuItem: 'Rookie', render: () => <Tab.Pane>
-  <ErrorBoundry>
   	 		<ReactTable
  		
          resizable={false} 				 
  			className={`-highlight App ${props.theme}`}
     		showPagination={false}
-    		style={{fontSize: '.9em', backgroundColor: props.borderCol ,   fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
+    		style={{fontSize: '.9em',fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
     		defaultPageSize={40}
  			data={rk}	    		
  			columns={tmCols}
@@ -193,7 +179,6 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 			  }]}    				    			
 			getTrProps={onRowClick}	
  		/>
- 		</ErrorBoundry>
   </Tab.Pane> },
 ]
 const TabExampleBasic = () => <Tab panes={panes} />

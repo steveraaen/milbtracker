@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Card, Container,  Form, Grid, Image, Label, Loader, Segment,  Table } from 'semantic-ui-react'
+import React from 'react';
+import { Container,  Form, Segment,  Table } from 'semantic-ui-react'
 import '../App.css'
 
 function YearPicker(props) {
@@ -38,12 +38,7 @@ function ClassPicker(props) {
         props.getTopTen(value.code, props.selectedYear.value, props.timeframe)
         props.toggleFormSidebar()
     }
-    var tempObj = {
-        displayName: "All MiLB Classes",
-        name: "%%",
-        code: "%%",
-        regex: "%"
-    }
+
     return (
        <Form.Group       
          style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}> 

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Header, Image, Item, Modal} from 'semantic-ui-react'
+import {   Item, Modal} from 'semantic-ui-react'
 
- import batPic from '../lgos/drawBatter.png'
- import pitchPic from '../lgos/drawPitch.png'
 import ball from '../ball.png'
 
  export default function Explain(props) {

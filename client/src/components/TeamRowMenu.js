@@ -1,34 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Divider, Icon, Image, Input, Label, Menu, Popup, Segment, Statistic } from 'semantic-ui-react'
-import ReactTooltip from 'react-tooltip'
+import React from 'react';
+import { Button, Container,  Icon, Image,   Segment, Statistic } from 'semantic-ui-react'
 
 export default function TeamRowMenu(props) {
 	const handleTeamSet = () => {
 		switch(props.selectedMiLBClass) {
+
 			case "AAA":
 			props.setMyAAA(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
 			localStorage.setItem('AAA', [`${props.selectedMiLBYr} ${props.selectedMiLBName}`])
-			break
+			break;
 			case "AA":
 			props.setMyAA(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
 			localStorage.setItem('AA', (`${props.selectedMiLBYr} ${props.selectedMiLBName}`))
-			break
+			break;
 			case "A+":
 			props.setMyAPlus(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
 			localStorage.setItem('APlus', (`${props.selectedMiLBYr} ${props.selectedMiLBName}`))
-			break			
+			break;			
 			case "A":
 			props.setMyA(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
 			localStorage.setItem('A', (`${props.selectedMiLBYr} ${props.selectedMiLBName}`))
-			break
+			break;
 			case "A-":
 			props.setMyAMinus(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
 			localStorage.setItem('AMinus', (`${props.selectedMiLBYr} ${props.selectedMiLBName}`))
-			break
+			break;
 			case "Rk":
 			props.setMyRk(`${props.selectedMiLBYr} ${props.selectedMiLBName}`)
 			localStorage.setItem('Rk', (`${props.selectedMiLBYr} ${props.selectedMiLBName}`))
-			break
+			break;
+
 		}
 	}
 
