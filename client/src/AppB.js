@@ -337,7 +337,7 @@ return (
     > 
     <div>
      <div style={{display: 'flex', flexDirection: 'row', justifyContent:'flex-end'}}>
-     <Icon bordered  name="close" onClick={() => {setPlayersVisible(false); setShowTRMenu(false)}}/>
+     <Icon bordered  name="close" onClick={() => {setPlayersVisible(false)}}/>
      </div>
         <PlayerList 
           theme={theme} 
