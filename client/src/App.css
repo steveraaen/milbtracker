@@ -28,12 +28,17 @@ label.light{
   color: #fff;
   transition: 0.3s all;
 }
+.ui.bottom.attached.segment.active.tab {
+  padding: 0;
+}
 .App.light {
   background: #fff;
   color: #000;
   transition: 0.3s all;
 }
-
+.ui.modal{
+  position: relative;
+}
 .App p {
   font-size: 24pt;
 }

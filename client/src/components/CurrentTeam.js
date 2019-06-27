@@ -15,7 +15,21 @@ function handleTeamSelect(lcl, mycl, tm) {
 	localStorage.setItem(lcl, tm)
 	props.getTeamYears(tm)
 }
+  			for(let i =0; i < props.minorMaster.length; i++) {
+				for(let j =0; j < tmsLogos.length; j++) {
+					if(props.minorMaster[i].tmName === tmsLogos[j].tmName) {
+						props.minorMaster[i].curLogo = tmsLogos[j].logoPNG				
+				}
+			}	
+}
 
+		props.minorMaster.map((lgo, idx) => {
+			lgo.logoCell =  <Image key={idx} size='tiny' rounded src={lgo.curLogo} />
+			lgo.logoMaj =  <Image key={idx} size='tiny' rounded src={lgo.franchLogo} />
+		
+			console.log(lgo)
+			return lgo
+		});
 const aaa = props.minorMaster.filter(tm => tm.class === 'AAA')
 const aa = props.minorMaster.filter(tm => tm.class === 'AA')
 const aplus = props.minorMaster.filter(tm => tm.class === 'A+')
@@ -33,25 +47,12 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
   }
  
   	
-  			for(let i =0; i < aaa.length; i++) {
-				for(let j =0; j < tmsLogos.length; j++) {
-					if(aaa[i].tmName === tmsLogos[j].tmName) {
-						aaa[i].curLogo = tmsLogos[j].logoPNG				
-				}
-			}
-		
 
-		aaa.map((lgo, idx) => {
-			lgo.logoCell =  <Image key={idx} size='mini' rounded src={lgo.curLogo} />
-			lgo.franchL = <Image key={idx} size='mini' rounded src={lgo.franchLogo} />
-			console.log(lgo)
-			return lgo
-		});
-}
+
 		console.log(aaa)
         var tmCols = [{
             headerClassName: `App ${props.theme}`,
-            headerStyle: {tabindex: 0, fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
+            headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
             Header: '',
             className: `App ${props.theme}`,
             accessor: 'logoCell',
@@ -72,7 +73,7 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol , backgroundColor: props.borderCol },
             Header: '',
             className: `App ${props.theme}`,
-            accessor: 'franchL',
+            accessor: 'logoMaj',
             aggregate: (values, rows) => values[4],
     			Aggregated: row => <span> { row.value } </span>,
     			width: 240
@@ -80,6 +81,7 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
  
         		const panes = [
   { menuItem: 'Triple A', render: () => {return (
+  	
 <ErrorBoundry>
  		<ReactTable
  		
