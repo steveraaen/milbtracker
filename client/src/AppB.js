@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect} from 'react';
-import { Button,Icon,Modal, Segment, Sidebar} from 'semantic-ui-react'
+import { Button,  Icon,  Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
@@ -12,7 +12,6 @@ import CurrentTeam from './components/CurrentTeam.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
-
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
@@ -53,7 +52,6 @@ function AppB() {
   const [borderCol, setBorderCol] = useState();
   const [theme, setTheme] = useState('dark');
   const [franchise, setFranchise] = useState();
-/*  const [mousePos, setMousePos] = useState();*/
   const [selectedMiLBName, setSelectedMiLBName] = useState();
   const [selectedMiLBYr, setSelectedMiLBYr] = useState();
   const [selectedMiLBClass, setSelectedMiLBClass] = useState();
@@ -67,18 +65,9 @@ function AppB() {
   const [myA, setMyA] = useState(() => localStorage.getItem('myA' || ''));
   const [myAMinus, setMyAMinus] = useState(() => localStorage.getItem('myAMinus' || ''));
   const [myRk, setMyRk] = useState(() => localStorage.getItem('myRk' || ''));
-  const [minorMaster] = useState();
+  const [minorMaster, setMinorMaster] = useState();
   const [showTeamSelect, setShowTeamSelect] = useState(false);
   const [selectedTmYrs, setSelectedTmYrs] = useState();
-
-/*  document.addEventListener("click", logKey);*/ 
-
-/*  const logKey = (e) => { 
-      setMousePos({
-          X: e.pageX,
-          Y: e.pageY
-      }) 
-}*/
 
   const toggleTheme = (th) => {
       localStorage.setItem("theme", th);
@@ -91,7 +80,15 @@ function AppB() {
     function showPlayersSidebar() {
         setPlayersVisible(true) 
     }
-
+async function getMinorMaster() {
+  try {
+    const minorMasterPromise = axios('/api/minorMaster')
+    const mmstr = await minorMasterPromise 
+    setMinorMaster(mmstr.data)
+      }   catch (e) {
+        console.error(e);
+    };
+}
 async function getTeamYears(tm) {
   try {
     const tmYearsPromise = axios('/api/teamYrs', {params: {tm}})
@@ -144,8 +141,8 @@ async function getTeamYears(tm) {
                     if (plyr.teamID === allMLB[i].teamCode) {
                         plyr.color = allMLB[i].color
                         plyr.teamName = allMLB[i].teamName
-                       
-                    } 
+                        return plyr
+                    } else { return null }
                 }
             })
             newPitchers.data.map((ptchr, idx) => {
@@ -153,7 +150,7 @@ async function getTeamYears(tm) {
                     if (ptchr.teamID === allMLB[i].teamCode) {
                         ptchr.color = allMLB[i].color
                         ptchr.teamName = allMLB[i].teamName
-                    } 
+                    }
                 }
             })
             setPlayerList({
@@ -186,6 +183,9 @@ const handleClick = (e, { value }) => {
   await  localStorage.setItem('showModal', false)
     setModalOpen(false)  
 }*/
+  useEffect(() => {
+      getMinorMaster()
+}, {})
 
 
    /* useEffect(() => {
@@ -233,7 +233,7 @@ return (
     trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> </div>
-        <Icon bordered  name="close" color="yellow" onClick={() => setModalOpen(false)}/>
+        <Icon bordered name="close" color="yellow" onClick={() => setModalOpen(false)}/>
         </Modal.Header>
     <Explain
       theme={theme}
@@ -396,6 +396,7 @@ return (
                   selectedMiLBParentLogo={selectedMiLBParentLogo}
                   setSelectedMiLBParentLg={setSelectedMiLBParentLg}
                   selectedMiLBParentLg={selectedMiLBParentLg}
+                  setShowTRMenu={setShowTRMenu}
                   showTRMenu={showTRMenu}
                   myAAA={myAAA}
                   setMyAAA={setMyAAA}
