@@ -1,32 +1,31 @@
 'use strict'
 
 import React from 'react';
-import { Container, Image, Tab } from 'semantic-ui-react'
+import { Button, Container, Dropdown, Form, Icon, Image, Modal, Tab } from 'semantic-ui-react'
 import ReactTable from 'react-table'
 
 import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
+const justYears=[2018, 2017, 2016, 2015, 2014, 2013]
 export default function CurrentTeam(props) {
 
-function handleTeamSelect(lcl, mycl, tm) {
-	mycl(tm)
-	localStorage.setItem(lcl, tm)
+
+function handleTeamClick(tm) {
+/*	mycl(tm)
+	localStorage.setItem(lcl, tm)*/
 	props.getTeamYears(tm)
 }
   			for(let i =0; i < props.minorMaster.length; i++) {
 				for(let j =0; j < tmsLogos.length; j++) {
 					if(props.minorMaster[i].tmName === tmsLogos[j].tmName) {
 						props.minorMaster[i].curLogo = tmsLogos[j].logoPNG				
-				}
+				} 
 			}	
-}
-
+		}
 		props.minorMaster.map((lgo, idx) => {
-			lgo.logoCell =  <Image key={idx} size='tiny' rounded src={lgo.curLogo} />
-			lgo.logoMaj =  <Image key={idx} size='tiny' rounded src={lgo.franchLogo} />
-		
-			console.log(lgo)
+			lgo.logoCell =  <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.curLogo} />
+			lgo.logoMaj =  <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.franchLogo} />	
 			return lgo
 		});
 const aaa = props.minorMaster.filter(tm => tm.class === 'AAA')
@@ -36,48 +35,66 @@ const a = props.minorMaster.filter(tm => tm.class === 'A')
 const aminus = props.minorMaster.filter(tm => tm.class === 'A-')
 const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 
-   const onRowClick = (state, rowInfo, column, instance) => {    
-    
+   const onRowClick = (state, rowInfo, column, instance) => {       
       return {
-          onClick: e => {          
-                console.log(rowInfo)             
+          onClick: e => {       
+                 console.log(rowInfo)       
+                handleTeamClick(rowInfo.original.tmName) 
+             
+
           }
       }
   }
+var yrArr = []
  
-  	
-
-
-		console.log(aaa)
+		
         var tmCols = [{
             headerClassName: `App ${props.theme}`,
             headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol },
             Header: '',
             className: `App ${props.theme}`,
             accessor: 'logoCell',
-            aggregate: (values, rows) => values[0],
-    			Aggregated: row => <span> { row.value } </span>	,
-    			width: 80			
+            width: 60
+    					
         },{
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol },
             Header: 'Team',
             className: `App ${props.theme}`,
             accessor: 'tmName',
-            aggregate: (values, rows) => values[4],
-    			Aggregated: row => <span> { row.value } </span>,
-    			width: 240
+            width: 140
+    			
         },{
+            headerClassName: `App ${props.theme}`,
+            headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
+            Header: 'Franchise',
+            className: `App ${props.theme}`,
+            accessor: 'logoMaj',
+            width: 60
+    			
+        }/*,{
             headerClassName: `App ${props.theme}`,
             headerStyle: { fontSize: '.9em', backgroundColor: props.borderCol  },
             Header: '',
             className: `App ${props.theme}`,
-            accessor: 'logoMaj',
-            aggregate: (values, rows) => values[4],
-    			Aggregated: row => <span> { row.value } </span>,
-    			width: 240
-        }]
- 
+            accessor: 'yrArr'
+    			
+        }*/]
+         	if(props.selectedTmYrs) {		
+ 			props.selectedTmYrs.map((yr, ix) => {
+	 				tmCols.push({
+	 				id: yr.yr,
+	 				headerClassName: `App ${props.theme}`,
+	            headerStyle: {fontSize: '.9em', backgroundColor: props.borderCol },
+	            Header: '',
+	            className: `App ${props.theme}`,
+	            accessor: () => yr.yr,
+	            width: 40
+	 				})
+	 			})    
+ 			
+}
+ console.log([...tmCols])
         		const panes = [
   { menuItem: 'Triple A', render: () => {return (
 
@@ -89,7 +106,7 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
     		style={{fontSize: '.9em',fontWeight: 600, height: '76vh', backgroundColor: props.borderCol}}
     		defaultPageSize={40}
  			data={aaa}	    		
- 			columns={tmCols}
+ 			columns={[...tmCols]}
  			showPageSizeOptions={false}	
  			  filtered={[{ // the current filters model
 			    class: 'AAA'
@@ -183,12 +200,34 @@ const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
  		/>
   </Tab.Pane> },
 ]
-const TabExampleBasic = () => <Tab panes={panes} />
+const Tabs = () => <Tab panes={panes} />
 	return(
 		<Container>			
 
-		<TabExampleBasic />
-
+			<Tabs />
 		</Container>
 		)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

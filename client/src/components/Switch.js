@@ -16,8 +16,7 @@ export default function Switch(props) {
 	return (
 <div style={{display: 'flex', flexDirection: 'row', marginTop: '2vh'}}>
 	<Icon size='large' style={{opacity: sunOp}} name="sun" color='yellow' onClick={() => props.toggleTheme('light')}/>
-	<Icon size='large' style={{opacity: moonOp}}name="moon" color='teal' onClick={() => props.toggleTheme('dark')}/>
-	
+	<Icon size='large' style={{opacity: moonOp}}name="moon" color='teal' onClick={() => props.toggleTheme('dark')}/>	
 </div>
 )
 }

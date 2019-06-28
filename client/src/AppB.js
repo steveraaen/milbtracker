@@ -426,6 +426,8 @@ return (
         <Modal.Content>
              <CurrentTeam
              theme={theme}
+             setSelectedMiLBName={setSelectedMiLBName}
+             selectedMiLBName={selectedMiLBName}
              selectedTmYrs={selectedTmYrs}
              getTeamYears={getTeamYears}
                minorMaster={minorMaster}
