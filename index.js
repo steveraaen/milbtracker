@@ -4,6 +4,7 @@ require('dotenv').config()
 const mysql = require('mysql')
 const express = require('express')
 const path = require('path')
+const fs = require('fs')
 
 const app = express()
 
@@ -304,7 +305,7 @@ and finalHist.class like ?
 and finalHist.yr like ?
 and finalHist.yr > 2012
 group by finalHist.tmName, finalHist.yr
-order by SUM(odb.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(odb.TB) desc limit 40;`, [req.query.cl, req.query.yr],function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    });
@@ -317,7 +318,13 @@ from finalHist where yr > 2012 and yr < 2019 group by tmName`,function (error, r
     if (error) throw error;
    });
 })
-
+app.get('/api/minorYears', function(req, res) {
+console.log(req.query)
+  connection.query(`select distinct tmName, finalHist.yr from finalHist where finalHist.yr > 2012 and finalHist.yr < 2019  order by finalHist.tmName`,function (error, results, fields) {
+      res.json(results)
+    if (error) throw error;
+   });
+})
 app.get('/api/teamYrs', function(req, res) {
 console.log(req.query)
   connection.query(`select distinct finalHist.yr from finalHist where finalHist.yr > 2012 and finalHist.yr < 2019 and tmName = ? order by finalHist.yr desc`,[req.query.tm],function (error, results, fields) {

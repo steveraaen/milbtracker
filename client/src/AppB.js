@@ -1,4 +1,3 @@
-'use strict'
 
 import React, { useState, useEffect} from 'react';
 import { Button,  Icon,  Modal, Segment, Sidebar} from 'semantic-ui-react'
@@ -9,7 +8,7 @@ import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
 import Switch from './components/Switch.js'
-import CurrentTeam from './components/CurrentTeam.js'
+import CurrentTeamB from './components/CurrentTeamB.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
@@ -67,13 +66,24 @@ function AppB() {
   const [myAMinus, setMyAMinus] = useState(() => localStorage.getItem('myAMinus' || ''));
   const [myRk, setMyRk] = useState(() => localStorage.getItem('myRk' || ''));
   const [minorMaster, setMinorMaster] = useState();
+  const [minorArray, setMinorArray] = useState();
   const [showTeamSelect, setShowTeamSelect] = useState(false);
+  const [showYearSelect, setShowYearSelect] = useState(false);
   const [selectedTmYrs, setSelectedTmYrs] = useState();
+  const [mousePos, setMousePos] = useState();
 
   const toggleTheme = (th) => {
       localStorage.setItem("theme", th);
       setTheme(th);
   };
+async function getMousePos(e) {
+  await setMousePos({
+   x: e.clientX,
+   y: e.clientY
+  })
+
+}
+
 
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
@@ -84,12 +94,32 @@ function AppB() {
 async function getMinorMaster() {
   try {
     const minorMasterPromise = axios('/api/minorMaster')
-    const mmstr = await minorMasterPromise 
-    setMinorMaster(mmstr.data)
-      }   catch (e) {
-        console.error(e);
-    };
-}
+    const minorYearsPromise = axios('/api/minorYears')
+    const [mmstr,mYrs] = await Promise.all ([minorMasterPromise,minorYearsPromise]) 
+
+    var tmYrObjArr = []
+    for(let i = 0; i < mmstr.data.length; i++) {
+      var tmObj = {}
+      var yrArr =[]
+       tmObj.tm = mmstr.data[i].tmName
+
+
+      for(let j = 0; j < mYrs.data.length; j++) {
+        if (mYrs.data[j].tmName === tmObj.tm) {
+           yrArr.push(mYrs.data[j].yr)
+        }
+      }
+      tmObj.years = yrArr
+      mmstr.data[i].years = yrArr
+      tmYrObjArr.push(tmObj)
+    }
+
+        setMinorArray(tmYrObjArr)
+        setMinorMaster(mmstr.data)
+          }   catch (e) {
+            console.error(e);
+        };
+    }
 async function getTeamYears(tm) {
   try {
     const tmYearsPromise = axios('/api/teamYrs', {params: {tm}})
@@ -106,13 +136,11 @@ async function getTeamYears(tm) {
             const tmPitYestPromise = axios('/api/teamPitchYest' , { params: { cl, yr } })
             const tmBatSeasPromise = axios('/api/teamBatSeason' , { params: { cl, yr } })
             const tmBatYestPromise = axios('/api/teamBatYest' , { params: { cl, yr } })
-            const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);
-             
+            const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);            
               if(tmPitS && tmPitY &&tmBatS && tmBatY) {
                 setLoading(false)
               }
-               localStorage.setItem('cachedBatTm', tmBatS.data)
-               localStorage.setItem('cachedPitTm', tmPitS.data)
+
              setBestBat({
                 bestBatTeams: tmBatS.data
             })
@@ -416,15 +444,20 @@ return (
       </Sidebar.Pusher>
    </Sidebar.Pushable>
      <Modal   
-    
+    centered={false}
+
     open={showTeamSelect}
    >
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Select one team and year for each class</div>
         <Icon bordered  name="close" color="yellow" onClick={() => setShowTeamSelect(false)}/>
         </Modal.Header>
-        <Modal.Content>
-             <CurrentTeam
+        <Modal.Content className='goLeft'>
+             <CurrentTeamB
+             getMousePos={getMousePos}
+             mousePos={mousePos}
+             setShowYearSelect={setShowYearSelect}
+             showYearSelect={showYearSelect}
              theme={theme}
              setSelectedMiLBName={setSelectedMiLBName}
              selectedMiLBName={selectedMiLBName}

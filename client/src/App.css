@@ -132,8 +132,14 @@ table thead tr:first-child > th {
 .hide {
   visibility: hidden;
 }
-
-
+.goLeft {
+  left: 5vw;
+}
+.row {
+  font-size: .8em;
+  padding: 0;
+  height: .08vh;
+}
 
 
 
