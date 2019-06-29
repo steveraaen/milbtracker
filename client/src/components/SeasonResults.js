@@ -44,7 +44,7 @@ export default function SeasonResults(props) {
         currentPitchData.map((ptm, ix) => {
             ptm.rankCol =  ix < 9 ? 'orange' : 'gray'
             ptm.rank= ix + 1
-            ptm.lg = ptm.majLg === "A" ? 'al' : 'nl'
+            ptm.lg = ptm.majLg /*=== "A" ? 'al' : 'nl'*/
             for (let i = 0; i < tmsLogos.length; i++) {
                 if (tmsLogos[i].tmName === ptm.tmName) {
                     ptm.lgo = tmsLogos[i].logoPNG
