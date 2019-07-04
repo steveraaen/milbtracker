@@ -137,11 +137,38 @@ table thead tr:first-child > th {
 }
 .row {
   font-size: .8em;
-  padding: 0;
+  margin-bottom: .3vh;
   height: .08vh;
 }
-
-
+button.ui.button.my2013 {
+  font-size: 1.2em;
+  color: coral;
+}
+button.ui.button.my2014 {
+  font-size: 1.2em;
+  color: pink;
+}
+button.ui.button.my2015 {
+  font-size: 1.2em;
+  color: brown;
+}
+button.ui.button.my2016 {
+  font-size: 1.2em;
+  color: green;
+}
+button.ui.button.my2017 {
+  font-size: 1.2em;
+  color: blue;
+}
+button.ui.button.my2018 {
+  font-size: 1.2em;
+  color: white;
+}
+button.ui.button.my2018.hide {
+  font-size: 1.2em;
+  color: white;
+  visibility: hidden;
+}
 
 
 

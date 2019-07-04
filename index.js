@@ -1,4 +1,4 @@
-'use strict'
+
 
 require('dotenv').config()
 const mysql = require('mysql')
@@ -321,6 +321,7 @@ from finalHist where yr > 2012 and yr < 2019 group by tmName`,function (error, r
 app.get('/api/minorYears', function(req, res) {
 console.log(req.query)
   connection.query(`select distinct tmName, finalHist.yr from finalHist where finalHist.yr > 2012 and finalHist.yr < 2019  order by finalHist.tmName`,function (error, results, fields) {
+    
       res.json(results)
     if (error) throw error;
    });

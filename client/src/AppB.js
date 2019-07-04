@@ -27,7 +27,15 @@ const yrs = [
     { text: "2010", value: 2010, key: "2010" },
     { text: "2009", value: 2009, key: "2009" }
 ]
-console.log(localStorage)
+localStorage.clear()
+
+localStorage.setItem('myAAA', 'Please select a team and year')
+localStorage.setItem('myAA', 'Please select a team and year')
+localStorage.setItem('myAMinus', 'Please select a team and year')
+localStorage.setItem('myA', 'Please select a team and year') 
+localStorage.setItem('myAPlus', 'Please select a team and year') 
+localStorage.setItem('myRk', 'Please select a team and year')
+
 function AppB() {
   const [selectedClass, setSelectedClass] = useState(classes[0]);
   const [years] = useState(yrs);
@@ -65,6 +73,13 @@ function AppB() {
   const [myA, setMyA] = useState(() => localStorage.getItem('myA' || ''));
   const [myAMinus, setMyAMinus] = useState(() => localStorage.getItem('myAMinus' || ''));
   const [myRk, setMyRk] = useState(() => localStorage.getItem('myRk' || ''));
+  const [my2018, setMy2018] = useState(() => localStorage.getItem('my2018' || ''));
+  const [my2017, setMy2017] = useState(() => localStorage.getItem('my2017' || ''));
+  const [my2016, setMy2016] = useState(() => localStorage.getItem('my2016' || ''));
+  const [my2015, setMy2015] = useState(() => localStorage.getItem('my2015' || ''));
+  const [my2014, setMy2014] = useState(() => localStorage.getItem('my2014' || ''));
+  const [my2013, setMy2013] = useState(() => localStorage.getItem('my2013' || ''));
+
   const [minorMaster, setMinorMaster] = useState();
   const [minorArray, setMinorArray] = useState();
   const [showTeamSelect, setShowTeamSelect] = useState(false);
@@ -217,15 +232,15 @@ const handleClick = (e, { value }) => {
 }, {})
 
 
-   /* useEffect(() => {
-       setMyAAA(localStorage.getItem('AAA'))
-       setMyAA(localStorage.getItem('AA'))
-       setMyAPlus(localStorage.getItem('APlus'))
-       setMyA(localStorage.getItem('A'))
-       setMyAMinus(localStorage.getItem('AMinus'))
-       setMyRk(localStorage.getItem('Rk'))
+    useEffect(() => {
+       setMyAAA(localStorage.getItem('myAAA'))
+       setMyAA(localStorage.getItem('myAA'))
+       setMyAPlus(localStorage.getItem('myAPlus'))
+       setMyA(localStorage.getItem('myA'))
+       setMyAMinus(localStorage.getItem('myAMinus'))
+       setMyRk(localStorage.getItem('myRk'))
 
-    }, {})*/
+    }, {})
 /*    useEffect(() => {
        setTheme(localStorage.getItem('theme'))
     }, {})*/
@@ -300,7 +315,7 @@ return (
           </Button.Group>
 
       </div>
-      <Icon onClick={() =>setShowTeamSelect(true)} bordered name="list" size="large"/>
+      <Icon onClick={() =>setShowTeamSelect(true)} bordered name="edit" size="large"/>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
@@ -476,6 +491,18 @@ return (
                 setMyAMinus={setMyAMinus}
                 myRk={myRk}
                 setMyRk={setMyRk}
+                my2018={my2018}
+                setMy2018={setMy2018}
+                my2017={my2017}
+                setMy2017={setMy2017}
+                my2016={my2016}
+                setMy2016={setMy2016}
+                my2015={my2015}
+                setMy2015={setMy2015}
+                my2014={my2014}
+                setMy2014={setMy2014}
+                my2013={my2013}
+                setMy2013={setMy2013}
                 />
  </Modal.Content>
   </Modal>
