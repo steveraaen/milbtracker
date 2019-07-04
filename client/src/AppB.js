@@ -8,7 +8,7 @@ import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
 import Switch from './components/Switch.js'
-import CurrentTeamB from './components/CurrentTeamB.js'
+import CurrentTeam from './components/CurrentTeam.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
@@ -27,14 +27,14 @@ const yrs = [
     { text: "2010", value: 2010, key: "2010" },
     { text: "2009", value: 2009, key: "2009" }
 ]
-localStorage.clear()
 
-localStorage.setItem('myAAA', 'Please select a team and year')
-localStorage.setItem('myAA', 'Please select a team and year')
-localStorage.setItem('myAMinus', 'Please select a team and year')
-localStorage.setItem('myA', 'Please select a team and year') 
-localStorage.setItem('myAPlus', 'Please select a team and year') 
-localStorage.setItem('myRk', 'Please select a team and year')
+/*
+localStorage.setItem('myAAA', '')
+localStorage.setItem('myAA', '')
+localStorage.setItem('myAMinus', '')
+localStorage.setItem('myA', '') 
+localStorage.setItem('myAPlus', '') 
+localStorage.setItem('myRk', '')*/
 
 function AppB() {
   const [selectedClass, setSelectedClass] = useState(classes[0]);
@@ -231,7 +231,6 @@ const handleClick = (e, { value }) => {
       getMinorMaster()
 }, {})
 
-
     useEffect(() => {
        setMyAAA(localStorage.getItem('myAAA'))
        setMyAA(localStorage.getItem('myAA'))
@@ -266,7 +265,7 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
-  <heading><div style={{marginBottom: '1.5vh', marginTop: '2.5vh',fontSize: '1.2em'}}>Farm Team Fantasy</div></heading>
+  <header><div style={{marginBottom: '1.5vh', marginTop: '2.5vh',fontSize: '1.2em'}}>Farm Team Fantasy</div></header>
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>
       <div style={{ display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
@@ -312,10 +311,10 @@ return (
             onClick={handleClick}  
         >Latest
         </Button>
-          </Button.Group>
-
+          </Button.Group>          
       </div>
-      <Icon onClick={() =>setShowTeamSelect(true)} bordered name="edit" size="large"/>
+<div> <Icon onClick={() =>setShowTeamSelect(true)} bordered name="user" size="large"/></div>
+<div> <Icon onClick={() =>setShowTeamSelect(true)} bordered name="edit" size="large"/></div>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
@@ -468,7 +467,7 @@ return (
         <Icon bordered  name="close" color="yellow" onClick={() => setShowTeamSelect(false)}/>
         </Modal.Header>
         <Modal.Content className='goLeft'>
-             <CurrentTeamB
+             <CurrentTeam
              getMousePos={getMousePos}
              mousePos={mousePos}
              setShowYearSelect={setShowYearSelect}
@@ -504,6 +503,7 @@ return (
                 my2013={my2013}
                 setMy2013={setMy2013}
                 />
+
  </Modal.Content>
   </Modal>
 

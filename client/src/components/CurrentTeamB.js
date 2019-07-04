@@ -1,16 +1,33 @@
-import React from 'react';
-import { Button, Container, Dropdown, Form, Grid, Icon, Image, Modal, Tab } from 'semantic-ui-react'
+import React, {useState, useEffect } from 'react';
+import { Button, Container, Dropdown, Form, Grid, Icon, Image, Modal, Segment, Tab } from 'semantic-ui-react'
 import ReactTable from 'react-table'
 
 import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
-const justYears = [2018, 2017, 2016, 2015, 2014, 2013]
 
 export default function CurrentTeam(props) {
 
+
+ ( function() {
+    for (let i = 0; i < props.minorMaster.length; i++) {
+        for (let j = 0; j < tmsLogos.length; j++) {
+            if (props.minorMaster[i].tmName === tmsLogos[j].tmName) {
+                props.minorMaster[i].curLogo = tmsLogos[j].logoPNG
+            }
+        }
+    }
+    props.minorMaster.map((lgo, idx) => {
+        lgo.logoCell = <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.curLogo} />
+        lgo.logoMaj = <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.franchLogo} />
+    
+        return lgo
+    })
+    }
+)()
     function handleYearClick(yr, tm, cl) {
         console.log(yr, tm, cl)
+
         switch(yr) {
             case 2018:
             props.setMy2018(`${yr} ${tm}`)
@@ -57,22 +74,9 @@ export default function CurrentTeam(props) {
         }
        localStorage.setItem(`my${cl}`, `${yr} ${tm}`) 
        localStorage.setItem(`my${yr}`, `${yr} ${tm}`) 
+
     }
 
-    for (let i = 0; i < props.minorMaster.length; i++) {
-        for (let j = 0; j < tmsLogos.length; j++) {
-            if (props.minorMaster[i].tmName === tmsLogos[j].tmName) {
-                props.minorMaster[i].curLogo = tmsLogos[j].logoPNG
-            }
-        }
-    }
-
-    props.minorMaster.map((lgo, idx) => {
-        lgo.logoCell = <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.curLogo} />
-        lgo.logoMaj = <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.franchLogo} />
-    
-        return lgo
-    })
     const aaa = props.minorMaster.filter(tm => tm.class === 'AAA')
     const aa = props.minorMaster.filter(tm => tm.class === 'AA')
     const aplus = props.minorMaster.filter(tm => tm.class === 'A+')
@@ -80,44 +84,51 @@ export default function CurrentTeam(props) {
     const aminus = props.minorMaster.filter(tm => tm.class === 'A-')
     const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
 
- function hideButtons (y) {
-   console.log(y)
-    var btns = document.getElementsByClassName(y)
+
+ function hideButtons () {
+    var btns = document.getElementsByClassName('ui button')
+   
     btns = [...btns].map((bt, ix) => {
       bt.disabled =true
     })
  }  
-const panes = [
-  { menuItem: 'Triple A', render: () => <Tab.Pane>
- 
-      <Grid className={`App ${props.theme}`}>
-      <span>{`Your current Triple A selection: ${props.myAAA}`}</span>
-          {aaa && aaa.map((tm, ix) => {
 
+
+const panes = [
+  { menuItem: 'Triple A', 
+      render: () => <Tab.Pane   >
+ 
+      
+{props.myAAA &&  
+<Container>
+      <Segment>
+      {`Your current Triple A selection: ${props.myAAA}`}
+      </Segment>
+</Container>
+}
+     <Grid className={`App ${props.theme}`}>
+
+          {!props.myAAA && aaa && aaa.map((tm, ix) => {
               return(             
-              <Grid.Row className="row">
+              <Grid.Row  key={tm.tmName} className="row">
                   <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
                   <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
-                      <Button.Group size='mini' widths='16'> 
-
+                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
                        <Button 
-                         key={idx} 
-                         className={`my${yr}`}   
-                        /* onClick={() => handleYearClick(yr, tm.tmName, tm.class )}*/
-                         onClick={() => hideButtons(`my${yr}`)}
+                         key={yr[idx]} 
+                         onClick={() => handleYearClick(yr, tm.tmName, tm.class )}
                          >
-                         {yr}</Button>
+                         {yr}
+                       </Button>
 
-                      </Button.Group>
-                              )
+                      </Button.Group>                            )
                       })}
                   </Grid.Column>
-              </Grid.Row>
-              
+              </Grid.Row>              
                   )
           })}
       </Grid>
@@ -139,8 +150,8 @@ const panes = [
                        <Button 
                          key={idx} 
                          className={`my${yr}`}   
-                        /* onClick={() => handleYearClick(yr, tm.tmName, tm.class )}*/
-                         onClick={() => hideButtons(`my${yr}`)}
+                         onClick={() => handleYearClick(yr, tm.tmName, tm.class )}
+                         /*onClick={() => hideButtons(`my${yr}`)}*/
                          >
                          {yr}</Button>
                     </Button.Group>
@@ -166,8 +177,8 @@ const panes = [
                        <Button 
                          key={idx} 
                          className={`my${yr}`}   
-                        /* onClick={() => handleYearClick(yr, tm.tmName, tm.class )}*/
-                         onClick={() => hideButtons(`my${yr}`)}
+                         onClick={() => handleYearClick(yr, tm.tmName, tm.class )}
+                         /*onClick={() => hideButtons(`my${yr}`)}*/
                          >
                          {yr}</Button>
                           </Button.Group>
@@ -193,8 +204,8 @@ const panes = [
                          <Button 
                          key={idx} 
                          className={`my${yr}`}   
-                        /* onClick={() => handleYearClick(yr, tm.tmName, tm.class )}*/
-                         onClick={() => hideButtons(`my${yr}`)}
+                         onClick={() => handleYearClick(yr, tm.tmName, tm.class )}
+                         /*onClick={() => hideButtons(`my${yr}`)}*/
                          >
                          {yr}</Button>
                           </Button.Group>
@@ -220,8 +231,8 @@ const panes = [
                        <Button 
                          key={idx} 
                          className={`my${yr}`}   
-                        /* onClick={() => handleYearClick(yr, tm.tmName, tm.class )}*/
-                         onClick={() => hideButtons(`my${yr}`)}
+                         onClick={() => handleYearClick(yr, tm.tmName, tm.class )}
+                         /*onClick={() => hideButtons(`my${yr}`)}*/
                          >
                          {yr}</Button>
                           </Button.Group>
@@ -247,8 +258,8 @@ const panes = [
                        <Button 
                          key={idx} 
                          className={`my${yr}`}   
-                        /* onClick={() => handleYearClick(yr, tm.tmName, tm.class )}*/
-                         onClick={() => hideButtons(`my${yr}`)}
+                         onClick={() => handleYearClick(yr, tm.tmName, tm.class )}
+                         /*onClick={() => hideButtons(`my${yr}`)}*/
                          >
                          {yr}</Button>
                           </Button.Group>
@@ -260,7 +271,11 @@ const panes = [
           })}
       </Grid></Tab.Pane> },
 ]
-    const Tabs = () => <Tab  panes={panes}/>
+    const Tabs = () => <Tab  
+                        panes={panes}
+                        onTabChange={()=> console.log('blah')}
+
+                        />
     return (
     <Container  >      
       <Tabs/>
