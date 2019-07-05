@@ -27,7 +27,7 @@ const yrs = [
     { text: "2010", value: 2010, key: "2010" },
     { text: "2009", value: 2009, key: "2009" }
 ]
-
+/*localStorage.clear()*/
 /*
 localStorage.setItem('myAAA', '')
 localStorage.setItem('myAA', '')
@@ -231,7 +231,7 @@ const handleClick = (e, { value }) => {
       getMinorMaster()
 }, {})
 
-    useEffect(() => {
+/*    useEffect(() => {
        setMyAAA(localStorage.getItem('myAAA'))
        setMyAA(localStorage.getItem('myAA'))
        setMyAPlus(localStorage.getItem('myAPlus'))
@@ -239,7 +239,7 @@ const handleClick = (e, { value }) => {
        setMyAMinus(localStorage.getItem('myAMinus'))
        setMyRk(localStorage.getItem('myRk'))
 
-    }, {})
+    }, {})*/
 /*    useEffect(() => {
        setTheme(localStorage.getItem('theme'))
     }, {})*/

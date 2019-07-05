@@ -8,10 +8,15 @@ import MyTeam from './MyTeam.js'
 import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
-
 export default function CurrentTeam(props) {
 
-
+/*function deleteTeam() {
+  var teamSplit = props.myAAA.split(' ') 
+  var splitYr = teamSplit[0]
+  `props.setMy${splitYr}(null)`
+  props.setMyAAA(null)
+}
+*/
  ( function() {
     for (let i = 0; i < props.minorMaster.length; i++) {
         for (let j = 0; j < tmsLogos.length; j++) {
@@ -22,15 +27,22 @@ export default function CurrentTeam(props) {
     }
     props.minorMaster.map((lgo, idx) => {
         lgo.logoCell = <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.curLogo} />
-        lgo.logoMaj = <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.franchLogo} />
-    
+        lgo.logoMaj = <Image key={`${lgo.tmName}${idx}`} size='tiny' rounded src={lgo.franchLogo} />   
         return lgo
     })
     }
 )()
     function handleYearClick(yr, tm, cl, team) {
-        console.log(yr, tm, cl)
-
+        switch(cl) {
+          case 'A+':
+          cl="APlus"
+          break;
+          case 'A-':
+          cl="AMinus"
+          break;
+          default: 
+          cl=cl
+        }
         switch(yr) {
             case 2018:
             props.setMy2018(`${yr} ${tm}`)
@@ -55,34 +67,34 @@ export default function CurrentTeam(props) {
         }
         switch(cl) {
             case 'AAA':
-            props.setMyAAA(team)
-         /*   localStorage.setItem('myAAA', team)*/
+            props.setMyAAA(`${yr} ${tm}`)
+         /*   localStorage.setItem('myAAA', `${yr} ${tm}`)*/
             break;
             case 'AA':
-            props.setMyAA(team)
-     /*       localStorage.setItem('myAA', team)*/
+            props.setMyAA(`${yr} ${tm}`)
+     /*       localStorage.setItem('myAA', `${yr} ${tm}`)*/
             break;
             case 'A+':
-            props.setMyAPlus(team)
-        /*    localStorage.setItem('myAPlus', team)*/
+            props.setMyAPlus(`${yr} ${tm}`)
+        /*    localStorage.setItem('myAPlus', `${yr} ${tm}`)*/
             break;
             case 'A':
-            props.setMyA(team)
-        /*    localStorage.setItem('myA', team)*/
+            props.setMyA(`${yr} ${tm}`)
+        /*    localStorage.setItem('myA', `${yr} ${tm}`)*/
             break;            
             case 'A-':
-            props.setMyAMinus(team)
-       /*     localStorage.setItem('myAMinus', team)*/
+            props.setMyAMinus(`${yr} ${tm}`)
+       /*     localStorage.setItem('myAMinus', `${yr} ${tm}`)*/
             break;
             case 'Rk':
-            props.setMyRk(team)
-        /*    localStorage.setItem('myRk', team)*/
+            props.setMyRk(`${yr} ${tm}`)
+        /*    localStorage.setItem('myRk', `${yr} ${tm}`)*/
             break;    
             default:
                     
         }
-       localStorage.setItem(`my${cl}`, team) 
-       localStorage.setItem(`my${yr}`, team) 
+       localStorage.setItem(`my${cl}`, `${yr} ${tm}`) 
+       localStorage.setItem(`my${yr}`, `${yr} ${tm}`) 
 
     }
 
@@ -101,69 +113,108 @@ export default function CurrentTeam(props) {
       bt.disabled =true
     })
  }  
-
     return (
     <Container  >      
   <Tabs>
     <TabList>
       <Tab>My Teams</Tab>
-      <Tab>Triple A</Tab>
-      <Tab>Double A</Tab>
-      <Tab>A Advanced</Tab>
-      <Tab>Class A</Tab>
-      <Tab>A Short</Tab>
-      <Tab>Rookie</Tab>
+{!props.myAAA && <Tab>Triple A</Tab>}
+{!props.myAA && <Tab>Double A</Tab>}
+{!props.myAPlus && <Tab>Advanced A</Tab>}
+{!props.myA && <Tab>Class A</Tab>}
+{!props.myAMinus && <Tab>Short A</Tab>}
+{!props.myRk && <Tab>Rookie</Tab>}
+
     </TabList>
 
 <TabPanel>
     <Grid columns={4}>
     {props.myAAA &&
     <Grid.Row style={{height: '15%'}}>
-      <h2>Triple A</h2>
-      <Image size="tiny" src={props.myAAA.curLogo} />
-      <div style={{fontSize: '1.4em', fontWeight: 600}}>{props.myAAA.yr + "  " + props.myAAA.tmName}</div>
-    </Grid.Row>     
+<Grid.Column width="3">  
+      <span style={{marginRight: '2vw'}}>Triple A</span>
+</Grid.Column>
+<Grid.Column width='6'>
+      <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAAA}</span>
+ </Grid.Column>
+ <Grid.Column width='6'>
+      <Button size="tiny" onClick={() => props.setMyAAA(null)}>Change</Button>
+ </Grid.Column>  
+   </Grid.Row>
+
 }    {props.myAA &&
     <Grid.Row style={{height: '15%'}}>
-      <h2>Double A</h2>
-      <Image size="tiny" src={props.myAA.curLogo} />
-      <div style={{fontSize: '1.4em', fontWeight: 600}}>{props.myAA.yr + "  " + props.myAA.tmName}</div>
-    </Grid.Row>     
+<Grid.Column width="3">  
+      <span style={{marginRight: '2vw'}}>Double A</span>
+ </Grid.Column>
+ <Grid.Column width='6'>
+      <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAA}</span>
+  </Grid.Column>
+  <Grid.Column width='6'>
+      <Button size="tiny">Change</Button>
+ </Grid.Column>  
+   </Grid.Row> 
+
 }{props.myAPlus &&
     <Grid.Row style={{height: '15%'}}>
-      <h2>Advanced A</h2>
-      <Image size="tiny" src={props.myAPlus.curLogo} />
-      <div style={{fontSize: '1.4em', fontWeight: 600}}>{props.myAPlus.yr + "  " + props.myAPlus.tmName}</div>
-    </Grid.Row>     
+<Grid.Column width="3">  
+      <span style={{marginRight: '2vw'}}>Advanced A</span>
+</Grid.Column>
+<Grid.Column width='6'>
+      <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAPlus}</span>
+ </Grid.Column> 
+ <Grid.Column width='6'>
+      <Button size="tiny">Change</Button>
+ </Grid.Column> 
+   </Grid.Row> 
+
 }{props.myA &&
     <Grid.Row style={{height: '15%'}}>
-      <h2>Class A</h2>
-      <Image size="tiny" src={props.myA.curLogo} />
-      <div style={{fontSize: '1.4em', fontWeight: 600}}>{props.myA.yr + "  " + props.myA.tmName}</div>
-    </Grid.Row>     
+<Grid.Column width="3">  
+      <span style={{marginRight: '2vw'}}>Class A</span>
+</Grid.Column>
+<Grid.Column width='6'>
+      <span style={{fontSize: '1em', fontWeight: 600}}>{props.myA}</span>
+ </Grid.Column>
+ <Grid.Column width='6'>
+      <Button size="tiny">Change</Button>
+ </Grid.Column>  
+   </Grid.Row> 
+
 }{props.myAMinus &&
     <Grid.Row style={{height: '15%'}}>
-      <h2>Short A</h2>
-      <Image size="tiny" src={props.myAMinus.curLogo} />
-      <div style={{fontSize: '1.4em', fontWeight: 600}}>{props.myAMinus.yr + "  " + props.myAMinus.tmName}</div>
-    </Grid.Row>     
+<Grid.Column width="3">  
+      <span style={{marginRight: '2vw'}}>Short A</span>
+ </Grid.Column>
+ <Grid.Column width='6'>
+      <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAMinus}</span>
+</Grid.Column>
+<Grid.Column width='6'>
+      <Button size="tiny">Change</Button>
+ </Grid.Column> 
+    </Grid.Row> 
+
 }{props.myRk &&
     <Grid.Row style={{height: '15%'}}>
-      <h2>Rookie</h2>
-      <Image size="tiny" src={props.myRk.curLogo} />
-      <div style={{fontSize: '1.4em', fontWeight: 600}}>{props.myRk.yr + "  " + props.myRk.tmName}</div>
+<Grid.Column width="3">  
+      <span style={{marginRight: '2vw'}}>Rookie</span>
+</Grid.Column>
+<Grid.Column width='6'>
+      <span style={{fontSize: '1em', fontWeight: 600}}>{props.myRk}</span>
+</Grid.Column>
+<Grid.Column width='6'>
+      <Button size="tiny">Change</Button>
+ </Grid.Column> 
     </Grid.Row>     
 }
-
-
   </Grid>
 </TabPanel>
-
- 
+ {!props.myAAA && aaa && aaa.map((tm, ix) => {
+   return(     
     <TabPanel>
      <Grid className={`App ${props.theme}`}>
-          {!props.myAAA && aaa && aaa.map((tm, ix) => {
-              return(             
+         
+        
               <Grid.Row  key={tm.tmName} className="row">
                   <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
@@ -182,10 +233,11 @@ export default function CurrentTeam(props) {
                       })}
                   </Grid.Column>
               </Grid.Row>              
-                  )
-          })}
+                  
+          
       </Grid>
     </TabPanel>
+    )})}
     <TabPanel>
      <Grid className={`App ${props.theme}`}>
 
