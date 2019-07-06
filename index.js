@@ -334,6 +334,47 @@ console.log(results)
     if (error) throw error;
    });
 })
+app.get('/api/getMyTeam', function(req, res) {
+console.log(req.query)
+  connection.query(`select 
+finalHist.franchise,
+finalHist.franchiseName,
+finalHist.majLg,
+finalHist.class,
+finalHist.yr,  
+finalHist.logoPNG,  
+finalHist.franchLogo,  
+finalHist.tmName,  
+latestBatting.lg,
+latestBatting.playerName,
+latestBatting.playerID,
+latestBatting.tm as curTeam,
+latestBatting.AB, 
+latestBatting.H, 
+latestBatting.HR,
+latestBatting.RBI,
+latestBatting.R,
+latestBatting.BB,
+latestBatting.B2,
+latestBatting.B3,
+latestBatting.TB,
+latestBatting.SB,
+SUM(latestBatting.TB + latestBatting.RBI) AS TBRBI,
+FORMAT(latestBatting.H / latestBatting.AB,3) as AVG
+from finalHist, latestBatting 
+where latestBatting.AB > 0
+and finalHist.playerID= latestBatting.playerID 
+and finalHist.tmName= ? 
+and finalHist.yr = ? 
+group by playerID
+order by latestBatting.TB desc`,[req.query.tm, req.query.yr],function (error, results, fields) {
+console.log(results)
+      res.json(results)
+    if (error) throw error;
+   });
+})
+
+
 const port = process.env.PORT || 5001;
 app.listen(port);
 console.log(`Listening on ${port}`);

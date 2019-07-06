@@ -27,7 +27,7 @@ const yrs = [
     { text: "2010", value: 2010, key: "2010" },
     { text: "2009", value: 2009, key: "2009" }
 ]
-/*localStorage.clear()*/
+localStorage.clear()
 /*
 localStorage.setItem('myAAA', '')
 localStorage.setItem('myAA', '')
@@ -73,6 +73,7 @@ function AppB() {
   const [myA, setMyA] = useState(() => localStorage.getItem('myA' || ''));
   const [myAMinus, setMyAMinus] = useState(() => localStorage.getItem('myAMinus' || ''));
   const [myRk, setMyRk] = useState(() => localStorage.getItem('myRk' || ''));
+  const [myPlayers, setMyPlayers] = useState();
   const [my2018, setMy2018] = useState(() => localStorage.getItem('my2018' || ''));
   const [my2017, setMy2017] = useState(() => localStorage.getItem('my2017' || ''));
   const [my2016, setMy2016] = useState(() => localStorage.getItem('my2016' || ''));
@@ -81,6 +82,12 @@ function AppB() {
   const [my2013, setMy2013] = useState(() => localStorage.getItem('my2013' || ''));
 
   const [minorMaster, setMinorMaster] = useState();
+  const [allAAA, setAllAAA] = useState();
+  const [allAA, setAllAA] = useState();
+  const [allAPlus, setAllAPlus] = useState();
+  const [allA, setAllA] = useState();
+  const [allAMinus, setAllAMinus] = useState();
+  const [allRk, setAllRk] = useState();
   const [minorArray, setMinorArray] = useState();
   const [showTeamSelect, setShowTeamSelect] = useState(false);
   const [showYearSelect, setShowYearSelect] = useState(false);
@@ -98,14 +105,29 @@ async function getMousePos(e) {
   })
 
 }
-
-
     function toggleFormSidebar() {
         !formVisible ? setFormVisible(true) : setFormVisible(false)
     }
     function showPlayersSidebar() {
         setPlayersVisible(true) 
     }
+async function getMyPlayers(yr, tm) {
+  const myPlayersPromise = axios('/api/getMyTeam', {params: {yr, tm}})
+  var myPlayers = await myPlayersPromise
+  for(let i = 0; i < myPlayers.data.length; i++) {
+    for(let j = 0; j < mlbTeams.length; j++) {
+      if(myPlayers.data[i].curTeam === mlbTeams[j].teamCode){
+        myPlayers.data[i].curTeamLogo = mlbTeams[j].picUrl
+        myPlayers.data[i].curTeamName = mlbTeams[j].teamName
+      }
+    }
+  }
+
+
+
+  setMyPlayers(myPlayers.data)
+}
+
 async function getMinorMaster() {
   try {
     const minorMasterPromise = axios('/api/minorMaster')
@@ -117,8 +139,6 @@ async function getMinorMaster() {
       var tmObj = {}
       var yrArr =[]
        tmObj.tm = mmstr.data[i].tmName
-
-
       for(let j = 0; j < mYrs.data.length; j++) {
         if (mYrs.data[j].tmName === tmObj.tm) {
            yrArr.push(mYrs.data[j].yr)
@@ -128,8 +148,15 @@ async function getMinorMaster() {
       mmstr.data[i].years = yrArr
       tmYrObjArr.push(tmObj)
     }
-
         setMinorArray(tmYrObjArr)
+    setAllAAA(mmstr.data.filter(tm => tm.class === 'AAA'))
+    setAllAA(mmstr.data.filter(tm => tm.class === 'AA'))
+    setAllAPlus(mmstr.data.filter(tm => tm.class === 'A+'))
+    setAllA(mmstr.data.filter(tm => tm.class === 'A'))
+    setAllAMinus(mmstr.data.filter(tm => tm.class === 'A-'))
+    setAllRk(mmstr.data.filter(tm => tm.class === 'Rk'))
+
+
         setMinorMaster(mmstr.data)
           }   catch (e) {
             console.error(e);
@@ -222,8 +249,9 @@ const handleClick = (e, { value }) => {
             }
 }
 
-/*async function handleFirstVisit() {
 
+
+/*async function handleFirstVisit() {
   await  localStorage.setItem('showModal', false)
     setModalOpen(false)  
 }*/
@@ -468,6 +496,14 @@ return (
         </Modal.Header>
         <Modal.Content className='goLeft'>
              <CurrentTeam
+             myPlayers={myPlayers}
+             getMyPlayers={getMyPlayers}
+             allAAA={allAAA}
+             allAA={allAA}
+             allAPlus={allAPlus}
+             allA={allA}
+             allAMinus={allAMinus}
+             allRk={allRk}
              getMousePos={getMousePos}
              mousePos={mousePos}
              setShowYearSelect={setShowYearSelect}

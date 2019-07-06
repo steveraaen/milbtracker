@@ -6,6 +6,7 @@ import ReactTable from 'react-table'
 
 import MyTeam from './MyTeam.js'
 import tmsLogos from '../lgos/namesAndLogos.js'
+
 import '../App.css'
 
 export default function CurrentTeam(props) {
@@ -32,17 +33,10 @@ export default function CurrentTeam(props) {
     })
     }
 )()
-    function handleYearClick(yr, tm, cl, team) {
-        switch(cl) {
-          case 'A+':
-          cl="APlus"
-          break;
-          case 'A-':
-          cl="AMinus"
-          break;
-          default: 
-          cl=cl
-        }
+    function handleYearClick(yr, tm, cl) {
+      props.getMyPlayers(yr, tm)
+      hideButtons(yr)
+          console.log(yr, tm, cl)
         switch(yr) {
             case 2018:
             props.setMy2018(`${yr} ${tm}`)
@@ -95,36 +89,25 @@ export default function CurrentTeam(props) {
         }
        localStorage.setItem(`my${cl}`, `${yr} ${tm}`) 
        localStorage.setItem(`my${yr}`, `${yr} ${tm}`) 
-
     }
-
-    const aaa = props.minorMaster.filter(tm => tm.class === 'AAA')
-    const aa = props.minorMaster.filter(tm => tm.class === 'AA')
-    const aplus = props.minorMaster.filter(tm => tm.class === 'A+')
-    const a = props.minorMaster.filter(tm => tm.class === 'A')
-    const aminus = props.minorMaster.filter(tm => tm.class === 'A-')
-    const rk = props.minorMaster.filter(tm => tm.class === 'Rk')
-
-
- function hideButtons () {
-    var btns = document.getElementsByClassName('ui button')
-   
+ function hideButtons (yr) {
+    var btns = document.getElementsByClassName(`ui button my${yr}`)  
     btns = [...btns].map((bt, ix) => {
       bt.disabled =true
     })
+
  }  
     return (
     <Container  >      
   <Tabs>
     <TabList>
       <Tab>My Teams</Tab>
-{!props.myAAA && <Tab>Triple A</Tab>}
-{!props.myAA && <Tab>Double A</Tab>}
-{!props.myAPlus && <Tab>Advanced A</Tab>}
-{!props.myA && <Tab>Class A</Tab>}
-{!props.myAMinus && <Tab>Short A</Tab>}
-{!props.myRk && <Tab>Rookie</Tab>}
-
+      <Tab>Triple A</Tab>
+      <Tab>Double A</Tab>
+      <Tab>Advanced A</Tab>
+      <Tab>Class A</Tab>
+      <Tab>Short A</Tab>
+      <Tab>Rookie</Tab>
     </TabList>
 
 <TabPanel>
@@ -138,7 +121,7 @@ export default function CurrentTeam(props) {
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAAA}</span>
  </Grid.Column>
  <Grid.Column width='6'>
-      <Button size="tiny" onClick={() => props.setMyAAA(null)}>Change</Button>
+      <Button size="tiny" onClick={() => props.setMyAAA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row>
 
@@ -209,12 +192,12 @@ export default function CurrentTeam(props) {
 }
   </Grid>
 </TabPanel>
- {!props.myAAA && aaa && aaa.map((tm, ix) => {
-   return(     
+  
     <TabPanel>
-     <Grid className={`App ${props.theme}`}>
-         
-        
+
+     <Grid className={`App ${props.theme}`}>       
+  {!props.myAAA && props.allAAA && props.allAAA.map((tm, ix) => {
+   return(          
               <Grid.Row  key={tm.tmName} className="row">
                   <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
@@ -222,26 +205,104 @@ export default function CurrentTeam(props) {
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
+                  
                       <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
-                       <Button 
+                       <Button className={`my${yr}`}
                          key={yr[idx]} 
                          onClick={() => handleYearClick(yr, tm.tmName, tm.class, tm )}
                          >
                          {yr}
                        </Button>
-                      </Button.Group>                            )
+                      </Button.Group>  
+                                    )
                       })}
                   </Grid.Column>
               </Grid.Row>              
-                  
+       )})} 
+       {props.myAAA && 
+<div className={`App ${props.theme}`} style={{display: 'flex', flexDirection: 'column'}}>
+<Button size="tiny" onClick={() => props.setMyAAA()}>Change</Button>
+          <span style={{fontSize: '1.2em'}}>{` Current Triple A:  ${props.myAAA}`}</span>
+          <Grid>
+                <Grid.Row>
+                  <Grid.Column width='3'>
+                   <div>MLB Team</div>
+                  </Grid.Column>
+                  <Grid.Column width='3'>
+                    <span>Player</span>
+                  </Grid.Column>
+                  <Grid.Column width='3'>
+                    <span>AVG </span>
+                  </Grid.Column>
+                 <Grid.Column width='3'>
+                    <span>AB</span>
+                  </Grid.Column>
+                 <Grid.Column width='3'>
+                    <span>TB</span>
+                  </Grid.Column>
+                </Grid.Row>
+          {props.myPlayers && 
+            props.myPlayers.map((plyr, idx)=> {
+              return(
+                <Grid.Row>
+                  <Grid.Column width='3'>
+                    <Image size='mini' src={plyr.curTeamLogo} />
+                  </Grid.Column>
+                  <Grid.Column width='3'>
+                    <span>{plyr.playerName}</span>
+                  </Grid.Column>
+                  <Grid.Column width='3'>
+                    <span>{plyr.AVG} </span>
+                  </Grid.Column>
+                 <Grid.Column width='3'>
+                    <span>{plyr.AB} </span>
+                  </Grid.Column>
+                 <Grid.Column width='3'>
+                    <span>{plyr.TB} </span>
+                  </Grid.Column>
+                </Grid.Row>
+                )
+            })
+
+            }
+          </Grid>        
+</div>          
+        }              
           
       </Grid>
     </TabPanel>
-    )})}
+
     <TabPanel>
      <Grid className={`App ${props.theme}`}>
 
-          {!props.myAA && aa && aa.map((tm, ix) => {
+          {props.allAA && props.allAA.map((tm, ix) => {
+              return(             
+              <Grid.Row  key={tm.tmName} className="row">
+                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
+                  <Grid.Column width={3}>{tm.tmName}</Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
+                  <Grid.Column width={9}>
+                      {tm.years.map((yr, idx) => {
+                          return(
+                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
+                       <Button  className={`my${yr}`}
+                         key={yr[idx]} 
+                         onClick={() => handleYearClick(yr, tm.tmName, tm.class, tm )}
+                         >
+                         {yr}
+                       </Button>
+                      </Button.Group>                            )
+                      })}
+                  </Grid.Column>
+              </Grid.Row>              
+                  )
+          })}
+      </Grid>
+    </TabPanel>
+    <TabPanel>
+     <Grid className={`App ${props.theme}`}>
+
+          {props.allAPlus && props.allAPlus.map((tm, ix) => {
               return(             
               <Grid.Row  key={tm.tmName} className="row">
                   <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
@@ -268,34 +329,7 @@ export default function CurrentTeam(props) {
     <TabPanel>
      <Grid className={`App ${props.theme}`}>
 
-          {!props.myAPlus && aplus && aplus.map((tm, ix) => {
-              return(             
-              <Grid.Row  key={tm.tmName} className="row">
-                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
-                  <Grid.Column width={3}>{tm.tmName}</Grid.Column>
-                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
-                  <Grid.Column width={9}>
-                      {tm.years.map((yr, idx) => {
-                          return(
-                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
-                       <Button 
-                         key={yr[idx]} 
-                         onClick={() => handleYearClick(yr, tm.tmName, tm.class, tm )}
-                         >
-                         {yr}
-                       </Button>
-                      </Button.Group>                            )
-                      })}
-                  </Grid.Column>
-              </Grid.Row>              
-                  )
-          })}
-      </Grid>
-    </TabPanel>
-    <TabPanel>
-     <Grid className={`App ${props.theme}`}>
-
-          {!props.myA && a && a.map((tm, ix) => {
+          {props.allA && props.allA.map((tm, ix) => {
               return(             
               <Grid.Row  key={tm.tmName} className="row">
                   <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
@@ -322,7 +356,8 @@ export default function CurrentTeam(props) {
     <TabPanel>
      <Grid className={`App ${props.theme}`}>
 
-          {!props.myAMinus && aminus && aminus.map((tm, ix) => {
+          {props.allAMinus && props.allAMinus.map((tm, ix) => {
+
               return(             
               <Grid.Row  key={tm.tmName} className="row">
                   <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
@@ -349,7 +384,8 @@ export default function CurrentTeam(props) {
     <TabPanel>
      <Grid className={`App ${props.theme}`}>
 
-          {!props.myRk && rk && rk.map((tm, ix) => {
+          {props.allRk && props.allRk.map((tm, ix) => {
+  
               return(             
               <Grid.Row  key={tm.tmName} className="row">
                   <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
@@ -360,7 +396,7 @@ export default function CurrentTeam(props) {
                           return(
                       <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
                        <Button 
-                         key={yr[idx]} 
+                         key={yr} 
                          onClick={() => handleYearClick(yr, tm.tmName, tm.class, tm  )}
                          >
                          {yr}
