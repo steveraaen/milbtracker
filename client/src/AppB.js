@@ -93,6 +93,8 @@ function AppB() {
   const [showYearSelect, setShowYearSelect] = useState(false);
   const [selectedTmYrs, setSelectedTmYrs] = useState();
   const [mousePos, setMousePos] = useState();
+  const [openConfirm, setOpenConfirm] = useState()
+
 
   const toggleTheme = (th) => {
       localStorage.setItem("theme", th);
@@ -122,9 +124,6 @@ async function getMyPlayers(yr, tm) {
       }
     }
   }
-
-
-
   setMyPlayers(myPlayers.data)
 }
 
@@ -249,13 +248,7 @@ const handleClick = (e, { value }) => {
             }
 }
 
-
-
-/*async function handleFirstVisit() {
-  await  localStorage.setItem('showModal', false)
-    setModalOpen(false)  
-}*/
-  useEffect(() => {
+ useEffect(() => {
       getMinorMaster()
 }, {})
 
@@ -341,7 +334,6 @@ return (
         </Button>
           </Button.Group>          
       </div>
-<div> <Icon onClick={() =>setShowTeamSelect(true)} bordered name="user" size="large"/></div>
 <div> <Icon onClick={() =>setShowTeamSelect(true)} bordered name="edit" size="large"/></div>
     </div>
         <Sidebar.Pushable 
@@ -496,6 +488,8 @@ return (
         </Modal.Header>
         <Modal.Content className='goLeft'>
              <CurrentTeam
+             openConfirm={openConfirm}
+             setOpenConfirm={setOpenConfirm}
              myPlayers={myPlayers}
              getMyPlayers={getMyPlayers}
              allAAA={allAAA}

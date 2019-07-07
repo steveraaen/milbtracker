@@ -117,7 +117,11 @@ const panes = [
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
-                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
+                      <Button.Group 
+                        key={tm.tmName + idx} 
+                        size='mini' 
+                        float='left' 
+                        widths='16'> 
                        <Button 
                          key={yr[idx]} 
                          onClick={() => handleYearClick(yr, tm.tmName, tm.class )}
