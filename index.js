@@ -5,12 +5,13 @@ const mysql = require('mysql')
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-
+var Moniker = require('moniker');
+var os = require('os')
 const app = express()
 
+console.log(os.userInfo())
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-console.log(process.env)
 var connection  = mysql.createConnection({
     host: process.env.DB_HOST,
     port: '3306',
@@ -19,6 +20,17 @@ var connection  = mysql.createConnection({
     database: process.env.DB_NAME,
      multipleStatements: true
 });
+// Check for user
+app.get('/api/user', function(req, res) {
+  connection.query(`SELECT * from users`)
+})
+
+
+app.get('/api/randomName/', function(req, res) {
+  var names = Moniker.generator([Moniker.adjective, Moniker.noun]);
+res.json(names.choose())
+})
+
 // Retrieve pitch data for getPlayerList
 app.get('/api/playerPitchSeason', function(req, res) {
   connection.query(`select 

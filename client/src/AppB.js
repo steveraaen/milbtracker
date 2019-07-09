@@ -2,6 +2,7 @@
 import React, { useState, useEffect} from 'react';
 import { Button,  Icon,  Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
+
 import { ClassPicker, YearPicker } from './components/Selections.js'
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
@@ -9,9 +10,22 @@ import IsLoading from './components/IsLoading.js'
 import Explain from './components/Explain.js'
 import Switch from './components/Switch.js'
 import CurrentTeam from './components/CurrentTeam.js'
+import Login from './components/Login.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
+import * as firebase from 'firebase';
+  var firebaseConfig = {
+    apiKey: "AIzaSyBbsausI3K8uWLkCSxOlpR6fnmldVklLvU",
+    authDomain: "milb-5cd63.firebaseapp.com",
+    databaseURL: "https://milb-5cd63.firebaseio.com",
+    projectId: "milb-5cd63",
+    storageBucket: "",
+    messagingSenderId: "553001988373",
+    appId: "1:553001988373:web:1a53e8b3b46703a0"
+  };
+  // Initialize Firebase
+  var app = firebase.initializeApp(firebaseConfig);
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
@@ -27,7 +41,7 @@ const yrs = [
     { text: "2010", value: 2010, key: "2010" },
     { text: "2009", value: 2009, key: "2009" }
 ]
-localStorage.clear()
+/*localStorage.clear()*/
 /*
 localStorage.setItem('myAAA', '')
 localStorage.setItem('myAA', '')
@@ -53,6 +67,7 @@ function AppB() {
   const [tfObj] = useState({});
   const [modalOpen, setModalOpen] = useState();
   const [formVisible, setFormVisible] = useState(false);
+  const [loginVisible, setLoginVisible] = useState(true);
   const [playersVisible, setPlayersVisible] = useState();
   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
@@ -69,9 +84,9 @@ function AppB() {
   const [showTRMenu, setShowTRMenu] = useState();
   const [myAAA, setMyAAA] = useState(() => localStorage.getItem('myAAA' || ''));
   const [myAA, setMyAA] = useState(() => localStorage.getItem('myAA' || ''));
-  const [myAPlus, setMyAPlus] = useState(() => localStorage.getItem('myAPlus' || ''));
+  const [myAPlus, setMyAPlus] = useState(() => localStorage.getItem('myA+' || ''));
   const [myA, setMyA] = useState(() => localStorage.getItem('myA' || ''));
-  const [myAMinus, setMyAMinus] = useState(() => localStorage.getItem('myAMinus' || ''));
+  const [myAMinus, setMyAMinus] = useState(() => localStorage.getItem('myA-' || ''));
   const [myRk, setMyRk] = useState(() => localStorage.getItem('myRk' || ''));
   const [myPlayers, setMyPlayers] = useState();
   const [my2018, setMy2018] = useState(() => localStorage.getItem('my2018' || ''));
@@ -94,6 +109,8 @@ function AppB() {
   const [selectedTmYrs, setSelectedTmYrs] = useState();
   const [mousePos, setMousePos] = useState();
   const [openConfirm, setOpenConfirm] = useState()
+  const [myEmail, setMyEmail] = useState()
+  const [myUserName, setMyUserName] = useState()
 
 
   const toggleTheme = (th) => {
@@ -478,9 +495,8 @@ return (
       </Sidebar.Pusher>
    </Sidebar.Pushable>
      <Modal   
-    centered={false}
-
-    open={showTeamSelect}
+        centered={false}
+        open={showTeamSelect}
    >
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Select one team and year for each class</div>
@@ -536,7 +552,30 @@ return (
 
  </Modal.Content>
   </Modal>
+     <Modal   
+        centered={false}
+        open={loginVisible}
+     >
+      <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
+        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}>Get a verification link via email</div>
 
+        <Icon bordered  name="close" color="yellow" onClick={() => setLoginVisible(false)}/>
+        </Modal.Header>
+        <Modal.Content className='goLeft'>
+        <p> Signing in is optional.  It enables you compate your teams' success to others, but if you'd like to browse around, dismiss this window.</p>
+             <Login
+                 app={app}
+                 myEmail={myEmail}
+                 setMyEmail={setMyEmail}
+                 myUserName={myUserName}
+                 setMyUserName={setMyUserName}
+                 loginVisible={loginVisible}
+                 setLoginVisible={setLoginVisible}
+
+                />
+
+ </Modal.Content>
+  </Modal>
     <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
     )}

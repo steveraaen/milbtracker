@@ -12,11 +12,16 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
     "chalk": "^2.4.2",
     "dotenv": "^7.0.0",
     "download": "^7.1.0",
     "express": "^4.16.4",
+    "moniker": "^0.1.2",
     "mysql": "^2.16.0",
+    "os": "^0.1.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "puppeteer": "^1.15.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
