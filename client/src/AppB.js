@@ -15,15 +15,9 @@ import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import * as firebase from 'firebase';
-  var firebaseConfig = {
-    apiKey: "AIzaSyBbsausI3K8uWLkCSxOlpR6fnmldVklLvU",
-    authDomain: "milb-5cd63.firebaseapp.com",
-    databaseURL: "https://milb-5cd63.firebaseio.com",
-    projectId: "milb-5cd63",
-    storageBucket: "",
-    messagingSenderId: "553001988373",
-    appId: "1:553001988373:web:1a53e8b3b46703a0"
-  };
+import firebaseConfig from './pk.js'
+
+console.log(firebaseConfig)
   // Initialize Firebase
   var app = firebase.initializeApp(firebaseConfig);
 

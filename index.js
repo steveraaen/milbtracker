@@ -9,7 +9,7 @@ var Moniker = require('moniker');
 var os = require('os')
 const app = express()
 
-console.log(os.userInfo())
+console.log(os.hostname())
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 var connection  = mysql.createConnection({
