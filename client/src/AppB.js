@@ -15,11 +15,20 @@ import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
 import * as firebase from 'firebase';
-import firebaseConfig from './pk.js'
 
-console.log(firebaseConfig)
+localStorage.clear()
+
+ var firebaseConfig = {
+    apiKey: 'AIzaSyBbsausI3K8uWLkCSxOlpR6fnmldVklLvU',
+    authDomain: 'milb-5cd63.firebaseapp.com',
+    databaseURL: 'https://milb-5cd63.firebaseio.com',
+    projectId: 'milb-5cd63',
+    storageBucket: '',
+    messagingSenderId: '553001988373',
+    appId: '1:553001988373:web:1a53e8b3b46703a0'
+  };
   // Initialize Firebase
-  var app = firebase.initializeApp(firebaseConfig);
+ var app = firebase.initializeApp(firebaseConfig);
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
@@ -103,8 +112,8 @@ function AppB() {
   const [selectedTmYrs, setSelectedTmYrs] = useState();
   const [mousePos, setMousePos] = useState();
   const [openConfirm, setOpenConfirm] = useState()
-  const [myEmail, setMyEmail] = useState()
-  const [myUserName, setMyUserName] = useState()
+  const [myEmail, setMyEmail] = useState(()=> localStorage.getItem('myEmail' || ''))
+  const [myUserName, setMyUserName] = useState(()=> localStorage.getItem('myUserName' || ''))
 
 
   const toggleTheme = (th) => {
@@ -258,23 +267,21 @@ const handleClick = (e, { value }) => {
               setTimePitchURL('/api/playerPitchYest')
             }
 }
+const areYouLoggedIn = () => {
+  if(myEmail) {
+  setShowTeamSelect(true)
+} else {
+  setLoginVisible(true)
+}
+}
+
+
+
 
  useEffect(() => {
       getMinorMaster()
 }, {})
 
-/*    useEffect(() => {
-       setMyAAA(localStorage.getItem('myAAA'))
-       setMyAA(localStorage.getItem('myAA'))
-       setMyAPlus(localStorage.getItem('myAPlus'))
-       setMyA(localStorage.getItem('myA'))
-       setMyAMinus(localStorage.getItem('myAMinus'))
-       setMyRk(localStorage.getItem('myRk'))
-
-    }, {})*/
-/*    useEffect(() => {
-       setTheme(localStorage.getItem('theme'))
-    }, {})*/
     useEffect(() => {
       localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
     }, {})
@@ -284,8 +291,8 @@ const handleClick = (e, { value }) => {
     useEffect(() => {
       setBorderCol(timeframe === 'yesterday' ? '#3E85CA' : '#ABBB3D'
       )
-
     })
+
 if(loading) {
   return (    <IsLoading
                 theme={theme}
@@ -345,7 +352,7 @@ return (
         </Button>
           </Button.Group>          
       </div>
-<div> <Icon onClick={() =>setShowTeamSelect(true)} bordered name="edit" size="large"/></div>
+<div> <Icon onClick={() => areYouLoggedIn() } bordered name="edit" size="large"/></div>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
@@ -491,57 +498,58 @@ return (
      <Modal   
         centered={false}
         open={showTeamSelect}
+
    >
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> Select one team and year for each class</div>
-        <Icon bordered  name="close" color="yellow" onClick={() => setShowTeamSelect(false)}/>
+        <Icon bordered name="close" color="yellow" onClick={() => setShowTeamSelect(false)}/>
         </Modal.Header>
         <Modal.Content className='goLeft'>
              <CurrentTeam
-             openConfirm={openConfirm}
-             setOpenConfirm={setOpenConfirm}
-             myPlayers={myPlayers}
-             getMyPlayers={getMyPlayers}
-             allAAA={allAAA}
-             allAA={allAA}
-             allAPlus={allAPlus}
-             allA={allA}
-             allAMinus={allAMinus}
-             allRk={allRk}
-             getMousePos={getMousePos}
-             mousePos={mousePos}
-             setShowYearSelect={setShowYearSelect}
-             showYearSelect={showYearSelect}
-             theme={theme}
-             setSelectedMiLBName={setSelectedMiLBName}
-             selectedMiLBName={selectedMiLBName}
-             selectedTmYrs={selectedTmYrs}
-             getTeamYears={getTeamYears}
-               minorMaster={minorMaster}
-                myAAA={myAAA}
-                setMyAAA={setMyAAA}
-                myAA={myAA}
-                setMyAA={setMyAA}
-                myAPlus={myAPlus}
-                setMyAPlus={setMyAPlus}  
-                myA={myA}
-                setMyA={setMyA}                  
-                myAMinus={myAMinus}
-                setMyAMinus={setMyAMinus}
-                myRk={myRk}
-                setMyRk={setMyRk}
-                my2018={my2018}
-                setMy2018={setMy2018}
-                my2017={my2017}
-                setMy2017={setMy2017}
-                my2016={my2016}
-                setMy2016={setMy2016}
-                my2015={my2015}
-                setMy2015={setMy2015}
-                my2014={my2014}
-                setMy2014={setMy2014}
-                my2013={my2013}
-                setMy2013={setMy2013}
+              openConfirm={openConfirm}
+              setOpenConfirm={setOpenConfirm}
+              myPlayers={myPlayers}
+              getMyPlayers={getMyPlayers}
+              allAAA={allAAA}
+              allAA={allAA}
+              allAPlus={allAPlus}
+              allA={allA}
+              allAMinus={allAMinus}
+              allRk={allRk}
+              getMousePos={getMousePos}
+              mousePos={mousePos}
+              setShowYearSelect={setShowYearSelect}
+              showYearSelect={showYearSelect}
+              theme={theme}
+              setSelectedMiLBName={setSelectedMiLBName}
+              selectedMiLBName={selectedMiLBName}
+              selectedTmYrs={selectedTmYrs}
+              getTeamYears={getTeamYears}
+              minorMaster={minorMaster}
+              myAAA={myAAA}
+              setMyAAA={setMyAAA}
+              myAA={myAA}
+              setMyAA={setMyAA}
+              myAPlus={myAPlus}
+              setMyAPlus={setMyAPlus}  
+              myA={myA}
+              setMyA={setMyA}                  
+              myAMinus={myAMinus}
+              setMyAMinus={setMyAMinus}
+              myRk={myRk}
+              setMyRk={setMyRk}
+              my2018={my2018}
+              setMy2018={setMy2018}
+              my2017={my2017}
+              setMy2017={setMy2017}
+              my2016={my2016}
+              setMy2016={setMy2016}
+              my2015={my2015}
+              setMy2015={setMy2015}
+              my2014={my2014}
+              setMy2014={setMy2014}
+              my2013={my2013}
+              setMy2013={setMy2013}
                 />
 
  </Modal.Content>
