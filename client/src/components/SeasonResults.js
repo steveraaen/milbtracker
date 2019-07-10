@@ -1,4 +1,3 @@
-'use strict'
 
 import React, { useEffect } from 'react';
 import { Grid,  Image,  Popup} from 'semantic-ui-react'

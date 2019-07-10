@@ -5,11 +5,14 @@ const mysql = require('mysql')
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-var Moniker = require('moniker');
+var Moniker = require('moniker');/*
+const passport = require('passport');
+const Strategy = require('passport-local').Strategy;*/
 var os = require('os')
 const app = express()
 
-console.log(os.hostname())
+
+console.log(os.userInfo())
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 var connection  = mysql.createConnection({
@@ -20,18 +23,7 @@ var connection  = mysql.createConnection({
     database: process.env.DB_NAME,
      multipleStatements: true
 });
-var firebaseConfig={
-    apiKey: process.env.APIKEY,
-    authDomain: process.env.AUTHDOMAIN,
-    databaseURL: process.env.DATABASEURL,
-    projectId: process.env.PROJECTID,
-    storageBucket: "",
-    messagingSenderId: process.env.MESSAGINGSENDERID,
-    appId: process.env.APPID
-}
-app.get('/api/fbconf/', function(req, res) {
-  res.json(firebaseConfig)
-})
+
 // Check for user
 app.get('/api/user', function(req, res) {
   connection.query(`SELECT * from users`)

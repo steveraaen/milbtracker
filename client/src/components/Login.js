@@ -5,43 +5,31 @@ import axios from 'axios'
 
 
 export default function Login(props) {
-/*localStorage.clear()*/
+
 function handleChange() {
  props.setMyEmail(document.getElementById('email').value);
+
  props.setMyUserName(document.getElementById('uname').value);
 }
 async function makeRandomName() {
 
     const randomNamePromise = axios('/api/randomName/')
     const randomName = await randomNamePromise
-    props.setMyUserName(randomName.data)
-    localStorage.setItem('myUserName', randomName.data);
+    var spltName = randomName.data.split('-')
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+   var firstRandomName = capitalizeFirstLetter(spltName[0])
+   var lastRandomName = capitalizeFirstLetter(spltName[1])
+   var newName = `${firstRandomName} ${lastRandomName}`
+
+    props.setMyUserName(newName)
+    localStorage.setItem('myUserName', newName);
 }
 
 
-var actionCodeSettings = {
-  // URL you want to redirect back to. The domain (www.example.com) for this
-  // URL must be whitelisted in the Firebase Console.
-  url: 'https://ancient-falls-93393.herokuapp.com/',
-  // This must be true.
-  handleCodeInApp: true,
-
-};
-
-function sendLink() {
-      props.setLoginVisible(false)
-props.app.auth().sendSignInLinkToEmail(props.myEmail, actionCodeSettings)
-  .then(function() {
-
-    // The link was successfully sent. Inform the user.
-    // Save the email locally so you don't need to ask the user for it again
-    // if they open the link on the same device.
-    localStorage.setItem('myEmail', props.myEmail);
-  })
-  .catch(function(error) {
-    // Some error occurred, you can inspect the code: error.code
-  });
-  }
   return(
   <Form>
     <Form.Field>
@@ -55,7 +43,7 @@ props.app.auth().sendSignInLinkToEmail(props.myEmail, actionCodeSettings)
     <Form.Field>
     </Form.Field>
     <Button onClick={(e) => makeRandomName()}>Random</Button>
-    <Button onClick={(e) => sendLink()}>Submit</Button>
+    <Button onClick={(e) => props.requestEmailLink(props.myEmail)}>Submit</Button>
   </Form>
 )
 

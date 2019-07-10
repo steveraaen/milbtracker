@@ -1,4 +1,3 @@
-'use strict'
 
 import React from 'react';
 import { Container,  Form, Segment,  Table } from 'semantic-ui-react'

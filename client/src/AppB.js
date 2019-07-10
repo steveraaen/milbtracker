@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect} from 'react';
+import * as firebase from 'firebase';
 import { Button,  Icon,  Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 
@@ -14,9 +15,6 @@ import Login from './components/Login.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
-import * as firebase from 'firebase';
-
-localStorage.clear()
 
  var firebaseConfig = {
     apiKey: 'AIzaSyBbsausI3K8uWLkCSxOlpR6fnmldVklLvU',
@@ -27,8 +25,7 @@ localStorage.clear()
     messagingSenderId: '553001988373',
     appId: '1:553001988373:web:1a53e8b3b46703a0'
   };
-  // Initialize Firebase
- var app = firebase.initializeApp(firebaseConfig);
+
 
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
@@ -52,8 +49,61 @@ localStorage.setItem('myAMinus', '')
 localStorage.setItem('myA', '') 
 localStorage.setItem('myAPlus', '') 
 localStorage.setItem('myRk', '')*/
+ const firebaseApp = firebase.initializeApp(firebaseConfig);
+ var database= firebase.database()
+if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
+  var email = window.localStorage.getItem('emailForSignIn');
+  if (!email) {
+    email = window.prompt('Please provide your email for confirmation');
+  }
 
+  firebase.auth().signInWithEmailLink(email, window.location.href)
+    .then(function(result) {
+    /*  window.localStorage.removeItem('emailForSignIn');*/
+      console.log(result.user)
+      // You can access the new user via result.user
+      // Additional user info profile not available via:
+      // result.additionalUserInfo.profile == null
+      // You can check if the user is new or existing:
+      // result.additionalUserInfo.isNewUser
+    })
+    .catch(function(error) {
+      // Some error occurred, you can inspect the code: error.code
+      // Common errors could be invalid email and invalid or expired OTPs.
+    });
+}
+/* firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+   console.log(uid)
+   console.log(isAnonymous)
+  } else {
+    // User is signed out.
+    // ...
+  }
+  // ...
+});*/
 function AppB() {
+/*firebase.auth().signInAnonymously().catch(function(error) {
+  var errorCode = error.code;
+  var errorMessage = error.message;
+});*/
+function requestEmailLink(email) {
+var actionCodeSettings = {
+  url: 'http://localhost:3000/',
+  // This must be true.
+  handleCodeInApp: true,
+};
+firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+  .then(function() {
+    window.localStorage.setItem('emailForSignIn', email);
+  })
+  .catch(function(error) {
+  });
+}
+
   const [selectedClass, setSelectedClass] = useState(classes[0]);
   const [years] = useState(yrs);
   const [allMLB] = useState(mlbTeams);
@@ -70,7 +120,7 @@ function AppB() {
   const [tfObj] = useState({});
   const [modalOpen, setModalOpen] = useState();
   const [formVisible, setFormVisible] = useState(false);
-  const [loginVisible, setLoginVisible] = useState(true);
+  const [loginVisible, setLoginVisible] = useState(false);
   const [playersVisible, setPlayersVisible] = useState();
   const [timeBatURL, setTimeBatURL] = useState('/api/playerBatSeason');
   const [timePitchURL, setTimePitchURL] = useState('/api/playerPitchSeason');
@@ -112,7 +162,7 @@ function AppB() {
   const [selectedTmYrs, setSelectedTmYrs] = useState();
   const [mousePos, setMousePos] = useState();
   const [openConfirm, setOpenConfirm] = useState()
-  const [myEmail, setMyEmail] = useState(()=> localStorage.getItem('myEmail' || ''))
+  const [myEmail, setMyEmail] = useState(()=> localStorage.getItem('emailForSignIn' || ''))
   const [myUserName, setMyUserName] = useState(()=> localStorage.getItem('myUserName' || ''))
 
 
@@ -274,14 +324,17 @@ const areYouLoggedIn = () => {
   setLoginVisible(true)
 }
 }
+/*
+    useEffect(() => {
+      if(myAAA && myAA && myAPlus && myA && myAMinus && myRk) {
+        
+      }
+    })*/
 
 
-
-
- useEffect(() => {
-      getMinorMaster()
-}, {})
-
+     useEffect(() => {
+          getMinorMaster()
+    }, {})
     useEffect(() => {
       localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
     }, {})
@@ -555,7 +608,6 @@ return (
  </Modal.Content>
   </Modal>
      <Modal   
-        centered={false}
         open={loginVisible}
      >
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
@@ -566,7 +618,7 @@ return (
         <Modal.Content className='goLeft'>
         <p> Signing in is optional.  It enables you compate your teams' success to others, but if you'd like to browse around, dismiss this window.</p>
              <Login
-                 app={app}
+                 requestEmailLink={requestEmailLink}
                  myEmail={myEmail}
                  setMyEmail={setMyEmail}
                  myUserName={myUserName}

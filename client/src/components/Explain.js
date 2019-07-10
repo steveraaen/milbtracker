@@ -1,4 +1,3 @@
-'use strict'
 
 import React from 'react';
 import {   Item, Modal} from 'semantic-ui-react'

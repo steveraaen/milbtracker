@@ -10,6 +10,28 @@ import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
 export default function CurrentTeam(props) {
+  var team = []
+
+  props.myAAA ? team.push(props.myAAA) : console.log('...');
+  props.myAA ? team.push(props.myAA) : console.log('...');
+  props.myAPlus ? team.push(props.myAPlus) : console.log('...');
+  props.myA ? team.push(props.myA) : console.log('...');
+  props.myAMinus ? team.push(props.myAMinus) : console.log('...');
+  props.myRk ? team.push(props.myRk) : console.log('...');
+var fullTeam;
+ (function () {
+   if(team.length > 0) {
+     var teamRows = team.map((tm, ix) => {
+       return(
+        <li>tm</li>      
+         )
+     })
+   } else {
+     teamRows = <div></div>
+   }
+
+   fullTeam = team.length === 6 ? false : true
+ })()
 /*function deleteTeam() {
   var teamSplit = props.myAAA.split(' ') 
   var splitYr = teamSplit[0]
@@ -17,6 +39,8 @@ export default function CurrentTeam(props) {
   props.setMyAAA(null)
 }
 */
+/*var team = [props.myAAA,props.myAA,props.myAPlus,props.myA,props.myAMinus,props.myRk]
+console.log(team.length)*/
 function checkOpenConfirm() {
     if(props.myAAA && props.myAA && props.myAPlus && props.myA && props.myAMinus && props.myRk){
       console.log(props.myAAA && props.myAA && props.myAPlus && props.myA && props.myAMinus && props.myRk)
@@ -108,7 +132,9 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 
     return (
     <Container  >      
-  <Tabs forceRenderTabPanel={true}>
+  <Tabs 
+    forceRenderTabPanel={true}
+    disabledTabClassName="noshow">
     <TabList>
     <Tab>My Teams</Tab>
      <Tab disabled={props.myAAA ? true: false} >Triple A</Tab>
@@ -122,7 +148,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 <TabPanel>
     <Grid columns={4}>
     {props.myAAA &&
-    <Grid.Row style={{height: '15%'}}>
+    <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Triple A</span>
 </Grid.Column>
@@ -135,7 +161,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
    </Grid.Row>
 
 }    {props.myAA &&
-    <Grid.Row style={{height: '15%'}}>
+    <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Double A</span>
  </Grid.Column>
@@ -148,7 +174,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
    </Grid.Row> 
 
 }{props.myAPlus &&
-    <Grid.Row style={{height: '15%'}}>
+    <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Advanced A</span>
 </Grid.Column>
@@ -161,7 +187,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
    </Grid.Row> 
 
 }{props.myA &&
-    <Grid.Row style={{height: '15%'}}>
+    <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Class A</span>
 </Grid.Column>
@@ -174,7 +200,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
    </Grid.Row> 
 
 }{props.myAMinus &&
-    <Grid.Row style={{height: '15%'}}>
+    <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Short A</span>
  </Grid.Column>
@@ -187,7 +213,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
     </Grid.Row> 
 
 }{props.myRk &&
-    <Grid.Row style={{height: '15%'}}>
+    <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Rookie</span>
 </Grid.Column>
@@ -200,7 +226,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
     </Grid.Row>     
 }
   </Grid>
-
+ <Button size="tiny" disabled={fullTeam} onClick={() => props.setMyRk()}>Change</Button>
 </TabPanel>
 
   <Confirm open={props.openConfirm} onCancel={props.setOpenConfirm(false)} onConfirm={props.setOpenConfirm(false)} /> 

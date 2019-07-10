@@ -169,6 +169,9 @@ button.ui.button.my2018.hide {
   color: white;
   visibility: hidden;
 }
+.noshow {
+  visibility: hidden;
+}
 
 
 
