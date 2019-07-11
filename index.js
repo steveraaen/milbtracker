@@ -5,12 +5,13 @@ const mysql = require('mysql')
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-var Moniker = require('moniker');/*
-const passport = require('passport');
-const Strategy = require('passport-local').Strategy;*/
+var Moniker = require('moniker');
+var bodyParser = require('body-parser');
 var os = require('os')
 const app = express()
 
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 console.log(os.userInfo())
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -23,12 +24,19 @@ var connection  = mysql.createConnection({
     database: process.env.DB_NAME,
      multipleStatements: true
 });
+app.post('/api/user', function(req, res) {
 
-// Check for user
-app.get('/api/user', function(req, res) {
-  connection.query(`SELECT * from users`)
+  connection.query(`INSERT INTO users(userName, email, myAAA, myAA, myAPlus, myA, myAMinus, myRk)VALUES(?,?,?,?,?,?,?,?)`,
+    [req.body.userName, req.body.email, req.body.team.myAAA, req.body.team.myAA, req.body.team.myAPlus, req.body.team.myA, req.body.team.myAMinus, req.body.team.myRk]
+    , function (error, results, fields) {
+      res.json(results)
+    if (error) throw error;
+   })
 })
-
+// Check for user
+/*app.get('/api/user', function(req, res) {
+  connection.query(`SELECT * from users`)
+})*/
 
 app.get('/api/randomName/', function(req, res) {
   var names = Moniker.generator([Moniker.adjective, Moniker.noun]);

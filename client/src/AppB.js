@@ -49,25 +49,19 @@ localStorage.setItem('myAMinus', '')
 localStorage.setItem('myA', '') 
 localStorage.setItem('myAPlus', '') 
 localStorage.setItem('myRk', '')*/
- const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
  var database= firebase.database()
+
 if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
   var email = window.localStorage.getItem('emailForSignIn');
   if (!email) {
     email = window.prompt('Please provide your email for confirmation');
   }
-
   firebase.auth().signInWithEmailLink(email, window.location.href)
     .then(function(result) {
-    /*  window.localStorage.removeItem('emailForSignIn');*/
-      console.log(result.user)
-      // You can access the new user via result.user
-      // Additional user info profile not available via:
-      // result.additionalUserInfo.profile == null
-      // You can check if the user is new or existing:
-      // result.additionalUserInfo.isNewUser
     })
     .catch(function(error) {
+      console.log(error.code)
       // Some error occurred, you can inspect the code: error.code
       // Common errors could be invalid email and invalid or expired OTPs.
     });
@@ -86,6 +80,7 @@ if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
   // ...
 });*/
 function AppB() {
+
 /*firebase.auth().signInAnonymously().catch(function(error) {
   var errorCode = error.code;
   var errorMessage = error.message;
@@ -99,6 +94,7 @@ var actionCodeSettings = {
 firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   .then(function() {
     window.localStorage.setItem('emailForSignIn', email);
+    console.log(firebase.auth().currentUser.uid)
   })
   .catch(function(error) {
   });
@@ -164,25 +160,41 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   const [openConfirm, setOpenConfirm] = useState()
   const [myEmail, setMyEmail] = useState(()=> localStorage.getItem('emailForSignIn' || ''))
   const [myUserName, setMyUserName] = useState(()=> localStorage.getItem('myUserName' || ''))
+  const [myFullTeam, setMyFullTeam] = useState({myAAA, myAA, myAPlus, myA, myAMinus, myRk})
 
 
   const toggleTheme = (th) => {
       localStorage.setItem("theme", th);
       setTheme(th);
   };
-async function getMousePos(e) {
-  await setMousePos({
-   x: e.clientX,
-   y: e.clientY
+  async function getMousePos(e) {
+    await setMousePos({
+     x: e.clientX,
+     y: e.clientY
+    })
+  }
+ function saveTeamToDb(un,em, tm) {
+    console.log(un, em, tm)
+   axios.post('/api/user', {
+        userName: un,
+        email: em,
+        team: tm
   })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }
 
-}
-    function toggleFormSidebar() {
-        !formVisible ? setFormVisible(true) : setFormVisible(false)
-    }
-    function showPlayersSidebar() {
-        setPlayersVisible(true) 
-    }
+
+  function toggleFormSidebar() {
+      !formVisible ? setFormVisible(true) : setFormVisible(false)
+  }
+  function showPlayersSidebar() {
+      setPlayersVisible(true) 
+  }
 async function getMyPlayers(yr, tm) {
   const myPlayersPromise = axios('/api/getMyTeam', {params: {yr, tm}})
   var myPlayers = await myPlayersPromise
@@ -225,7 +237,6 @@ async function getMinorMaster() {
     setAllAMinus(mmstr.data.filter(tm => tm.class === 'A-'))
     setAllRk(mmstr.data.filter(tm => tm.class === 'Rk'))
 
-
         setMinorMaster(mmstr.data)
           }   catch (e) {
             console.error(e);
@@ -251,7 +262,6 @@ async function getTeamYears(tm) {
               if(tmPitS && tmPitY &&tmBatS && tmBatY) {
                 setLoading(false)
               }
-
              setBestBat({
                 bestBatTeams: tmBatS.data
             })
@@ -324,13 +334,6 @@ const areYouLoggedIn = () => {
   setLoginVisible(true)
 }
 }
-/*
-    useEffect(() => {
-      if(myAAA && myAA && myAPlus && myA && myAMinus && myRk) {
-        
-      }
-    })*/
-
 
      useEffect(() => {
           getMinorMaster()
@@ -559,6 +562,11 @@ return (
         </Modal.Header>
         <Modal.Content className='goLeft'>
              <CurrentTeam
+             saveTeamToDb={saveTeamToDb}
+             myUserName={myUserName}
+             firebase={firebase}
+             myFullTeam={myFullTeam}
+             myEmail={myEmail}
               openConfirm={openConfirm}
               setOpenConfirm={setOpenConfirm}
               myPlayers={myPlayers}
@@ -618,6 +626,7 @@ return (
         <Modal.Content className='goLeft'>
         <p> Signing in is optional.  It enables you compate your teams' success to others, but if you'd like to browse around, dismiss this window.</p>
              <Login
+
                  requestEmailLink={requestEmailLink}
                  myEmail={myEmail}
                  setMyEmail={setMyEmail}

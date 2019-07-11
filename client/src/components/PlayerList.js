@@ -207,7 +207,7 @@ export default function PlayerList(props) {
 			}
 		}
 		props.playerList.map( tm => {
-			tm.tmStr = <Image size='tiny' rounded src={tm.curLogo} alt="players current team logo"/>
+			tm.tmStr = <Image size='tiny' height='4%' rounded src={tm.curLogo} alt="players current team logo"/>
 			tm.tmStr2 = <div  className={`App ${props.theme}`}><div style={{fontSize: '1.1em'}}>
 			<span  className={`lg ${tm.curColor} ${props.theme}`}>{tm.playerName}</span>
 			</div></div>

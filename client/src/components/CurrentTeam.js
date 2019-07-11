@@ -10,43 +10,22 @@ import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
 export default function CurrentTeam(props) {
-  var team = []
+  
 
+  var team = []
   props.myAAA ? team.push(props.myAAA) : console.log('...');
   props.myAA ? team.push(props.myAA) : console.log('...');
   props.myAPlus ? team.push(props.myAPlus) : console.log('...');
   props.myA ? team.push(props.myA) : console.log('...');
   props.myAMinus ? team.push(props.myAMinus) : console.log('...');
   props.myRk ? team.push(props.myRk) : console.log('...');
-var fullTeam;
- (function () {
-   if(team.length > 0) {
-     var teamRows = team.map((tm, ix) => {
-       return(
-        <li>tm</li>      
-         )
-     })
-   } else {
-     teamRows = <div></div>
-   }
-
-   fullTeam = team.length === 6 ? false : true
- })()
-/*function deleteTeam() {
-  var teamSplit = props.myAAA.split(' ') 
-  var splitYr = teamSplit[0]
-  `props.setMy${splitYr}(null)`
-  props.setMyAAA(null)
-}
-*/
-/*var team = [props.myAAA,props.myAA,props.myAPlus,props.myA,props.myAMinus,props.myRk]
-console.log(team.length)*/
-function checkOpenConfirm() {
-    if(props.myAAA && props.myAA && props.myAPlus && props.myA && props.myAMinus && props.myRk){
-      console.log(props.myAAA && props.myAA && props.myAPlus && props.myA && props.myAMinus && props.myRk)
-  props.setOpenConfirm(true)
-}
-} 
+  var fullTeam;
+  if(team.length === 6 ) {
+    fullTeam = true
+  } else {
+    fullTeam =false
+  }
+console.log(team);
 
  ( function() {
     for (let i = 0; i < props.minorMaster.length; i++) {
@@ -63,7 +42,7 @@ function checkOpenConfirm() {
     })
     }
 )()
-    function handleYearClick(yr, tm, cl) {
+    function handleYearClick(yr, tm, cl,team) {
    /*   props.getMyPlayers(yr, tm)*/
       hideButtons(yr)
           console.log(yr, tm, cl)
@@ -91,7 +70,7 @@ function checkOpenConfirm() {
         }
         switch(cl) {
             case 'AAA':
-            props.setMyAAA(`${yr} ${tm}`)
+            props.setMyAAA(`${yr} ${tm} , ${team}`)
          /*   localStorage.setItem('myAAA', `${yr} ${tm}`)*/
             break;
             case 'AA':
@@ -114,12 +93,11 @@ function checkOpenConfirm() {
             props.setMyRk(`${yr} ${tm}`)
         /*    localStorage.setItem('myRk', `${yr} ${tm}`)*/
             break;    
-            default:
-                    
+            default:                  
         }
        localStorage.setItem(`my${cl}`, `${yr} ${tm}`) 
        localStorage.setItem(`my${yr}`, `${yr} ${tm}`, function(){
-         checkOpenConfirm()
+      
        }) 
 
     }
@@ -146,17 +124,17 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
     </TabList>
 
 <TabPanel>
-    <Grid columns={4}>
+    <Grid padded={false} columns={4}>
     {props.myAAA &&
     <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Triple A</span>
 </Grid.Column>
-<Grid.Column width='6'>
+<Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAAA}</span>
  </Grid.Column>
- <Grid.Column width='6'>
-      <Button size="tiny" onClick={() => props.setMyAAA()}>Change</Button>
+ <Grid.Column width='2'>
+      <Button size="mini" onClick={() => props.setMyAAA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row>
 
@@ -165,11 +143,11 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Double A</span>
  </Grid.Column>
- <Grid.Column width='6'>
+ <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAA}</span>
   </Grid.Column>
-  <Grid.Column width='6'>
-      <Button size="tiny" onClick={() => props.setMyAA()}>Change</Button>
+  <Grid.Column width='2'>
+      <Button size="mini" onClick={() => props.setMyAA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row> 
 
@@ -178,11 +156,11 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Advanced A</span>
 </Grid.Column>
-<Grid.Column width='6'>
+<Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAPlus}</span>
  </Grid.Column> 
- <Grid.Column width='6'>
-      <Button size="tiny" onClick={() => props.setMyAPlus()}>Change</Button>
+ <Grid.Column width='2'>
+      <Button size="mini" onClick={() => props.setMyAPlus()}>Change</Button>
  </Grid.Column> 
    </Grid.Row> 
 
@@ -191,11 +169,11 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Class A</span>
 </Grid.Column>
-<Grid.Column width='6'>
+<Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myA}</span>
  </Grid.Column>
- <Grid.Column width='6'>
-      <Button size="tiny" onClick={() => props.setMyA()}>Change</Button>
+ <Grid.Column width='2'>
+      <Button size="mini" onClick={() => props.setMyA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row> 
 
@@ -204,11 +182,11 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Short A</span>
  </Grid.Column>
- <Grid.Column width='6'>
+ <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAMinus}</span>
 </Grid.Column>
-<Grid.Column width='6'>
-      <Button size="tiny" onClick={() => props.setMyAMinus()}>Change</Button>
+<Grid.Column width='2'>
+      <Button size="mini" onClick={() => props.setMyAMinus()}>Change</Button>
  </Grid.Column> 
     </Grid.Row> 
 
@@ -217,19 +195,19 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Rookie</span>
 </Grid.Column>
-<Grid.Column width='6'>
+<Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myRk}</span>
 </Grid.Column>
-<Grid.Column width='6'>
-      <Button size="tiny" onClick={() => props.setMyRk()}>Change</Button>
+<Grid.Column width='2'>
+      <Button size="mini" onClick={() => props.setMyRk()}>Change</Button>
  </Grid.Column> 
     </Grid.Row>     
 }
   </Grid>
- <Button size="tiny" disabled={fullTeam} onClick={() => props.setMyRk()}>Change</Button>
+ <Button size="tiny" disabled={!fullTeam} onClick={()=>props.setOpenConfirm(true)}>Save Team</Button>
 </TabPanel>
 
-  <Confirm open={props.openConfirm} onCancel={props.setOpenConfirm(false)} onConfirm={props.setOpenConfirm(false)} /> 
+  <Confirm open={props.openConfirm} onCancel={()=>props.setOpenConfirm(false)} onConfirm={()=>props.saveTeamToDb(props.myUserName, props.myEmail, props.myFullTeam)} /> 
     <TabPanel >
 
      <Grid className={`App ${props.theme}`}>       
