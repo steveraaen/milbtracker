@@ -87,7 +87,7 @@ function AppB() {
 });*/
 function requestEmailLink(email) {
 var actionCodeSettings = {
-  url: 'http://localhost:3000/',
+  url: 'https://ancient-falls-93393.herokuapp.com/',
   // This must be true.
   handleCodeInApp: true,
 };
