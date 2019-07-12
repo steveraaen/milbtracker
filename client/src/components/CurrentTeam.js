@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Confirm, Container, Dropdown, Form, Grid, Header, Icon, Item, Image, Label, Modal, Segment } from 'semantic-ui-react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
@@ -21,7 +21,8 @@ export default function CurrentTeam(props) {
   props.myRk ? team.push(props.myRk) : console.log('...');
   var fullTeam;
   if(team.length === 6 ) {
-    fullTeam = true
+    fullTeam = true;
+    
   } else {
     fullTeam =false
   }
@@ -106,7 +107,6 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   elem.disabled = true;
 });
  }  
-
 
     return (
     <Container  >      
@@ -207,7 +207,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
  <Button size="tiny" disabled={!fullTeam} onClick={()=>props.setOpenConfirm(true)}>Save Team</Button>
 </TabPanel>
 
-  <Confirm open={props.openConfirm} onCancel={()=>props.setOpenConfirm(false)} onConfirm={()=>props.saveTeamToDb(props.myUserName, props.myEmail, props.myFullTeam)} /> 
+  <Confirm open={props.openConfirm} onCancel={()=>props.setOpenConfirm(false)} onConfirm={()=> props.saveTeamToDb(props.firebase.auth().currentUser.uid, props.myUserName, props.myEmail, props.myFullTeam)} /> 
     <TabPanel >
 
      <Grid className={`App ${props.theme}`}>       

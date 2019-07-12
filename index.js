@@ -9,10 +9,11 @@ var Moniker = require('moniker');
 var bodyParser = require('body-parser');
 var os = require('os')
 const app = express()
-
+const myPlayersSql = require('./sql/myTeamPlayersSeason.js')
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+console.log(myPlayersSql)
 console.log(os.userInfo())
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -25,18 +26,23 @@ var connection  = mysql.createConnection({
      multipleStatements: true
 });
 app.post('/api/user', function(req, res) {
-
-  connection.query(`INSERT INTO users(userName, email, myAAA, myAA, myAPlus, myA, myAMinus, myRk)VALUES(?,?,?,?,?,?,?,?)`,
-    [req.body.userName, req.body.email, req.body.team.myAAA, req.body.team.myAA, req.body.team.myAPlus, req.body.team.myA, req.body.team.myAMinus, req.body.team.myRk]
+console.log(req.body)
+  connection.query(`DELETE FROM users where uid = ?;
+    INSERT INTO users(uid, userName, email, myAAA, myAA, myAPlus, myA, myAMinus, myRk)VALUES(?,?,?,?,?,?,?,?,?)`,
+    [req.body.uid,req.body.uid,req.body.userName, req.body.email, req.body.team.myAAA, req.body.team.myAA, req.body.team.myAPlus, req.body.team.myA, req.body.team.myAMinus, req.body.team.myRk]
     , function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    })
 })
 // Check for user
-/*app.get('/api/user', function(req, res) {
-  connection.query(`SELECT * from users`)
-})*/
+app.get('/api/myPlayers/', function(req, res) {
+  connection.query(myPlayersSql, 'Nw71Zb2YbkRBfteLQP37GhCdcox2', function (error, results, fields) {
+        console.log(results)
+      res.json(results)
+    if (error) throw error;
+   })
+})
 
 app.get('/api/randomName/', function(req, res) {
   var names = Moniker.generator([Moniker.adjective, Moniker.noun]);

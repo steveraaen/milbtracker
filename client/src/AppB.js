@@ -87,7 +87,7 @@ function AppB() {
 });*/
 function requestEmailLink(email) {
 var actionCodeSettings = {
-  url: 'https://ancient-falls-93393.herokuapp.com/',
+  url: 'http://localhost:3000/',
   // This must be true.
   handleCodeInApp: true,
 };
@@ -173,9 +173,10 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
      y: e.clientY
     })
   }
- function saveTeamToDb(un,em, tm) {
-    console.log(un, em, tm)
+ function saveTeamToDb(ui, un,em, tm) {
+    console.log(ui,un, em, tm)
    axios.post('/api/user', {
+       uid: ui,
         userName: un,
         email: em,
         team: tm
@@ -562,6 +563,7 @@ return (
         </Modal.Header>
         <Modal.Content className='goLeft'>
              <CurrentTeam
+             setMyFullTeam={setMyFullTeam}
              saveTeamToDb={saveTeamToDb}
              myUserName={myUserName}
              firebase={firebase}
