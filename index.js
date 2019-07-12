@@ -27,9 +27,9 @@ var connection  = mysql.createConnection({
 });
 app.post('/api/user', function(req, res) {
 console.log(req.body)
-  connection.query(`DELETE FROM users where uid = ?;
-    INSERT INTO users(uid, userName, email, myAAA, myAA, myAPlus, myA, myAMinus, myRk)VALUES(?,?,?,?,?,?,?,?,?)`,
-    [req.body.uid,req.body.uid,req.body.userName, req.body.email, req.body.team.myAAA, req.body.team.myAA, req.body.team.myAPlus, req.body.team.myA, req.body.team.myAMinus, req.body.team.myRk]
+  connection.query(`DELETE FROM users where userName = ?;
+    INSERT INTO users(userName, email, myAAA, myAA, myAPlus, myA, myAMinus, myRk)VALUES(?,?,?,?,?,?,?,?)`,
+    [req.body.userName,req.body.userName, req.body.email, req.body.team.myAAA, req.body.team.myAA, req.body.team.myAPlus, req.body.team.myA, req.body.team.myAMinus, req.body.team.myRk]
     , function (error, results, fields) {
       res.json(results)
     if (error) throw error;

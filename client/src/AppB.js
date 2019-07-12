@@ -94,7 +94,7 @@ var actionCodeSettings = {
 firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   .then(function() {
     window.localStorage.setItem('emailForSignIn', email);
-    console.log(firebase.auth().currentUser.uid)
+   
   })
   .catch(function(error) {
   });
@@ -173,10 +173,9 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
      y: e.clientY
     })
   }
- function saveTeamToDb(ui, un,em, tm) {
-    console.log(ui,un, em, tm)
+ function saveTeamToDb(un,em, tm) {
+    console.log(un, em, tm)
    axios.post('/api/user', {
-       uid: ui,
         userName: un,
         email: em,
         team: tm

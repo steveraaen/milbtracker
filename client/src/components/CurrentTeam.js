@@ -207,7 +207,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
  <Button size="tiny" disabled={!fullTeam} onClick={()=>props.setOpenConfirm(true)}>Save Team</Button>
 </TabPanel>
 
-  <Confirm open={props.openConfirm} onCancel={()=>props.setOpenConfirm(false)} onConfirm={()=> props.saveTeamToDb(props.firebase.auth().currentUser.uid, props.myUserName, props.myEmail, props.myFullTeam)} /> 
+  <Confirm open={props.openConfirm} onCancel={()=>props.setOpenConfirm(false)} onConfirm={()=> props.saveTeamToDb(props.myUserName, props.myEmail, props.myFullTeam)} /> 
     <TabPanel >
 
      <Grid className={`App ${props.theme}`}>       
