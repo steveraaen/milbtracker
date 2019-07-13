@@ -167,6 +167,13 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
       localStorage.setItem("theme", th);
       setTheme(th);
   };
+
+  function toggleFormSidebar() {
+      !formVisible ? setFormVisible(true) : setFormVisible(false)
+  }
+  function showPlayersSidebar() {
+      setPlayersVisible(true) 
+  }
   async function getMousePos(e) {
     await setMousePos({
      x: e.clientX,
@@ -181,7 +188,8 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
         team: tm
   })
   .then(function (response) {
-    console.log(response);
+   getMyPlayers(un)
+   setOpenConfirm(false)
   })
   .catch(function (error) {
     console.log(error);
@@ -189,14 +197,8 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   }
 
 
-  function toggleFormSidebar() {
-      !formVisible ? setFormVisible(true) : setFormVisible(false)
-  }
-  function showPlayersSidebar() {
-      setPlayersVisible(true) 
-  }
-async function getMyPlayers(yr, tm) {
-  const myPlayersPromise = axios('/api/getMyTeam', {params: {yr, tm}})
+async function getMyPlayers(un) {
+  const myPlayersPromise = axios('/api/myPlayers', {userName: un})
   var myPlayers = await myPlayersPromise
   for(let i = 0; i < myPlayers.data.length; i++) {
     for(let j = 0; j < mlbTeams.length; j++) {
@@ -206,7 +208,8 @@ async function getMyPlayers(yr, tm) {
       }
     }
   }
-  setMyPlayers(myPlayers.data)
+  console.log(myPlayers.data)
+  setMyPlayers(myPlayers.data[4])
 }
 
 async function getMinorMaster() {

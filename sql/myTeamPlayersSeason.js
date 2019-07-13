@@ -1,13 +1,13 @@
 var myPlayersSql = `DROP VIEW splitter;
 CREATE VIEW splitter AS SELECT 
-uid, userName, email,
+userName, email,
 SUBSTRING(myAAA, 1,  4) AS myAAAYr , SUBSTRING(myAAA, 6,  30) AS myAAATm,
 SUBSTRING(myAA, 1,  4) AS myAAYr , SUBSTRING(myAA, 6,  30) AS myAATm ,
 SUBSTRING(myAPlus, 1,  4) AS myAPlusYr , SUBSTRING(myAPlus, 6,  30) AS myAPlusTm,
 SUBSTRING(myA, 1,  4) AS myAYr , SUBSTRING(myA, 6,  30) AS myATm,
 SUBSTRING(myAMinus, 1,  4) AS myAMinusYr , SUBSTRING(myAMinus, 6,  30) AS myAMinusTM,
 SUBSTRING(myRk, 1,  4) AS myRkYr , SUBSTRING(myRk, 6,  30) AS myRkTm from users
-where uid ='Nw71Zb2YbkRBfteLQP37GhCdcox2';
+where userName =?;
 
 DROP VIEW myPlayers;
 CREATE VIEW myPlayers AS SELECT 

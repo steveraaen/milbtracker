@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, Card, Confirm, Container, Dropdown, Form, Grid, Header, Icon, Item, Image, Label, Modal, Segment } from 'semantic-ui-react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 import ReactTable from 'react-table'
 
-import MyTeam from './MyTeam.js'
+import MyPlayers from './MyPlayers.js'
 import tmsLogos from '../lgos/namesAndLogos.js'
 
 import '../App.css'
@@ -114,6 +114,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
     forceRenderTabPanel={true}
     disabledTabClassName="noshow">
     <TabList>
+    <Tab disabled={!props.myPlayers ? true: false}>My Players</Tab>
     <Tab>My Teams</Tab>
      <Tab disabled={props.myAAA ? true: false} >Triple A</Tab>
      <Tab disabled={props.myAA ? true: false} >Double A</Tab>
@@ -122,6 +123,13 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
      <Tab disabled={props.myAMinus ? true: false} >Short A</Tab>
     <Tab disabled={props.myRk ? true: false} >Rookie</Tab>
     </TabList>
+
+{ props.myPlayers && <TabPanel>
+  <MyPlayers 
+    theme={props.theme}
+    myPlayers={props.myPlayers}
+    />
+</TabPanel> }
 
 <TabPanel>
     <Grid padded={false} columns={4}>
