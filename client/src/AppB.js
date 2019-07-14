@@ -100,6 +100,7 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   });
 }
 
+
   const [selectedClass, setSelectedClass] = useState(classes[0]);
   const [years] = useState(yrs);
   const [allMLB] = useState(mlbTeams);
@@ -195,7 +196,6 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
     console.log(error);
   });
   }
-
 
 async function getMyPlayers(un) {
   const myPlayersPromise = axios('/api/myPlayers', {userName: un})
@@ -341,19 +341,22 @@ const areYouLoggedIn = () => {
   setLoginVisible(true)
 }
 }
-
-     useEffect(() => {
-          getMinorMaster()
+    useEffect(() => {
+      var players = localStorage.getItem('myPlayers')
+      setMyPlayers(JSON.parse(players))
+    },{})
+    useEffect(() => {
+        getMinorMaster()
     }, {})
     useEffect(() => {
-      localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
+    localStorage.getItem('showModal', false) ? setModalOpen(false) : console.log('show')
     }, {})
     useEffect(() => {
-        getTopTen(selectedClass.code, selectedYear.value, timeframe)
+      getTopTen(selectedClass.code, selectedYear.value, timeframe)
     }, {});
     useEffect(() => {
-      setBorderCol(timeframe === 'yesterday' ? '#3E85CA' : '#ABBB3D'
-      )
+    setBorderCol(timeframe === 'yesterday' ? '#3E85CA' : '#ABBB3D'
+    )
     })
 
 if(loading) {

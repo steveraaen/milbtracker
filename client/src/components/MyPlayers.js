@@ -9,7 +9,8 @@ import '../App.css'
 
 export default function MyPlayers(props) {
 	console.log(props)
-
+/*var players = localStorage.getItem('myPlayers')
+console.log(JSON.parse(players))*/
 
 
 			var myBatCols = [
