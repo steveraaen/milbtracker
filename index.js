@@ -37,8 +37,7 @@ console.log(req.body)
 })
 // Check for user
 app.get('/api/myPlayers/', function(req, res) {
-  connection.query(myPlayersSql, 'Lopsided Thing', function (error, results, fields) {
-        console.log(results)
+  connection.query(myPlayersSql, 'Lopsided Thing', function (error, results, fields) {  
       res.json(results)
     if (error) throw error;
    })

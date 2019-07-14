@@ -46,6 +46,6 @@ FORMAT(latestBatting.H / latestBatting.AB,3) as AVG
 FROM myPlayers, latestBatting
 WHERE myPlayers.playerID = latestBatting.playerID
 group by playerID
-order by playerID;`
+order by H desc;`
 
 module.exports = myPlayersSql

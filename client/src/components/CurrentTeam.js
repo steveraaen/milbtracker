@@ -124,12 +124,14 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
     <Tab disabled={props.myRk ? true: false} >Rookie</Tab>
     </TabList>
 
-{ props.myPlayers && <TabPanel>
+<TabPanel>
+{ props.myPlayers && 
   <MyPlayers 
     theme={props.theme}
     myPlayers={props.myPlayers}
     />
-</TabPanel> }
+    }
+</TabPanel> 
 
 <TabPanel>
     <Grid padded={false} columns={4}>
@@ -393,3 +395,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
     </Container>
     )
 }
+
+
+
+

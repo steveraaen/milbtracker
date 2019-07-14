@@ -87,7 +87,7 @@ function AppB() {
 });*/
 function requestEmailLink(email) {
 var actionCodeSettings = {
-  url: 'http://localhost:3000/',
+  url: 'https://ancient-falls-93393.herokuapp.com/',
   // This must be true.
   handleCodeInApp: true,
 };
@@ -210,6 +210,7 @@ async function getMyPlayers(un) {
   }
   console.log(myPlayers.data)
   setMyPlayers(myPlayers.data[4])
+  localStorage.setItem('myPlayers', JSON.stringify(myPlayers.data[4]))
 }
 
 async function getMinorMaster() {
@@ -276,7 +277,10 @@ async function getTeamYears(tm) {
             })
             setYestPitch({
                 yestPitchTeams: tmPitY.data
-            })      }        
+            })   
+           var myTeamsFromStorage = localStorage.getItem('myPlayers')
+           /*setMyPlayers(JSON.parse(myTeamsFromStorage))*/
+               }        
          catch (e) {
             console.error(e);
         };
