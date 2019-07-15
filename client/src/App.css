@@ -172,7 +172,9 @@ button.ui.button.my2018.hide {
 .noshow {
   visibility: hidden;
 }
-
+.onMyTeam {
+  color: darkorange;
+}
 
 
 

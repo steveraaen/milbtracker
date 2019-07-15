@@ -13,7 +13,6 @@ const myPlayersSql = require('./sql/myTeamPlayersSeason.js')
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-console.log(myPlayersSql)
 console.log(os.userInfo())
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -37,6 +36,7 @@ console.log(req.body)
 })
 // Check for user
 app.get('/api/myPlayers/', function(req, res) {
+  console.log('mypl')
   connection.query(myPlayersSql, 'Lopsided Thing', function (error, results, fields) {  
       res.json(results)
     if (error) throw error;
@@ -297,7 +297,7 @@ and finalHist.class like ?
 and finalHist.yr like ?
 and finalHist.yr > 2012
 group by finalHist.tmName, finalHist.yr
-order by SUM(latestBatting.TB) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(latestBatting.TB) desc limit 30`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)
     if (error) throw error;

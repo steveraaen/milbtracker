@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { Grid,  Image,  Popup} from 'semantic-ui-react'
 import ReactTooltip from 'react-tooltip'
 
@@ -9,16 +9,33 @@ import TeamRowMenu from './TeamRowMenu.js'
 import tmsLogos from '../lgos/namesAndLogos.js'
 
 export default function SeasonResults(props) {
-
+ const [isOnMyTeam, setIsOnMyTeam] = useState();
 
     useEffect(() => ReactTooltip.rebuild())
     if (props.timeframe && props.bestBatTeams && props.bestPitchTeams /*&& props.yestBatTeams && props.yestPitchTeams*/ && props.selectedClass && props.selectedYear) {
         var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.yestBatTeams
         var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
+        var justName
+
+        if(props.myFullTeam) {
+             justName = Object.values(props.myFullTeam).map( str => {
+                 return str
+             })
+        }
         currentBatData.map((tm, idx) => {
+            justName.map(mytm => {
+                if(tm.yr + " " + tm.tmName === mytm) {
+                    tm.mine = true
+                    tm.fontClass = 'onMyTeam'
+                } else{
+                    tm.mine = false
+                }
+             
+                return tm
+            })            
 
-          tm.rankCol =  idx < 9 ? 'orange' : 'gray'
 
+            tm.rankCol =  idx < 9 ? 'orange' : 'gray'
             tm.rank= idx + 1
             tm.lg = tm.majLg
             for (let i = 0; i < tmsLogos.length; i++) {
@@ -27,7 +44,7 @@ export default function SeasonResults(props) {
                     tm.tmStr = <Image rounded size='tiny' src={tm.lgo} alt="team logo"/>
                 }
             }
-            tm.tmStr2 = <div className={`lg ${tm.lg} ${props.theme}`}>							
+            tm.tmStr2 = <div className={`lg ${tm.lg} ${tm.fontClass}`}>							
 							<div style={{fontSize: '1.1em', textAlign: 'left'}}>{tm.tmName}</div>
 							<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 								<div style={{ marginRight: '1vw'}}>{tm.yr}</div>
@@ -38,9 +55,20 @@ export default function SeasonResults(props) {
             tm.ttp = <Popup content="Total Bases" trigger={<th></th>}/>
 
             tm.rnk =  <div style={{color: tm.rankCol}}>{tm.rank}</div>  
+        
             return tm
         })
         currentPitchData.map((ptm, ix) => {
+              justName.map(mytm => {
+                if(ptm.yr + " " + ptm.tmName === mytm) {
+                    ptm.mine = true
+                    ptm.fontClass = 'onMyTeam'
+                } else{
+                    ptm.mine = false
+                }
+            
+                return ptm
+            })  
             ptm.rankCol =  ix < 9 ? 'orange' : 'gray'
             ptm.rank= ix + 1
             ptm.lg = ptm.majLg /*=== "A" ? 'al' : 'nl'*/
@@ -50,7 +78,7 @@ export default function SeasonResults(props) {
                     ptm.ptmStr = <Image rounded size='tiny' src={ptm.lgo} alt="Pitcher team "/>
                 }
             }
-            ptm.ptmStr2 = <div className={`lg ${ptm.lg} ${props.theme}`}>					
+            ptm.ptmStr2 = <div className={`lg ${ptm.lg}  ${ptm.fontClass}`}>					
 								<div style={{fontSize: '1.1em', textAlign: 'left'}}>{ptm.tmName}</div>
 								<div style={{display: 'flex', flexDirection: 'row',fontSize: ".9em", fontWeight: 600}}>
 									<div style={{ marginRight: '1vw'}}>{ptm.yr}</div>

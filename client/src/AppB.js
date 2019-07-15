@@ -344,7 +344,7 @@ const areYouLoggedIn = () => {
     useEffect(() => {
       var players = localStorage.getItem('myPlayers')
       setMyPlayers(JSON.parse(players))
-    },{})
+    },{myPlayers})
     useEffect(() => {
         getMinorMaster()
     }, {})
@@ -418,7 +418,14 @@ return (
         </Button>
           </Button.Group>          
       </div>
-<div> <Icon onClick={() => areYouLoggedIn() } bordered name="edit" size="large"/></div>
+    <div style={{display: 'flex', flexDirection: 'column'}}> 
+    { myUserName &&
+    <div style={{fontSize: '.6em'}}>
+      {myUserName}
+    </div>
+    }
+    <Icon onClick={() => areYouLoggedIn() } bordered name="edit" size="large"/>
+    </div>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
@@ -510,6 +517,8 @@ return (
             <Sidebar.Pusher>  
               <div>
                 <SeasonResults 
+                myFullTeam={myFullTeam}
+                myUserName={myUserName}
                   franchise={franchise}
                   setFranchise={setFranchise}
                   theme={theme}       
