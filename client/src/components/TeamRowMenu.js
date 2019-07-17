@@ -35,7 +35,7 @@ export default function TeamRowMenu(props) {
 	}
 
 	return(
-<Segment className={`App ${props.theme}`}>
+<div className={`App ${props.theme}`}>
 
    <Container className={`lg ${props.selectedMiLBParentLg} ${props.theme}`}>
     <Icon name="close" style={{position: "absolute", right: '2vw'}} onClick={() => props.setShowTRMenu(false)}/>
@@ -69,7 +69,7 @@ export default function TeamRowMenu(props) {
     </Button>
 	  </Button.Group>
 
-</Segment>
+</div>
 		)
 }
 

@@ -143,7 +143,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 {tmsLogos.map((tm, ix) => {
   if(props.myAAA.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.logoPNG} />
+    <Image size='mini' rounded src={tm.logoPNG} />
     </Grid.Column>    
   }
 })}
@@ -153,12 +153,12 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   {props.allAAA.map((tm, ix) => {
   if(props.myAAA.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.franchLogo} />
+    <Image size='mini' rounded src={tm.franchLogo} />
     </Grid.Column>    
   }
 })}
  <Grid.Column width='2'>
-      <Button size="mini" onClick={() => props.setMyAAA()}>Change</Button>
+      <Button size="mini" rounded onClick={() => props.setMyAAA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row>
 
@@ -170,7 +170,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
  {tmsLogos.map((tm, ix) => {
   if(props.myAA.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.logoPNG} />
+    <Image size='mini' rounded src={tm.logoPNG} />
     </Grid.Column>    
   }
 })}
@@ -180,12 +180,12 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   {props.allAA.map((tm, ix) => {
   if(props.myAA.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.franchLogo} />
+    <Image size='mini' rounded src={tm.franchLogo} />
     </Grid.Column>    
   }
 })}
   <Grid.Column width='2'>
-      <Button size="mini" onClick={() => props.setMyAA()}>Change</Button>
+      <Button size="mini" rounded onClick={() => props.setMyAA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row> 
 
@@ -197,7 +197,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
  {tmsLogos.map((tm, ix) => {
   if(props.myAPlus.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.logoPNG} />
+    <Image size='mini' rounded src={tm.logoPNG} />
     </Grid.Column>    
   }
 })}
@@ -207,12 +207,12 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   {props.allAPlus.map((tm, ix) => {
   if(props.myAPlus.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.franchLogo} />
+    <Image size='mini' rounded src={tm.franchLogo} />
     </Grid.Column>    
   }
 })}
  <Grid.Column width='2'>
-      <Button size="mini" onClick={() => props.setMyAPlus()}>Change</Button>
+      <Button size="mini" rounded onClick={() => props.setMyAPlus()}>Change</Button>
  </Grid.Column> 
    </Grid.Row> 
 
@@ -224,7 +224,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
  {tmsLogos.map((tm, ix) => {
   if(props.myA.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.logoPNG} />
+    <Image size='mini' rounded src={tm.logoPNG} />
     </Grid.Column>    
   }
 })}
@@ -234,12 +234,12 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
    {props.allA.map((tm, ix) => {
   if(props.myA.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.franchLogo} />
+    <Image size='mini' rounded src={tm.franchLogo} />
     </Grid.Column>    
   }
 })}
  <Grid.Column width='2'>
-      <Button size="mini" onClick={() => props.setMyA()}>Change</Button>
+      <Button size="mini" rounded onClick={() => props.setMyA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row> 
 
@@ -251,7 +251,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   {tmsLogos.map((tm, ix) => {
   if(props.myAMinus.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.logoPNG} />
+    <Image size='mini' rounded src={tm.logoPNG} />
     </Grid.Column>    
   }
 })}
@@ -261,12 +261,12 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   {props.allAMinus.map((tm, ix) => {
   if(props.myAMinus.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.franchLogo} />
+    <Image size='mini' rounded src={tm.franchLogo} />
     </Grid.Column>    
   }
 })}
 <Grid.Column width='2'>
-      <Button size="mini" onClick={() => props.setMyAMinus()}>Change</Button>
+      <Button size="mini" rounded onClick={() => props.setMyAMinus()}>Change</Button>
  </Grid.Column> 
     </Grid.Row> 
 
@@ -278,7 +278,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
  {tmsLogos.map((tm, ix) => {
   if(props.myRk.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.logoPNG} />
+    <Image size='mini' rounded src={tm.logoPNG} />
     </Grid.Column>    
   }
 })}
@@ -288,12 +288,12 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   {props.allRk.map((tm, ix) => {
   if(props.myRk.slice(5) === tm.tmName) {
     return <Grid.Column key={ix} width="3">  
-    <Image size='mini' src={tm.franchLogo} />
+    <Image size='mini' rounded src={tm.franchLogo} />
     </Grid.Column>    
   }
 })}
 <Grid.Column width='2'>
-      <Button size="mini" onClick={() => props.setMyRk()}>Change</Button>
+      <Button size="mini" rounded onClick={() => props.setMyRk()}>Change</Button>
  </Grid.Column> 
     </Grid.Row>     
 }
@@ -308,14 +308,14 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   {!props.myAAA && props.allAAA && props.allAAA.map((tm, ix) => {
    return(          
               <Grid.Row  key={tm.tmName} className="row">
-                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini' rounded  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
-                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini' rounded  rounded src={tm.franchLogo}/></Grid.Column>
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
                   
-                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
+                      <Button.Group key={tm.tmName + idx} size='mini' rounded widths='16'> 
                        <Button className={`my${yr}`}
                          key={yr[idx]} 
                          onClick={() => handleYearClick(yr, tm.tmName, tm.class, tm )}
@@ -339,13 +339,13 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
           {!props.myAA && props.allAA && props.allAA.map((tm, ix) => {
               return(             
               <Grid.Row  key={tm.tmName} className="row">
-                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini' rounded  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
-                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini' rounded  rounded src={tm.franchLogo}/></Grid.Column>
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
-                      <Button.Group floated="left" key={tm.tmName + idx} size='mini' widths='16'> 
+                      <Button.Group floated="left" key={tm.tmName + idx} size='mini' rounded widths='16'> 
                        <Button  className={`my${yr}`}
                          key={yr[idx]} 
                          onClick={() => handleYearClick(yr, tm.tmName, tm.class, tm )}
@@ -366,13 +366,13 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
           {!props.myAPlus && props.allAPlus && props.allAPlus.map((tm, ix) => {
               return(             
               <Grid.Row  key={tm.tmName} className="row">
-                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini' rounded  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
-                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini' rounded  rounded src={tm.franchLogo}/></Grid.Column>
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
-                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
+                      <Button.Group key={tm.tmName + idx} size='mini' rounded widths='16'> 
                        <Button 
                          className={`my${yr}`}
                          key={yr[idx]} 
@@ -394,13 +394,13 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
           {!props.myA && props.allA && props.allA.map((tm, ix) => {
               return(             
               <Grid.Row  key={tm.tmName} className="row">
-                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini' rounded  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
-                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini' rounded  rounded src={tm.franchLogo}/></Grid.Column>
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
-                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
+                      <Button.Group key={tm.tmName + idx} size='mini' rounded widths='16'> 
                        <Button 
                        className={`my${yr}`}
                          key={yr[idx]} 
@@ -423,13 +423,13 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 
               return(             
               <Grid.Row  key={tm.tmName} className="row">
-                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini' rounded  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
-                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini' rounded  rounded src={tm.franchLogo}/></Grid.Column>
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
-                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
+                      <Button.Group key={tm.tmName + idx} size='mini' rounded widths='16'> 
                        <Button 
                        className={`my${yr}`}
                          key={yr[idx]} 
@@ -452,13 +452,13 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
   
               return(             
               <Grid.Row  key={tm.tmName} className="row">
-                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini'  rounded src={tm.curLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.tmName}${ix}`} size='mini' rounded  rounded src={tm.curLogo}/></Grid.Column>
                   <Grid.Column width={3}>{tm.tmName}</Grid.Column>
-                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini'  rounded src={tm.franchLogo}/></Grid.Column>
+                  <Grid.Column width={2}><Image key={`${tm.franchLogo}${ix}`} size='mini' rounded  rounded src={tm.franchLogo}/></Grid.Column>
                   <Grid.Column width={9}>
                       {tm.years.map((yr, idx) => {
                           return(
-                      <Button.Group key={tm.tmName + idx} size='mini' widths='16'> 
+                      <Button.Group key={tm.tmName + idx} size='mini' rounded widths='16'> 
                        <Button 
                        className={`my${yr}`}
                          key={yr} 
