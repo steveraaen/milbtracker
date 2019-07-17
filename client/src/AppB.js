@@ -163,7 +163,6 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   const [myUserName, setMyUserName] = useState(()=> localStorage.getItem('myUserName' || ''))
   const [myFullTeam, setMyFullTeam] = useState({myAAA, myAA, myAPlus, myA, myAMinus, myRk})
 
-
   const toggleTheme = (th) => {
       localStorage.setItem("theme", th);
       setTheme(th);
@@ -418,7 +417,7 @@ return (
         </Button>
           </Button.Group>          
       </div>
-    <div style={{display: 'flex', flexDirection: 'column'}}> 
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}> 
     { myUserName &&
     <div style={{fontSize: '.6em'}}>
       {myUserName}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button, Card, Confirm, Container, Dropdown, Form, Grid, Header, Icon, Item, Image, Label, Modal, Segment } from 'semantic-ui-react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
@@ -10,7 +10,6 @@ import tmsLogos from '../lgos/namesAndLogos.js'
 import '../App.css'
 
 export default function CurrentTeam(props) {
-  
 
   var team = []
   props.myAAA ? team.push(props.myAAA) : console.log('...');
@@ -27,7 +26,7 @@ export default function CurrentTeam(props) {
     fullTeam =false
   }
 console.log(team);
-
+/*
  ( function() {
     for (let i = 0; i < props.minorMaster.length; i++) {
         for (let j = 0; j < tmsLogos.length; j++) {
@@ -42,65 +41,66 @@ console.log(team);
         return lgo
     })
     }
-)()
+)()*/
     function handleYearClick(yr, tm, cl,team) {
    /*   props.getMyPlayers(yr, tm)*/
       hideButtons(yr)
           console.log(yr, tm, cl)
         switch(yr) {
             case 2018:
-            props.setMy2018(`${yr} ${tm}`)
+            props.setMy2018(`${team.yr} ${team.tmName}`)
             break;
             case 2017:
-            props.setMy2017(`${yr} ${tm}`)
+            props.setMy2017(`${team.yr} ${team.tmName}`)
             break;
             case 2016:
-            props.setMy2016(`${yr} ${tm}`)
+            props.setMy2016(`${team.yr} ${team.tmName}`)
             break;
             case 2015:
-            props.setMy2015(`${yr} ${tm}`)
+            props.setMy2015(`${team.yr} ${team.tmName}`)
             break;            
             case 2014:
-            props.setMy2014(`${yr} ${tm}`)
+            props.setMy2014(`${team.yr} ${team.tmName}`)
             break;
             case 2013:
-            props.setMy2013(`${yr} ${tm}`)
+            props.setMy2013(`${team.yr} ${team.tmName}`)
             break;    
             default:
             console.log('huh?')        
         }
         switch(cl) {
             case 'AAA':
-            props.setMyAAA(`${yr} ${tm} , ${team}`)
-         /*   localStorage.setItem('myAAA', `${yr} ${tm}`)*/
+            props.setMyAAA(`${team.yr} ${team.tmName}`)
+         /*   localStorage.setItem('myAAA', `${team.yr} ${team.tmName}`)*/
             break;
             case 'AA':
-            props.setMyAA(`${yr} ${tm}`)
-     /*       localStorage.setItem('myAA', `${yr} ${tm}`)*/
+            props.setMyAA(`${team.yr} ${team.tmName}`)
+     /*       localStorage.setItem('myAA', `${team.yr} ${team.tmName}`)*/
             break;
             case 'A+':
-            props.setMyAPlus(`${yr} ${tm}`)
-        /*    localStorage.setItem('myAPlus', `${yr} ${tm}`)*/
+            props.setMyAPlus(`${team.yr} ${team.tmName}`)
+        /*    localStorage.setItem('myAPlus', `${team.yr} ${team.tmName}`)*/
             break;
             case 'A':
-            props.setMyA(`${yr} ${tm}`)
-        /*    localStorage.setItem('myA', `${yr} ${tm}`)*/
+            props.setMyA(`${team.yr} ${team.tmName}`)
+        /*    localStorage.setItem('myA', `${team.yr} ${team.tmName}`)*/
             break;            
             case 'A-':
-            props.setMyAMinus(`${yr} ${tm}`)
-       /*     localStorage.setItem('myAMinus', `${yr} ${tm}`)*/
+            props.setMyAMinus(`${team.yr} ${team.tmName}`)
+       /*     localStorage.setItem('myAMinus', `${team.yr} ${team.tmName}`)*/
             break;
             case 'Rk':
-            props.setMyRk(`${yr} ${tm}`)
+            props.setMyRk(`${team.yr} ${team.tmName}`)
         /*    localStorage.setItem('myRk', `${yr} ${tm}`)*/
             break;    
             default:                  
         }
-       localStorage.setItem(`my${cl}`, `${yr} ${tm}`) 
-       localStorage.setItem(`my${yr}`, `${yr} ${tm}`, function(){
+
+       localStorage.setItem(`my${cl}`, `${team.yr} ${team.tmName}`) 
+       localStorage.setItem(`my${yr}`, `${team.yr} ${team.tmName}`, function(){
       
        }) 
-
+ console.log(props.aaaObj)
     }
  function hideButtons (yr) {
 document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
@@ -109,7 +109,7 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
  }  
 
     return (
-    <Container  >      
+    <Container className={`App ${props.theme}`} >      
   <Tabs 
     forceRenderTabPanel={true}
     disabledTabClassName="noshow">
@@ -135,79 +135,163 @@ document.querySelectorAll(`.ui.button.my${yr}`).forEach(elem => {
 
 <TabPanel>
     <Grid padded={false} columns={4}>
-    {props.myAAA &&
+    {props.myAAA && props.allAAA &&
     <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Triple A</span>
 </Grid.Column>
+{tmsLogos.map((tm, ix) => {
+  if(props.myAAA.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.logoPNG} />
+    </Grid.Column>    
+  }
+})}
 <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAAA}</span>
  </Grid.Column>
+  {props.allAAA.map((tm, ix) => {
+  if(props.myAAA.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.franchLogo} />
+    </Grid.Column>    
+  }
+})}
  <Grid.Column width='2'>
       <Button size="mini" onClick={() => props.setMyAAA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row>
 
-}    {props.myAA &&
+}    {props.myAA && props.allAA &&
     <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Double A</span>
  </Grid.Column>
+ {tmsLogos.map((tm, ix) => {
+  if(props.myAA.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.logoPNG} />
+    </Grid.Column>    
+  }
+})}
  <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAA}</span>
   </Grid.Column>
+  {props.allAA.map((tm, ix) => {
+  if(props.myAA.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.franchLogo} />
+    </Grid.Column>    
+  }
+})}
   <Grid.Column width='2'>
       <Button size="mini" onClick={() => props.setMyAA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row> 
 
-}{props.myAPlus &&
+}{props.myAPlus && props.allAPlus &&
     <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Advanced A</span>
 </Grid.Column>
+ {tmsLogos.map((tm, ix) => {
+  if(props.myAPlus.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.logoPNG} />
+    </Grid.Column>    
+  }
+})}
 <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAPlus}</span>
  </Grid.Column> 
+  {props.allAPlus.map((tm, ix) => {
+  if(props.myAPlus.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.franchLogo} />
+    </Grid.Column>    
+  }
+})}
  <Grid.Column width='2'>
       <Button size="mini" onClick={() => props.setMyAPlus()}>Change</Button>
  </Grid.Column> 
    </Grid.Row> 
 
-}{props.myA &&
+}{props.myA && props.allA &&
     <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Class A</span>
 </Grid.Column>
+ {tmsLogos.map((tm, ix) => {
+  if(props.myA.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.logoPNG} />
+    </Grid.Column>    
+  }
+})}
 <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myA}</span>
  </Grid.Column>
+   {props.allA.map((tm, ix) => {
+  if(props.myA.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.franchLogo} />
+    </Grid.Column>    
+  }
+})}
  <Grid.Column width='2'>
       <Button size="mini" onClick={() => props.setMyA()}>Change</Button>
  </Grid.Column>  
    </Grid.Row> 
 
-}{props.myAMinus &&
+}{props.myAMinus && props.allAMinus &&
     <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Short A</span>
  </Grid.Column>
+  {tmsLogos.map((tm, ix) => {
+  if(props.myAMinus.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.logoPNG} />
+    </Grid.Column>    
+  }
+})}
  <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myAMinus}</span>
 </Grid.Column>
+  {props.allAMinus.map((tm, ix) => {
+  if(props.myAMinus.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.franchLogo} />
+    </Grid.Column>    
+  }
+})}
 <Grid.Column width='2'>
       <Button size="mini" onClick={() => props.setMyAMinus()}>Change</Button>
  </Grid.Column> 
     </Grid.Row> 
 
-}{props.myRk &&
+}{props.myRk && props.allRk &&
     <Grid.Row style={{height: '12%'}}>
 <Grid.Column width="3">  
       <span style={{marginRight: '2vw'}}>Rookie</span>
 </Grid.Column>
+ {tmsLogos.map((tm, ix) => {
+  if(props.myRk.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.logoPNG} />
+    </Grid.Column>    
+  }
+})}
 <Grid.Column width='4'>
       <span style={{fontSize: '1em', fontWeight: 600}}>{props.myRk}</span>
 </Grid.Column>
+  {props.allRk.map((tm, ix) => {
+  if(props.myRk.slice(5) === tm.tmName) {
+    return <Grid.Column key={ix} width="3">  
+    <Image size='mini' src={tm.franchLogo} />
+    </Grid.Column>    
+  }
+})}
 <Grid.Column width='2'>
       <Button size="mini" onClick={() => props.setMyRk()}>Change</Button>
  </Grid.Column> 
