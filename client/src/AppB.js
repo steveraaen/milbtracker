@@ -1,10 +1,11 @@
 
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, lazy, Suspense} from 'react';
 import * as firebase from 'firebase';
 import { Button,  Icon,  Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
 
 import { ClassPicker, YearPicker } from './components/Selections.js'
+
 import SeasonResults from './components/SeasonResults.js'
 import PlayerList from './components/PlayerList.js'
 import IsLoading from './components/IsLoading.js'
@@ -16,7 +17,7 @@ import Leaders from './components/Leaders.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
-
+/*const SeasonResults = lazy(() => import('./components/SeasonResults.js'))*/
  var firebaseConfig = {
     apiKey: 'AIzaSyBbsausI3K8uWLkCSxOlpR6fnmldVklLvU',
     authDomain: 'milb-5cd63.firebaseapp.com',
@@ -88,7 +89,7 @@ function AppB() {
 });*/
 function requestEmailLink(email) {
 var actionCodeSettings = {
-  url: 'http://localhost:3000/',
+  url: 'https://ancient-falls-93393.herokuapp.com/',
   // This must be true.
   handleCodeInApp: true,
 };
@@ -456,7 +457,7 @@ return (
           onClick={handleClick}
     
         >Season</Button>
-         <Button.Or style={{color: 'black'}} />
+         <Button.Or />
         <Button
           basic
             size='mini'        
@@ -474,7 +475,9 @@ return (
     </div>
     }
     <Icon onClick={() => areYouLoggedIn() } bordered name="edit" size="large"/>
+    
     </div>
+    <Icon onClick={() => setShowLeaders(true) } bordered name="ordered list" size="large"/>
     </div>
         <Sidebar.Pushable 
             as={Segment}>
@@ -565,6 +568,7 @@ return (
           </Sidebar>    
             <Sidebar.Pusher>  
               <div>
+         {/*     <Suspense fallback={<span>Loading...</span>}>*/}
                 <SeasonResults 
 
                 myFullTeam={myFullTeam}
@@ -617,6 +621,7 @@ return (
                   myRk={myRk}
                   setMyRk={setMyRk}
                 />
+              {/*  </Suspense>*/}
         </div>
       </Sidebar.Pusher>
    </Sidebar.Pushable>
@@ -713,6 +718,7 @@ return (
     open={showLeaders}
     trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
+      Current League Standings
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> </div>
         <Icon bordered name="close" color="yellow" onClick={() => setShowLeaders(false)}/>
         </Modal.Header>
