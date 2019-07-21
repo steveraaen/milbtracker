@@ -12,6 +12,7 @@ import Explain from './components/Explain.js'
 import Switch from './components/Switch.js'
 import CurrentTeam from './components/CurrentTeam.js'
 import Login from './components/Login.js'
+import Leaders from './components/Leaders.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
@@ -161,7 +162,26 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   const [openConfirm, setOpenConfirm] = useState()
   const [myEmail, setMyEmail] = useState(()=> localStorage.getItem('emailForSignIn' || ''))
   const [myUserName, setMyUserName] = useState(()=> localStorage.getItem('myUserName' || ''))
-  const [myFullTeam, setMyFullTeam] = useState({myAAA, myAA, myAPlus, myA, myAMinus, myRk})
+  const [myFullTeam, setMyFullTeam] = useState({myUserName, myAAA, myAA, myAPlus, myA, myAMinus, myRk})
+  const [allUserPlayers, setAllUserPlayers] = useState();
+  const [rankedClasses, setRankedClasses] = useState();
+  const [leaders, setLeaders] = useState();
+
+/*  async function getLeaders() {
+    try {
+  const aaaRankedPromise = await axios('/api/rankedAAA')
+  const aaRankedPromise = await axios('/api/rankedAA')
+  const aPlusRankedPromise = await axios('/api/rankedAPlus')
+  const aRankedPromise = await axios('/api/rankedA')
+  const aMinusRankedPromise = await axios('/api/rankedAMinus')
+  const rkRankedPromise = await axios('/api/rankedRk')
+  const [rankedAAA, rankedAA, rankedAPlus, rankedA, rankedAMinus, rankedRk ] = await Promise.all ([aaaRankedPromise,aaRankedPromise,aPlusRankedPromise,aRankedPromise,aMinusRankedPromise,rkRankedPromise]) 
+  const tempRankedClasses = [rankedAAA.data, rankedAA.data, rankedAPlus.data, rankedA.data, rankedAMinus.data, rankedRk.data]
+  setRankedClasses(tempRankedClasses)
+  }   catch (e) {
+  console.error(e);
+    };
+}*/
 
   const toggleTheme = (th) => {
       localStorage.setItem("theme", th);
@@ -195,7 +215,23 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
     console.log(error);
   });
   }
+async function getLeaderBoard() {
+  const leaderPromise = axios('/api/leaders/')
+  var theLeaders = await leaderPromise
 
+  console.log(theLeaders.data)
+  setLeaders(theLeaders.data)
+  localStorage.setItem('leaders', JSON.stringify(theLeaders.data[4]))
+}
+
+async function getAllUserPlayers() {
+  const allUserPlayersPromise = axios('/api/allUserPlayers')
+  var allUserPlayers = await allUserPlayersPromise
+
+  console.log(allUserPlayers.data)
+  setAllUserPlayers(allUserPlayers.data)
+  localStorage.setItem('allUserPlayers', JSON.stringify(allUserPlayers.data))
+}
 async function getMyPlayers(un) {
   const myPlayersPromise = axios('/api/myPlayers', {userName: un})
   var myPlayers = await myPlayersPromise
@@ -241,9 +277,9 @@ async function getMinorMaster() {
     setAllRk(mmstr.data.filter(tm => tm.class === 'Rk'))
 
         setMinorMaster(mmstr.data)
-          }   catch (e) {
-            console.error(e);
-        };
+          } catch (e) {
+  console.error(e);
+    };
     }
 async function getTeamYears(tm) {
   try {
@@ -339,11 +375,22 @@ const areYouLoggedIn = () => {
 } else {
   setLoginVisible(true)
 }
-}
+} 
+  useEffect(() => {
+    getLeaderBoard()
+}, {leaders})
+/*  useEffect(() => {
+    getLeaders()
+}, {})*/
     useEffect(() => {
       var players = localStorage.getItem('myPlayers')
       setMyPlayers(JSON.parse(players))
     },{myPlayers})
+
+    useEffect(() => {
+      getAllUserPlayers()
+    },{})
+   
     useEffect(() => {
         getMinorMaster()
     }, {})
@@ -516,6 +563,7 @@ return (
             <Sidebar.Pusher>  
               <div>
                 <SeasonResults 
+
                 myFullTeam={myFullTeam}
                 myUserName={myUserName}
                   franchise={franchise}
@@ -658,6 +706,19 @@ return (
 
  </Modal.Content>
   </Modal>
+    <Modal   
+    open={true}
+    trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
+      <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
+        <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> </div>
+        <Icon bordered name="close" color="yellow" onClick={() => setModalOpen(false)}/>
+        </Modal.Header>
+        <Leaders
+          theme={theme}
+          leaders={leaders}
+             />
+ 
+  </Modal> 
     <div>data thanks to <a href='https://www.baseball-reference.com/'>Baseball Reference</a></div>
    </div>
     )}

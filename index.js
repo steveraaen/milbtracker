@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var os = require('os')
 const app = express()
 const myPlayersSql = require('./sql/myTeamPlayersSeason.js')
+const leaderSql = require('./sql/leaderboard.js')
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -42,6 +43,75 @@ app.get('/api/myPlayers/', function(req, res) {
     if (error) throw error;
    })
 })
+app.get('/api/leaders/', function(req, res) {
+  console.log(leaderSql)
+  connection.query(leaderSql, function (error, results, fields) {  
+   /* console.log(results)*/
+      res.json(results)
+    if (error) throw error;
+   })
+})
+app.get('/api/rankedAAA/', function(req, res) {
+  connection.query(`select * from  rankedAAA  `, function (error, results, fields) {  
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+app.get('/api/rankedAA/', function(req, res) {
+  connection.query(`select * from rankedAA `, function (error, results, fields) {  
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+app.get('/api/rankedAPlus/', function(req, res) {
+  connection.query(`select * from rankedAPlus `, function (error, results, fields) {  
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+app.get('/api/rankedA/', function(req, res) {
+  connection.query(`select * from rankedA `, function (error, results, fields) {  
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+app.get('/api/rankedAMinus/', function(req, res) {
+  connection.query(`select * from rankedAMinus `, function (error, results, fields) {  
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+app.get('/api/rankedRk/', function(req, res) {
+  connection.query(`select * from rankedRk `, function (error, results, fields) {  
+      res.json(results)
+    if (error) throw error;
+   })
+})
+app.get('/api/allUserPlayers/', function(req, res) {
+  connection.query(`select * from  tempPlayers`, function (error, results, fields) {  
+      res.json(results)
+    if (error) throw error;
+   })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/api/randomName/', function(req, res) {
   var names = Moniker.generator([Moniker.adjective, Moniker.noun]);
@@ -229,7 +299,7 @@ and finalHist.class like ?
 and finalHist.yr like ?
 and finalHist.yr > 2012
 group by finalHist.class , finalHist.franchise, finalHist.yr
-order by SUM(latestPitching.IP - latestPitching.R) desc limit 40`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(latestPitching.IP - latestPitching.R) desc`, [req.query.cl, req.query.yr],function (error, results, fields) {
  /*   console.log(results)*/
       res.json(results)
     if (error) throw error;
@@ -261,7 +331,7 @@ and finalHist.class like ?
 and finalHist.yr like ?
 and finalHist.yr > 2012
 group by finalHist.class , finalHist.franchise, finalHist.yr
-order by SUM(odp.IP - odp.R) desc limit 40`,[req.query.cl, req.query.yr], function (error, results, fields) {
+order by SUM(odp.IP - odp.R) desc`,[req.query.cl, req.query.yr], function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    })
@@ -297,7 +367,7 @@ and finalHist.class like ?
 and finalHist.yr like ?
 and finalHist.yr > 2012
 group by finalHist.tmName, finalHist.yr
-order by SUM(latestBatting.TB) desc limit 30`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(latestBatting.TB) desc`, [req.query.cl, req.query.yr],function (error, results, fields) {
 
       res.json(results)
     if (error) throw error;
@@ -334,7 +404,7 @@ and finalHist.class like ?
 and finalHist.yr like ?
 and finalHist.yr > 2012
 group by finalHist.tmName, finalHist.yr
-order by SUM(odb.TB) desc limit 40;`, [req.query.cl, req.query.yr],function (error, results, fields) {
+order by SUM(odb.TB) desc;`, [req.query.cl, req.query.yr],function (error, results, fields) {
       res.json(results)
     if (error) throw error;
    });

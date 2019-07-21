@@ -10,13 +10,12 @@ import tmsLogos from '../lgos/namesAndLogos.js'
 
 export default function SeasonResults(props) {
  const [isOnMyTeam, setIsOnMyTeam] = useState();
-
     useEffect(() => ReactTooltip.rebuild())
+ 
     if (props.timeframe && props.bestBatTeams && props.bestPitchTeams /*&& props.yestBatTeams && props.yestPitchTeams*/ && props.selectedClass && props.selectedYear) {
         var currentBatData = props.timeframe === 'season' ? props.bestBatTeams : props.yestBatTeams
         var currentPitchData = props.timeframe === 'season' ? props.bestPitchTeams : props.yestPitchTeams
         var justName
-
         if(props.myFullTeam) {
              justName = Object.values(props.myFullTeam).map( str => {
                  return str
@@ -30,11 +29,8 @@ export default function SeasonResults(props) {
                 } else{
                     tm.mine = false
                 }
-             
                 return tm
             })            
-
-
             tm.rankCol =  idx < 9 ? 'orange' : 'gray'
             tm.rank= idx + 1
             tm.lg = tm.majLg
@@ -53,9 +49,7 @@ export default function SeasonResults(props) {
 							</div>
 						</div>
             tm.ttp = <Popup content="Total Bases" trigger={<th></th>}/>
-
-            tm.rnk =  <div style={{color: tm.rankCol}}>{tm.rank}</div>  
-        
+            tm.rnk =  <div style={{color: tm.rankCol}}>{tm.rank}</div>         
             return tm
         })
         currentPitchData.map((ptm, ix) => {
@@ -65,8 +59,7 @@ export default function SeasonResults(props) {
                     ptm.fontClass = 'onMyTeam'
                 } else{
                     ptm.mine = false
-                }
-            
+                }           
                 return ptm
             })  
             ptm.rankCol =  ix < 9 ? 'orange' : 'gray'
