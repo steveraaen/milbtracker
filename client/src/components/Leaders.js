@@ -8,11 +8,23 @@ import '../App.css'
 export default function Leaders (props) {
 const columns = [{
     Header: 'General Manager',
-    accessor: 'userName' // String-based value accessors!
-  }, {
+    accessor: 'userName' 
+}, 
+    {
     Header: 'Players',
     accessor: 'players',
-    Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+  }, {
+    Header: 'Total Bases',
+    accessor: 'TB',
+  }, {
+    Header: 'RBIs',
+    accessor: 'RBI',
+  }, {
+    Header: 'AtBats',
+    accessor: 'AB',
+  }, {
+    Header: 'Hits',
+    accessor: 'H',
   }]
 const  {leaders} = props
 	if(leaders) {

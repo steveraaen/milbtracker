@@ -3,6 +3,7 @@
 require('dotenv').config()
 const mysql = require('mysql')
 const express = require('express')
+/*const cors = require('cors')*/
 const path = require('path')
 const fs = require('fs')
 var Moniker = require('moniker');
@@ -11,6 +12,8 @@ var os = require('os')
 const app = express()
 const myPlayersSql = require('./sql/myTeamPlayersSeason.js')
 const leaderSql = require('./sql/leaderboard.js')
+
+/*app.use(cors({credentials: true, origin: true}))*/
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 

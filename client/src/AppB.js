@@ -88,7 +88,7 @@ function AppB() {
 });*/
 function requestEmailLink(email) {
 var actionCodeSettings = {
-  url: 'https://ancient-falls-93393.herokuapp.com/',
+  url: 'http://localhost:3000/',
   // This must be true.
   handleCodeInApp: true,
 };
@@ -166,6 +166,7 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   const [allUserPlayers, setAllUserPlayers] = useState();
   const [rankedClasses, setRankedClasses] = useState();
   const [leaders, setLeaders] = useState();
+  const [showLeaders, setShowLeaders] = useState(true);
 
 /*  async function getLeaders() {
     try {
@@ -216,7 +217,7 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   });
   }
 async function getLeaderBoard() {
-  const leaderPromise = axios('/api/leaders/')
+  const leaderPromise = axios.get('/api/leaders/')
   var theLeaders = await leaderPromise
 
   console.log(theLeaders.data)
@@ -225,7 +226,7 @@ async function getLeaderBoard() {
 }
 
 async function getAllUserPlayers() {
-  const allUserPlayersPromise = axios('/api/allUserPlayers')
+  const allUserPlayersPromise = axios.get('/api/allUserPlayers')
   var allUserPlayers = await allUserPlayersPromise
 
   console.log(allUserPlayers.data)
@@ -233,7 +234,7 @@ async function getAllUserPlayers() {
   localStorage.setItem('allUserPlayers', JSON.stringify(allUserPlayers.data))
 }
 async function getMyPlayers(un) {
-  const myPlayersPromise = axios('/api/myPlayers', {userName: un})
+  const myPlayersPromise = axios.get('/api/myPlayers', {userName: un})
   var myPlayers = await myPlayersPromise
   for(let i = 0; i < myPlayers.data.length; i++) {
     for(let j = 0; j < mlbTeams.length; j++) {
@@ -250,8 +251,8 @@ async function getMyPlayers(un) {
 
 async function getMinorMaster() {
   try {
-    const minorMasterPromise = axios('/api/minorMaster')
-    const minorYearsPromise = axios('/api/minorYears')
+    const minorMasterPromise = axios.get('/api/minorMaster')
+    const minorYearsPromise = axios.get('/api/minorYears')
     const [mmstr,mYrs] = await Promise.all ([minorMasterPromise,minorYearsPromise]) 
 
     var tmYrObjArr = []
@@ -283,7 +284,7 @@ async function getMinorMaster() {
     }
 async function getTeamYears(tm) {
   try {
-    const tmYearsPromise = axios('/api/teamYrs', {params: {tm}})
+    const tmYearsPromise = axios.get('/api/teamYrs', {params: {tm}})
     const tmYrs = await tmYearsPromise
    console.log(tmYrs.data)
     setSelectedTmYrs(tmYrs.data)
@@ -293,10 +294,10 @@ async function getTeamYears(tm) {
 }
     async function getTopTen(cl, yr) {
         try {
-            const tmPitSeasPromise = axios('/api/teamPitchSeason', { params: { cl, yr } })
-            const tmPitYestPromise = axios('/api/teamPitchYest' , { params: { cl, yr } })
-            const tmBatSeasPromise = axios('/api/teamBatSeason' , { params: { cl, yr } })
-            const tmBatYestPromise = axios('/api/teamBatYest' , { params: { cl, yr } })
+            const tmPitSeasPromise = axios.get('/api/teamPitchSeason', { params: { cl, yr } })
+            const tmPitYestPromise = axios.get('/api/teamPitchYest' , { params: { cl, yr } })
+            const tmBatSeasPromise = axios.get('/api/teamBatSeason' , { params: { cl, yr } })
+            const tmBatYestPromise = axios.get('/api/teamBatYest' , { params: { cl, yr } })
             const [tmPitS, tmPitY,tmBatS, tmBatY] = await Promise.all([tmPitSeasPromise,tmPitYestPromise,tmBatSeasPromise,tmBatYestPromise]);            
               if(tmPitS && tmPitY &&tmBatS && tmBatY) {
                 setLoading(false)
@@ -447,6 +448,7 @@ return (
 
       <Button.Group>
         <Button
+          basic
         active
           size='mini'          
           color='olive'
@@ -456,6 +458,7 @@ return (
         >Season</Button>
          <Button.Or style={{color: 'black'}} />
         <Button
+          basic
             size='mini'        
             color='blue'
             value="yesterday"
@@ -707,11 +710,11 @@ return (
  </Modal.Content>
   </Modal>
     <Modal   
-    open={true}
+    open={showLeaders}
     trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> </div>
-        <Icon bordered name="close" color="yellow" onClick={() => setModalOpen(false)}/>
+        <Icon bordered name="close" color="yellow" onClick={() => setShowLeaders(false)}/>
         </Modal.Header>
         <Leaders
           theme={theme}

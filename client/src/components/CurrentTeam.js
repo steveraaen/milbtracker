@@ -25,7 +25,6 @@ export default function CurrentTeam(props) {
   } else {
     fullTeam =false
   }
-console.log(team);
 /*
  ( function() {
     for (let i = 0; i < props.minorMaster.length; i++) {
