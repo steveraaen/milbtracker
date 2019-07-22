@@ -15,7 +15,8 @@ async function makeRandomName() {
 
     const randomNamePromise = axios('/api/randomName/')
     const randomName = await randomNamePromise
-    var spltName = randomName.data.split('-')
+    console.log(randomName.data)
+    var spltName = randomName.data.split(' ')
 
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
