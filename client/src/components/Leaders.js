@@ -13,8 +13,10 @@ const columns = [{
     className: 'rank' 
 },{
     headerStyle: {color: 'lightGray'},
+    style: {textAlign: 'left'},
     Header: 'General Manager',
-    accessor: 'userName' 
+    accessor: 'userName', 
+    className: `rank`
 }, 
     {
         headerStyle: {color: 'lightGray'},

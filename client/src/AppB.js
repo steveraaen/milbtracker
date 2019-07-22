@@ -3,7 +3,7 @@ import React, { useState, useEffect, lazy, Suspense} from 'react';
 import * as firebase from 'firebase';
 import { Button,  Icon,  Modal, Segment, Sidebar} from 'semantic-ui-react'
 import axios from 'axios'
-
+import ReactTooltip from 'react-tooltip'
 import { ClassPicker, YearPicker } from './components/Selections.js'
 
 import SeasonResults from './components/SeasonResults.js'
@@ -89,7 +89,7 @@ function AppB() {
 });*/
 function requestEmailLink(email) {
 var actionCodeSettings = {
-  url: 'https://ancient-falls-93393.herokuapp.com/',
+  url: 'https://ancient-falls-93393.herokuapp.com/ ',
   // This must be true.
   handleCodeInApp: true,
 };
@@ -101,8 +101,6 @@ firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   .catch(function(error) {
   });
 }
-
-
   const [selectedClass, setSelectedClass] = useState(classes[0]);
   const [years] = useState(yrs);
   const [allMLB] = useState(mlbTeams);
@@ -418,15 +416,19 @@ if(loading) {
 return (
 
 <div className={`App ${theme}`}> 
+        <ReactTooltip
+          place="bottom"
+          offset={{bottom: 10, right: 10}}
+          multiline />
   <header><div style={{marginBottom: '1.5vh', marginTop: '2.5vh',fontSize: '1.2em'}}>Farm Team Fantasy</div></header>
 
     <div style={{display: 'flex',flexDirection: 'row', justifyContent: 'space-around', textAlign: 'center'}}>
       <div style={{ display: 'flex',flexDirection: 'row', width: '10vw', justifyContent: 'space-between'}}>
-        <Icon bordered  corner='top left' name="setting" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
+        <Icon bordered  corner='top left' data-tip="Filter by class and year" name="setting" size='large' disabled={formVisible} onClick={toggleFormSidebar} />
   <Modal   
 
     open={modalOpen}
-    trigger={<Icon bordered  corner='top left' name="info" size='large' onClick={() => setModalOpen(true)}/>}>
+    trigger={<Icon bordered  corner='top left' name="info" data-tip="About Farm Team Fantasy" size='large' onClick={() => setModalOpen(true)}/>}>
       <Modal.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'gray'}}>
         <div style={{marginRight:'1vw', fontSize: '1em', fontWeight: 600, color: 'white'}}> </div>
         <Icon bordered name="close" color="yellow" onClick={() => setModalOpen(false)}/>
@@ -455,7 +457,7 @@ return (
           color='olive'
           value="season"
           onClick={handleClick}
-    
+          data-tip="Full Season Performance"
         >Season</Button>
          <Button.Or />
         <Button
@@ -464,6 +466,7 @@ return (
             color='blue'
             value="yesterday"
             onClick={handleClick}  
+            data-tip="Yesterday's Performance"
         >Latest
         </Button>
           </Button.Group>          
@@ -474,10 +477,10 @@ return (
       {myUserName}
     </div>
     }
-    <Icon onClick={() => areYouLoggedIn() } bordered name="edit" size="large"/>
+    <Icon onClick={() => areYouLoggedIn() } data-tip="View your team" bordered name="edit" size="large"/>
     
     </div>
-    <Icon onClick={() => setShowLeaders(true) } bordered name="ordered list" size="large"/>
+    <Icon onClick={() => setShowLeaders(true) } data-tip="View Leaders" bordered name="ordered list" size="large"/>
     </div>
         <Sidebar.Pushable 
             as={Segment}>

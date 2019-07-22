@@ -117,7 +117,7 @@ app.get('/api/allUserPlayers/', function(req, res) {
 
 
 app.get('/api/randomName/', function(req, res) {
-  var names = Moniker.generator([Moniker.adjective, Moniker.noun]);
+  var names = Moniker.generator([Moniker.adjective, Moniker.noun],{maxSize: 6, glue: ' '} );
 res.json(names.choose())
 })
 
