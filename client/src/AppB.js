@@ -27,8 +27,7 @@ import mlbTeams from './mlbTeams.js'
     messagingSenderId: '553001988373',
     appId: '1:553001988373:web:1a53e8b3b46703a0'
   };
-
-
+localStorage.clear()
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
     { text: "2019", value: 2019, key: "2019" },
@@ -89,14 +88,15 @@ function AppB() {
 });*/
 function requestEmailLink(email) {
 var actionCodeSettings = {
-  url: 'https://ancient-falls-93393.herokuapp.com/ ',
+/*  url: 'http://localhost:3000/',*/
+  url: 'https://ancient-falls-93393.herokuapp.com',
   // This must be true.
   handleCodeInApp: true,
 };
 firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
   .then(function() {
     window.localStorage.setItem('emailForSignIn', email);
-   
+   setLoginVisible(false)
   })
   .catch(function(error) {
   });
@@ -571,7 +571,7 @@ return (
           </Sidebar>    
             <Sidebar.Pusher>  
               <div>
-         {/*     <Suspense fallback={<span>Loading...</span>}>*/}
+       
                 <SeasonResults 
 
                 myFullTeam={myFullTeam}
@@ -624,7 +624,7 @@ return (
                   myRk={myRk}
                   setMyRk={setMyRk}
                 />
-              {/*  </Suspense>*/}
+        
         </div>
       </Sidebar.Pusher>
    </Sidebar.Pushable>
