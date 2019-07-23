@@ -27,7 +27,7 @@ import mlbTeams from './mlbTeams.js'
     messagingSenderId: '553001988373',
     appId: '1:553001988373:web:1a53e8b3b46703a0'
   };
-localStorage.clear()
+/*localStorage.clear()*/
 const yrs = [
     { text: "All Years", value: "20%", key: "20%" },
     { text: "2019", value: 2019, key: "2019" },
