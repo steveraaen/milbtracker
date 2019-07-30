@@ -13,9 +13,8 @@ const app = express()
 const myPlayersSql = require('./sql/myTeamPlayersSeason.js')
 const leaderSql = require('./sql/leaderboard.js')
 
-/*app.use(cors({credentials: true, origin: true}))*/
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 console.log(os.userInfo())
 app.use(express.static(path.join(__dirname, 'client/build')));
