@@ -17,7 +17,7 @@ import Leaders from './components/Leaders.js'
 import './App.css'
 import classes from './classes.js'
 import mlbTeams from './mlbTeams.js'
-/*const SeasonResults = lazy(() => import('./components/SeasonResults.js'))*/
+
  var firebaseConfig = {
     apiKey: 'AIzaSyBbsausI3K8uWLkCSxOlpR6fnmldVklLvU',
     authDomain: 'milb-5cd63.firebaseapp.com',
